@@ -1,0 +1,32 @@
+# --- Sigma benchmark harness .gitignore ---
+# Keep: code (*.py, *.js), cases.jsonl, bench/*/bench.json (results), judge_verdicts.jsonl.
+# Drop: regenerable screenshots/intermediate artifacts (~200M), secrets, caches.
+
+# secrets / env
+.env
+.env.*
+*.benchbak
+
+# per-case screenshots (regenerable) — drop everywhere
+*.png
+eval/reports/
+
+# stale bench backups/stashes — keep only live eval/bench/*/bench.json
+eval/bench.bak*/
+eval/bench.*.stash/
+eval/bench.phase2_refuse_stash/
+
+# transient run logs + state markers
+eval/_*.log
+eval/.paid_replace_done
+*.log
+
+# python / node caches
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+
+# scratch
+/tmp/
+*.tmp

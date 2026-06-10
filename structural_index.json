@@ -1,0 +1,2803 @@
+{
+  "chapters": [
+    {
+      "slug": "ch01_intro",
+      "title": "Что такое искусственный интеллект",
+      "path": "/var/www/sigma/book/ch01_intro.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Краткая история идеи",
+          "line": 6,
+          "anchor": "краткая-история-идеи"
+        },
+        {
+          "level": 2,
+          "text": "Чему мы научимся в этой книге",
+          "line": 13,
+          "anchor": "чему-мы-научимся-в-этой-книге"
+        }
+      ]
+    },
+    {
+      "slug": "ch02_newton",
+      "title": "Метод Ньютона",
+      "path": "/var/www/sigma/book/ch02_newton.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Касательная вместо уравнения",
+          "line": 2,
+          "anchor": "sec:newton"
+        },
+        {
+          "level": 2,
+          "text": "Ньютон для оптимизации",
+          "line": 47,
+          "anchor": "ньютон-для-оптимизации"
+        },
+        {
+          "level": 2,
+          "text": "Квадратный корень за пять шагов",
+          "line": 87,
+          "anchor": "ssec:heron"
+        },
+        {
+          "level": 4,
+          "text": "Сходимость через сжимающее отображение",
+          "line": 114,
+          "anchor": "сходимость-через-сжимающее-отображение"
+        },
+        {
+          "level": 2,
+          "text": "Деление без деления",
+          "line": 198,
+          "anchor": "деление-без-деления"
+        },
+        {
+          "level": 4,
+          "text": "Анализ сходимости",
+          "line": 221,
+          "anchor": "анализ-сходимости"
+        },
+        {
+          "level": 2,
+          "text": "Численный эксперимент на Python",
+          "line": 253,
+          "anchor": "численный-эксперимент-на-python"
+        },
+        {
+          "level": 2,
+          "text": "Когда сходимость сверхлинейна$^\\star$",
+          "line": 338,
+          "anchor": "ssec:thm-superlinear"
+        }
+      ]
+    },
+    {
+      "slug": "ch03_0_intro",
+      "title": "Введение в анализ данных и искусственный интеллект",
+      "path": "/var/www/sigma/book/ch03_0_intro.qmd",
+      "outline": []
+    },
+    {
+      "slug": "ch03_1_prosteyshie-primery-zadach-anali",
+      "title": "Простейшие примеры задач анализа данных. Принцип максимума правдоподобия",
+      "path": "/var/www/sigma/book/ch03_1_prosteyshie-primery-zadach-anali.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Опрос на втором туре выборов",
+          "line": 2,
+          "anchor": "ssec:bernoulli"
+        },
+        {
+          "level": 2,
+          "text": "Почему ОМП хорош: теоретические результаты Фишера и Ле Кама",
+          "line": 109,
+          "anchor": "ssec:mle-asymp"
+        },
+        {
+          "level": 2,
+          "text": "Доверительные интервалы: Чебышёв и центральная предельная теорема",
+          "line": 167,
+          "anchor": "ssec:ci"
+        },
+        {
+          "level": 3,
+          "text": "Подход 1: неравенство Чебышёва",
+          "line": 173,
+          "anchor": "подход-1-неравенство-чебышёва"
+        },
+        {
+          "level": 3,
+          "text": "Подход 2: центральная предельная теорема",
+          "line": 203,
+          "anchor": "подход-2-центральная-предельная-теорема"
+        },
+        {
+          "level": 3,
+          "text": "Сравнение двух подходов",
+          "line": 241,
+          "anchor": "сравнение-двух-подходов"
+        },
+        {
+          "level": 2,
+          "text": "Оценка площади множества: метод Монте-Карло",
+          "line": 279,
+          "anchor": "ssec:mc-pi"
+        },
+        {
+          "level": 3,
+          "text": "Пример: оценка числа $\\pi$",
+          "line": 288,
+          "anchor": "пример-оценка-числа-pi"
+        },
+        {
+          "level": 2,
+          "text": "Вторая задача: оценка скалярного параметра при гауссовом шуме",
+          "line": 400,
+          "anchor": "ssec:gauss"
+        },
+        {
+          "level": 2,
+          "text": "Теорема Гаусса: симметричный шум должен быть нормальным",
+          "line": 509,
+          "anchor": "ssec:gauss-thm"
+        },
+        {
+          "level": 2,
+          "text": "Резюме параграфа",
+          "line": 567,
+          "anchor": "резюме-параграфа"
+        }
+      ]
+    },
+    {
+      "slug": "ch03_2_lineynaya-regressiya-i-metod-nai",
+      "title": "Линейная регрессия и метод наименьших квадратов",
+      "path": "/var/www/sigma/book/ch03_2_lineynaya-regressiya-i-metod-nai.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Постановка задачи",
+          "line": 12,
+          "anchor": "ssec:ols-setup"
+        },
+        {
+          "level": 2,
+          "text": "Метод наименьших квадратов как ОМП при гауссовом шуме",
+          "line": 31,
+          "anchor": "ssec:ols-as-mle"
+        },
+        {
+          "level": 2,
+          "text": "Почему шум часто оказывается нормальным",
+          "line": 70,
+          "anchor": "ssec:why-gauss"
+        },
+        {
+          "level": 2,
+          "text": "Решение задачи МНК. Принцип Ферма",
+          "line": 106,
+          "anchor": "ssec:ols-formula"
+        },
+        {
+          "level": 2,
+          "text": "Пример 1. III закон Кеплера по данным Тихо Браге",
+          "line": 187,
+          "anchor": "ssec:kepler"
+        },
+        {
+          "level": 2,
+          "text": "Пример 2. Ускорение свободного падения по данным Галилея",
+          "line": 279,
+          "anchor": "ssec:galileo"
+        },
+        {
+          "level": 2,
+          "text": "Множественная линейная регрессия (краткий обзор)",
+          "line": 364,
+          "anchor": "ssec:multi-reg"
+        },
+        {
+          "level": 2,
+          "text": "Резюме параграфа",
+          "line": 452,
+          "anchor": "резюме-параграфа"
+        }
+      ]
+    },
+    {
+      "slug": "ch03_3_zadacha-klassifikacii-i-neyronny",
+      "title": "Задача классификации и нейронные сети",
+      "path": "/var/www/sigma/book/ch03_3_zadacha-klassifikacii-i-neyronny.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Задача классификации MNIST и UCI Digits",
+          "line": 38,
+          "anchor": "ssec:mnist"
+        },
+        {
+          "level": 2,
+          "text": "Чем классификация отличается от регрессии",
+          "line": 85,
+          "anchor": "ssec:cls-vs-reg"
+        },
+        {
+          "level": 3,
+          "text": "Вывод кросс-энтропии из ОМП",
+          "line": 112,
+          "anchor": "вывод-кросс-энтропии-из-омп"
+        },
+        {
+          "level": 2,
+          "text": "Полносвязная нейронная сеть",
+          "line": 161,
+          "anchor": "ssec:mlp"
+        },
+        {
+          "level": 2,
+          "text": "Обучение MLP и кривые потерь",
+          "line": 282,
+          "anchor": "ssec:training"
+        },
+        {
+          "level": 2,
+          "text": "Переобучение и U-образная кривая",
+          "line": 297,
+          "anchor": "ssec:overfit"
+        },
+        {
+          "level": 2,
+          "text": "Теоремы об универсальной аппроксимации",
+          "line": 343,
+          "anchor": "ssec:universal"
+        },
+        {
+          "level": 2,
+          "text": "Свёрточные нейронные сети",
+          "line": 410,
+          "anchor": "ssec:cnn"
+        },
+        {
+          "level": 2,
+          "text": "Градиент и градиентный спуск",
+          "line": 480,
+          "anchor": "ssec:gd"
+        },
+        {
+          "level": 3,
+          "text": "Производная по направлению и градиент",
+          "line": 489,
+          "anchor": "производная-по-направлению-и-градиент"
+        },
+        {
+          "level": 3,
+          "text": "Стохастический градиентный спуск (SGD)",
+          "line": 544,
+          "anchor": "стохастический-градиентный-спуск-sgd"
+        },
+        {
+          "level": 2,
+          "text": "Метод обратного распространения ошибки",
+          "line": 571,
+          "anchor": "ssec:backprop"
+        },
+        {
+          "level": 2,
+          "text": "Резюме параграфа",
+          "line": 719,
+          "anchor": "резюме-параграфа"
+        }
+      ]
+    },
+    {
+      "slug": "ch03_4_zadachi-obucheniya-bez-uchitelya",
+      "title": "Задачи обучения без учителя",
+      "path": "/var/www/sigma/book/ch03_4_zadachi-obucheniya-bez-uchitelya.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Задача восстановления матрицы. Netflix problem",
+          "line": 25,
+          "anchor": "ssec:netflix"
+        },
+        {
+          "level": 2,
+          "text": "Три кита и роль малоранговой аппроксимации в ИИ",
+          "line": 198,
+          "anchor": "три-кита-и-роль-малоранговой-аппроксимации-в-ии"
+        },
+        {
+          "level": 2,
+          "text": "Автокодировщики: общая идея",
+          "line": 241,
+          "anchor": "ssec:ae-idea"
+        },
+        {
+          "level": 2,
+          "text": "Линейный автокодировщик и связь с PCA",
+          "line": 267,
+          "anchor": "ssec:linear-ae"
+        },
+        {
+          "level": 2,
+          "text": "Нелинейные автокодировщики и их разновидности",
+          "line": 327,
+          "anchor": "ssec:ae-variants"
+        },
+        {
+          "level": 2,
+          "text": "Эмбеддинги в современных моделях",
+          "line": 396,
+          "anchor": "ssec:embeddings"
+        },
+        {
+          "level": 2,
+          "text": "Сиамские сети и контрастивное обучение",
+          "line": 459,
+          "anchor": "ssec:contrastive"
+        },
+        {
+          "level": 2,
+          "text": "Сингулярное разложение матриц$^{\\star}$",
+          "line": 521,
+          "anchor": "ssec:svd"
+        },
+        {
+          "level": 2,
+          "text": "Резюме параграфа",
+          "line": 676,
+          "anchor": "резюме-параграфа"
+        }
+      ]
+    },
+    {
+      "slug": "ch03_5_kak-iskusstvennyy-intellekt-meny",
+      "title": "Как искусственный интеллект меняет мир",
+      "path": "/var/www/sigma/book/ch03_5_kak-iskusstvennyy-intellekt-meny.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "AlphaGo и второй прорыв в обучении с подкреплением",
+          "line": 10,
+          "anchor": "ssec:alphago"
+        },
+        {
+          "level": 2,
+          "text": "Революция трансформеров и появление ChatGPT",
+          "line": 57,
+          "anchor": "ssec:transformers"
+        },
+        {
+          "level": 2,
+          "text": "Законы скейлинга: формулы",
+          "line": 113,
+          "anchor": "ssec:scaling"
+        },
+        {
+          "level": 2,
+          "text": "AlphaFold и Нобелевская премия 2024 г.",
+          "line": 179,
+          "anchor": "ssec:alphafold"
+        },
+        {
+          "level": 2,
+          "text": "Шкалирование во время вывода и цепочки рассуждений",
+          "line": 238,
+          "anchor": "ssec:reasoning"
+        },
+        {
+          "level": 2,
+          "text": "Воплощённый ИИ и физическая картина мира",
+          "line": 277,
+          "anchor": "ssec:embodied"
+        },
+        {
+          "level": 2,
+          "text": "Исчерпание данных и пределы скейлинга",
+          "line": 306,
+          "anchor": "ssec:limits"
+        },
+        {
+          "level": 2,
+          "text": "Прогнозы и сингулярность по Курцвейлю",
+          "line": 335,
+          "anchor": "ssec:kurzweil"
+        },
+        {
+          "level": 2,
+          "text": "Меняющийся ландшафт профессий",
+          "line": 372,
+          "anchor": "ssec:professions"
+        },
+        {
+          "level": 2,
+          "text": "Учиться учиться: главный навык XXI века",
+          "line": 424,
+          "anchor": "учиться-учиться-главный-навык-xxi-века"
+        },
+        {
+          "level": 2,
+          "text": "Что мы прошли в этой главе",
+          "line": 477,
+          "anchor": "что-мы-прошли-в-этой-главе"
+        },
+        {
+          "level": 2,
+          "text": "Заключение главы",
+          "line": 518,
+          "anchor": "заключение-главы"
+        }
+      ]
+    },
+    {
+      "slug": "ch04_0_intro",
+      "title": "Элементы теории чисел и шифрование",
+      "path": "/var/www/sigma/book/ch04_0_intro.qmd",
+      "outline": []
+    },
+    {
+      "slug": "ch04_1_elementy-teorii-chisel",
+      "title": "Элементы теории чисел",
+      "path": "/var/www/sigma/book/ch04_1_elementy-teorii-chisel.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Делимость, остатки и сравнения по модулю",
+          "line": 2,
+          "anchor": "делимость-остатки-и-сравнения-по-модулю"
+        },
+        {
+          "level": 2,
+          "text": "Алгоритм Евклида",
+          "line": 75,
+          "anchor": "subsec:euclid"
+        },
+        {
+          "level": 2,
+          "text": "Расширенный алгоритм Евклида",
+          "line": 122,
+          "anchor": "расширенный-алгоритм-евклида"
+        },
+        {
+          "level": 2,
+          "text": "Решение линейных сравнений",
+          "line": 165,
+          "anchor": "решение-линейных-сравнений"
+        },
+        {
+          "level": 2,
+          "text": "Быстрое возведение в степень",
+          "line": 209,
+          "anchor": "subsec:fastpow"
+        },
+        {
+          "level": 2,
+          "text": "Функция Эйлера и малая теорема Ферма",
+          "line": 276,
+          "anchor": "функция-эйлера-и-малая-теорема-ферма"
+        },
+        {
+          "level": 2,
+          "text": "Сколько вокруг простых чисел?",
+          "line": 333,
+          "anchor": "сколько-вокруг-простых-чисел"
+        },
+        {
+          "level": 2,
+          "text": "Проверка простоты и задача факторизации",
+          "line": 350,
+          "anchor": "subsec:primality"
+        },
+        {
+          "level": 2,
+          "text": "Что мы получили",
+          "line": 396,
+          "anchor": "что-мы-получили"
+        }
+      ]
+    },
+    {
+      "slug": "ch04_2_shifrovanie-ot-taynopisi-k-matem",
+      "title": "Шифрование: от тайнописи к математической задаче",
+      "path": "/var/www/sigma/book/ch04_2_shifrovanie-ot-taynopisi-k-matem.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Зачем людям шифры",
+          "line": 2,
+          "anchor": "зачем-людям-шифры"
+        },
+        {
+          "level": 2,
+          "text": "Общая схема симметричного шифрования",
+          "line": 22,
+          "anchor": "общая-схема-симметричного-шифрования"
+        },
+        {
+          "level": 2,
+          "text": "Революция 1976 года: открытый ключ",
+          "line": 36,
+          "anchor": "революция-1976-года-открытый-ключ"
+        },
+        {
+          "level": 2,
+          "text": "Односторонние функции и функции с секретом",
+          "line": 52,
+          "anchor": "односторонние-функции-и-функции-с-секретом"
+        },
+        {
+          "level": 2,
+          "text": "Где криптография работает прямо сейчас",
+          "line": 92,
+          "anchor": "где-криптография-работает-прямо-сейчас"
+        }
+      ]
+    },
+    {
+      "slug": "ch04_3_kriptosistemy-rsa-i-diffi-hellma",
+      "title": "Криптосистемы RSA и Диффи–Хеллмана",
+      "path": "/var/www/sigma/book/ch04_3_kriptosistemy-rsa-i-diffi-hellma.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Криптосистема RSA",
+          "line": 4,
+          "anchor": "криптосистема-rsa"
+        },
+        {
+          "level": 2,
+          "text": "Почему RSA работает: корректность",
+          "line": 40,
+          "anchor": "почему-rsa-работает-корректность"
+        },
+        {
+          "level": 2,
+          "text": "Почему RSA безопасен",
+          "line": 99,
+          "anchor": "почему-rsa-безопасен"
+        },
+        {
+          "level": 2,
+          "text": "Протокол Диффи–Хеллмана",
+          "line": 125,
+          "anchor": "протокол-диффихеллмана"
+        },
+        {
+          "level": 2,
+          "text": "Атака «человек посередине»",
+          "line": 193,
+          "anchor": "атака-человек-посередине"
+        }
+      ]
+    },
+    {
+      "slug": "ch04_4_primeneniya-rsa-autentifikaciya",
+      "title": "Применения RSA: аутентификация, цифровая подпись, электронное голосование",
+      "path": "/var/www/sigma/book/ch04_4_primeneniya-rsa-autentifikaciya.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Аутентификация: «докажи, что это ты»",
+          "line": 12,
+          "anchor": "subsec:auth"
+        },
+        {
+          "level": 2,
+          "text": "Электронная цифровая подпись",
+          "line": 56,
+          "anchor": "subsec:eds"
+        },
+        {
+          "level": 2,
+          "text": "Электронное голосование",
+          "line": 102,
+          "anchor": "subsec:voting"
+        },
+        {
+          "level": 2,
+          "text": "Итог параграфа",
+          "line": 184,
+          "anchor": "итог-параграфа"
+        }
+      ]
+    },
+    {
+      "slug": "ch04_5_heshirovanie-teoriya-chisel-vstr",
+      "title": "Хеширование: теория чисел встречается с рандомизацией",
+      "path": "/var/www/sigma/book/ch04_5_heshirovanie-teoriya-chisel-vstr.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Задача быстрого поиска",
+          "line": 8,
+          "anchor": "задача-быстрого-поиска"
+        },
+        {
+          "level": 2,
+          "text": "Беда детерминированного хеширования",
+          "line": 30,
+          "anchor": "беда-детерминированного-хеширования"
+        },
+        {
+          "level": 2,
+          "text": "Универсальное семейство хеш-функций",
+          "line": 42,
+          "anchor": "универсальное-семейство-хеш-функций"
+        },
+        {
+          "level": 2,
+          "text": "Конструкция универсального семейства через теорию чисел",
+          "line": 71,
+          "anchor": "конструкция-универсального-семейства-через-теорию-чисел"
+        },
+        {
+          "level": 2,
+          "text": "Пример: маленькая хеш-таблица",
+          "line": 123,
+          "anchor": "пример-маленькая-хеш-таблица"
+        },
+        {
+          "level": 2,
+          "text": "Применения хеширования",
+          "line": 155,
+          "anchor": "применения-хеширования"
+        }
+      ]
+    },
+    {
+      "slug": "ch04_6_schetchiki-s-korotkoy-pamyatyu-h",
+      "title": "Счётчики с короткой памятью HyperLogLog и эксперимент Стенли Мильграма",
+      "path": "/var/www/sigma/book/ch04_6_schetchiki-s-korotkoy-pamyatyu-h.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Задача подсчёта различных элементов",
+          "line": 6,
+          "anchor": "задача-подсчёта-различных-элементов"
+        },
+        {
+          "level": 2,
+          "text": "Идея: «самый длинный хвост нулей»",
+          "line": 18,
+          "anchor": "идея-самый-длинный-хвост-нулей"
+        },
+        {
+          "level": 2,
+          "text": "Идея «несколько счётчиков»",
+          "line": 58,
+          "anchor": "идея-несколько-счётчиков"
+        },
+        {
+          "level": 2,
+          "text": "Эксперимент Стенли Мильграма",
+          "line": 100,
+          "anchor": "subsec:milgram"
+        },
+        {
+          "level": 2,
+          "text": "При чём здесь HyperLogLog?",
+          "line": 126,
+          "anchor": "при-чём-здесь-hyperloglog"
+        },
+        {
+          "level": 2,
+          "text": "От социологии — к стратегическим выводам",
+          "line": 164,
+          "anchor": "от-социологии-к-стратегическим-выводам"
+        }
+      ]
+    },
+    {
+      "slug": "ch04_7_podvedenie-itogov-glavy",
+      "title": "Подведение итогов главы",
+      "path": "/var/www/sigma/book/ch04_7_podvedenie-itogov-glavy.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Что почитать дальше",
+          "line": 16,
+          "anchor": "что-почитать-дальше"
+        },
+        {
+          "level": 2,
+          "text": "Большой итоговый проект",
+          "line": 28,
+          "anchor": "большой-итоговый-проект"
+        }
+      ]
+    },
+    {
+      "slug": "ch_linalg_0_intro",
+      "title": "Вычислительная линейная алгебра",
+      "path": "/var/www/sigma/book/ch_linalg_0_intro.qmd",
+      "outline": []
+    },
+    {
+      "slug": "ch_linalg_10_chto-pochitat-dalshe",
+      "title": "Что почитать дальше",
+      "path": "/var/www/sigma/book/ch_linalg_10_chto-pochitat-dalshe.qmd",
+      "outline": []
+    },
+    {
+      "slug": "ch_linalg_11_bolshoy-itogovyy-proekt",
+      "title": "Большой итоговый проект",
+      "path": "/var/www/sigma/book/ch_linalg_11_bolshoy-itogovyy-proekt.qmd",
+      "outline": []
+    },
+    {
+      "slug": "ch_linalg_1_zachem-lineynoy-algebre-otdelnay",
+      "title": "Зачем линейной алгебре отдельная глава",
+      "path": "/var/www/sigma/book/ch_linalg_1_zachem-lineynoy-algebre-otdelnay.qmd",
+      "outline": []
+    },
+    {
+      "slug": "ch_linalg_2_kogda-arifmetika-lzhet-chisla-s",
+      "title": "Когда арифметика лжёт: числа с плавающей точкой",
+      "path": "/var/www/sigma/book/ch_linalg_2_kogda-arifmetika-lzhet-chisla-s.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Двоичные дроби и почему $0{,}1$ — это «$0{,}333\\ldots$»",
+          "line": 16
+        },
+        {
+          "level": 2,
+          "text": "Когда это становится опасным: катастрофическое сокращение",
+          "line": 46,
+          "anchor": "когда-это-становится-опасным-катастрофическое-сокращение"
+        }
+      ]
+    },
+    {
+      "slug": "ch_linalg_3_singulyarnoe-razlozhenie-svd-gla",
+      "title": "Сингулярное разложение SVD: главный фокус линейной алгебры",
+      "path": "/var/www/sigma/book/ch_linalg_3_singulyarnoe-razlozhenie-svd-gla.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Геометрическая идея",
+          "line": 2,
+          "anchor": "геометрическая-идея"
+        },
+        {
+          "level": 2,
+          "text": "Связь с собственными значениями",
+          "line": 44,
+          "anchor": "связь-с-собственными-значениями"
+        }
+      ]
+    },
+    {
+      "slug": "ch_linalg_4_luchshee-malorangovoe-priblizhen",
+      "title": "Лучшее малоранговое приближение: теорема Эккарта–Янга",
+      "path": "/var/www/sigma/book/ch_linalg_4_luchshee-malorangovoe-priblizhen.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Разложение по слагаемым ранга один",
+          "line": 5,
+          "anchor": "разложение-по-слагаемым-ранга-один"
+        },
+        {
+          "level": 2,
+          "text": "Теорема Эккарта–Янга: $A_k$ — наилучшее приближение",
+          "line": 30
+        },
+        {
+          "level": 2,
+          "text": "Пример: сжатие изображения",
+          "line": 54,
+          "anchor": "пример-сжатие-изображения"
+        }
+      ]
+    },
+    {
+      "slug": "ch_linalg_5_eigenfaces-kak-algoritm-uznaet-l",
+      "title": "Eigenfaces: как алгоритм узнаёт лицо",
+      "path": "/var/www/sigma/book/ch_linalg_5_eigenfaces-kak-algoritm-uznaet-l.qmd",
+      "outline": []
+    },
+    {
+      "slug": "ch_linalg_6_eigencats-to-zhe-samoe-dlya-koti",
+      "title": "Eigencats: то же самое для котиков",
+      "path": "/var/www/sigma/book/ch_linalg_6_eigencats-to-zhe-samoe-dlya-koti.qmd",
+      "outline": []
+    },
+    {
+      "slug": "ch_linalg_7_pagerank-kak-google-nashel-porya",
+      "title": "PageRank: как Google нашёл порядок в Интернете",
+      "path": "/var/www/sigma/book/ch_linalg_7_pagerank-kak-google-nashel-porya.qmd",
+      "outline": []
+    },
+    {
+      "slug": "ch_linalg_8_kogda-neyroset-ustoychiva-ocenki",
+      "title": "Когда нейросеть устойчива: оценки Липшицевости",
+      "path": "/var/www/sigma/book/ch_linalg_8_kogda-neyroset-ustoychiva-ocenki.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Сюжет: когда панда становится гиббоном",
+          "line": 2,
+          "anchor": "сюжет-когда-панда-становится-гиббоном"
+        },
+        {
+          "level": 2,
+          "text": "Константа Липшица: формальное определение",
+          "line": 18,
+          "anchor": "константа-липшица-формальное-определение"
+        },
+        {
+          "level": 2,
+          "text": "Композиция: Липшицева константа цепочки",
+          "line": 47,
+          "anchor": "композиция-липшицева-константа-цепочки"
+        },
+        {
+          "level": 2,
+          "text": "Применение к нейросети",
+          "line": 60,
+          "anchor": "применение-к-нейросети"
+        },
+        {
+          "level": 2,
+          "text": "Как защищаться: спектральная нормализация",
+          "line": 81,
+          "anchor": "как-защищаться-спектральная-нормализация"
+        }
+      ]
+    },
+    {
+      "slug": "ch_linalg_9_podvedenie-itogov-glavy",
+      "title": "Подведение итогов главы",
+      "path": "/var/www/sigma/book/ch_linalg_9_podvedenie-itogov-glavy.qmd",
+      "outline": []
+    },
+    {
+      "slug": "story_double_descent",
+      "title": "Феномен двойного спуска",
+      "path": "/var/www/sigma/book/story_double_descent.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Классический взгляд: bias-variance tradeoff",
+          "line": 4,
+          "anchor": "классический-взгляд-bias-variance-tradeoff"
+        },
+        {
+          "level": 2,
+          "text": "Что происходит за порогом интерполяции",
+          "line": 22,
+          "anchor": "что-происходит-за-порогом-интерполяции"
+        },
+        {
+          "level": 2,
+          "text": "Демо: полиномиальная регрессия",
+          "line": 44,
+          "anchor": "демо-полиномиальная-регрессия"
+        },
+        {
+          "level": 3,
+          "text": "Что видно на графике",
+          "line": 100,
+          "anchor": "что-видно-на-графике"
+        },
+        {
+          "level": 2,
+          "text": "Почему это работает: неявная регуляризация",
+          "line": 122,
+          "anchor": "почему-это-работает-неявная-регуляризация"
+        },
+        {
+          "level": 2,
+          "text": "Двойной спуск в нейросетях",
+          "line": 156,
+          "anchor": "двойной-спуск-в-нейросетях"
+        },
+        {
+          "level": 3,
+          "text": "Поширинный (model-wise)",
+          "line": 162,
+          "anchor": "поширинный-model-wise"
+        },
+        {
+          "level": 3,
+          "text": "Поэпохный (epoch-wise)",
+          "line": 168,
+          "anchor": "поэпохный-epoch-wise"
+        },
+        {
+          "level": 3,
+          "text": "По объёму данных (sample-wise)",
+          "line": 175,
+          "anchor": "по-объёму-данных-sample-wise"
+        },
+        {
+          "level": 2,
+          "text": "Переопределённая аппроксимация",
+          "line": 181,
+          "anchor": "переопределённая-аппроксимация"
+        },
+        {
+          "level": 3,
+          "text": "Зашумлённая интерполяция",
+          "line": 187,
+          "anchor": "зашумлённая-интерполяция"
+        },
+        {
+          "level": 2,
+          "text": "Почему это важно",
+          "line": 196,
+          "anchor": "почему-это-важно"
+        },
+        {
+          "level": 2,
+          "text": "Связи",
+          "line": 216,
+          "anchor": "связи"
+        }
+      ]
+    },
+    {
+      "slug": "story_eigenvalues",
+      "title": "Собственные значения: от PageRank до шатающихся мостов",
+      "path": "/var/www/sigma/book/story_eigenvalues.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Собственные значения: что это",
+          "line": 4,
+          "anchor": "собственные-значения-что-это"
+        },
+        {
+          "level": 2,
+          "text": "История 1: PageRank",
+          "line": 21,
+          "anchor": "история-1-pagerank"
+        },
+        {
+          "level": 3,
+          "text": "Как Google нашёл порядок в Интернете",
+          "line": 23,
+          "anchor": "как-google-нашёл-порядок-в-интернете"
+        },
+        {
+          "level": 3,
+          "text": "Стационарное распределение",
+          "line": 45,
+          "anchor": "стационарное-распределение"
+        },
+        {
+          "level": 3,
+          "text": "Степенной метод",
+          "line": 115,
+          "anchor": "степенной-метод"
+        },
+        {
+          "level": 2,
+          "text": "История 2: вибрации и шатающиеся мосты",
+          "line": 131,
+          "anchor": "история-2-вибрации-и-шатающиеся-мосты"
+        },
+        {
+          "level": 3,
+          "text": "Собственные частоты",
+          "line": 133,
+          "anchor": "собственные-частоты"
+        },
+        {
+          "level": 3,
+          "text": "Такомский мост (1940)",
+          "line": 154,
+          "anchor": "такомский-мост-1940"
+        },
+        {
+          "level": 3,
+          "text": "Численная модель: мост как система масс на пружинах",
+          "line": 181,
+          "anchor": "численная-модель-мост-как-система-масс-на-пружинах"
+        },
+        {
+          "level": 3,
+          "text": "Формы колебаний",
+          "line": 241,
+          "anchor": "формы-колебаний"
+        },
+        {
+          "level": 2,
+          "text": "Единая математика",
+          "line": 270,
+          "anchor": "единая-математика"
+        },
+        {
+          "level": 2,
+          "text": "Второе собственное значение: скорость сходимости",
+          "line": 286,
+          "anchor": "второе-собственное-значение-скорость-сходимости"
+        },
+        {
+          "level": 2,
+          "text": "Численный эксперимент: резонанс",
+          "line": 307,
+          "anchor": "численный-эксперимент-резонанс"
+        },
+        {
+          "level": 2,
+          "text": "Современные мосты",
+          "line": 339,
+          "anchor": "современные-мосты"
+        },
+        {
+          "level": 2,
+          "text": "Связи",
+          "line": 352,
+          "anchor": "связи"
+        }
+      ]
+    },
+    {
+      "slug": "story_fft_matrix",
+      "title": "БПФ как умножение на матрицу: от спектра звука до Shazam",
+      "path": "/var/www/sigma/book/story_fft_matrix.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "ДПФ как матричное умножение",
+          "line": 4,
+          "anchor": "дпф-как-матричное-умножение"
+        },
+        {
+          "level": 3,
+          "text": "Пример: $n = 4$",
+          "line": 45
+        },
+        {
+          "level": 2,
+          "text": "Идея БПФ: факторизация матрицы",
+          "line": 86,
+          "anchor": "идея-бпф-факторизация-матрицы"
+        },
+        {
+          "level": 3,
+          "text": "Рекурсивное разделение",
+          "line": 94,
+          "anchor": "рекурсивное-разделение"
+        },
+        {
+          "level": 3,
+          "text": "Матричная факторизация",
+          "line": 115,
+          "anchor": "матричная-факторизация"
+        },
+        {
+          "level": 2,
+          "text": "Спектрограмма: частота × время",
+          "line": 174,
+          "anchor": "спектрограмма-частота-время"
+        },
+        {
+          "level": 2,
+          "text": "Как работает Shazam",
+          "line": 192,
+          "anchor": "как-работает-shazam"
+        },
+        {
+          "level": 2,
+          "text": "Матрица Фурье и физика",
+          "line": 257,
+          "anchor": "матрица-фурье-и-физика"
+        },
+        {
+          "level": 2,
+          "text": "Где ещё работает та же матрица",
+          "line": 268,
+          "anchor": "где-ещё-работает-та-же-матрица"
+        },
+        {
+          "level": 2,
+          "text": "Резюме",
+          "line": 280,
+          "anchor": "резюме"
+        }
+      ]
+    },
+    {
+      "slug": "story_global_optim",
+      "title": "Глобальная оптимизация: от муравьёв до температуры в LLM",
+      "path": "/var/www/sigma/book/story_global_optim.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Задача коммивояжёра (TSP) как полигон",
+          "line": 4,
+          "anchor": "задача-коммивояжёра-tsp-как-полигон"
+        },
+        {
+          "level": 2,
+          "text": "Генетический алгоритм (GA)",
+          "line": 15,
+          "anchor": "генетический-алгоритм-ga"
+        },
+        {
+          "level": 2,
+          "text": "Particle Swarm Optimization (PSO)",
+          "line": 100,
+          "anchor": "particle-swarm-optimization-pso"
+        },
+        {
+          "level": 3,
+          "text": "Алгоритм",
+          "line": 106,
+          "anchor": "алгоритм"
+        },
+        {
+          "level": 3,
+          "text": "Визуализация роя",
+          "line": 197,
+          "anchor": "визуализация-роя"
+        },
+        {
+          "level": 2,
+          "text": "Имитация отжига (SA) и температура",
+          "line": 201,
+          "anchor": "имитация-отжига-sa-и-температура"
+        },
+        {
+          "level": 3,
+          "text": "Критерий Метрополиса",
+          "line": 210,
+          "anchor": "критерий-метрополиса"
+        },
+        {
+          "level": 3,
+          "text": "Расписание охлаждения",
+          "line": 226,
+          "anchor": "расписание-охлаждения"
+        },
+        {
+          "level": 2,
+          "text": "Температура в LLM: та же формула",
+          "line": 232,
+          "anchor": "температура-в-llm-та-же-формула"
+        },
+        {
+          "level": 2,
+          "text": "Сравнение на TSP",
+          "line": 275,
+          "anchor": "сравнение-на-tsp"
+        },
+        {
+          "level": 2,
+          "text": "Резюме",
+          "line": 316,
+          "anchor": "резюме"
+        }
+      ]
+    },
+    {
+      "slug": "story_ica",
+      "title": "ICA и задача коктейльной вечеринки",
+      "path": "/var/www/sigma/book/story_ica.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Постановка задачи",
+          "line": 6,
+          "anchor": "постановка-задачи"
+        },
+        {
+          "level": 2,
+          "text": "Почему PCA не справляется",
+          "line": 35,
+          "anchor": "почему-pca-не-справляется"
+        },
+        {
+          "level": 2,
+          "text": "Ключевая идея: негауссовость",
+          "line": 52,
+          "anchor": "ключевая-идея-негауссовость"
+        },
+        {
+          "level": 3,
+          "text": "Почему гауссов сигнал — слепое пятно ICA",
+          "line": 83,
+          "anchor": "почему-гауссов-сигнал-слепое-пятно-ica"
+        },
+        {
+          "level": 2,
+          "text": "Алгоритм FastICA",
+          "line": 102,
+          "anchor": "алгоритм-fastica"
+        },
+        {
+          "level": 2,
+          "text": "Демо: разделение звуков",
+          "line": 176,
+          "anchor": "демо-разделение-звуков"
+        },
+        {
+          "level": 2,
+          "text": "Применения ICA",
+          "line": 224,
+          "anchor": "применения-ica"
+        },
+        {
+          "level": 3,
+          "text": "Пример: очистка ЭЭГ",
+          "line": 234,
+          "anchor": "пример-очистка-ээг"
+        },
+        {
+          "level": 2,
+          "text": "Связь с информационной теорией",
+          "line": 243,
+          "anchor": "связь-с-информационной-теорией"
+        },
+        {
+          "level": 2,
+          "text": "Связи",
+          "line": 260,
+          "anchor": "связи"
+        }
+      ]
+    },
+    {
+      "slug": "story_loss_landscape",
+      "title": "Ландшафт функции потерь и парадоксы высокой размерности",
+      "path": "/var/www/sigma/book/story_loss_landscape.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Зачем проецировать ландшафт",
+          "line": 4,
+          "anchor": "зачем-проецировать-ландшафт"
+        },
+        {
+          "level": 3,
+          "text": "Проекция на прямую",
+          "line": 23,
+          "anchor": "проекция-на-прямую"
+        },
+        {
+          "level": 3,
+          "text": "Проекция на плоскость",
+          "line": 44,
+          "anchor": "проекция-на-плоскость"
+        },
+        {
+          "level": 2,
+          "text": "Парадоксы высокой размерности",
+          "line": 108,
+          "anchor": "парадоксы-высокой-размерности"
+        },
+        {
+          "level": 3,
+          "text": "Парадокс 1: объём сферы",
+          "line": 114,
+          "anchor": "парадокс-1-объём-сферы"
+        },
+        {
+          "level": 3,
+          "text": "Парадокс 2: весь объём — у поверхности",
+          "line": 130,
+          "anchor": "парадокс-2-весь-объём-у-поверхности"
+        },
+        {
+          "level": 3,
+          "text": "Парадокс 3: все точки далеко друг от друга",
+          "line": 149,
+          "anchor": "парадокс-3-все-точки-далеко-друг-от-друга"
+        },
+        {
+          "level": 3,
+          "text": "Парадокс 4: седловые точки вместо локальных минимумов",
+          "line": 184,
+          "anchor": "парадокс-4-седловые-точки-вместо-локальных-минимумов"
+        },
+        {
+          "level": 2,
+          "text": "Что показывают проекции",
+          "line": 212,
+          "anchor": "что-показывают-проекции"
+        },
+        {
+          "level": 3,
+          "text": "Что видно на практике",
+          "line": 229,
+          "anchor": "что-видно-на-практике"
+        },
+        {
+          "level": 2,
+          "text": "Практическое следствие: широкие минимумы обобщают лучше",
+          "line": 239,
+          "anchor": "практическое-следствие-широкие-минимумы-обобщают-лучше"
+        },
+        {
+          "level": 2,
+          "text": "Резюме",
+          "line": 253,
+          "anchor": "резюме"
+        }
+      ]
+    },
+    {
+      "slug": "story_mds",
+      "title": "Многомерное шкалирование и проклятие размерности для безградиентных методов",
+      "path": "/var/www/sigma/book/story_mds.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Постановка задачи",
+          "line": 4,
+          "anchor": "постановка-задачи"
+        },
+        {
+          "level": 2,
+          "text": "Пример: восстановление карты городов",
+          "line": 32,
+          "anchor": "пример-восстановление-карты-городов"
+        },
+        {
+          "level": 2,
+          "text": "Градиентный спуск vs безградиентные методы",
+          "line": 122,
+          "anchor": "градиентный-спуск-vs-безградиентные-методы"
+        },
+        {
+          "level": 3,
+          "text": "Градиент стресса",
+          "line": 135,
+          "anchor": "градиент-стресса"
+        },
+        {
+          "level": 3,
+          "text": "Безградиентные методы",
+          "line": 147,
+          "anchor": "безградиентные-методы"
+        },
+        {
+          "level": 2,
+          "text": "Проклятие размерности для безградиентных методов",
+          "line": 161,
+          "anchor": "проклятие-размерности-для-безградиентных-методов"
+        },
+        {
+          "level": 3,
+          "text": "Численный эксперимент",
+          "line": 177,
+          "anchor": "численный-эксперимент"
+        },
+        {
+          "level": 3,
+          "text": "Что видно",
+          "line": 243,
+          "anchor": "что-видно"
+        },
+        {
+          "level": 2,
+          "text": "Связь MDS с PCA",
+          "line": 262,
+          "anchor": "связь-mds-с-pca"
+        },
+        {
+          "level": 2,
+          "text": "Применения MDS",
+          "line": 280,
+          "anchor": "применения-mds"
+        },
+        {
+          "level": 2,
+          "text": "Связи",
+          "line": 290,
+          "anchor": "связи"
+        }
+      ]
+    },
+    {
+      "slug": "story_optimizers",
+      "title": "Как методы спускаются с горы: GD, momentum, Adam",
+      "path": "/var/www/sigma/book/story_optimizers.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Один шаг вниз",
+          "line": 8,
+          "anchor": "один-шаг-вниз"
+        },
+        {
+          "level": 2,
+          "text": "Потрогайте спуск",
+          "line": 43,
+          "anchor": "потрогайте-спуск"
+        },
+        {
+          "level": 2,
+          "text": "За пределами картинки",
+          "line": 75,
+          "anchor": "за-пределами-картинки"
+        },
+        {
+          "level": 2,
+          "text": "Связи",
+          "line": 85,
+          "anchor": "связи"
+        }
+      ]
+    },
+    {
+      "slug": "story_pca",
+      "title": "PCA и Eigenfaces",
+      "path": "/var/www/sigma/book/story_pca.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Идея PCA",
+          "line": 4,
+          "anchor": "идея-pca"
+        },
+        {
+          "level": 3,
+          "text": "Формулировка",
+          "line": 11,
+          "anchor": "формулировка"
+        },
+        {
+          "level": 3,
+          "text": "Связь с SVD",
+          "line": 32,
+          "anchor": "связь-с-svd"
+        },
+        {
+          "level": 2,
+          "text": "Eigenfaces: узнавание лиц",
+          "line": 45,
+          "anchor": "eigenfaces-узнавание-лиц"
+        },
+        {
+          "level": 3,
+          "text": "Как это работает",
+          "line": 51,
+          "anchor": "как-это-работает"
+        },
+        {
+          "level": 3,
+          "text": "Scree plot: сколько компонент достаточно?",
+          "line": 79,
+          "anchor": "scree-plot-сколько-компонент-достаточно"
+        },
+        {
+          "level": 3,
+          "text": "Восстановление с разным числом компонент",
+          "line": 83,
+          "anchor": "восстановление-с-разным-числом-компонент"
+        },
+        {
+          "level": 2,
+          "text": "Обобщение",
+          "line": 111,
+          "anchor": "обобщение"
+        },
+        {
+          "level": 2,
+          "text": "PCA в других задачах",
+          "line": 115,
+          "anchor": "pca-в-других-задачах"
+        },
+        {
+          "level": 3,
+          "text": "Финансы: факторная модель",
+          "line": 117,
+          "anchor": "финансы-факторная-модель"
+        },
+        {
+          "level": 3,
+          "text": "Геномика: популяционная структура",
+          "line": 148,
+          "anchor": "геномика-популяционная-структура"
+        },
+        {
+          "level": 3,
+          "text": "Климатология: EOF-анализ",
+          "line": 155,
+          "anchor": "климатология-eof-анализ"
+        },
+        {
+          "level": 2,
+          "text": "Ограничения PCA",
+          "line": 161,
+          "anchor": "ограничения-pca"
+        },
+        {
+          "level": 2,
+          "text": "Связи",
+          "line": 176,
+          "anchor": "связи"
+        }
+      ]
+    },
+    {
+      "slug": "story_word2vec",
+      "title": "Word2Vec: слова как векторы",
+      "path": "/var/www/sigma/book/story_word2vec.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Дистрибутивная гипотеза",
+          "line": 6,
+          "anchor": "дистрибутивная-гипотеза"
+        },
+        {
+          "level": 2,
+          "text": "Архитектуры Word2Vec",
+          "line": 21,
+          "anchor": "архитектуры-word2vec"
+        },
+        {
+          "level": 3,
+          "text": "CBOW (Continuous Bag of Words)",
+          "line": 26,
+          "anchor": "cbow-continuous-bag-of-words"
+        },
+        {
+          "level": 3,
+          "text": "Skip-gram",
+          "line": 39,
+          "anchor": "skip-gram"
+        },
+        {
+          "level": 3,
+          "text": "Negative Sampling",
+          "line": 53,
+          "anchor": "negative-sampling"
+        },
+        {
+          "level": 2,
+          "text": "Магия аналогий",
+          "line": 70,
+          "anchor": "магия-аналогий"
+        },
+        {
+          "level": 3,
+          "text": "Король − Мужчина + Женщина ≈ Королева",
+          "line": 76,
+          "anchor": "король-мужчина-женщина-королева"
+        },
+        {
+          "level": 3,
+          "text": "Париж − Франция + Германия ≈ Берлин",
+          "line": 97,
+          "anchor": "париж-франция-германия-берлин"
+        },
+        {
+          "level": 3,
+          "text": "Таблица аналогий",
+          "line": 124,
+          "anchor": "таблица-аналогий"
+        },
+        {
+          "level": 2,
+          "text": "Почему это работает: геометрия",
+          "line": 173,
+          "anchor": "почему-это-работает-геометрия"
+        },
+        {
+          "level": 2,
+          "text": "Визуализация: t-SNE проекция",
+          "line": 192,
+          "anchor": "визуализация-t-sne-проекция"
+        },
+        {
+          "level": 2,
+          "text": "От Word2Vec к современным эмбеддингам",
+          "line": 249,
+          "anchor": "от-word2vec-к-современным-эмбеддингам"
+        },
+        {
+          "level": 2,
+          "text": "Численный эксперимент: обучение с нуля",
+          "line": 266,
+          "anchor": "численный-эксперимент-обучение-с-нуля"
+        },
+        {
+          "level": 2,
+          "text": "Связи",
+          "line": 298,
+          "anchor": "связи"
+        }
+      ]
+    },
+    {
+      "slug": "app_history",
+      "title": "Приложение. Биологические и исторические предпосылки ИИ",
+      "path": "/var/www/sigma/10/app_history.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Содержание",
+          "line": 8
+        },
+        {
+          "level": 3,
+          "text": "Древнейшая история ИИ",
+          "line": 10
+        },
+        {
+          "level": 3,
+          "text": "Бионический подход",
+          "line": 15
+        },
+        {
+          "level": 3,
+          "text": "Эволюция и мозг",
+          "line": 19
+        },
+        {
+          "level": 3,
+          "text": "Принципы функционирования мозга и машины",
+          "line": 27
+        }
+      ]
+    },
+    {
+      "slug": "ch1_intro_data",
+      "title": "Глава 1. Введение в интеллектуальный анализ данных",
+      "path": "/var/www/sigma/10/ch1_intro_data.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Концепция",
+          "line": 8
+        },
+        {
+          "level": 2,
+          "text": "Содержание",
+          "line": 12
+        },
+        {
+          "level": 2,
+          "text": "Сюжетные примеры",
+          "line": 21
+        },
+        {
+          "level": 2,
+          "text": "Связанные материалы",
+          "line": 27
+        }
+      ]
+    },
+    {
+      "slug": "ch2_neuron",
+      "title": "Глава 2. От Нейрона до нейронной сети",
+      "path": "/var/www/sigma/10/ch2_neuron.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Содержание",
+          "line": 8
+        },
+        {
+          "level": 3,
+          "text": "Биология и история",
+          "line": 10
+        },
+        {
+          "level": 3,
+          "text": "От нейрона к сети",
+          "line": 17
+        },
+        {
+          "level": 3,
+          "text": "Обучение как оптимизация",
+          "line": 23
+        },
+        {
+          "level": 3,
+          "text": "★ Введение в матричные игры",
+          "line": 34
+        },
+        {
+          "level": 2,
+          "text": "Большой оптимизационный практикум",
+          "line": 40
+        },
+        {
+          "level": 2,
+          "text": "Связанные материалы",
+          "line": 44
+        }
+      ]
+    },
+    {
+      "slug": "ch3_cnn_linalg",
+      "title": "Глава 3. Свёрточные нейронные сети и элементы линейной алгебры",
+      "path": "/var/www/sigma/10/ch3_cnn_linalg.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Содержание",
+          "line": 8
+        },
+        {
+          "level": 3,
+          "text": "Свёрточные нейронные сети",
+          "line": 10
+        },
+        {
+          "level": 3,
+          "text": "Линейная алгебра «в контексте»",
+          "line": 21
+        },
+        {
+          "level": 3,
+          "text": "Обучение без учителя",
+          "line": 29
+        },
+        {
+          "level": 2,
+          "text": "Практикум",
+          "line": 36
+        },
+        {
+          "level": 2,
+          "text": "Связанные материалы",
+          "line": 40
+        }
+      ]
+    },
+    {
+      "slug": "app_ai_in_life",
+      "title": "Приложение. ИИ в жизни",
+      "path": "/var/www/sigma/11/app_ai_in_life.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Содержание",
+          "line": 8
+        }
+      ]
+    },
+    {
+      "slug": "ch1_stats",
+      "title": "Глава 1. Элементы математической статистики и байесовский вывод",
+      "path": "/var/www/sigma/11/ch1_stats.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Концепция курса 11 класса",
+          "line": 8
+        },
+        {
+          "level": 2,
+          "text": "Содержание",
+          "line": 12
+        },
+        {
+          "level": 3,
+          "text": "Базовый аппарат",
+          "line": 14
+        },
+        {
+          "level": 3,
+          "text": "Принцип максимума правдоподобия",
+          "line": 22
+        },
+        {
+          "level": 3,
+          "text": "Байесовский вывод",
+          "line": 26
+        },
+        {
+          "level": 3,
+          "text": "Линейная регрессия",
+          "line": 32
+        },
+        {
+          "level": 3,
+          "text": "Классификация",
+          "line": 38
+        },
+        {
+          "level": 2,
+          "text": "Связанные материалы",
+          "line": 44
+        }
+      ]
+    },
+    {
+      "slug": "ch2_ml_basics",
+      "title": "Глава 2. Основы машинного обучения",
+      "path": "/var/www/sigma/11/ch2_ml_basics.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Содержание",
+          "line": 8
+        },
+        {
+          "level": 3,
+          "text": "ML vs матстатистика",
+          "line": 10
+        },
+        {
+          "level": 3,
+          "text": "Переобучение и регуляризация",
+          "line": 16
+        },
+        {
+          "level": 3,
+          "text": "Стохастическая оптимизация",
+          "line": 22
+        },
+        {
+          "level": 2,
+          "text": "Связанные материалы",
+          "line": 30
+        }
+      ]
+    },
+    {
+      "slug": "ch3_rl",
+      "title": "Глава 3. Вероятностные основы обучения с подкреплением",
+      "path": "/var/www/sigma/11/ch3_rl.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Содержание",
+          "line": 8
+        },
+        {
+          "level": 3,
+          "text": "Марковские цепи и случайные блуждания",
+          "line": 10
+        },
+        {
+          "level": 3,
+          "text": "MCMC",
+          "line": 15
+        },
+        {
+          "level": 3,
+          "text": "Управляемые процессы Маркова",
+          "line": 20
+        },
+        {
+          "level": 3,
+          "text": "Q-learning и нейросетевые подходы",
+          "line": 26
+        },
+        {
+          "level": 2,
+          "text": "Практика",
+          "line": 34
+        },
+        {
+          "level": 2,
+          "text": "Связанные материалы",
+          "line": 38
+        }
+      ]
+    },
+    {
+      "slug": "ch4_generative",
+      "title": "Глава 4. Генеративный ИИ",
+      "path": "/var/www/sigma/11/ch4_generative.qmd",
+      "outline": [
+        {
+          "level": 2,
+          "text": "Содержание",
+          "line": 8
+        },
+        {
+          "level": 3,
+          "text": "Последовательности",
+          "line": 10
+        },
+        {
+          "level": 3,
+          "text": "Обучение с подкреплением для LLM",
+          "line": 17
+        },
+        {
+          "level": 3,
+          "text": "Генеративные модели",
+          "line": 22
+        },
+        {
+          "level": 3,
+          "text": "Перспективы",
+          "line": 32
+        },
+        {
+          "level": 2,
+          "text": "Итоговый проект",
+          "line": 37
+        },
+        {
+          "level": 2,
+          "text": "Связанные материалы",
+          "line": 41
+        }
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "id": "def_ch02newton_344",
+      "chapter_slug": "ch02_newton",
+      "chapter_title": "Метод Ньютона",
+      "title": "Определение 2.3. Сверхлинейная и квадратичная сходимости",
+      "text": "Говорят, что последовательность $\\{x_k\\}$ сходится к $x^{\\star}$\nсо **сверхлинейной скоростью**, если\n\n$$\\lim_{k\\to\\infty}\\dfrac{|x_{k+1}-x^{\\star}|}{|x_k-x^{\\star}|}=0.$$\n\nЕсли же выполнено более сильное условие\n$|x_{k+1}-x^{\\star}|\\leq M |x_k-x^{\\star}|^{2}$ для некоторой\nконстанты $M>0$, то сходимость называют **квадратичной**.",
+      "line": 344,
+      "anchor": "ssec:thm-superlinear"
+    },
+    {
+      "id": "def_ch02newton_355",
+      "chapter_slug": "ch02_newton",
+      "chapter_title": "Метод Ньютона",
+      "title": "Определение 2.4. Сильно выпуклая функция",
+      "text": "Функция $g\\colon\\mathbb{R}\\to\\mathbb{R}$ называется **сильно выпуклой** с\nконстантой $\\mu>0$, если $g\\in C^{2}$ и $g''(x)\\geq\\mu$ для всех $x$.\nСильная выпуклость гарантирует существование и единственность\nточки минимума и, что важно для нас, отделённость второй производной\nот нуля.",
+      "line": 355,
+      "anchor": "ssec:thm-superlinear"
+    },
+    {
+      "id": "def_ch031prostey_28",
+      "chapter_slug": "ch03_1_prosteyshie-primery-zadach-anali",
+      "chapter_title": "Простейшие примеры задач анализа данных. Принцип максимума правдоподобия",
+      "title": "Определение 3.1. Схема испытаний Бернулли",
+      "text": "Эксперимент, в котором $n$ раз независимо повторяется\nиспытание с двумя исходами («успех» с вероятностью $p$ и «неудача» с\nвероятностью $1-p$), называется **схемой испытаний Бернулли**.\nЧисло успехов $S_n=X_1+\\dots+X_n$ имеет *биномиальное распределение*:\n\n$$\\tag{3.1}\n\\Pr(S_n=k)=\\binom{n}{k}\\,p^{k}(1-p)^{n-k},\\qquad k=0,1,\\dots,n.$$",
+      "line": 28,
+      "anchor": "ssec:bernoulli"
+    },
+    {
+      "id": "def_ch031prostey_447",
+      "chapter_slug": "ch03_1_prosteyshie-primery-zadach-anali",
+      "chapter_title": "Простейшие примеры задач анализа данных. Принцип максимума правдоподобия",
+      "title": "Определение 3.5. Нормальное (гауссовское) распределение",
+      "text": "Случайная величина $\\xi$ имеет **нормальное распределение** с\nпараметрами $\\mu\\in\\mathbb{R}$ и $\\sigma^{2}>0$, если её плотность\nвероятности задаётся формулой\n\n$$\\tag{3.10}\n\\varphi_{\\mu,\\sigma^{2}}(x)\\;=\\;\\frac{1}{\\sigma\\sqrt{2\\pi}}\\,\n\\exp\\!\\left(-\\frac{(x-\\mu)^{2}}{2\\sigma^{2}}\\right),\\qquad x\\in\\mathbb{R}.$$\n\nОбозначение: $\\xi\\sim\\mathcal N(\\mu,\\sigma^{2})$. Параметр $\\mu$ —\nматематическое ожидание (среднее значение), $\\sigma^{2}$ — дисперсия;\n$\\sigma$ называют *стандартным отклонением*.",
+      "line": 447,
+      "anchor": "ssec:gauss"
+    },
+    {
+      "id": "def_ch033zadacha_203",
+      "chapter_slug": "ch03_3_zadacha-klassifikacii-i-neyronny",
+      "chapter_title": "Задача классификации и нейронные сети",
+      "title": "Определение 3.10. Умножение матрицы на вектор",
+      "text": "Пусть $A=(a_{ij})$ — матрица размера $m\\times n$ (то есть $m$ строк и\n$n$ столбцов), и $\\mathbf z=(z_1,\\dots,z_n)^{\\top}$ — вектор из $\\mathbb{R}^{n}$.\nПроизведение $A\\mathbf z$ — это вектор из $\\mathbb{R}^{m}$, $i$-я координата\nкоторого равна\n\n$$\\tag{3.30}\n(A\\mathbf z)_i\\;=\\;\\sum_{j=1}^{n} a_{ij}\\,z_j,\\qquad i=1,\\dots,m.$$\n\nИначе говоря, мы скалярно умножаем $i$-ю строку матрицы на вектор и\nполучаем $i$-ю координату результата.",
+      "line": 203,
+      "anchor": "ssec:mlp"
+    },
+    {
+      "id": "def_ch033zadacha_230",
+      "chapter_slug": "ch03_3_zadacha-klassifikacii-i-neyronny",
+      "chapter_title": "Задача классификации и нейронные сети",
+      "title": "Определение 3.12. Полносвязная нейронная сеть",
+      "text": "**Полносвязная нейронная сеть** (MLP) глубины $L$ — это функция\n$\\mathbf x\\mapsto \\mathbf p(\\mathbf x)$, заданная как композиция\n$L$ *слоёв*:\n\n$$\\begin{aligned}\n\\mathbf z^{(\\ell)} &= W^{(\\ell)} \\mathbf a^{(\\ell-1)} + \\mathbf b^{(\\ell)},\\qquad\n\\mathbf a^{(\\ell)} = \\sigma\\bigl(\\mathbf z^{(\\ell)}\\bigr),\n\\qquad \\ell=1,\\dots,L-1,\n\\\\\n\\mathbf z^{(L)} &= W^{(L)} \\mathbf a^{(L-1)} + \\mathbf b^{(L)},\\qquad\n\\mathbf p(\\mathbf x) = \\mathrm{softmax}\\bigl(\\mathbf z^{(L)}\\bigr).\n\n\\end{aligned}$$\n\nЗдесь $\\mathbf a^{(0)}=\\mathbf x$ (вход),\n$W^{(\\ell)}\\in\\mathbb{R}^{d_\\ell\\times d_{\\ell-1}}$ — матрица весов\n$\\ell$-го слоя, $\\mathbf b^{(\\ell)}\\in\\mathbb{R}^{d_\\ell}$ — вектор смещений\n(bias). Функция $\\sigma$ применяется покомпонентно — это\n*функция активации* (см. ниже). Числа $d_1,\\dots,d_{L-1}$ —\nширины скрытых слоёв; $d_L$ — число классов (у нас — 10). Функция\n**softmax** превращает вектор произвольных вещественных чисел в\nраспределение вероятностей:\n\n$$\\tag{3.33}\n\\mathrm{softmax}(\\mathbf z)_c\\;=\\;\\frac{e^{z_c}}{\\sum_{c'} e^{z_{c'}}}.$$\n\nСовокупность всех матриц $W^{(\\ell)}$ и векторов $\\mathbf b^{(\\ell)}$\nобъявляется *обучаемыми параметрами* $\\boldsymbol\\theta$ модели.",
+      "line": 230,
+      "anchor": "ssec:mlp"
+    },
+    {
+      "id": "def_ch033zadacha_305",
+      "chapter_slug": "ch03_3_zadacha-klassifikacii-i-neyronny",
+      "chapter_title": "Задача классификации и нейронные сети",
+      "title": "Определение 3.13. Переобучение",
+      "text": "**Переобучение** (англ. *overfitting*) — ситуация, когда\nмодель отлично запоминает обучающую выборку (ошибка на train близка к\nнулю), но плохо работает на ранее не виденных данных (ошибка на test\nвелика). Модель «выучила шум», а не закономерность.",
+      "line": 305,
+      "anchor": "ssec:overfit"
+    },
+    {
+      "id": "def_ch033zadacha_462",
+      "chapter_slug": "ch03_3_zadacha-klassifikacii-i-neyronny",
+      "chapter_title": "Задача классификации и нейронные сети",
+      "title": "Определение 3.16. Свёрточная нейронная сеть (CNN)",
+      "text": "**Свёрточная нейронная сеть** — это нейронная сеть, в которой\nнекоторые слои представляют собой не полносвязные матрично-векторные\nумножения, а *свёртки* вида (3.36) с обучаемыми\nфильтрами $K$. Обычно после свёртки применяется функция активации и\nоперация *пулинга* (выборки максимума по окрестности — для\nуменьшения разрешения). После нескольких свёрточных слоёв полученная\n«карта признаков» разворачивается в вектор и передаётся в обычный\nполносвязный слой с softmax.",
+      "line": 462,
+      "anchor": "ssec:cnn"
+    },
+    {
+      "id": "def_ch034zadachi_253",
+      "chapter_slug": "ch03_4_zadachi-obucheniya-bez-uchitelya",
+      "chapter_title": "Задачи обучения без учителя",
+      "title": "Определение 3.19. Автокодировщик",
+      "text": "**Автокодировщик** — это пара функций $f\\colon\\mathbb{R}^{n}\\to\\mathbb{R}^{r}$\n(энкодер) и $g\\colon\\mathbb{R}^{r}\\to\\mathbb{R}^{n}$ (декодер), $r<n$, обученные на\nвыборке $\\{\\mathbf x_1,\\dots,\\mathbf x_N\\}\\subset\\mathbb{R}^{n}$\nминимизацией функционала\n\n$$\\tag{3.49}\n\\mathcal L(f,g)\\;=\\;\\frac{1}{N}\\sum_{i=1}^{N}\\left\\lVert \\mathbf x_i-g(f(\\mathbf x_i)) \\right\\rVert^{2}.$$\n\nВектор $\\mathbf z_i=f(\\mathbf x_i)\\in\\mathbb{R}^{r}$ называется\n**эмбеддингом** (*embedding*, скрытым представлением) объекта\n$\\mathbf x_i$. Размерность $r$ — *гиперпараметр* модели.",
+      "line": 253,
+      "anchor": "ssec:ae-idea"
+    },
+    {
+      "id": "def_ch041element_6",
+      "chapter_slug": "ch04_1_elementy-teorii-chisel",
+      "chapter_title": "Элементы теории чисел",
+      "title": "Определение 4.1",
+      "text": "Говорят, что целое число $a$ **делится** на целое число $b \\neq 0$ (или что $b$ **делит** $a$), если существует такое целое число $q$, что $a = b\\cdot q$. Пишут $b \\mid a$.",
+      "line": 6,
+      "anchor": "делимость-остатки-и-сравнения-по-модулю"
+    },
+    {
+      "id": "def_ch041element_23",
+      "chapter_slug": "ch04_1_elementy-teorii-chisel",
+      "chapter_title": "Элементы теории чисел",
+      "title": "Определение 4.3",
+      "text": "Натуральное число $p > 1$ называется **простым**, если оно делится только на единицу и на само себя. Натуральное $n > 1$, не являющееся простым, называется **составным**.",
+      "line": 23,
+      "anchor": "делимость-остатки-и-сравнения-по-модулю"
+    },
+    {
+      "id": "def_ch041element_35",
+      "chapter_slug": "ch04_1_elementy-teorii-chisel",
+      "chapter_title": "Элементы теории чисел",
+      "title": "Определение 4.4",
+      "text": "Пусть $m \\ge 2$ — натуральное число (**модуль**). Целые числа $a$ и $b$ называются **сравнимыми по модулю $m$**, если их разность $a - b$ делится на $m$. Пишут\n\n$$a \\equiv b \\,(\\mathrm{mod}\\,m).$$",
+      "line": 35,
+      "anchor": "делимость-остатки-и-сравнения-по-модулю"
+    },
+    {
+      "id": "def_ch041element_79",
+      "chapter_slug": "ch04_1_elementy-teorii-chisel",
+      "chapter_title": "Элементы теории чисел",
+      "title": "Определение 4.7",
+      "text": "Наибольший общий делитель чисел $a$ и $b$ (не равных одновременно нулю) — это наибольшее натуральное число, на которое делятся одновременно и $a$, и $b$. Обозначается $\\gcd(a,b)$.\n\nЕсли $\\gcd(a,b) = 1$, то числа $a$ и $b$ называются **взаимно простыми**.",
+      "line": 79,
+      "anchor": "subsec:euclid"
+    },
+    {
+      "id": "def_ch041element_280",
+      "chapter_slug": "ch04_1_elementy-teorii-chisel",
+      "chapter_title": "Элементы теории чисел",
+      "title": "Определение 4.13",
+      "text": "**Функцией Эйлера** $\\varphi(n)$ называется количество натуральных чисел в отрезке $[1, n]$, взаимно простых с $n$.",
+      "line": 280,
+      "anchor": "функция-эйлера-и-малая-теорема-ферма"
+    },
+    {
+      "id": "def_ch042shifrov_56",
+      "chapter_slug": "ch04_2_shifrovanie-ot-taynopisi-k-matem",
+      "chapter_title": "Шифрование: от тайнописи к математической задаче",
+      "title": "Определение 4.18",
+      "text": "**Односторонняя функция** (*one-way function*) — это функция $f \\colon X \\to Y$, обладающая двумя свойствами:\n\n-   *Прямое вычисление просто:* зная $x$, легко (полиномиально быстро) вычислить $f(x)$.\n\n-   *Обращение трудно:* зная $y = f(x)$, восстановить $x$ без какой-либо дополнительной информации — задача *практически* нерешаемая (требует экспоненциального времени).",
+      "line": 56,
+      "anchor": "односторонние-функции-и-функции-с-секретом"
+    },
+    {
+      "id": "def_ch042shifrov_74",
+      "chapter_slug": "ch04_2_shifrovanie-ot-taynopisi-k-matem",
+      "chapter_title": "Шифрование: от тайнописи к математической задаче",
+      "title": "Определение 4.19",
+      "text": "**Функция с секретом** (*trapdoor function*) — односторонняя функция $f$, для которой существует дополнительная секретная информация $t$ (*лазейка*, *trapdoor*), знание которой делает обращение $f$ полиномиально быстрым.",
+      "line": 74,
+      "anchor": "односторонние-функции-и-функции-с-секретом"
+    },
+    {
+      "id": "def_ch044primene_62",
+      "chapter_slug": "ch04_4_primeneniya-rsa-autentifikaciya",
+      "chapter_title": "Применения RSA: аутентификация, цифровая подпись, электронное голосование",
+      "title": "Определение 4.24. электронная цифровая подпись",
+      "text": "**Электронная цифровая подпись** (ЭЦП) — это короткий блок данных $\\sigma$, привязываемый к документу $m$, обладающий двумя свойствами:\n\n-   только владелец секретного ключа может сгенерировать $\\sigma$ для произвольного $m$;\n\n-   любой желающий, зная открытый ключ, может проверить, что $\\sigma$ действительно соответствует $m$ и подписан данным владельцем.",
+      "line": 62,
+      "anchor": "subsec:eds"
+    },
+    {
+      "id": "def_ch045heshiro_18",
+      "chapter_slug": "ch04_5_heshirovanie-teoriya-chisel-vstr",
+      "chapter_title": "Хеширование: теория чисел встречается с рандомизацией",
+      "title": "Определение 4.25. хеш-функция и хеш-таблица",
+      "text": "**Хеш-функция** — это произвольная функция $h: U \\to \\{0, 1, \\dots, m-1\\}$. По ней строится **хеш-таблица**: массив $T[0], T[1], \\dots, T[m-1]$. Ключ $x \\in U$ хранится в ячейке $T[h(x)]$.\n\nЕсли двум разным ключам $x \\ne y$ присвоилось одно и то же значение $h(x) = h(y)$, мы говорим, что произошла **коллизия**.",
+      "line": 18,
+      "anchor": "задача-быстрого-поиска"
+    },
+    {
+      "id": "def_ch045heshiro_48",
+      "chapter_slug": "ch04_5_heshirovanie-teoriya-chisel-vstr",
+      "chapter_title": "Хеширование: теория чисел встречается с рандомизацией",
+      "title": "Определение 4.26. универсальное семейство",
+      "text": "Семейство хеш-функций $\\mathcal{H} = \\{h: U \\to \\{0, \\dots, m-1\\}\\}$ называется **универсальным**, если для любых двух различных ключей $x, y \\in U$ ($x \\ne y$) вероятность коллизии при случайном выборе $h \\in \\mathcal{H}$ не превосходит $1/m$:\n\n$$\\Pr_{h \\in \\mathcal{H}}[\\,h(x) = h(y)\\,] \\le \\frac{1}{m}.$$",
+      "line": 48,
+      "anchor": "универсальное-семейство-хеш-функций"
+    },
+    {
+      "id": "def_chlinalg8kog_20",
+      "chapter_slug": "ch_linalg_8_kogda-neyroset-ustoychiva-ocenki",
+      "chapter_title": "Когда нейросеть устойчива: оценки Липшицевости",
+      "title": "Определение 0.5. Константа Липшица функции",
+      "text": "Функция $f\\colon\\mathbb{R}^{n}\\to\\mathbb{R}^{m}$ называется **Липшицевой** с\nконстантой $L>0$, если для любых $x,y\\in\\mathbb{R}^{n}$ выполнено\n\n$$\\tag{0.9}\n\\left\\lVert f(x)-f(y) \\right\\rVert\\;\\leq\\;L\\,\\left\\lVert x-y \\right\\rVert.$$\n\nНаименьшее $L$, для которого (0.9) выполнено,\nназывается *константой Липшица* функции $f$ и обозначается\n$\\mathrm{Lip}(f)$.",
+      "line": 20,
+      "anchor": "константа-липшица-формальное-определение"
+    }
+  ],
+  "theorems": [
+    {
+      "id": "the_ch02newton_120",
+      "chapter_slug": "ch02_newton",
+      "chapter_title": "Метод Ньютона",
+      "title": "Теорема 2.1. Сходимость метода Герона",
+      "text": "Для любого $x_0>0$ последовательность (2.4) монотонно\nубывает (начиная с $k=1$) и сходится к $\\sqrt{a}$. Более того, для\nошибки $e_k=x_k-\\sqrt{a}$ выполнено\n\n$$\\tag{2.5}\ne_{k+1}\\;=\\;\\dfrac{e_k^2}{2x_k}\\,, \\qquad\n\\text{и при }k\\geq 1\\colon\\quad\n0\\le e_{k+1}\\le \\dfrac{e_k^{2}}{2\\sqrt{a}}.$$",
+      "line": 120,
+      "anchor": "сходимость-через-сжимающее-отображение"
+    },
+    {
+      "id": "the_ch02newton_363",
+      "chapter_slug": "ch02_newton",
+      "chapter_title": "Метод Ньютона",
+      "title": "Теорема 2.5. Сверхлинейная сходимость метода Ньютона",
+      "text": "Пусть выполнено хотя бы одно из условий:\n\n1.  (*уравнение*) $f\\in C^{2}$ в окрестности точки $x^{\\star}$,\n    $f(x^{\\star})=0$ и $f'(x^{\\star})\\neq 0$;\n\n2.  (*сильно выпуклая оптимизация*) $g\\in C^{3}$,\n    $g$ — сильно выпуклая на интервале, содержащем точку\n    минимума $x^{\\star}$, и применяется итерация (2.2).\n\nТогда существуют $\\delta>0$ и $M>0$ такие, что для всякого\n$x_0\\in(x^{\\star}-\\delta,\\,x^{\\star}+\\delta)$ итерации Ньютона\nопределены и\n\n$$\\tag{2.8}\n|x_{k+1}-x^{\\star}|\\;\\leq\\;M\\,|x_k-x^{\\star}|^{2}.$$\n\nВ частности, сходимость квадратичная (а значит, сверхлинейная).",
+      "line": 363,
+      "anchor": "ssec:thm-superlinear"
+    },
+    {
+      "id": "the_ch031prostey_89",
+      "chapter_slug": "ch03_1_prosteyshie-primery-zadach-anali",
+      "chapter_title": "Простейшие примеры задач анализа данных. Принцип максимума правдоподобия",
+      "title": "Теорема 3.2. ОМП в схеме Бернулли",
+      "text": "Оценкой максимума правдоподобия параметра $p$ в схеме испытаний\nБернулли по выборке $X_1,\\dots,X_n$ является\n**выборочное среднее**:\n\n$$\\tag{3.4}\n\\;\\hat p \\;=\\; \\frac{S_n}{n} \\;=\\; \\overline{X} \\;=\\;\n\\frac{X_1+\\dots+X_n}{n}.\\;$$",
+      "line": 89,
+      "anchor": "ssec:bernoulli"
+    },
+    {
+      "id": "the_ch031prostey_211",
+      "chapter_slug": "ch03_1_prosteyshie-primery-zadach-anali",
+      "chapter_title": "Простейшие примеры задач анализа данных. Принцип максимума правдоподобия",
+      "title": "Теорема 3.3. Центральная предельная теорема (ЦПТ)",
+      "text": "Пусть $X_1,X_2,\\dots$ — независимые одинаково распределённые\nслучайные величины с математическим ожиданием $\\mu$ и конечной\nдисперсией $\\sigma^2>0$, $S_n=X_1+\\dots+X_n$. Тогда при $n\\to\\infty$\n\n$$\\Pr\\!\\left(\\frac{S_n-n\\mu}{\\sigma\\sqrt n}\\leq x\\right)\\;\\longrightarrow\\;\n\\Phi(x)\\;\\stackrel{\\mathrm{def}}{=}\\;\\frac{1}{\\sqrt{2\\pi}}\\int_{-\\infty}^{x}\ne^{-t^{2}/2}\\,dt$$\n\n*(функция стандартного нормального распределения)*.",
+      "line": 211,
+      "anchor": "подход-2-центральная-предельная-теорема"
+    },
+    {
+      "id": "the_ch031prostey_517",
+      "chapter_slug": "ch03_1_prosteyshie-primery-zadach-anali",
+      "chapter_title": "Простейшие примеры задач анализа данных. Принцип максимума правдоподобия",
+      "title": "Теорема 3.6. Характеризация Гаусса (1809)",
+      "text": "Пусть случайные величины $\\xi_1,\\dots,\\xi_n$ независимы, одинаково\nраспределены и имеют плотность $f$, симметричную относительно нуля\n($f(-x)=f(x)$), дважды дифференцируемую, не обращающуюся в ноль.\nЕсли для любого $n\\geq 2$ и любой реализации $X_i=\\mu+\\xi_i$ оценкой\nмаксимума правдоподобия параметра $\\mu$ является выборочное среднее\n$\\overline X$, то $f$ есть плотность нормального распределения\nс нулевым средним.",
+      "line": 517,
+      "anchor": "ssec:gauss-thm"
+    },
+    {
+      "id": "the_ch033zadacha_352",
+      "chapter_slug": "ch03_3_zadacha-klassifikacii-i-neyronny",
+      "chapter_title": "Задача классификации и нейронные сети",
+      "title": "Теорема 3.14. Теорема Колмогорова–Арнольда (1957)",
+      "text": "Всякая непрерывная функция $f\\colon[0,1]^{n}\\to\\mathbb{R}$ от $n$ переменных\nпредставима в виде суперпозиции непрерывных функций *одной*\nпеременной и операции сложения:\n\n$$\\tag{3.34}\nf(x_1,\\dots,x_n)\\;=\\;\\sum_{q=0}^{2n}\\Phi_q\\!\\left(\\sum_{p=1}^{n}\\psi_{q,p}(x_p)\\right),$$\n\nгде $\\Phi_q$, $\\psi_{q,p}$ — некоторые непрерывные функции одной\nпеременной.",
+      "line": 352,
+      "anchor": "ssec:universal"
+    },
+    {
+      "id": "the_ch033zadacha_379",
+      "chapter_slug": "ch03_3_zadacha-klassifikacii-i-neyronny",
+      "chapter_title": "Задача классификации и нейронные сети",
+      "title": "Теорема 3.15. Теорема Цыбенко (1989)",
+      "text": "Пусть $\\sigma\\colon\\mathbb{R}\\to\\mathbb{R}$ — непрерывная, ограниченная,\nмонотонно возрастающая функция (например, сигмоида). Тогда для любой\nнепрерывной функции $f$ на компакте $K\\subset\\mathbb{R}^{n}$ и любого\n$\\varepsilon>0$ существуют число $N$, числа $a_j,b_j,w_{j,i}$,\n$j=1,\\dots,N$, $i=1,\\dots,n$, такие что функция\n\n$$\\tag{3.35}\ng(\\mathbf x)\\;=\\;\\sum_{j=1}^{N} a_j\\,\\sigma\\!\\left(\\sum_{i=1}^{n}w_{j,i}\\,x_i+b_j\\right)$$\n\nприближает $f$ равномерно на $K$ с точностью $\\varepsilon$:\n$\\sup_{\\mathbf x\\in K}|g(\\mathbf x)-f(\\mathbf x)|<\\varepsilon$.",
+      "line": 379,
+      "anchor": "ssec:universal"
+    },
+    {
+      "id": "the_ch033zadacha_512",
+      "chapter_slug": "ch03_3_zadacha-klassifikacii-i-neyronny",
+      "chapter_title": "Задача классификации и нейронные сети",
+      "title": "Теорема 3.17. Антиградиент — направление наискорейшего спуска",
+      "text": "Среди всех единичных векторов $\\mathbf v\\in\\mathbb{R}^{d}$ производная\n$\\partial_{\\mathbf v} F(\\boldsymbol\\theta)$ принимает *минимальное*\nзначение при\n\n$$\\tag{3.38}\n\\mathbf v^{\\star}\\;=\\;-\\frac{\\nabla F(\\boldsymbol\\theta)}{\\left\\lVert \\nabla F(\\boldsymbol\\theta) \\right\\rVert}.$$\n\nПри этом\n$\\partial_{\\mathbf v^{\\star}} F=-\\left\\lVert \\nabla F(\\boldsymbol\\theta) \\right\\rVert$.",
+      "line": 512,
+      "anchor": "производная-по-направлению-и-градиент"
+    },
+    {
+      "id": "the_ch034zadachi_303",
+      "chapter_slug": "ch03_4_zadachi-obucheniya-bez-uchitelya",
+      "chapter_title": "Задачи обучения без учителя",
+      "title": "Теорема 3.20. Решение линейного автокодировщика",
+      "text": "Минимум функционала (3.50) (при условии, что $f$ и $g$\nлинейные, $r<n$) достигается, когда *подпространство*,\nпорождённое строками $W_e$, совпадает с подпространством, натянутым на\nпервые $r$ собственных векторов $\\mathbf e_1,\\dots,\\mathbf e_r$\nковариационной матрицы $C$. При этом действие энкодера $f$ есть\n*ортогональная проекция* на это подпространство.",
+      "line": 303,
+      "anchor": "ssec:linear-ae"
+    },
+    {
+      "id": "the_ch034zadachi_554",
+      "chapter_slug": "ch03_4_zadachi-obucheniya-bez-uchitelya",
+      "chapter_title": "Задачи обучения без учителя",
+      "title": "Теорема 3.21. Сингулярное разложение (SVD)",
+      "text": "Для любой матрицы $A\\in\\mathbb{R}^{m\\times n}$ существует представление\n\n$$\\tag{3.52}\n\\;A\\;=\\;U\\,\\Sigma\\,V^{\\top},\\;$$\n\nгде $U\\in\\mathbb{R}^{m\\times m}$ и $V\\in\\mathbb{R}^{n\\times n}$ — ортогональные\nматрицы ($U^{\\top}U=I_m$, $V^{\\top}V=I_n$), а\n$\\Sigma\\in\\mathbb{R}^{m\\times n}$ — «диагональная» (т. е. $\\Sigma_{ij}=0$\nпри $i\\neq j$) с неотрицательными элементами на диагонали\n$\\sigma_1\\geq\\sigma_2\\geq\\dots\\geq\\sigma_{\\min(m,n)}\\geq 0$. Эти\nчисла называются **сингулярными значениями** матрицы $A$;\nстолбцы $U$ и $V$ — **сингулярными векторами**.",
+      "line": 554,
+      "anchor": "ssec:svd"
+    },
+    {
+      "id": "the_ch034zadachi_603",
+      "chapter_slug": "ch03_4_zadachi-obucheniya-bez-uchitelya",
+      "chapter_title": "Задачи обучения без учителя",
+      "title": "Теорема 3.22. Эккарта–Янга–Мирского (1936)",
+      "text": "Пусть $A\\in\\mathbb{R}^{m\\times n}$ и $A=U\\Sigma V^{\\top}$ — её сингулярное\nразложение. Для любого $r\\leq \\min(m,n)$ определим\n*обрезанное* разложение\n\n$$A_r\\;=\\;\\sum_{k=1}^{r}\\sigma_k\\,\\mathbf u_k\\,\\mathbf v_k^{\\top}\\;=\\;U_r\\,\\Sigma_r\\,V_r^{\\top},$$\n\nгде $U_r,V_r$ — первые $r$ столбцов матриц $U,V$, а $\\Sigma_r=\\mathrm{diag}(\\sigma_1,\\dots,\\sigma_r)$.\nТогда матрица $A_r$ имеет ранг $r$ и реализует наилучшую среди всех\nматриц ранга $\\leq r$ аппроксимацию исходной матрицы:\n\n$$\\tag{3.53}\n\\min_{\\mathrm{rank}\\,B\\leq r}\\left\\lVert A-B \\right\\rVert_{F}\\;=\\;\\left\\lVert A-A_r \\right\\rVert_{F}\\;=\\;\\sqrt{\\sigma_{r+1}^{2}+\\dots+\\sigma_{\\min(m,n)}^{2}},$$\n\nгде $\\left\\lVert \\cdot \\right\\rVert_{F}$ — норма Фробениуса:\n$\\left\\lVert M \\right\\rVert_{F}^{2}=\\sum_{i,j}M_{ij}^{2}$.",
+      "line": 603,
+      "anchor": "ssec:svd"
+    },
+    {
+      "id": "the_ch041element_51",
+      "chapter_slug": "ch04_1_elementy-teorii-chisel",
+      "chapter_title": "Элементы теории чисел",
+      "title": "Теорема 4.6. свойства сравнений",
+      "text": "Если $a \\equiv b \\,(\\mathrm{mod}\\,m)$ и $c \\equiv d \\,(\\mathrm{mod}\\,m)$, то:\n\n1.  $a + c \\equiv b + d \\,(\\mathrm{mod}\\,m)$;\n\n2.  $a - c \\equiv b - d \\,(\\mathrm{mod}\\,m)$;\n\n3.  $a \\cdot c \\equiv b \\cdot d \\,(\\mathrm{mod}\\,m)$;\n\n4.  $a^n \\equiv b^n \\,(\\mathrm{mod}\\,m)$ для любого натурального $n$.",
+      "line": 51,
+      "anchor": "делимость-остатки-и-сравнения-по-модулю"
+    },
+    {
+      "id": "the_ch041element_126",
+      "chapter_slug": "ch04_1_elementy-teorii-chisel",
+      "chapter_title": "Элементы теории чисел",
+      "title": "Теорема 4.8. соотношение Безу",
+      "text": "[]{#thm:bezout label=\"thm:bezout\"}\nДля любых натуральных $a, b$ существуют целые числа $x, y$ (*не обязательно положительные*), такие что\n\n$$a\\cdot x + b\\cdot y = \\gcd(a,b).$$",
+      "line": 126,
+      "anchor": "расширенный-алгоритм-евклида"
+    },
+    {
+      "id": "the_ch041element_175",
+      "chapter_slug": "ch04_1_elementy-teorii-chisel",
+      "chapter_title": "Элементы теории чисел",
+      "title": "Теорема 4.10",
+      "text": "Обратный элемент к $a$ по модулю $m$ *существует* тогда и только тогда, когда $\\gcd(a, m) = 1$. При этом он находится с помощью расширенного алгоритма Евклида.",
+      "line": 175,
+      "anchor": "решение-линейных-сравнений"
+    },
+    {
+      "id": "the_ch041element_306",
+      "chapter_slug": "ch04_1_elementy-teorii-chisel",
+      "chapter_title": "Элементы теории чисел",
+      "title": "Теорема 4.16. малая теорема Ферма, 1640 г.",
+      "text": "[]{#thm:fermat label=\"thm:fermat\"}\nПусть $p$ — простое число и $a$ — целое, не делящееся на $p$. Тогда\n\n$$a^{p-1} \\equiv 1 \\,(\\mathrm{mod}\\,p).$$\n\nРавносильно: для любого целого $a$ выполняется $a^p \\equiv a \\,(\\mathrm{mod}\\,p)$.",
+      "line": 306,
+      "anchor": "функция-эйлера-и-малая-теорема-ферма"
+    },
+    {
+      "id": "the_ch041element_337",
+      "chapter_slug": "ch04_1_elementy-teorii-chisel",
+      "chapter_title": "Элементы теории чисел",
+      "title": "Теорема 4.17. Чебышёв – Адамар – Валле-Пуссен, асимптотический закон распределения простых чисел",
+      "text": "Пусть $\\pi(N)$ — количество простых чисел, не превосходящих $N$. Тогда\n\n$$\\pi(N) \\;\\sim\\; \\frac{N}{\\ln N} \\qquad \\text{при } N \\to \\infty.$$",
+      "line": 337,
+      "anchor": "сколько-вокруг-простых-чисел"
+    },
+    {
+      "id": "the_ch043kriptos_42",
+      "chapter_slug": "ch04_3_kriptosistemy-rsa-i-diffi-hellma",
+      "chapter_title": "Криптосистемы RSA и Диффи–Хеллмана",
+      "title": "Теорема 4.20. корректность RSA",
+      "text": "В обозначениях процедуры RSA, для любого $m \\in [0, n-1]$ выполняется\n\n$$(m^e)^d \\equiv m \\,(\\mathrm{mod}\\,n).$$",
+      "line": 42,
+      "anchor": "почему-rsa-работает-корректность"
+    },
+    {
+      "id": "the_ch045heshiro_57",
+      "chapter_slug": "ch04_5_heshirovanie-teoriya-chisel-vstr",
+      "chapter_title": "Хеширование: теория чисел встречается с рандомизацией",
+      "title": "Теорема 4.27. оценка коллизий",
+      "text": "Если хеш-функция выбрана из универсального семейства, то математическое ожидание числа коллизий заданного ключа $x$ с прочими $n - 1$ ключами таблицы не превосходит $(n-1)/m$. В частности, если $m \\ge n$, среднее число коллизий не превосходит $1$.",
+      "line": 57,
+      "anchor": "универсальное-семейство-хеш-функций"
+    },
+    {
+      "id": "the_ch045heshiro_89",
+      "chapter_slug": "ch04_5_heshirovanie-teoriya-chisel-vstr",
+      "chapter_title": "Хеширование: теория чисел встречается с рандомизацией",
+      "title": "Теорема 4.28. Картер–Вегман",
+      "text": "Описанное выше семейство $\\mathcal{H}$ *универсально*.",
+      "line": 89,
+      "anchor": "конструкция-универсального-семейства-через-теорию-чисел"
+    },
+    {
+      "id": "the_ch046schetch_84",
+      "chapter_slug": "ch04_6_schetchiki-s-korotkoy-pamyatyu-h",
+      "chapter_title": "Счётчики с короткой памятью HyperLogLog и эксперимент Стенли Мильграма",
+      "title": "Теорема 4.29. точность HyperLogLog",
+      "text": "Относительная погрешность оценки $\\widehat{n}$ по сравнению с истинным значением $n$ имеет порядок $1.04/\\sqrt{2^b}$. При $b = 10$ это примерно $3.25\\%$; при $b = 14$ — около $0.81\\%$.",
+      "line": 84,
+      "anchor": "идея-несколько-счётчиков"
+    },
+    {
+      "id": "the_chlinalg3sin_9",
+      "chapter_slug": "ch_linalg_3_singulyarnoe-razlozhenie-svd-gla",
+      "chapter_title": "Сингулярное разложение SVD: главный фокус линейной алгебры",
+      "title": "Теорема 0.2. Сингулярное разложение (SVD)",
+      "text": "Для любой вещественной матрицы $A$ размера $m\\times n$ существует\nразложение\n\n$$\\tag{0.1}\n\\;A \\;=\\; U\\,\\Sigma\\,V^{\\!\\top}\\;$$\n\nгде\n\n-   $U$ — *ортогональная* матрица $m\\times m$ (поворот в $\\mathbb{R}^{m}$);\n\n-   $V$ — ортогональная матрица $n\\times n$ (поворот в $\\mathbb{R}^{n}$);\n\n-   $\\Sigma$ — «диагональная» матрица $m\\times n$ с неотрицательными\n    числами $\\sigma_1\\geq \\sigma_2\\geq\\ldots\\geq \\sigma_r > 0$ на\n    диагонали (и нулями ниже), где $r=\\mathrm{rank}\\,A$.\n\nЧисла $\\sigma_i$ называются **сингулярными числами** матрицы $A$.",
+      "line": 9,
+      "anchor": "геометрическая-идея"
+    },
+    {
+      "id": "the_chlinalg4luc_32",
+      "chapter_slug": "ch_linalg_4_luchshee-malorangovoe-priblizhen",
+      "chapter_title": "Лучшее малоранговое приближение: теорема Эккарта–Янга",
+      "title": "Теорема 0.3. Эккарт–Янг–Мирский (1936/1960)",
+      "text": "Среди всех матриц $B$ размера $m\\times n$ ранга не более $k$\nматрица $A_k$ из (0.4) даёт *наименьшую* ошибку\nв смысле спектральной нормы:\n\n$$\\tag{0.5}\n\\min_{\\mathrm{rank}\\,B\\,\\leq\\,k}\\;\\left\\lVert A-B \\right\\rVert_{2}\\;=\\;\\left\\lVert A-A_k \\right\\rVert_{2}\\;=\\;\\sigma_{k+1}.$$\n\nЗдесь $\\left\\lVert M \\right\\rVert_2 = \\max_{\\left\\lVert x \\right\\rVert=1}\\left\\lVert Mx \\right\\rVert=\\sigma_1(M)$ —\n**спектральная норма** матрицы $M$ (равна её наибольшему\nсингулярному числу). Утверждение остаётся в силе и для\n*фробениусовой* нормы $\\left\\lVert M \\right\\rVert_F=\\sqrt{\\sum_{i,j} m_{ij}^{2}}$:\n\n$$\\left\\lVert A-A_k \\right\\rVert_F\\;=\\;\\sqrt{\\sigma_{k+1}^{2}+\\sigma_{k+2}^{2}+\\ldots+\\sigma_r^{2}}.$$",
+      "line": 32,
+      "anchor": "разложение-по-слагаемым-ранга-один"
+    },
+    {
+      "id": "the_chlinalg8kog_49",
+      "chapter_slug": "ch_linalg_8_kogda-neyroset-ustoychiva-ocenki",
+      "chapter_title": "Когда нейросеть устойчива: оценки Липшицевости",
+      "title": "Теорема 0.6. Композиция Липшицевых функций",
+      "text": "Если $f$ и $g$ — Липшицевы с константами $L_f$ и $L_g$, то\nих композиция $f\\circ g$ — тоже Липшицева, причём\n\n$$\\tag{0.11}\n\\mathrm{Lip}(f\\circ g)\\;\\leq\\;\\mathrm{Lip}(f)\\cdot\\mathrm{Lip}(g).$$",
+      "line": 49,
+      "anchor": "композиция-липшицева-константа-цепочки"
+    }
+  ],
+  "lemmas": [],
+  "corollaries": [],
+  "algorithms": [
+    {
+      "id": "alg_ch041element_102",
+      "chapter_slug": "ch04_1_elementy-teorii-chisel",
+      "chapter_title": "Элементы теории чисел",
+      "title": "Алгоритм: нахождение НОД (Евклид)",
+      "text": "**Вход:** натуральные числа $a, b$, $a \\ge b > 0$.\\\n**Выход:** $\\gcd(a,b)$.\n\n1.  Если $b = 0$, вернуть $a$.\n\n2.  Иначе вычислить $r = a \\bmod b$ и повторить с парой $(b, r)$.",
+      "line": 102,
+      "anchor": "subsec:euclid"
+    },
+    {
+      "id": "alg_ch043kriptos_10",
+      "chapter_slug": "ch04_3_kriptosistemy-rsa-i-diffi-hellma",
+      "chapter_title": "Криптосистемы RSA и Диффи–Хеллмана",
+      "title": "Алгоритм: генерация ключей RSA",
+      "text": "1.  Выбрать два больших случайных *различных* простых числа $p$ и $q$ (на практике — по 1024 бита каждое).\n\n2.  Вычислить $n = p\\cdot q$ и $\\varphi(n) = (p-1)(q-1)$.\n\n3.  Выбрать целое $e$, взаимно простое с $\\varphi(n)$ (часто берут $e = 65537$).\n\n4.  С помощью расширенного алгоритма Евклида найти $d$ такое, что\n\n    $$e\\cdot d \\equiv 1 \\,(\\mathrm{mod}\\,\\varphi(n)).$$\n\n5.  **Открытый ключ:** пара $(n, e)$ — публикуется.\\\n    **Закрытый ключ:** число $d$ — хранится в секрете.\\\n    **Лишние данные:** числа $p, q, \\varphi(n)$ безопасно уничтожаются.",
+      "line": 10,
+      "anchor": "криптосистема-rsa"
+    },
+    {
+      "id": "alg_ch043kriptos_137",
+      "chapter_slug": "ch04_3_kriptosistemy-rsa-i-diffi-hellma",
+      "chapter_title": "Криптосистемы RSA и Диффи–Хеллмана",
+      "title": "Алгоритм: протокол Диффи–Хеллмана",
+      "text": "**Подготовка (общедоступно):** большое простое число $p$ и целое $g$, $1 < g < p$.\n\n1.  Алиса выбирает случайный секрет $a \\in [1, p-2]$ и посылает Бобу $A = g^a \\bmod p$.\n\n2.  Боб выбирает случайный секрет $b \\in [1, p-2]$ и посылает Алисе $B = g^b \\bmod p$.\n\n3.  Алиса вычисляет общий ключ: $K = B^a \\bmod p$.\n\n4.  Боб вычисляет общий ключ: $K = A^b \\bmod p$.\n\n**Результат.** Алиса и Боб получили один и тот же ключ\n\n$$K = g^{ab} \\bmod p,$$\n\nкоторый никогда не передавался по каналу связи.",
+      "line": 137,
+      "anchor": "протокол-диффихеллмана"
+    },
+    {
+      "id": "alg_ch044primene_26",
+      "chapter_slug": "ch04_4_primeneniya-rsa-autentifikaciya",
+      "chapter_title": "Применения RSA: аутентификация, цифровая подпись, электронное голосование",
+      "title": "Алгоритм: аутентификация через RSA",
+      "text": "1.  **Запрос (challenge).** Банк генерирует *случайное* число $r$ ($0 < r < n$), запоминает его и отсылает Алисе.\n\n2.  **Ответ (response).** Алиса вычисляет $s = r^{d} \\bmod n$, используя свой закрытый ключ, и отправляет $s$ обратно.\n\n3.  **Проверка.** Банк вычисляет $r' = s^{e} \\bmod n$ и сравнивает с тем $r$, которое он отсылал. Если $r' = r$, проверка пройдена.",
+      "line": 26,
+      "anchor": "subsec:auth"
+    },
+    {
+      "id": "alg_ch044primene_72",
+      "chapter_slug": "ch04_4_primeneniya-rsa-autentifikaciya",
+      "chapter_title": "Применения RSA: аутентификация, цифровая подпись, электронное голосование",
+      "title": "Алгоритм: цифровая подпись RSA",
+      "text": "Алиса имеет открытый ключ $(e, n)$ и закрытый $d$. Хочет подписать документ $m$ ($0 < m < n$).\n\n1.  **Подпись.** Алиса вычисляет\n\n    $$\\sigma = m^{d} \\bmod n$$\n\n    и публикует пару $(m, \\sigma)$.\n\n2.  **Проверка.** Любой проверяющий вычисляет $m' = \\sigma^{e} \\bmod n$ и сравнивает с $m$. Если $m' = m$, подпись подлинна.",
+      "line": 72,
+      "anchor": "subsec:eds"
+    },
+    {
+      "id": "alg_ch044primene_130",
+      "chapter_slug": "ch04_4_primeneniya-rsa-autentifikaciya",
+      "chapter_title": "Применения RSA: аутентификация, цифровая подпись, электронное голосование",
+      "title": "Алгоритм: слепая подпись RSA",
+      "text": "Алиса хочет получить подпись центра под её бюллетенем $m$, не раскрывая центру содержимое.\n\n1.  Алиса выбирает случайное $k$, взаимно простое с $n$, и вычисляет *ослеплённое* сообщение\n\n    $$m' = m \\cdot k^{e} \\bmod n.$$\n\n    Отправляет $m'$ центру.\n\n2.  Центр (после проверки, что Алиса действительно имеет право голоса) ставит подпись:\n\n    $$\\sigma' = (m')^{d} \\bmod n = m^{d} \\cdot k^{ed} \\bmod n = m^{d} \\cdot k \\bmod n.$$\n\n    Возвращает $\\sigma'$ Алисе.\n\n3.  Алиса *снимает ослепление*: вычисляет\n\n    $$\\sigma = \\sigma' \\cdot k^{-1} \\bmod n = m^{d} \\bmod n.$$\n\n    Получена настоящая RSA-подпись центра под её бюллетенем $m$, хотя центр никогда не видел $m$.",
+      "line": 130,
+      "anchor": "subsec:voting"
+    },
+    {
+      "id": "alg_ch044primene_156",
+      "chapter_slug": "ch04_4_primeneniya-rsa-autentifikaciya",
+      "chapter_title": "Применения RSA: аутентификация, цифровая подпись, электронное голосование",
+      "title": "Алгоритм: электронное голосование",
+      "text": "1.  *Подготовка.* Алиса формирует бюллетень $m$ — например, число, кодирующее её выбор, плюс случайный «уникальный идентификатор» $r$, чтобы исключить совпадение бюллетеней.\n\n2.  *Получение подписи.* Алиса ослепляет $m$, отправляет $m'$ **Регистратору**. Регистратор проверяет по своему списку, что Алиса имеет право голосовать и ещё не получала подпись, и возвращает $\\sigma'$. Алиса снимает ослепление и получает $(m, \\sigma)$.\n\n3.  *Анонимная отправка.* Через анонимный канал (например, через сеть посредников или с другого устройства) Алиса отправляет $(m, \\sigma)$ **Счётчику**.\n\n4.  *Подсчёт.* Счётчик проверяет подпись $\\sigma$: если она верна и идентификатор $r$ ранее не встречался — голос засчитан.",
+      "line": 156,
+      "anchor": "subsec:voting"
+    },
+    {
+      "id": "alg_ch046schetch_40",
+      "chapter_slug": "ch04_6_schetchiki-s-korotkoy-pamyatyu-h",
+      "chapter_title": "Счётчики с короткой памятью HyperLogLog и эксперимент Стенли Мильграма",
+      "title": "Алгоритм: наивный счётчик различных элементов",
+      "text": "1.  Заведём одну переменную $M = 0$.\n\n2.  Для каждого приходящего элемента $x$ потока:\n\n    1.  вычислим $h(x)$;\n\n    2.  посчитаем число $\\rho(h(x))$ — длину начального блока нулей в $h(x)$, плюс единица;\n\n    3.  обновим $M \\leftarrow \\max(M, \\rho(h(x)))$.\n\n3.  На выходе оценим число различных элементов как $\\widehat{n} = 2^M$.",
+      "line": 40,
+      "anchor": "идея-самый-длинный-хвост-нулей"
+    },
+    {
+      "id": "alg_ch046schetch_62",
+      "chapter_slug": "ch04_6_schetchiki-s-korotkoy-pamyatyu-h",
+      "chapter_title": "Счётчики с короткой памятью HyperLogLog и эксперимент Стенли Мильграма",
+      "title": "Алгоритм: HyperLogLog (упрощённая схема)",
+      "text": "1.  Выберем число $b$ — скажем, $b = 10$, — и заведём $2^b = 1024$ независимых счётчика $M_0, M_1, \\dots, M_{2^b - 1}$. Каждый счётчик — 6 битов.\n\n2.  Для каждого приходящего элемента $x$:\n\n    1.  вычислим $h(x)$ длины $L$;\n\n    2.  первые $b$ битов $h(x)$ интерпретируем как номер счётчика $j$, $0 \\le j < 2^b$;\n\n    3.  к остальным $L - b$ битам применяем правило: $\\rho =$ длина начального блока нулей плюс 1;\n\n    4.  обновляем: $M_j \\leftarrow \\max(M_j, \\rho)$.\n\n3.  На выходе оцениваем\n\n    $$\\widehat{n} = \\alpha_b \\cdot 2^b \\cdot \\left( \\frac{1}{2^b} \\sum_{j=0}^{2^b-1} 2^{-M_j} \\right)^{-1},$$\n\n    где $\\alpha_b$ — известная константа корректировки (для $b = 10$ примерно $0.7213$).",
+      "line": 62,
+      "anchor": "идея-несколько-счётчиков"
+    },
+    {
+      "id": "alg_ch046schetch_132",
+      "chapter_slug": "ch04_6_schetchiki-s-korotkoy-pamyatyu-h",
+      "chapter_title": "Счётчики с короткой памятью HyperLogLog и эксперимент Стенли Мильграма",
+      "title": "Алгоритм: оценка расстояний в графе через подсчёт «соседей»",
+      "text": "1.  Для каждой вершины $v$ заведём HyperLogLog-счётчик $C_v$.\n\n2.  Вначале добавим в $C_v$ только саму вершину $v$. То есть $|C_v| = 1$.\n\n3.  На шаге $t = 1, 2, \\dots, T$:\n\n    -   для каждой вершины $v$ обновим $C_v \\leftarrow C_v \\cup \\bigcup_{u: (u,v) \\text{ -- ребро}} C_u^{(t-1)}$,\n\n    -   то есть в $C_v$ добавляются все вершины, до которых дошли соседи $v$ на предыдущем шаге.\n\n4.  Величина $|C_v|$ после $t$ шагов — это число вершин, до которых от $v$ существует путь длины $\\le t$.",
+      "line": 132,
+      "anchor": "при-чём-здесь-hyperloglog"
+    }
+  ],
+  "examples": [
+    {
+      "id": "exa_ch02newton_157",
+      "chapter_slug": "ch02_newton",
+      "chapter_title": "Метод Ньютона",
+      "title": "Пример 2.2. Расстояние до горизонта",
+      "text": "Стоящий человек ростом $h=1{,}70$ м смотрит на море. До какой точки\nдалеко он видит? Из теоремы Пифагора (рис. 2.3) для прямой,\nкасательной к поверхности Земли:\n\n$$d^{2}+R^{2}=(R+h)^{2},\\qquad\nd=\\sqrt{2Rh+h^{2}}\\;\\approx\\;\\sqrt{2Rh}.$$\n\nПри $R=6371$ км, $h=1{,}7\\cdot 10^{-3}$ км:\n\n$$2Rh\\;\\approx\\;2\\cdot 6371\\cdot 0{,}0017\\;=\\;21{,}66\\;\\text{(км$^2$)}.$$\n\nПрименим к этому числу метод Герона со стартом $x_0=5$:\n\n$$\\begin{array}{l|l}\nk & x_k \\\\\\hline\n0 & 5{,}000\\,000 \\\\\n1 & \\tfrac{1}{2}(5+21{,}66/5)=4{,}666\\,000 \\\\\n2 & 4{,}654\\,463 \\\\\n3 & 4{,}654\\,460\n\\end{array}$$\n\nПолучаем $d\\approx 4{,}65$ км — расстояние, которое запоминается\nлюбому, кто хоть раз стоял у моря.",
+      "line": 157,
+      "anchor": "сходимость-через-сжимающее-отображение"
+    },
+    {
+      "id": "exa_ch031prostey_260",
+      "chapter_slug": "ch03_1_prosteyshie-primery-zadach-anali",
+      "chapter_title": "Простейшие примеры задач анализа данных. Принцип максимума правдоподобия",
+      "title": "Пример 3.4. Числовой пример",
+      "text": "Опрошено $n=1000$ избирателей; за кандидата $A$ высказалось $k=460$.\nТочечная оценка — $\\hat p=0{,}46$. Полуширина $95\\,\\%$ ДИ:\n\n$$\\varepsilon_\\text{Чеб.}\\;\\approx\\;\\tfrac{1{,}118}{\\sqrt{1000}}\\;\\approx\\;0{,}0354,\n\\qquad\n\\varepsilon_\\text{ЦПТ}\\;\\approx\\;\\tfrac{0{,}98}{\\sqrt{1000}}\\;\\approx\\;0{,}0310.$$\n\nПо ЦПТ: с уверенностью 95 % истинная доля сторонников $A$ лежит в\nинтервале $[0{,}429,\\,0{,}491]$, то есть точно меньше половины.\n*Можно с большой уверенностью утверждать, что кандидат $A$\nпроиграет* — даже несмотря на то, что точечная оценка $0{,}46$ не сильно\nниже $0{,}5$.\n\n*Из неравенства Чебышёва* мы бы получили интервал\n$[0{,}425,\\,0{,}495]$ — его правый конец заметно ближе к $0{,}5$,\nвывод об исходе выборов был бы менее уверенным.",
+      "line": 260,
+      "anchor": "сравнение-двух-подходов"
+    },
+    {
+      "id": "exa_ch031prostey_553",
+      "chapter_slug": "ch03_1_prosteyshie-primery-zadach-anali",
+      "chapter_title": "Простейшие примеры задач анализа данных. Принцип максимума правдоподобия",
+      "title": "Пример 3.7. Применение к эксперименту Гальтона",
+      "text": "В стилизованной реконструкции (рис. 3.5) среднее по $n=787$\nответам составило $\\overline X\\approx 1196$ фунтов при истинном весе\n$\\mu=1198$ фунтов. Это не означает, что отдельный наблюдатель угадывает\nвес быка точно: разброс отдельных оценок составляет около $\\sigma\\approx 75$\nфунтов. Однако стандартная погрешность *среднего*\n\n$$\\sigma_{\\overline X}=\\frac{\\sigma}{\\sqrt n}\\;\\approx\\;\\frac{75}{\\sqrt{787}}\\approx 2{,}7$$\n\nфунта, и расхождение в $2$ фунта вполне укладывается в одну стандартную\nпогрешность. «Мудрость толпы» — следствие закона больших чисел,\nоформленного как ОМП для гауссовой модели (3.9).",
+      "line": 553,
+      "anchor": "ssec:gauss-thm"
+    },
+    {
+      "id": "exa_ch032lineyna_173",
+      "chapter_slug": "ch03_2_lineynaya-regressiya-i-metod-nai",
+      "chapter_title": "Линейная регрессия и метод наименьших квадратов",
+      "title": "Пример 3.8. Прямой счёт по формуле",
+      "text": "Возьмём шесть точек: $(1,2{,}1)$, $(2,3{,}9)$, $(3,5{,}8)$, $(4,8{,}3)$,\n$(5,10{,}0)$, $(6,11{,}9)$. Считаем по (3.21), (3.22):\n\n$$\\bar x=3{,}5,\\quad \\bar y=7{,}0,\\quad\n\\sum(x_i-\\bar x)^{2}=17{,}5,\\quad\n\\sum(x_i-\\bar x)(y_i-\\bar y)=34{,}65.$$\n\nОткуда $\\hat a=34{,}65/17{,}5\\approx 1{,}980$ и\n$\\hat b=7{,}0-1{,}98\\cdot 3{,}5\\approx 0{,}07$. Регрессионная прямая:\n$\\hat y\\approx 1{,}98\\,x+0{,}07$ — то есть данные «выложены вдоль»\nзависимости $y\\approx 2x$.",
+      "line": 173,
+      "anchor": "ssec:ols-formula"
+    },
+    {
+      "id": "exa_ch032lineyna_418",
+      "chapter_slug": "ch03_2_lineynaya-regressiya-i-metod-nai",
+      "chapter_title": "Линейная регрессия и метод наименьших квадратов",
+      "title": "Пример 3.9. Цена квартиры по двум признакам",
+      "text": "Пусть для пяти квартир известны площадь $x_{i,1}$ (м$^{2}$), расстояние\nдо метро $x_{i,2}$ (минуты пешком) и цена $y_i$ (млн руб.):\n\n$$\\begin{array}{c|c|c|c}\ni & x_{i,1} & x_{i,2} & y_i \\\\ \\hline\n1 & 35 & 5 & 9{,}5 \\\\\n2 & 45 & 12 & 10{,}0 \\\\\n3 & 60 & 8  & 13{,}5 \\\\\n4 & 75 & 3  & 17{,}0 \\\\\n5 & 50 & 20 & 9{,}8\n\\end{array}$$\n\nПодставим $X\\in\\mathbb{R}^{5\\times 3}$ (последний столбец из единиц) в\nформулу (3.28) и численно решим систему. Получим\n$\\hat{\\mathbf w}\\approx(0{,}183,\\,-0{,}142,\\,2{,}74)$, то есть\n\n$$\\hat y\\;=\\;0{,}183\\,x_{1}\\;-\\;0{,}142\\,x_{2}\\;+\\;2{,}74.$$\n\nСодержательно: каждый дополнительный квадратный метр прибавляет к цене\n$\\approx\\!183$ тыс. руб., каждая дополнительная минута до метро\n*уменьшает* цену на $\\approx\\!142$ тыс. руб., а свободный член\n$2{,}74$ млн — это «базовая стоимость», когда оба признака равны\nнулю.",
+      "line": 418,
+      "anchor": "ssec:multi-reg"
+    },
+    {
+      "id": "exa_ch033zadacha_216",
+      "chapter_slug": "ch03_3_zadacha-klassifikacii-i-neyronny",
+      "chapter_title": "Задача классификации и нейронные сети",
+      "title": "Пример 3.11. Простой расчёт",
+      "text": "$$A=\\begin{pmatrix}1 & 2 & -1\\\\ 3 & 0 & 4\\end{pmatrix},\\qquad\n\\mathbf z=\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}.$$\n\nТогда\n\n$$A\\mathbf z=\\begin{pmatrix}1\\cdot 1+2\\cdot 2+(-1)\\cdot 3\\\\ 3\\cdot 1+0\\cdot 2+4\\cdot 3\\end{pmatrix}=\n\\begin{pmatrix}2\\\\15\\end{pmatrix}.$$",
+      "line": 216,
+      "anchor": "ssec:mlp"
+    },
+    {
+      "id": "exa_ch034zadachi_156",
+      "chapter_slug": "ch03_4_zadachi-obucheniya-bez-uchitelya",
+      "chapter_title": "Задачи обучения без учителя",
+      "title": "Пример 3.18. Маленький конкретный пример",
+      "text": "Рассмотрим частично заполненную матрицу 4 пользователей и 5 фильмов\n(оценки от 1 до 5, ‘?’ — неизвестно):\n\n$$A=\\begin{pmatrix}\n5 & 4 & ? & 1 & ? \\\\\n? & 5 & 5 & ? & 2 \\\\\n1 & ? & 2 & 5 & 5 \\\\\n? & 1 & 1 & 4 & 5 \\\\\n\\end{pmatrix}.$$\n\nВидна закономерность: первые два пользователя любят первые три\nфильма; третий и четвёртый — последние два. Если попытаться найти\nфакторизацию $A\\approx UV^{\\top}$ с рангом $r=2$:\n\n$$U=\\begin{pmatrix}1{,}9 & 0{,}1\\\\1{,}9 & 0{,}2\\\\0{,}1 & 1{,}7\\\\0{,}0 & 1{,}7\\end{pmatrix},\n\\qquad\nV=\\begin{pmatrix}2{,}6 & 0{,}5\\\\2{,}3 & 0{,}3\\\\2{,}5 & 0{,}5\\\\0{,}6 & 2{,}8\\\\0{,}4 & 3{,}0\\end{pmatrix},$$\n\nто $UV^{\\top}$ почти точно воспроизводит наблюдённые элементы и\n«предсказывает» неизвестные:\n\n$$UV^{\\top}\\approx\\begin{pmatrix}5{,}0 & 4{,}4 & 4{,}8 & 1{,}4 & 1{,}1\\\\\n                                5{,}1 & 4{,}4 & 4{,}9 & 1{,}7 & 1{,}4\\\\\n                                1{,}1 & 0{,}7 & 1{,}1 & 4{,}8 & 5{,}1\\\\\n                                0{,}0 & 0{,}5 & 0{,}9 & 4{,}8 & 5{,}1\\end{pmatrix}.$$\n\nОбведены восстановленные элементы. Видно: пользователи 1 и 2 в этой\nмодели — любители «жанра 1» (первая координата пристрастий\nвелика); пользователи 3 и 4 — любители «жанра 2». А столбцы $V$\nпоказывают, какому жанру какие фильмы соответствуют.",
+      "line": 156,
+      "anchor": "ssec:netflix"
+    },
+    {
+      "id": "exa_ch041element_16",
+      "chapter_slug": "ch04_1_elementy-teorii-chisel",
+      "chapter_title": "Элементы теории чисел",
+      "title": "Пример 4.2",
+      "text": "$17 = 5\\cdot 3 + 2$, поэтому $17 \\bmod 5 = 2$.\\\n$-17 = 5\\cdot(-4) + 3$, поэтому $(-17)\\bmod 5 = 3$ (остаток — неотрицательное число!).",
+      "line": 16,
+      "anchor": "делимость-остатки-и-сравнения-по-модулю"
+    },
+    {
+      "id": "exa_ch041element_44",
+      "chapter_slug": "ch04_1_elementy-teorii-chisel",
+      "chapter_title": "Элементы теории чисел",
+      "title": "Пример 4.5",
+      "text": "$23 \\equiv 9 \\,(\\mathrm{mod}\\,7)$, потому что $23 - 9 = 14 = 2\\cdot 7$.\\\nВ обоих случаях остаток от деления на 7 равен 2.",
+      "line": 44,
+      "anchor": "делимость-остатки-и-сравнения-по-модулю"
+    },
+    {
+      "id": "exa_ch041element_146",
+      "chapter_slug": "ch04_1_elementy-teorii-chisel",
+      "chapter_title": "Элементы теории чисел",
+      "title": "Пример 4.9",
+      "text": "Проверим: $2\\cdot 48 - 3\\cdot 30 = 96 - 90 = 6 = \\gcd(48,30)$. Совпадает.",
+      "line": 146,
+      "anchor": "расширенный-алгоритм-евклида"
+    },
+    {
+      "id": "exa_ch041element_183",
+      "chapter_slug": "ch04_1_elementy-teorii-chisel",
+      "chapter_title": "Элементы теории чисел",
+      "title": "Пример 4.11",
+      "text": "Найдём $11^{-1} \\,(\\mathrm{mod}\\,26)$. Применяем расширенный алгоритм Евклида к $(26,11)$:\n\n$$\\begin{aligned}\n26 &= 2\\cdot 11 + 4,\\\\\n11 &= 2\\cdot 4 + 3,\\\\\n4 &= 1\\cdot 3 + 1,\\\\\n3 &= 3\\cdot 1 + 0.\n\\end{aligned}$$\n\n$\\gcd = 1$. Раскручиваем:\n\n$$\\begin{aligned}\n1 &= 4 - 1\\cdot 3 = 4 - (11 - 2\\cdot 4) = 3\\cdot 4 - 11\\\\\n&= 3\\cdot (26 - 2\\cdot 11) - 11 = 3\\cdot 26 - 7\\cdot 11.\n\\end{aligned}$$\n\nЗначит, $-7\\cdot 11 \\equiv 1 \\,(\\mathrm{mod}\\,26)$, то есть $11^{-1} \\equiv -7 \\equiv 19 \\,(\\mathrm{mod}\\,26)$. Проверка: $11\\cdot 19 = 209 = 8\\cdot 26 + 1$.",
+      "line": 183,
+      "anchor": "решение-линейных-сравнений"
+    },
+    {
+      "id": "exa_ch041element_240",
+      "chapter_slug": "ch04_1_elementy-teorii-chisel",
+      "chapter_title": "Элементы теории чисел",
+      "title": "Пример 4.12",
+      "text": "Вычислим $7^{13} \\bmod 23$. Запишем $13 = 1101_2$, то есть $13 = 8 + 4 + 1$. Значит, $7^{13} = 7^{8}\\cdot 7^{4}\\cdot 7^{1}$. Считаем последовательно по модулю 23:\n\n$$7^1 = 7,\\quad 7^2 = 49 \\equiv 3,\\quad 7^4 \\equiv 3^2 = 9,\\quad 7^8 \\equiv 9^2 = 81 \\equiv 81 - 3\\cdot 23 = 12.$$\n\nТогда $7^{13} \\equiv 12\\cdot 9\\cdot 7 = 756 \\equiv 756 - 32\\cdot 23 = 756 - 736 = 20 \\,(\\mathrm{mod}\\,23)$. Всего — около пяти умножений вместо тринадцати.",
+      "line": 240,
+      "anchor": "subsec:fastpow"
+    },
+    {
+      "id": "exa_ch041element_284",
+      "chapter_slug": "ch04_1_elementy-teorii-chisel",
+      "chapter_title": "Элементы теории чисел",
+      "title": "Пример 4.14",
+      "text": "$\\varphi(1) = 1$, $\\varphi(2) = 1$, $\\varphi(6) = 2$ (а именно, числа 1 и 5), $\\varphi(10) = 4$ (числа 1, 3, 7, 9).",
+      "line": 284,
+      "anchor": "функция-эйлера-и-малая-теорема-ферма"
+    },
+    {
+      "id": "exa_ch041element_298",
+      "chapter_slug": "ch04_1_elementy-teorii-chisel",
+      "chapter_title": "Элементы теории чисел",
+      "title": "Пример 4.15",
+      "text": "$\\varphi(15) = \\varphi(3\\cdot 5) = 2\\cdot 4 = 8$. Действительно, взаимно простыми с 15 в отрезке $[1,15]$ являются числа $\\{1, 2, 4, 7, 8, 11, 13, 14\\}$ — ровно 8 чисел.",
+      "line": 298,
+      "anchor": "функция-эйлера-и-малая-теорема-ферма"
+    },
+    {
+      "id": "exa_ch043kriptos_67",
+      "chapter_slug": "ch04_3_kriptosistemy-rsa-i-diffi-hellma",
+      "chapter_title": "Криптосистемы RSA и Диффи–Хеллмана",
+      "title": "Пример 4.21. генерация и применение ключа RSA",
+      "text": "Пусть $p = 11$, $q = 23$. Тогда:\n\n-   $n = 11\\cdot 23 = 253$, $\\varphi(n) = 10\\cdot 22 = 220$.\n\n-   Выберем $e = 7$. Проверим взаимную простоту: $\\gcd(7, 220) = 1$.\n\n-   Найдём $d = 7^{-1} \\bmod 220$. Расширенным алгоритмом Евклида:\n\n    $$220 = 31\\cdot 7 + 3,\\quad 7 = 2\\cdot 3 + 1.$$\n\n    Раскручиваем: $1 = 7 - 2\\cdot 3 = 7 - 2(220 - 31\\cdot 7) = 63\\cdot 7 - 2\\cdot 220$. Значит, $d = 63$ (проверка: $7\\cdot 63 = 441 = 2\\cdot 220 + 1$).\n\n-   Открытый ключ: $(253, 7)$. Закрытый ключ: $d = 63$.\n\n*Шифрование.* Пусть $m = 50$. Считаем $c = 50^7 \\bmod 253$ быстрым возведением:\n\n$$50^2 = 2500 \\equiv 2500 - 9\\cdot 253 = 223,\\qquad 50^4 \\equiv 223^2 = 49\\,729.$$\n\nДелим $49\\,729 / 253 \\approx 196{,}5$, $196\\cdot 253 = 49\\,588$, остаток $141$. Значит, $50^4 \\equiv 141$. Далее $50^7 = 50^4\\cdot 50^2\\cdot 50 \\equiv 141\\cdot 223\\cdot 50 \\bmod 253$. Считаем: $141\\cdot 223 = 31\\,443 = 124\\cdot 253 + 71$, значит $\\equiv 71$. Затем $71\\cdot 50 = 3550 = 14\\cdot 253 + 8$, значит $\\equiv 8$. Итак, $c = 8$.\n\n*Расшифрование.* Боб считает $c^d = 8^{63} \\bmod 253$. Вместо длинных вычислений «вручную» можно использовать малую теорему Ферма по модулям 11 и 23 раздельно, а затем китайскую теорему об остатках — именно так и поступают на практике. Ответ: $50$.",
+      "line": 67,
+      "anchor": "почему-rsa-работает-корректность"
+    },
+    {
+      "id": "exa_ch043kriptos_111",
+      "chapter_slug": "ch04_3_kriptosistemy-rsa-i-diffi-hellma",
+      "chapter_title": "Криптосистемы RSA и Диффи–Хеллмана",
+      "title": "Пример 4.22. границы практической факторизации",
+      "text": "В 2020 году группе исследователей удалось факторизовать число RSA-250 (250 десятичных цифр $\\approx$ 829 бит). Заняло это около 2700 ядро-лет вычислений — то есть один компьютер с 2700 ядрами работал бы целый год. Это подтверждает, что 1024-битный RSA скоро будет «на грани», а 2048-битный — надолго безопасен.",
+      "line": 111,
+      "anchor": "почему-rsa-безопасен"
+    },
+    {
+      "id": "exa_ch043kriptos_159",
+      "chapter_slug": "ch04_3_kriptosistemy-rsa-i-diffi-hellma",
+      "chapter_title": "Криптосистемы RSA и Диффи–Хеллмана",
+      "title": "Пример 4.23. обмен ключами Диффи–Хеллмана",
+      "text": "Пусть $p = 23$, $g = 5$.\n\n-   Алиса выбирает $a = 6$, отправляет $A = 5^6 \\bmod 23$. Считая последовательно по таблице степеней пятёрки:\n\n    $$5^1\\equiv 5,\\;5^2\\equiv 2,\\;5^3\\equiv 10,\\;5^4\\equiv 4,\\;5^5\\equiv 20,\\;5^6\\equiv 8,$$\n\n    получаем $A = 8$.\n\n-   Боб выбирает $b = 15$, отправляет $B = 5^{15} \\bmod 23$. Продолжая таблицу:\n\n    $$5^7\\equiv 17,\\;5^8\\equiv 16,\\;5^9\\equiv 11,\\;5^{10}\\equiv 9,\\;5^{11}\\equiv 22,$$\n\n    $$5^{12}\\equiv 18,\\;5^{13}\\equiv 21,\\;5^{14}\\equiv 13,\\;5^{15}\\equiv 19,$$\n\n    получаем $B = 19$.\n\n-   Алиса вычисляет общий ключ $K = B^a = 19^6 \\bmod 23$. Замечая, что $19 \\equiv -4 \\,(\\mathrm{mod}\\,23)$, имеем $(-4)^6 = 4^6 = 4096 = 178\\cdot 23 + 2$, значит, $K = 2$.\n\n-   Боб вычисляет $K = A^b = 8^{15} \\bmod 23$. Но $8 = 5^6$, значит, $8^{15} = 5^{90}$. По малой теореме Ферма $5^{22} \\equiv 1 \\,(\\mathrm{mod}\\,23)$, а $90 = 4\\cdot 22 + 2$, поэтому $5^{90} \\equiv 5^2 = 2 \\,(\\mathrm{mod}\\,23)$. Получаем $K = 2$.\n\nСогласование удалось: общий ключ $K = 2$. И это притом, что числа $a = 6$ и $b = 15$ никогда не передавались по каналу!",
+      "line": 159,
+      "anchor": "протокол-диффихеллмана"
+    },
+    {
+      "id": "exa_chlinalg2kog_73",
+      "chapter_slug": "ch_linalg_2_kogda-arifmetika-lzhet-chisla-s",
+      "chapter_title": "Когда арифметика лжёт: числа с плавающей точкой",
+      "title": "Пример 0.1. Спасение через переписывание формулы",
+      "text": "Воспользуемся тождеством $1-\\cos x = 2\\sin^{2}(x/2)$:\n\n$$g(x) \\;=\\; \\dfrac{2\\sin^{2}(x/2)}{x^{2}}\\;=\\;\\dfrac12\\!\\left(\\dfrac{\\sin(x/2)}{x/2}\\right)^{2}.$$\n\nВнутри теперь нет вычитания близких чисел, и Python выдаёт\n`0.49999999999999983` — погрешность лишь в последнем знаке.",
+      "line": 73,
+      "anchor": "когда-это-становится-опасным-катастрофическое-сокращение"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "exe_ch02newton_447",
+      "chapter_slug": "ch02_newton",
+      "chapter_title": "Метод Ньютона",
+      "title": "Задачи для самостоятельной работы",
+      "text": "1.  Применяя метод Ньютона к уравнению $f(x)=x^{n}-a=0$, получите\n    итерационную формулу для $\\sqrt[n]{a}$. Покажите, что для $n=3$\n    она имеет вид $x_{k+1}=\\frac{2 x_k+a/x_k^{2}}{3}$.\n\n2.  Докажите, что для метода Герона из любого $x_0>0$ погрешность\n    $e_1$ всегда положительна, после чего последовательность\n    монотонно убывает. (Указание: используйте AM–GM.)\n\n3.  Для метода Ньютона–Шульца при $a=2$ найдите наибольшее $x_0$,\n    при котором итерации ещё сходятся. Сравните численно скорость\n    сходимости при $x_0=0{,}1$ и $x_0=0{,}9$.\n\n4.  $^{\\star}$ Сформулируйте и докажите аналог\n    теоремы 2.5 для метода Ньютона минимизации\n    многомерной сильно выпуклой функции $g\\colon\\mathbb{R}^{n}\\to\\mathbb{R}$.\n    Какую роль играет матрица Гессе $\\nabla^{2}g$?\n\n5.  $^{\\star}$ Прочитайте о теореме Канторовича в учебнике\n    [«Kantorovich theorem»](https://en.wikipedia.org/wiki/Kantorovich_theorem)\n    и сформулируйте её в одну фразу: какие именно три величины\n    должны быть «в нужном соотношении» для гарантии сходимости?",
+      "line": 447,
+      "anchor": "ssec:thm-superlinear"
+    },
+    {
+      "id": "exe_ch031prostey_604",
+      "chapter_slug": "ch03_1_prosteyshie-primery-zadach-anali",
+      "chapter_title": "Простейшие примеры задач анализа данных. Принцип максимума правдоподобия",
+      "title": "Задачи для самостоятельной работы",
+      "text": "1.  В социологическом опросе $n=400$, за кандидата $A$ ответили\n    $k=220$. Постройте $90\\,\\%$ доверительный интервал для доли $p$\n    (а) по неравенству Чебышёва; (б) по ЦПТ. Можно ли утверждать,\n    что $A$ победит с вероятностью $\\geq 90\\,\\%$?\n\n2.  Игральную кость подбросили $n=600$ раз. Выпало $k=120$ шестёрок.\n    Найдите оценку максимума правдоподобия вероятности $p$ выпадения\n    шестёрки и постройте $95\\,\\%$ ДИ. Согласуется ли результат с\n    гипотезой «кость честная»?\n\n3.  Запрограммируйте метод Монте-Карло для оценки числа $\\pi$. Постройте\n    график зависимости абсолютной ошибки $|\\hat\\pi_N-\\pi|$ от $N$ в\n    двойной логарифмической шкале и убедитесь, что наклон близок к\n    $-1/2$.\n\n4.  Покажите, что для случайных величин $X_1,\\dots,X_n$ с плотностью\n    Лапласа $f(x;\\mu)=\\frac{1}{2}\\exp(-|x-\\mu|)$ оценкой максимума\n    правдоподобия параметра $\\mu$ является *выборочная медиана*,\n    а не среднее. (Указание: суммируйте $-\\ln f$ и минимизируйте.)\n    Чем это объясняет известную «робастность» медианы по отношению к\n    выбросам?\n\n5.  $^{\\star}$ Докажите теорему 3.6 полностью.\n    Указание: подставьте $X_2=\\dots=X_n=0$, тогда из условия\n    $\\sum\\rho(X_i-\\hat\\mu)=0$ при $\\hat\\mu=X_1/n$ выведите функциональное\n    уравнение для $\\rho$.\n\n6.  $^{\\star}$ Метод Монте-Карло для интеграла. Пусть требуется\n    оценить $I=\\int_{0}^{1} g(x)\\,dx$, где $g$ — известная функция.\n    Покажите, что оценкой максимума правдоподобия в подходящей\n    вероятностной модели является\n    $\\hat I_N=\\frac{1}{N}\\sum_{i=1}^{N}g(U_i)$, $U_i\\sim U(0,1)$.\n    Применяя ЦПТ, оцените сверху число точек, при котором ошибка\n    приближённого вычисления $\\int_{0}^{1}e^{-x^{2}}dx$ не\n    превзойдёт $10^{-3}$ с уверенностью $95\\,\\%$.",
+      "line": 604,
+      "anchor": "резюме-параграфа"
+    },
+    {
+      "id": "exe_ch032lineyna_483",
+      "chapter_slug": "ch03_2_lineynaya-regressiya-i-metod-nai",
+      "chapter_title": "Линейная регрессия и метод наименьших квадратов",
+      "title": "Задачи для самостоятельной работы",
+      "text": "1.  Для точек $(1,1{,}2)$, $(2,2{,}3)$, $(3,3{,}5)$, $(4,4{,}3)$,\n    $(5,5{,}1)$ найдите $\\hat a,\\hat b$ методом наименьших квадратов.\n    Постройте график «данные + регрессионная прямая».\n\n2.  Выведите формулу (3.22) в явном виде, проделав все\n    преобразования между (3.19) и (3.22).\n\n3.  Кеплер. По данным таблицы выше посчитайте *вручную* (или с\n    помощью калькулятора) $\\bar x=\\overline{\\lg a}$,\n    $\\bar y=\\overline{\\lg T}$, ковариацию и дисперсию, и убедитесь,\n    что МНК даёт $\\hat\\beta\\approx 1{,}5$.\n\n4.  Галилей. Зачем в (3.26) мы добавили свободный\n    член $\\xi$? Какое физическое явление он моделирует?\n\n5.  Постройте регрессию веса человека ($y$) от его роста ($x$) на\n    выборке из 10 ваших знакомых (можно вымышленных). Сравните ваш\n    результат с известной эмпирической формулой Брока\n    $y\\approx x-100$ (см. массой в кг, рост в см).\n\n6.  $^{\\star}$ Покажите, что МНК-оценка $\\hat a$ из (3.22)\n    *несмещённая*: $\\mathbb E[\\hat a]=a$, если на самом деле\n    $y_i=a x_i+b+\\xi_i$ с независимыми ошибками с нулевым\n    математическим ожиданием. Найдите $\\mathbb D[\\hat a]$.\n\n7.  $^{\\star}$ Метод наименьших квадратов с весами. Пусть нам\n    известно, что точность $i$-го измерения характеризуется\n    собственной дисперсией $\\sigma_i^{2}$ (разные приборы — разная\n    погрешность). Покажите, что ОМП-оценка минимизирует\n    *взвешенную* сумму квадратов\n    $\\sum_{i}\\sigma_i^{-2}(y_i-a x_i-b)^{2}$. Найдите для этой\n    задачи аналог формул (3.22), (3.21).",
+      "line": 483,
+      "anchor": "резюме-параграфа"
+    },
+    {
+      "id": "exe_ch033zadacha_757",
+      "chapter_slug": "ch03_3_zadacha-klassifikacii-i-neyronny",
+      "chapter_title": "Задача классификации и нейронные сети",
+      "title": "Задачи для самостоятельной работы",
+      "text": "1.  Покажите формулу (3.42): вычислите производную\n    кросс-энтропии $\\ell=-\\ln p_y=-\\ln\\frac{e^{z_y}}{\\sum_c e^{z_c}}$\n    по $z_c$ и убедитесь, что она равна $p_c-[c=y]$.\n\n2.  Сколько обучаемых параметров в сети с архитектурой\n    $784\\to 256\\to 128\\to 10$ (стандартная MLP для полного MNIST)?\n    А если добавить ещё один скрытый слой шириной 64?\n\n3.  Покажите, что произведение двух матриц $A$ и $B$ можно\n    определить так, чтобы для любого вектора $\\mathbf v$ выполнялось\n    $(AB)\\mathbf v=A(B\\mathbf v)$. Какое тогда условие на размеры\n    $A$ и $B$?\n\n4.  Реализуйте на Python градиентный спуск для функции\n    $F(x,y)=\\tfrac12(x^{2}+10y^{2})$. При каких значениях шага\n    $\\alpha$ метод сходится? При каком из них — быстрее всего?\n\n5.  Запрограммируйте простейшую полносвязную сеть с одним скрытым\n    слоем на UCI Digits и обучите её. Постройте кривые потерь и\n    точности — как на рис. 3.16.\n\n6.  $^{\\star}$ Возьмите 12 точек $(x_i,y_i)$ из любой гладкой\n    функции (например, $y=\\sin x$ при $x\\in[0,2\\pi]$) с\n    добавленным гауссовым шумом. Постройте полиномы степеней\n    $1,2,\\dots,11$ и нарисуйте U-кривую, как на\n    рис. 3.17.\n\n7.  $^{\\star}$ Докажите формулу (3.43) полностью,\n    начиная с цепного правила\n    $\\partial\\ell/\\partial z^{(\\ell-1)}_j=\\sum_k (\\partial\\ell/\\partial z^{(\\ell)}_k)\\cdot(\\partial z^{(\\ell)}_k/\\partial z^{(\\ell-1)}_j)$.",
+      "line": 757,
+      "anchor": "резюме-параграфа"
+    },
+    {
+      "id": "exe_ch034zadachi_718",
+      "chapter_slug": "ch03_4_zadachi-obucheniya-bez-uchitelya",
+      "chapter_title": "Задачи обучения без учителя",
+      "title": "Задачи для самостоятельной работы",
+      "text": "1.  Проверьте, что в примере 3.18 матрицы $U$ и $V$\n    действительно дают $UV^{\\top}$, близкое к $A$ во всех\n    наблюдённых клетках.\n\n2.  Сколько параметров в модели $A\\approx UV^{\\top}$, если $m=10^{6}$\n    пользователей, $n=10^{4}$ фильмов, ранг $r=20$? Во сколько раз\n    это меньше числа элементов исходной матрицы?\n\n3.  Покажите, что для центрированной выборки матрица $C=\\frac{1}{N}XX^{\\top}$\n    действительно симметрична и неотрицательно определена.\n\n4.  Сделайте свой PCA: возьмите датасет $\\mathbf x_i\\in\\mathbb{R}^{2}$\n    вашего сочинения (хотя бы 30 точек), посчитайте $C$, найдите\n    собственные значения и векторы (можно с помощью\n    `numpy.linalg.eig`). Постройте график как на\n    рис. 3.24.\n\n5.  Возьмите изображение в градациях серого. Получите его SVD\n    ($\\texttt{numpy.linalg.svd}$) и постройте малоранговые\n    аппроксимации с $r=1,5,20,50$. Постройте график зависимости\n    ошибки в норме Фробениуса от $r$. Найдите минимальное $r$, при\n    котором ошибка не превышает $5\\,\\%$ от $\\left\\lVert A \\right\\rVert_{F}$.\n\n6.  $^{\\star}$ Докажите формулу (3.53), опираясь на SVD и\n    ортогональность $U,V$ в норме Фробениуса.\n\n7.  $^{\\star}$ Сиамская сеть для рукописных цифр. Возьмите MNIST/UCI\n    Digits. Постройте сиамскую сеть, обучающуюся на парах\n    «одна и та же цифра / разные цифры». После обучения покажите,\n    что эмбеддинги одной цифры из разных написаний оказываются\n    близкими.",
+      "line": 718,
+      "anchor": "резюме-параграфа"
+    },
+    {
+      "id": "exe_ch035kakisku_536",
+      "chapter_slug": "ch03_5_kak-iskusstvennyy-intellekt-meny",
+      "chapter_title": "Как искусственный интеллект меняет мир",
+      "title": "Задачи для самостоятельной работы",
+      "text": "1.  Посмотрите запись 2-й партии матча AlphaGo–Ли Седоль\n    ([Wikipedia:\n    AlphaGo vs Lee Sedol](https://en.wikipedia.org/wiki/AlphaGo_versus_Lee_Sedol)). 37-й ход AlphaGo — знаменитый\n    «нечеловеческий» ход. Прочитайте о нём и подумайте, почему\n    он удивил даже мировых экспертов го.\n\n2.  Вычислите по закону Чинчилла (3.55) ожидаемую\n    кросс-энтропию для модели на $N=10^{11}$ параметров, обученной\n    на $D=2\\cdot 10^{12}$ токенах. Сравните с моделью того же\n    размера, но обученной на $D=10^{11}$ токенах (типичный случай\n    2020 г.).\n\n3.  Найдите в открытых источниках три современных применения\n    AlphaFold — например, в разработке новых лекарств. Опишите\n    кратко.\n\n4.  Поразмышляйте над выбором профессии. Какие задачи вашей\n    планируемой будущей деятельности можно делегировать ИИ уже\n    сегодня? Какие — останутся за вами навсегда? Сформулируйте\n    ответ в виде короткого эссе.\n\n5.  $^{\\star}$ Прочитайте оригинальную статью *Attention Is\n    All You Need* (2017, Васвани и др.;\n    [arXiv:1706.03762](https://arxiv.org/abs/1706.03762)).\n    Попробуйте понять, как именно устроен механизм внимания\n    $\\mathrm{softmax}(QK^{\\top}/\\sqrt{d})\\,V$. Запишите это\n    формулой, объяснив роль матриц $Q$, $K$, $V$.\n\n6.  $^{\\star}$ Запустите локально маленькую LLM (например, через\n    Ollama: модели Llama, Qwen, GigaChat-Mini, YandexGPT-Lite).\n    Сравните качество её ответов на ваши вопросы. Какие задачи\n    она выполняет хорошо? Где ошибается? Замечаете ли вы\n    предсказуемые сценарии её слабости?",
+      "line": 536,
+      "anchor": "заключение-главы"
+    },
+    {
+      "id": "exe_ch041element_412",
+      "chapter_slug": "ch04_1_elementy-teorii-chisel",
+      "chapter_title": "Элементы теории чисел",
+      "title": "Задачи для самостоятельной работы",
+      "text": "1.  Найдите $\\gcd(231, 165)$ алгоритмом Евклида. Представьте НОД в виде $231 x + 165 y$.\n\n2.  Найдите $5^{-1} \\,(\\mathrm{mod}\\,37)$. Используйте расширенный алгоритм Евклида.\n\n3.  Вычислите $3^{100} \\bmod 7$, пользуясь малой теоремой Ферма.\n\n4.  Сколько существует чисел в отрезке $[1, 100]$, взаимно простых с $100$? (Подсказка: $100 = 2^2\\cdot 5^2$, но вы можете использовать формулу для $\\varphi(p^2)$ или прямой подсчёт.)\n\n5.  Запишите быстрое возведение в степень в виде программы на знакомом вам языке программирования.\n\n6.  \\* Докажите, что для составного $n$ всегда найдётся $a$ из $[2, n-1]$, для которого $a^{n-1} \\not\\equiv 1 \\,(\\mathrm{mod}\\,n)$ — кроме чисел Кармайкла. Найдите наименьшее число Кармайкла.\n\n7.  \\* С помощью матричной формулы для чисел Фибоначчи вычислите $F_{20}$.",
+      "line": 412,
+      "anchor": "что-мы-получили"
+    },
+    {
+      "id": "exe_ch042shifrov_120",
+      "chapter_slug": "ch04_2_shifrovanie-ot-taynopisi-k-matem",
+      "chapter_title": "Шифрование: от тайнописи к математической задаче",
+      "title": "Задачи для самостоятельной работы",
+      "text": "1.  Зашифруйте шифром Цезаря со сдвигом 5 слово `INFORMATIKA`.\n\n2.  Почему симметричное шифрование плохо подходит для миллиарда пользователей? Подсчитайте, сколько ключей надо хранить.\n\n3.  Объясните своими словами, в чём состоит свойство «одностороннести» функции.\n\n4.  \\* Знаменитая Энигма имела примерно $10^{20}$ возможных стартовых установок. Хватило бы перебора, если перебирать миллион вариантов в секунду?\n\n5.  Приведите три бытовые операции, которые ведут себя как «односторонние функции».",
+      "line": 120,
+      "anchor": "где-криптография-работает-прямо-сейчас"
+    },
+    {
+      "id": "exe_ch043kriptos_203",
+      "chapter_slug": "ch04_3_kriptosistemy-rsa-i-diffi-hellma",
+      "chapter_title": "Криптосистемы RSA и Диффи–Хеллмана",
+      "title": "Задачи для самостоятельной работы",
+      "text": "1.  В системе RSA дано $p = 7$, $q = 13$, $e = 5$. Найдите $n$, $\\varphi(n)$ и $d$.\n\n2.  Используя ключ из задачи 1, зашифруйте сообщение $m = 9$.\n\n3.  В Диффи–Хеллмане положите $p = 17$, $g = 3$, $a = 5$, $b = 7$. Найдите $A$, $B$ и общий ключ $K$.\n\n4.  Почему в RSA нельзя брать $e = 1$? А $e = \\varphi(n) - 1$?\n\n5.  Что произойдёт, если в RSA Алиса случайно использует $m \\ge n$?\n\n6.  \\* Объясните, как именно атака «человек посередине» работает в случае RSA (не Диффи–Хеллмана).\n\n7.  \\* Что вы посоветуете человеку, который хочет «шифровать всё своими силами без сертификатов»? Какие угрозы он не учитывает?",
+      "line": 203,
+      "anchor": "атака-человек-посередине"
+    },
+    {
+      "id": "exe_ch044primene_195",
+      "chapter_slug": "ch04_4_primeneniya-rsa-autentifikaciya",
+      "chapter_title": "Применения RSA: аутентификация, цифровая подпись, электронное голосование",
+      "title": "Задачи для самостоятельной работы",
+      "text": "1.  Объясните своими словами, в чём принципиальная разница между «шифрованием с открытым ключом» и «цифровой подписью», если в обеих схемах используются одни и те же ключи и одна и та же формула.\n\n2.  Почему в протоколе аутентификации банк каждый раз присылает *новое случайное* $r$, а не одно и то же?\n\n3.  В схеме ЭЦП Алиса публикует пару $(m, \\sigma)$. Что произойдёт, если она опубликует пару $(m', \\sigma)$ с изменённым $m' \\ne m$? Сможет ли она тем самым обмануть проверяющего?\n\n4.  \\* В схеме слепой подписи покажите подробной выкладкой, что после снятия ослепления получается именно $m^d \\bmod n$ (используйте $k^{ed} \\equiv k \\pmod n$).\n\n5.  \\* Предложите простую (возможно, наивную) атаку на схему голосования, если из протокола убрать пункт о случайном идентификаторе $r$ в бюллетене.\n\n6.  \\* Подумайте, какие ещё свойства бумажного бюллетеня (например, возможность переголосовать, защита от принуждения) электронное голосование решает плохо. Каковы возможные подходы?",
+      "line": 195,
+      "anchor": "итог-параграфа"
+    },
+    {
+      "id": "exe_ch045heshiro_173",
+      "chapter_slug": "ch04_5_heshirovanie-teoriya-chisel-vstr",
+      "chapter_title": "Хеширование: теория чисел встречается с рандомизацией",
+      "title": "Задачи для самостоятельной работы",
+      "text": "1.  Для простого $p = 5$, $k = 1$ и $a = 3$ найдите $h_a(x) = a x \\bmod p$ для всех $x \\in \\{0, 1, 2, 3, 4\\}$.\n\n2.  Пусть ключи — пары $(x_1, x_2)$, $p = 11$, $a = (4, 7)$. Найдите коллидирует ли пара $(1, 3)$ с парой $(8, 1)$ при таком $a$.\n\n3.  Объясните, что произойдёт с оценкой $1/m$, если в семействе Картера–Вегмана взять $p$ составным (например, $p = 6$).\n\n4.  Почему в формуле хеш-функции $h_a(x) = (a_1 x_1 + \\dots + a_k x_k) \\bmod p$ нет «свободного члена» $a_0$, как в линейной функции $a x + b$? Что изменится, если его добавить?\n\n5.  \\* Покажите, что если выбирать $a$ всего лишь из множества $\\{1\\}$ (одно значение), то семейство не универсально.\n\n6.  \\* Покажите, что вероятность того, что у заданного ключа *не будет* коллизий ни с каким из $n-1$ других ключей в таблице размера $m \\ge n$, не меньше $1/2$ (используйте неравенство Маркова).",
+      "line": 173,
+      "anchor": "применения-хеширования"
+    },
+    {
+      "id": "exe_ch046schetch_180",
+      "chapter_slug": "ch04_6_schetchiki-s-korotkoy-pamyatyu-h",
+      "chapter_title": "Счётчики с короткой памятью HyperLogLog и эксперимент Стенли Мильграма",
+      "title": "Задачи для самостоятельной работы",
+      "text": "1.  Объясните, почему в наивном алгоритме одиночного счётчика оценка $\\widehat{n} = 2^M$ имеет такую большую дисперсию.\n\n2.  Пусть хеш-функция выдаёт строки по 8 битов. Сколько (в среднем) различных элементов нужно подать на вход, чтобы хотя бы у одного оказалось 6 нулей в начале хеша?\n\n3.  Объясните, почему гармоническое среднее устойчивее к выбросам, чем арифметическое. Приведите пример набора чисел, в котором эти средние существенно различаются.\n\n4.  Оцените, сколько памяти займёт HyperLogLog при $b = 12$, и какова при этом ожидаемая относительная погрешность.\n\n5.  \\* Почему в алгоритме оценки расстояний в графе нельзя просто хранить $|C_v|$ как число (это же 4 байта)? Зачем хранить целый HLL-счётчик?\n\n6.  \\* Среднее число рукопожатий в графе оценено как $4{,}74$. Что в этой формулировке играет роль случайной величины, а что — константы? Какой стандартной операции теории вероятностей соответствует «среднее число»?",
+      "line": 180,
+      "anchor": "от-социологии-к-стратегическим-выводам"
+    },
+    {
+      "id": "exe_chlinalg11bo_29",
+      "chapter_slug": "ch_linalg_11_bolshoy-itogovyy-proekt",
+      "chapter_title": "Большой итоговый проект",
+      "title": "Задачи для самостоятельной работы",
+      "text": "1.  Сложите в Python $10\\,000\\,000$ копий числа $0{,}1$. Сколько\n    должно получиться? Сколько получается на самом деле? Почему?\n\n2.  Вычислите $f(x)=\\sqrt{x+1}-\\sqrt{x}$ при $x=10^{16}$\n    напрямую и через формулу $f(x)=\\frac{1}{\\sqrt{x+1}+\\sqrt{x}}$.\n    Сравните ответы. Какой устойчив, почему?\n\n3.  Найдите вручную SVD матрицы\n    $A=\\bigl(\\begin{smallmatrix}3 & 0\\\\0 & 4\\end{smallmatrix}\\bigr)$\n    и $A=\\bigl(\\begin{smallmatrix}0 & 1\\\\-1 & 0\\end{smallmatrix}\\bigr)$.\n    Что в обоих случаях геометрически делают $U, \\Sigma, V$?\n\n4.  Возьмите свою фотографию $300\\times 300$ в градациях серого.\n    Сделайте сжатие через SVD с рангами $k=5, 20, 50, 100$. При\n    каком $k$ вы перестаёте узнавать самого себя?\n\n5.  Для игрушечного графа из рис. 0.9\n    прокрутите 5 итераций степенного метода *вручную*,\n    начав с $r^{(0)}=(\\tfrac16,\\ldots,\\tfrac16)^{\\!\\top}$. Совпали ли\n    ваши значения с программными после $5$ шагов? а после $20$?\n\n6.  $^{\\star}$ Покажите, что для функции $\\sigma(x)=\\max(0,x)$\n    (ReLU) константа Липшица равна $1$. Тот же вопрос для\n    сигмоиды $\\sigma(x)=1/(1+e^{-x})$: чему равна $\\mathrm{Lip}(\\sigma)$\n    и в какой точке производная максимальна?\n\n7.  $^{\\star}$ Найдите спектральную норму матрицы\n    $W=\\bigl(\\begin{smallmatrix}1 & 2\\\\2 & 1\\end{smallmatrix}\\bigr)$\n    двумя способами: (а) через определение\n    $\\left\\lVert W \\right\\rVert_2=\\max_{\\left\\lVert x \\right\\rVert=1}\\left\\lVert Wx \\right\\rVert$ (с использованием\n    собственных значений $W^{\\!\\top}W$); (б) одной итерацией\n    степенного метода (с любым стартом). Совпали ли ответы?",
+      "line": 29
+    }
+  ],
+  "history": [
+    {
+      "id": "his_ch02newton_9",
+      "chapter_slug": "ch02_newton",
+      "chapter_title": "Метод Ньютона",
+      "title": "Историческая справка",
+      "text": "В работе *De analysi per aequationes numero terminorum infinitas*\n(1669) и затем в *Method of Fluxions* (рукопись 1671 г., издание\n1736 г.) Ньютон предложил способ приближённого решения уравнений,\nкоторый позже Джозеф Рафсон в 1690 г. переписал в современной\nрекуррентной форме. Поэтому в англоязычной литературе метод часто\nназывают *Newton–Raphson*.\n\nСущественный вклад в строгое исследование метода внёс советский\nматематик **Леонид Витальевич Канторович** (1912–1986),\nлауреат Нобелевской премии по экономике 1975 г. (за теорию\nоптимального распределения ресурсов). В 1948 г. он опубликовал\nтеорему, носящую теперь его имя: она впервые дала универсальные\n*достаточные условия сходимости* метода Ньютона, причём не\nтолько для уравнений с одной переменной, но и для уравнений в\nбесконечномерных банаховых пространствах.",
+      "line": 9,
+      "anchor": "sec:newton"
+    },
+    {
+      "id": "his_ch02newton_102",
+      "chapter_slug": "ch02_newton",
+      "chapter_title": "Метод Ньютона",
+      "title": "Историческая справка",
+      "text": "Формулу (2.4) в явном виде описал *Герон Александрийский*\n(I век н. э.) в трактате «Метрика». Однако эту итерацию умели\nприменять задолго до него: на вавилонской глиняной табличке\n[YBC 7289]{.sans-serif} (примерно XVIII–XVI вв. до н. э.) сохранилось\nвычисление $\\sqrt{2}$ с точностью до шестого десятичного знака —\nименно с помощью среднего арифметического и среднего гармонического,\nчто эквивалентно (2.4). Получается, что одна из\nитерационных схем «пережила» три с половиной тысячи лет и\nпо сей день используется в библиотеках вычисления корня.",
+      "line": 102,
+      "anchor": "ssec:heron"
+    },
+    {
+      "id": "his_ch031prostey_120",
+      "chapter_slug": "ch03_1_prosteyshie-primery-zadach-anali",
+      "chapter_title": "Простейшие примеры задач анализа данных. Принцип максимума правдоподобия",
+      "title": "Историческая справка",
+      "text": "**Рональд Эймлер Фишер** (1890–1962) в работе 1922 г.\n«On the mathematical foundations of theoretical statistics» ввёл\nпонятие функции правдоподобия и предложил метод её максимизации как\nуниверсальный способ оценивания. Он же ввёл термины «оценка», «параметр»,\n«статистика» и доказал, что метод максимума правдоподобия обладает\n*асимптотической эффективностью* — его оценки имеют наименьшую\nвозможную (по неравенству информации) дисперсию при больших размерах\nвыборки.\n\n**Люсьен Ле Кам** (1924–2000) в серии работ 1950-х—1970-х гг. построил общую теорию *асимптотически нормальных* статистических\nэкспериментов и доказал, что оценка максимума правдоподобия является,\nв очень широком смысле, *оптимальной*: для гладких параметрических\nсемейств никакая другая разумная оценка не может быть точнее.\n\nАналог теоремы об асимптотической эффективности в более общем\nбесконечномерном случае независимо изучал советский статистик\n**Илья Александрович Ибрагимов** (р. 1932) с соавторами\n(Ибрагимов, Хасьминский, ЛОМИ, 1970-е).",
+      "line": 120,
+      "anchor": "ssec:mle-asymp"
+    },
+    {
+      "id": "his_ch031prostey_311",
+      "chapter_slug": "ch03_1_prosteyshie-primery-zadach-anali",
+      "chapter_title": "Простейшие примеры задач анализа данных. Принцип максимума правдоподобия",
+      "title": "Историческая справка",
+      "text": "Идея использовать случайные точки для приближённого вычисления\nопределённых интегралов восходит к работам Энрико Ферми (конец 1930-х),\nа в современном виде была развита Станиславом Уламом, Джоном фон\nНейманом и Николасом Метрополисом в Лос-Аламосе в 1946–1949 гг. при\nрасчётах прохождения нейтронов сквозь вещество. Название «Монте-Карло»\nдал Метрополис — в честь известного казино, по аналогии: расчёты с\nрозыгрышем случайных чисел напомнили коллегам игру в рулетку.\n\nСтоит сразу отделить главное от второстепенного. На примере вычисления $\\pi$\nметод Монте-Карло выглядит *медленным*: ошибка убывает лишь как\n$1/\\sqrt N$, и любая школьная формула численного интегрирования\n(трапеций, Симпсона) даёт куда быстрее куда более точный ответ.\nТак зачем же о нём говорить?\n\nСила метода — не в скорости, а в *универсальности*. Обычные\nквадратурные формулы плохо переносятся на функции *многих* переменных:\nчтобы посчитать интеграл по $d$-мерному кубу с точностью $\\varepsilon$, узлов\nсетки требуется $\\sim (1/\\varepsilon)^{d}$ — то самое *«проклятие\nразмерности»*, экспоненциальный рост с числом переменных. Монте-Карло же\nсохраняет свою скорость $1/\\sqrt N$ *независимо* от размерности:\nдля интеграла в $100$ переменных он работает примерно так же хорошо\n(или плохо), как для одной.\n\nИменно поэтому Монте-Карло сегодня применяется там, где размерность\nвелика: в физике частиц (расчёты столкновений), квантовой химии\n(многоэлектронные интегралы), финансовой математике (опционы на\nмного активов), байесовской статистике, а также при обучении нейронных\nсетей — например, при оценке градиента стохастическим спуском.",
+      "line": 311,
+      "anchor": "пример-оценка-числа-pi"
+    },
+    {
+      "id": "his_ch031prostey_406",
+      "chapter_slug": "ch03_1_prosteyshie-primery-zadach-anali",
+      "chapter_title": "Простейшие примеры задач анализа данных. Принцип максимума правдоподобия",
+      "title": "Историческая справка",
+      "text": "В 1906 г. английский антрополог **Фрэнсис Гальтон** (1822–1911)\nпосетил сельскохозяйственную выставку в Плимуте, где проходил\nтрадиционный конкурс: посетители угадывали вес выставленного быка после\nтого, как его освежевали и взвесили. Гальтон собрал *787*\nзаполненных бланков и обнаружил поразительный факт: *среднее* (а\nточнее, медиана) догадок участников совпало с истинным весом быка\nс точностью до фунта (1198 lb).\n\nЭтот эпизод — классический пример «мудрости толпы»: несмотря на то что\nкаждый отдельный участник ошибался на десятки фунтов в обе стороны,\nих *усреднение* оказалось неожиданно точным. С точки зрения\nматематической статистики, перед нами модель «истинное значение плюс\nшум», и среднее — это и есть оценка максимума правдоподобия при\nпредположении о *гауссовом* шуме. Эту связь мы сейчас установим\nформально.",
+      "line": 406,
+      "anchor": "ssec:gauss"
+    },
+    {
+      "id": "his_ch032lineyna_205",
+      "chapter_slug": "ch03_2_lineynaya-regressiya-i-metod-nai",
+      "chapter_title": "Линейная регрессия и метод наименьших квадратов",
+      "title": "Историческая справка",
+      "text": "Тихо Браге — величайший астроном-наблюдатель домикроскопной эпохи.\nТочность его измерений угловых положений планет составляла $\\sim\\!1'$\n(угловая минута) — предел для невооружённого глаза. К концу жизни он\nнакопил каталог из почти тысячи звёзд и подробнейшие записи о\nдвижении пяти видимых планет за 21 год.\n\nКеплер унаследовал эти таблицы и в 1605 г. открыл *первый* закон\nдвижения планет: каждая планета движется по эллипсу, в одном из фокусов\nкоторого находится Солнце. В 1609 г. он добавил *второй*: радиус-вектор\nпланеты заметает равные площади за равные времена. А в 1619 г. (в трактате *Harmonices Mundi*, «Гармонии мира») он опубликовал\n*третий* закон: квадраты периодов обращения относятся как кубы\nбольших полуосей. Сам Кеплер выписал этот закон в форме\n$T^{2}\\sim a^{3}$, не зная ни логарифмов в общеупотребительном виде, ни\nтем более понятия регрессии. Но именно на «эпохе Браге–Кеплера»\nданные впервые позволили установить количественный закон одного\nастрономического параметра как функции другого.",
+      "line": 205,
+      "anchor": "ssec:kepler"
+    },
+    {
+      "id": "his_ch033zadacha_168",
+      "chapter_slug": "ch03_3_zadacha-klassifikacii-i-neyronny",
+      "chapter_title": "Задача классификации и нейронные сети",
+      "title": "Историческая справка",
+      "text": "Идея «искусственного нейрона» — линейная функция от входов, пропущенная\nчерез нелинейность — восходит к работам **Уоррена Маккаллока и\nУолтера Питтса** (1943) и обучаемому *персептрону* Фрэнка Розенблатта\n(1958). Розенблатт построил физическую машину Mark I Perceptron на\nлампах и фоторезисторах; пресса 1958 г. восторженно писала, что\n«машина скоро будет ходить, разговаривать и осознавать своё\nсуществование».\n\nОднако в 1969 г. Марвин Минский и Сеймур Пейперт в книге\n*Perceptrons* строго доказали, что один-единственный слой не\nможет реализовать даже простейшую функцию — *исключающее ИЛИ*\n(XOR). Это охладило интерес к нейросетям почти на 15 лет.\n\nВозрождение пришло в 1986 г., когда Дэвид Румельхарт, Джеффри Хинтон и\nРональд Уильямс представили универсальный алгоритм обучения\n*многослойных* сетей — метод **обратного распространения\nошибки** (backpropagation). С этого момента и начинается эпоха\nсовременных нейронных сетей. Подчеркнём, что общая математическая\nформула того, что вычислительная сложность подсчёта градиента\nсравнима со сложностью самого вычисления функции, в общем случае была\nстрого установлена советскими математиками: **Юрий Геннадьевич\nКим, Юрий Евгеньевич Нестеров, Александр Скоков, Виктор Черкасский**\n(работы начала 1980-х). Об этом подробнее ниже, в\nразделе 3.22.\n\nВ 2018 г. премию Тьюринга — «нобелевскую» премию по информатике —\nполучили Янн ЛеКун, Джеффри Хинтон и Йошуа Бенжио — «за концептуальные\nи инженерные прорывы, благодаря которым глубокие нейронные сети стали\nважнейшим компонентом современной информатики».",
+      "line": 168,
+      "anchor": "ssec:mlp"
+    },
+    {
+      "id": "his_ch033zadacha_419",
+      "chapter_slug": "ch03_3_zadacha-klassifikacii-i-neyronny",
+      "chapter_title": "Задача классификации и нейронные сети",
+      "title": "Историческая справка",
+      "text": "Идея использовать локальные «свёрточные» фильтры пришла из биологии.\nВ 1962 г. нейрофизиологи Дэвид Хьюбел и Торстен Визель показали, что\nзрительная кора кошки устроена иерархически: на первом уровне —\nнейроны, реагирующие на *простые признаки* (края, отрезки прямых\nпод определённым углом); на следующих — на их комбинации (углы,\nдуги, контуры); и так до целых форм. За это открытие они получили\nНобелевскую премию по физиологии в 1981 г.\n\nВ 1980 г. японский исследователь Кунихико Фукусима реализовал эту\nидею в виде *неокогнитрона* — иерархической сети для\nраспознавания символов. А в 1989 г. Янн ЛеКун — тогда ещё аспирант\nу Хинтона — добавил к неокогнитрону обучение методом обратного\nраспространения и предложил универсальную архитектуру\n**свёрточной нейронной сети** (*Convolutional Neural Network*,\nCNN). Его сеть LeNet-5 (1998) распознавала рукописные цифры с\nточностью $99\\,\\%$ и применялась для чтения почтовых индексов и\nбанковских чеков.\n\nВ 2012 г. работа Алекса Крижевского, Ильи Суцкевера и Джеффри Хинтона\n*ImageNet Classification with Deep Convolutional Neural Networks*\n(сеть AlexNet) продемонстрировала, что свёрточные сети, обученные на\nграфических процессорах (GPU), могут с разгромным счётом превзойти\nвсе предыдущие подходы в задаче классификации изображений. С этого\nмомента и началась «революция глубокого обучения».",
+      "line": 419,
+      "anchor": "ssec:cnn"
+    },
+    {
+      "id": "his_ch033zadacha_593",
+      "chapter_slug": "ch03_3_zadacha-klassifikacii-i-neyronny",
+      "chapter_title": "Задача классификации и нейронные сети",
+      "title": "Историческая справка",
+      "text": "Backpropagation — классический пример переоткрытия в науке. Идея\nмногократно появлялась с 1960-х:\n\n-   **Сеппо Линнайнмаа** (1970) — финский магистр, в\n    диссертации описал общий алгоритм\n    автоматического дифференцирования в обратном режиме.\n\n-   **Ким Юрий Геннадьевич, Нестеров Юрий Евгеньевич,\n    Скоков Александр, Черкасский Виктор** — работы начала 1980-х в\n    СССР: в общей форме строго установлен фундаментальный\n    результат о том, что вычислительная сложность подсчёта\n    градиента дифференцируемой функции, заданной программой,\n    ограничена сверху константой, умноженной на сложность\n    вычисления самой функции. Этот результат — математическая\n    основа того, что современные «миллиарды параметров» вообще\n    возможно обучать.\n\n-   **Поль Вербос** (1974, докторская диссертация Гарварда) и\n    **Дэвид Румельхарт, Джеффри Хинтон, Рональд Уильямс**\n    (1986) — именно последняя работа в журнале *Nature*\n    популяризовала backpropagation в применении к обучению\n    многослойных нейронных сетей.\n\nСегодня backpropagation реализован в каждой библиотеке глубокого\nобучения (PyTorch, TensorFlow, JAX) как *automatic differentiation*.",
+      "line": 593,
+      "anchor": "ssec:backprop"
+    },
+    {
+      "id": "his_ch034zadachi_27",
+      "chapter_slug": "ch03_4_zadachi-obucheniya-bez-uchitelya",
+      "chapter_title": "Задачи обучения без учителя",
+      "title": "Историческая справка",
+      "text": "В октябре 2006 г. американская компания **Netflix** — тогда ещё\nсервис проката DVD по почте — объявила публичный конкурс с призом в\n1 миллион долларов: первый, кто построит алгоритм, угадывающий оценки\nпользователей хотя бы на 10 % точнее, чем собственный алгоритм Netflix,\nполучит всю сумму.\n\nКомпания выложила открытый датасет: $480\\,189$ пользователей, $17\\,770$\nфильмов и $\\approx 100$ млн оценок (по 5-балльной шкале). Каждая оценка\nсопровождалась датой; нужно было предсказывать неизвестные оценки.\n\nКонкурс длился почти три года. Победила команда BellKor’s Pragmatic\nChaos (объединение исследователей из AT&T, Yahoo, Big Chaos и\nPragmatic Theory), и выиграла она 21 сентября 2009 г. с разницей в\n*20 минут* над командой Ensemble. Сердцевиной победившего метода\nбыла именно **малоранговая матричная факторизация**, о которой\nмы сейчас расскажем. Этот сюжет принципиально изменил индустрию\nрекомендательных систем — сегодня описанные подходы лежат в основе\n«вам может понравиться» в Кинопоиске, Окко, YouTube, Spotify, Amazon и\nсотнях других сервисов.",
+      "line": 27,
+      "anchor": "ssec:netflix"
+    },
+    {
+      "id": "his_chlinalg2kog_90",
+      "chapter_slug": "ch_linalg_2_kogda-arifmetika-lzhet-chisla-s",
+      "chapter_title": "Когда арифметика лжёт: числа с плавающей точкой",
+      "title": "Историческая справка",
+      "text": "Стандарт *IEEE 754* был принят в 1985 г., в значительной\nмере благодаря Уильяму Кэхэну (*William Kahan*, премия\nТьюринга 1989 г.). До этого каждый производитель процессоров делал\nплавающую арифметику по-своему, и одна и та же программа на разных\nмашинах могла давать заметно разные ответы. Кэхэн придумал и\nзнаменитый **алгоритм компенсированного суммирования**,\nкоторый позволяет складывать миллионы чисел с почти двойной\nточностью.",
+      "line": 90,
+      "anchor": "когда-это-становится-опасным-катастрофическое-сокращение"
+    },
+    {
+      "id": "his_chlinalg3sin_62",
+      "chapter_slug": "ch_linalg_3_singulyarnoe-razlozhenie-svd-gla",
+      "chapter_title": "Сингулярное разложение SVD: главный фокус линейной алгебры",
+      "title": "Историческая справка",
+      "text": "Сингулярное разложение независимо открыли итальянский математик\n*Эудженио Бельтрами* (1873 г.) и француз *Камилл Жордан*\n(1874 г.). В современном виде, как разложение прямоугольной матрицы,\nего сформулировал *Карл Эккарт* с *Гейлом Янгом* в 1936 г.\nЧисленно надёжный алгоритм вычисления SVD появился лишь в 1965 г.\n(Голуб и Кахан) — и стал одним из ключевых алгоритмов XX века. Сегодня\nон реализован в любой математической библиотеке: `numpy.linalg.svd`,\n`scipy.linalg.svd`, `torch.svd`.",
+      "line": 62,
+      "anchor": "связь-с-собственными-значениями"
+    }
+  ]
+}
