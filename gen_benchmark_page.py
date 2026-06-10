@@ -295,7 +295,19 @@ a{color:var(--accent)}
 #detail.open{transform:none}
 #detail h3{margin:0 0 5px;font-size:17px}
 #detail .meta{color:var(--mut);font-size:13px;margin-bottom:11px;line-height:1.5}
-#detail .ans{white-space:pre-wrap;word-break:break-word;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 15px;font-size:13.5px;line-height:1.55;max-width:820px}
+#detail .ans{word-break:break-word;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 15px;font-size:13.5px;line-height:1.55;max-width:820px}
+#detail .ans p{margin:0 0 9px}#detail .ans p:last-child{margin-bottom:0}
+#detail .ans h3,#detail .ans h4,#detail .ans h5,#detail .ans h6{margin:12px 0 5px;font-size:14.5px;font-weight:700}
+#detail .ans ul,#detail .ans ol{margin:6px 0 9px;padding-left:22px}#detail .ans li{margin:2px 0}
+#detail .ans pre.sigma-code{background:#0f172a;color:#e2e8f0;border-radius:8px;padding:10px 12px;overflow-x:auto;font-size:12.5px;line-height:1.45;margin:8px 0}
+#detail .ans pre.sigma-code code{background:none;padding:0;color:inherit;font-size:inherit}
+#detail .ans code{background:#eef0f2;border-radius:4px;padding:1px 5px;font-size:12.5px}
+#detail .ans blockquote{margin:8px 0;padding:2px 12px;border-left:3px solid var(--line);color:var(--mut)}
+#detail .ans table.sigma-tbl{border-collapse:collapse;width:auto;font-size:13px;margin:8px 0}
+#detail .ans table.sigma-tbl th,#detail .ans table.sigma-tbl td{border:1px solid var(--line);padding:4px 9px;text-align:left}
+#detail .ans table.sigma-tbl th{background:var(--card);font-weight:700}
+#detail .ans .katex-error{color:#b91c1c}
+#detail .ans hr{border:none;border-top:1px solid var(--line);margin:10px 0}
 #detail .x{position:absolute;top:10px;right:14px;cursor:pointer;width:40px;height:40px;border-radius:10px;font-size:22px;color:var(--mut);border:none;background:none;line-height:1}
 #detail .x:hover{background:#f1f5f9}
 @media(min-width:920px){
@@ -305,6 +317,91 @@ a{color:var(--accent)}
 /* this is a dashboard, not a textbook page — suppress the injected chat assistant */
 .sigma-sheet,.sigma-launcher,.sigma-fragment-pill,.asst-drawer{display:none!important}
 """
+
+# Ported VERBATIM from assistant.js renderMarkdown — so a benchmarked answer
+# renders on this page EXACTLY as a reader sees it on the site: tables, lists,
+# bold/italic, code blocks, blockquotes, line breaks AND inline KaTeX. The old
+# page did `textContent` + KaTeX-only, so every table/list/`**bold**` showed as
+# raw markdown text. Raw string (r'''…''') keeps all regex backslashes intact.
+RENDER_JS = r'''
+function escapeHtml(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+function renderKatex(expr,displayMode){
+  if(!window.katex) return escapeHtml((displayMode?"$$":"$")+expr+(displayMode?"$$":"$"));
+  try{
+    return window.katex.renderToString(expr,{displayMode,throwOnError:false,output:"html",strict:"ignore",trust:false});
+  }catch(_){ return "<code>"+escapeHtml(expr)+"</code>"; }
+}
+function renderMarkdown(md){
+  const stash=[];
+  // Sentinel must survive .trim() (table cells) and trailing-space strip (block
+  // pass) and HTML-escape — the old " S<n> " token lost its spaces there, so the
+  // restore regex missed it and display/$-in-table formulas rendered as raw "S0".
+  const STASH=(item)=>{ stash.push(item); return ""+(stash.length-1)+""; };
+  let s=String(md);
+  s=s.replace(/\$\$([\s\S]+?)\$\$/g,(_,e)=>STASH({k:"mblock",v:e}));
+  s=s.replace(/(?<!\$|\\)\$([^\n$]+?)\$(?!\$)/g,(_,e)=>STASH({k:"minline",v:e}));
+  s=s.replace(/```(\w+)?\n([\s\S]*?)```/g,(_,lang,code)=>STASH({k:"code-block",lang,code}));
+  s=s.replace(/`([^`\n]+)`/g,(_,code)=>STASH({k:"code-inline",code}));
+  s=escapeHtml(s);
+  s=s.replace(/(^\|.+\|\n\|[-:|\s]+\|\n(?:^\|.+\|\n?)+)/gm,(block)=>{
+    const lines=block.trim().split("\n");
+    const head=lines[0].split("|").slice(1,-1).map(c=>c.trim());
+    const body=lines.slice(2).map(l=>l.split("|").slice(1,-1).map(c=>c.trim()));
+    return "<table class='sigma-tbl'><thead><tr>"+head.map(h=>"<th>"+h+"</th>").join("")+
+      "</tr></thead><tbody>"+body.map(r=>"<tr>"+r.map(c=>"<td>"+c+"</td>").join("")+"</tr>").join("")+
+      "</tbody></table>";
+  });
+  const lines=s.split("\n");
+  const out=[];
+  let listKind=null;
+  const closeList=()=>{ if(listKind){ out.push("</"+listKind+">"); listKind=null; } };
+  for(const raw of lines){
+    const line=raw.replace(/\s+$/,"");
+    let m;
+    if((m=/^(#{1,6})\s+(.+)$/.exec(line))){ closeList(); const lvl=Math.min(6,m[1].length+2); out.push("<h"+lvl+">"+m[2]+"</h"+lvl+">"); }
+    else if(/^[-*_]{3,}\s*$/.test(line)){ closeList(); out.push("<hr>"); }
+    else if((m=/^\s*[-*]\s+(.+)$/.exec(line))){ if(listKind!=="ul"){ closeList(); out.push("<ul>"); listKind="ul"; } out.push("<li>"+m[1]+"</li>"); }
+    else if((m=/^\s*\d+\.\s+(.+)$/.exec(line))){ if(listKind!=="ol"){ closeList(); out.push("<ol>"); listKind="ol"; } out.push("<li>"+m[1]+"</li>"); }
+    else if((m=/^&gt;\s*(.+)$/.exec(line))){ closeList(); out.push("<blockquote>"+m[1]+"</blockquote>"); }
+    else if(!line.trim()){ closeList(); out.push(""); }
+    else { closeList(); out.push(line); }
+  }
+  closeList();
+  s=out.join("\n");
+  s=s.replace(/\[([^\]\n]+)\]\(([^()\s]+)\)/g,(_,t,u)=>{
+    const external=/^https?:\/\//.test(u)&&!/sigma\.fmin\.xyz/.test(u);
+    const tgt=external?' target="_blank" rel="noopener"':'';
+    return '<a href="'+u+'" class="sigma-link"'+tgt+'>'+t+'</a>';
+  });
+  s=s.replace(/\*\*([^*\n]+)\*\*/g,"<strong>$1</strong>");
+  s=s.replace(/(?<!\w)\*([^*\n]+)\*(?!\w)/g,"<em>$1</em>");
+  const BLOCK=/^<(h[1-6]|ul|ol|li|hr|blockquote|pre|table|tr|td|th|thead|tbody|p|div)/i;
+  const BLOCK_END=/^<\/(h[1-6]|ul|ol|li|hr|blockquote|pre|table|tr|td|th|thead|tbody|p|div)/i;
+  const finalLines=s.split("\n");
+  const result=[];
+  let para=[];
+  const flushPara=()=>{ if(para.length){ result.push("<p>"+para.join("<br>")+"</p>"); para=[]; } };
+  for(const ln of finalLines){
+    const t=ln.trim();
+    if(!t){ flushPara(); continue; }
+    if(BLOCK.test(t)||BLOCK_END.test(t)){ flushPara(); result.push(ln); }
+    else para.push(ln);
+  }
+  flushPara();
+  s=result.join("\n");
+  s=s.replace(/(\d+)/g,(_,i)=>{
+    const it=stash[Number(i)];
+    if(it.k==="mblock") return renderKatex(it.v,true);
+    if(it.k==="minline") return renderKatex(it.v,false);
+    if(it.k==="code-block"){ const code=escapeHtml(it.code); return "<pre class='sigma-code"+(it.lang?" lang-"+it.lang:"")+"'><code>"+code+"</code></pre>"; }
+    if(it.k==="code-inline") return "<code>"+escapeHtml(it.code)+"</code>";
+    return "";
+  });
+  return s;
+}
+'''
 
 DRAWER_JS = """
 const D=__DATA__;
@@ -320,19 +417,12 @@ function openDetail(el){
   if(d.cause) bits.push('состояние: '+d.cause);
   if(d.missing&&d.missing.length) bits.push('не хватило: '+d.missing.join(', '));
   const da=document.getElementById('da');
-  da.textContent=d.answer||'(пустой ответ)';
-  // Render LaTeX exactly as the site does (KaTeX). Broken formulas → .katex-error (red);
-  // count them and flag in the meta — a malformed formula is a real model/agent defect.
-  let broken=0;
-  if(window.renderMathInElement){
-    try{
-      renderMathInElement(da,{delimiters:[
-        {left:'$$',right:'$$',display:true},{left:'\\\\[',right:'\\\\]',display:true},
-        {left:'\\\\(',right:'\\\\)',display:false},{left:'$',right:'$',display:false}],
-        throwOnError:false,errorColor:'#b91c1c'});
-      broken=da.querySelectorAll('.katex-error').length;
-    }catch(e){}
-  }
+  // Render the FULL markdown (tables, lists, bold, code, line breaks + inline
+  // KaTeX) exactly as a reader sees it on the site — same renderMarkdown as
+  // assistant.js. Broken formulas → .katex-error (red); count & flag them, as a
+  // malformed formula is a real model/agent defect worth surfacing.
+  da.innerHTML = d.answer ? renderMarkdown(d.answer) : '(пустой ответ)';
+  const broken = da.querySelectorAll('.katex-error').length;
   if(broken) bits.push('⚠ битых формул: '+broken);
   document.getElementById('dm').textContent='Вопрос: '+d.q+'  ·  '+bits.join('  ·  ');
   detail.classList.add('open'); scrim.classList.add('open');
@@ -583,7 +673,7 @@ def build():
       "данные: eval/bench/*/bench.json · агент: /assistant/assistant.js (live) · "
       "<a href=\"/\">← к учебнику</a></div>")
 
-    A("<script>" + DRAWER_JS.replace("__DATA__", json.dumps(data_js, ensure_ascii=False)) + "</script>")
+    A("<script>" + RENDER_JS + DRAWER_JS.replace("__DATA__", json.dumps(data_js, ensure_ascii=False)) + "</script>")
     A("</div></body></html>")
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text("".join(P), encoding="utf-8")

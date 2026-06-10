@@ -84,6 +84,7 @@ async def run_one(page, case):
         return {
             streaming: !!last.querySelector('.sigma-status'),
             text: a ? a.innerText : '',
+            raw: a ? (a.dataset.raw ?? '') : '',
             traceN: last.querySelectorAll('.sigma-trace-node').length,
         };
     }"""
@@ -142,17 +143,24 @@ async def run_one(page, case):
                     status: (it.querySelector('.sigma-trace-status')?.textContent || '').trim(),
                 };
             });
+            const aEl = last.querySelector('.sigma-answer');
             return {
                 trace,
                 images: last.querySelectorAll('.sigma-figure').length,
-                answer: last.querySelector('.sigma-answer')?.innerText || '',
+                // Capture the RAW model markdown/LaTeX source (stashed on
+                // dataset.raw by assistant.js), NOT the KaTeX-rendered innerText
+                // (innerText flattens an exponent onto a separate line and drops
+                // every dollar sign, so the bench page had nothing to re-render).
+                // Fall back to innerText only for old bubbles predating the patch.
+                answer: aEl ? (aEl.dataset.raw ?? aEl.innerText ?? '') : '',
             };
         }"""
     ) or {"trace": [], "images": 0, "answer": ""}
-    # Prefer the stabilised text — the final evaluate can still catch a re-render.
-    stable_text = (last or {}).get("text", "") or ""
-    if len(stable_text.strip()) > len((data.get("answer") or "").strip()):
-        data["answer"] = stable_text
+    # Prefer the stabilised RAW source — the final evaluate can still catch a
+    # re-render. Use the raw markdown (not rendered innerText) for the same reason.
+    stable_raw = (last or {}).get("raw") or ""
+    if len(stable_raw.strip()) > len((data.get("answer") or "").strip()):
+        data["answer"] = stable_raw
     data["timed_out"] = timed_out
     return data
 
@@ -226,11 +234,16 @@ def score_one(case, obs):
     answer_norm = _norm(obs["answer"])
     answer_stems = _stems(obs["answer"])
     garbage = _is_garbage(obs["answer"])
+    # Render-quality gate: a formula KaTeX can't parse renders as a red error for
+    # the reader — that answer is defective and must NOT pass on a mere substring
+    # hit. broken_formulas is precomputed (render_gate) and threaded via obs;
+    # absent → 0, so legacy callers keep their old behavior.
+    broken = int(obs.get("broken_formulas", 0) or 0)
     missing = [s for s in case.get("expected_answer_contains", [])
                if not _contains(s, answer_norm, answer_stems)]
     bad = [s for s in case.get("expected_answer_excludes", [])
            if _norm(s) in answer_norm]
-    answer_match = (not missing) and (not bad) and (not garbage)
+    answer_match = (not missing) and (not bad) and (not garbage) and (broken == 0)
 
     if case.get("expected_visual"):
         visual_match = obs["images"] > 0
@@ -244,6 +257,7 @@ def score_one(case, obs):
         "missing": missing,
         "unexpected": bad,
         "garbage": garbage,
+        "broken_formulas": broken,
         "timed_out": obs.get("timed_out", False),
         "pass": tool_match and answer_match and visual_match,
     }

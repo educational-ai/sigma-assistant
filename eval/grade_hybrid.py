@@ -17,6 +17,7 @@ if "patchright" not in sys.modules:                      # grader-only import
     a.async_playwright = lambda *x, **k: None; m.async_api = a
     sys.modules["patchright"] = m; sys.modules["patchright.async_api"] = a
 import run_eval as RE
+import render_gate
 
 # vision_refine moved to judge: the "0.5" substring was illegitimate (any η<1
 # converges); a judge grades the diagnosis + a working step + convergence.
@@ -66,10 +67,17 @@ def main():
     for bj in sorted((EVAL / "bench").glob("*/bench.json")):
         b = json.loads(bj.read_text(encoding="utf-8"))
         model_short = b["model"].split("/")[-1]
+        # Render-quality gate: validate every answer's formulas through real
+        # KaTeX once per model. A broken formula (red .katex-error for the reader)
+        # fails the case regardless of substring/judge — a defective render must
+        # never score high (incident 2026-06-10).
+        bk = render_gate.broken_batch([(c["id"], c.get("answer", "") or "") for c in b["cases"]])
         by_cat, passed = {}, 0
         for c in b["cases"]:
             case = cases.get(c["id"])
             cat = c.get("category", "?")
+            broken = int((bk.get(c["id"]) or {}).get("broken", 0))
+            c["broken_formulas"] = broken
             if case and cat in SEMANTIC:
                 jp, reason, judge = verdict_for(c["id"], model_short, c.get("answer", ""))
                 if jp is None:
@@ -86,10 +94,18 @@ def main():
                     "answer": c.get("answer", "") or "",
                     "images": c.get("images", 0) or 0,
                     "timed_out": (c.get("elapsed", 0) or 0) >= ASK,
+                    "broken_formulas": broken,
                 }
                 sc = RE.score_one(case, obs)
                 for k in ("tool_match", "answer_match", "visual_match", "missing", "pass"):
                     c[k] = sc[k]
+            # Broken-render gate over BOTH paths: defective formulas → fail.
+            if broken > 0 and c.get("pass"):
+                c["pass"] = False
+                c["answer_match"] = False
+                note = f"⚠ {broken} битых формул (KaTeX не рендерит)"
+                c["judge_reason"] = (c.get("judge_reason") or "").strip()
+                c["judge_reason"] = (c["judge_reason"] + "; " + note).lstrip("; ") if c["judge_reason"] else note
             d = by_cat.setdefault(cat, {"passed": 0, "total": 0})
             d["total"] += 1
             if c.get("pass"):

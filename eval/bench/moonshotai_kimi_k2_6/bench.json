@@ -76,7 +76,8 @@
    "no_answer": false,
    "judge_pass": true,
    "judge_reason": "Цитата из источника: Леонид Витальевич, 1975, экономика, оптимальное распределение ресурсов; 1948 отделено. Корректно.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "newton_formula_recall",
@@ -102,7 +103,8 @@
    "no_answer": false,
    "judge_pass": true,
    "judge_reason": "Верный вывод из уравнения касательной, корректное расширение на оптимизацию.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "definition_strong_convex",
@@ -128,7 +130,8 @@
    "no_answer": false,
    "judge_pass": true,
    "judge_reason": "Точное Определение 2.4, корректное сравнение с обычной выпуклостью g''≥0. Суть верна.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "compute_factorial",
@@ -151,7 +154,8 @@
     "moonshotai/kimi-k2.6"
    ],
    "answer": "30!=265252859812191058636308480000000\n\nЭто примерно 2,65×10\n32\n. Для сравнения, приближение Стирлинга даёт 2,65×10\n32\n с ошибкой всего около 0,28%.",
-   "no_answer": false
+   "no_answer": false,
+   "broken_formulas": 0
   },
   {
    "id": "compute_taylor_sin",
@@ -175,7 +179,8 @@
     "moonshotai/kimi-k2.6"
    ],
    "answer": "Вот символьное разложение sinx в ряд Тейлора (точнее — Маклорена, т.е. в окрестности x=0) до 5-го ненулевого члена:\n\nsinx=x−\n6\nx\n3\n\t​\n\n+\n120\nx\n5\n\t​\n\n−\n5040\nx\n7\n\t​\n\n+\n362880\nx\n9\n\t​\n\n−…\n\nОбщий вид n-го члена:\n\n(−1)\nn−1\n(2n−1)!\nx\n2n−1\n\t​\n\n\nПроверка по порядку:\n\nn\tЧлен\tЗначение\n1\t(−1)\n0\n1!\nx\n1\n\t​\n\n\tx\n2\t(−1)\n1\n3!\nx\n3\n\t​\n\n\t−\n6\nx\n3\n\t​\n\n\n3\t(−1)\n2\n5!\nx\n5\n\t​\n\n\t+\n120\nx\n5\n\t​\n\n\n4\t(−1)\n3\n7!\nx\n7\n\t​\n\n\t−\n5040\nx\n7\n\t​\n\n\n5\t(−1)\n4\n9!\nx\n9\n\t​\n\n\t+\n362880\nx\n9\n\t​\n\n\nЭто разложение часто используется в методе Ньютона и численных схемах, когда нужно заменить сложную функцию полиномом — чем ближе x к нулю, тем точнее приближение.",
-   "no_answer": false
+   "no_answer": false,
+   "broken_formulas": 0
   },
   {
    "id": "compute_plot_newton",
@@ -202,7 +207,8 @@
     "moonshotai/kimi-k2.6"
    ],
    "answer": "Для f(x)=x\n2\n−2 метод Ньютона превращается в метод Герона — формула (2.4) из учебника:\n\nx\nk+1\n\t​\n\n=\n2\n1\n\t​\n\n(x\nk\n\t​\n\n+\nx\nk\n\t​\n\n2\n\t​\n\n)\n\nВот как летит траектория при x\n0\n\t​\n\n=1.5:\n\nk\tx\nk\n\t​\n\n\t∣x\nk\n\t​\n\n−\n2\n\t​\n\n∣\n0\t1.5000\t8.58⋅10\n−2\n\n1\t1.4167\t2.45⋅10\n−3\n\n2\t1.4142157\t2.12⋅10\n−6\n\n3\t1.4142135624\t1.59⋅10\n−12\n\n4\t1.414213562373095\t2.22⋅10\n−16\n\nЧто видно на графике:\n\nЛевый рисунок — сама траектория. Уже на 2-м шаге точка визуально неотличима от \n2\n\t​\n\n≈1.4142 (красная пунктирная линия).\nПравый рисунок — ошибка в логарифмической шкале. Каждая итерация «откусывает» примерно два десятичных знака ошибки, потом четыре, потом двенадцать — это классическая квадратичная сходимость. К шагу 4 мы упираемся в машинную точность double (≈10\n−16\n), и дальше метод просто стоит на месте.\n\nТак что с x\n0\n\t​\n\n=1.5 корень \n2\n\t​\n\n=1.41421356... вычисляется буквально за 3–4 итерации — быстрее, чем успеваешь промахнуться по клавиатуре.",
-   "no_answer": false
+   "no_answer": false,
+   "broken_formulas": 0
   },
   {
    "id": "compute_plot_gd_vs_newton",
@@ -229,7 +235,8 @@
     "moonshotai/kimi-k2.6"
    ],
    "answer": "Вот два графика сходимости из x\n0\n\t​\n\n=2 для f(x)=x\n4\n:\n\nЧисла на 50-й итерации:\n\nНьютон: x\n50\n\t​\n\n≈0.0000000031 (практически ноль)\nGD с η=0.01: x\n50\n\t​\n\n≈0.48\nGD с η=0.005: x\n50\n\t​\n\n≈0.66\nЧто видно на графиках\n\nЛевый график — значения x\nk\n\t​\n\n:\n\nНьютон (синяя линия) падает к нулю быстро: уже к 10-й итерации x\n10\n\t​\n\n≈0.035.\nГрадиентный спуск (оранжевая и зелёная) спускается крайне медленно: даже с шагом η=0.01 за 50 шагов не доходит и до 0.5.\n\nПравый график — логарифмическая шкала ∣x\nk\n\t​\n\n∣:\n\nНьютон даёт прямую линию вниз. Это знак линейной сходимости: ошибка уменьшается в постоянное число раз за шаг.\nGD — почти горизонтальные линии на хвосте. Метод буквально «тормозит» и застревает.\nПочему так происходит\n\nМетод Ньютона. Для f(x)=x\n4\n:\n\nf\n′\n(x)=4x\n3\n,f\n′′\n(x)=12x\n2\n\n\nx\nk+1\n\t​\n\n=x\nk\n\t​\n\n−\n12x\nk\n2\n\t​\n\n4x\nk\n3\n\t​\n\n\t​\n\n=x\nk\n\t​\n\n−\n3\nx\nk\n\t​\n\n\t​\n\n=\n3\n2\n\t​\n\nx\nk\n\t​\n\n\nПолучается простое геометрическое убывание: каждый шаг умножает x\nk\n\t​\n\n на 2/3. Это линейная сходимость (не квадратичная, потому что в минимуме x=0 вторая производная f\n′′\n(0)=0, и условия теоремы о квадратичной сходимости не выполнены).\n\nГрадиентный спуск. Шаг:\n\nx\nk+1\n\t​\n\n=x\nk\n\t​\n\n−η⋅4x\nk\n3\n\t​\n\n=x\nk\n\t​\n\n(1−4ηx\nk\n2\n\t​\n\n)\n\nКогда x\nk\n\t​\n\n становится малым, поправка пропорциональна x\nk\n3\n\t​\n\n — то есть ничтожно малой. GD «не чувствует» градиента вблизи минимума и ползёт с крошечной скоростью. Это типичная проблема спуска на функциях с вырожденным минимумом (где f\n′′\n(0)=0).\n\nВывод\n\nНа f(x)=x\n4\n метод Ньютона на порядки быстрее градиентного спуска. Ньютон использует информацию о кривизне (вторую производную), которая помогает делать осмысленно большие шаги даже когда градиент сам по себе уже мал. GD же слепо следует за градиентом 4x\n3\n и застревает в «плоской» окрестности нуля.",
-   "no_answer": false
+   "no_answer": false,
+   "broken_formulas": 0
   },
   {
    "id": "rsa_encrypt_small",
@@ -252,7 +259,8 @@
     "moonshotai/kimi-k2.6"
    ],
    "answer": "В RSA шифрование числа m делается так:\n\nc=m\ne\n(modn)\n\nПодставляем твои значения:\n\nc=7\n7\n(mod143)=823543(mod143)\n\nОтвет: c=6",
-   "no_answer": false
+   "no_answer": false,
+   "broken_formulas": 0
   },
   {
    "id": "rsa_full_roundtrip",
@@ -276,7 +284,8 @@
     "moonshotai/kimi-k2.6"
    ],
    "answer": "Вот полная генерация RSA-ключа для твоих чисел.\n\n1. Базовые параметры\n\np=11, q=13, e=7\n\n2. Вычисляем n и φ(n)\n\nn=p⋅q=11⋅13=143\n\nφ(n)=(p−1)(q−1)=10⋅12=120\n\n3. Проверяем e\n\ngcd(7,120)=1 — всё хорошо, e взаимно просто с φ(n).\n\n4. Находим закрытый ключ d\n\nРасширенным алгоритмом Евклида ищем обратное:\n\nd=e\n−1\nmodφ(n)=7\n−1\nmod120=103\n\nПроверка: e⋅d=7⋅103=721, и 721mod120=1. ✓\n\nИтоговые ключи:\n\nОткрытый ключ: (n,e)=(143,7)\nЗакрытый ключ: d=103\n\nШифрование и расшифрование для m=9\n\nШифр-текст: c=m\ne\nmodn=9\n7\nmod143=48\nРасшифрование: m\n′\n=c\nd\nmodn=48\n103\nmod143=9\n\nПолучили m\n′\n=9=m — сообщение восстановлено точно, RSA работает!",
-   "no_answer": false
+   "no_answer": false,
+   "broken_formulas": 0
   },
   {
    "id": "multihop_newton_vs_gradient",
@@ -303,7 +312,8 @@
    "no_answer": false,
    "judge_pass": true,
    "judge_reason": "Отлично: GD — наклон g' фикс. шаг, Ньютон — кривизна g''/квадратичная модель; глава 'Метод Ньютона' названа, GD в story_optimizers. Формулы корректны.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "structural_kantorovich_theorem",
@@ -329,7 +339,8 @@
    "no_answer": false,
    "judge_pass": true,
    "judge_reason": "Точная формулировка Теоремы 2.1: x_0>0, монотонность, сходимость к √a, обе формулы ошибки, развёрнутое корректное пояснение. Зачёт.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "vision_refine_diverging_sgd",
@@ -358,7 +369,8 @@
    "no_answer": false,
    "judge_pass": true,
    "judge_reason": "Образцовый ответ: верный диагноз (множитель −1.2, x30=474.75), условие 0<η<1, η=0.3 со сходящейся последовательностью. Числа корректны, ясное объяснение.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "hashlib_demo",
@@ -381,7 +393,8 @@
     "moonshotai/kimi-k2.6"
    ],
    "answer": "SHA-256('sigma') в hex:\n\n38de90475bb334fb3dea5d54f250500aba60fe2c6158115d342b06bcb46e39bf\n\n\nЭто 64 шестнадцатеричных символа — ровно 256 бит, как и должно быть у SHA-256. В учебнике как раз обсуждаются такие криптографические хеш-функции и их свойства (необратимость, стойкость к коллизиям).",
-   "no_answer": false
+   "no_answer": false,
+   "broken_formulas": 0
   },
   {
    "id": "linreg_simple",
@@ -406,7 +419,8 @@
     "moonshotai/kimi-k2.6"
    ],
    "answer": "Коэффициенты линейной регрессии:\n\ny=1,94x+0,15\n\nНаклон a=1,94 — при росте x на 1 значение y увеличивается примерно на 1.94.\nСдвиг b=0,15 — прямая почти проходит через начало координат.\n\nГрафик\n\nНа графике красные точки — твои исходные данные, синяя линия — найденная регрессия. Все точки лежат очень близко к прямой: это говорит о сильной линейной зависимости, и модель y=1,94x+0,15 описывает данные очень хорошо.",
-   "no_answer": false
+   "no_answer": false,
+   "broken_formulas": 0
   },
   {
    "id": "out_of_scope_recipe",
@@ -430,7 +444,8 @@
    "no_answer": false,
    "judge_pass": true,
    "judge_reason": "Вежливый отказ + предложение тем главы. Корректно.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "rsa_history",
@@ -456,7 +471,8 @@
    "no_answer": false,
    "judge_pass": true,
    "judge_reason": "1978, все трое, MIT — верно. Стрелые буквы «С»/«А» перед именами — артефакт акронима, косметичны, суть ясна.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "greeting_minimal",
@@ -480,7 +496,8 @@
    "no_answer": false,
    "judge_pass": true,
    "judge_reason": "Коротко (80), без тулов, предлагает помощь по методу Ньютона. По рубрике.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "euclid_gcd_python",
@@ -503,7 +520,8 @@
     "moonshotai/kimi-k2.6"
    ],
    "answer": "Вот результат работы алгоритма Евклида:\n\nНОД(48, 180) = 12\n\nШаги:\n\n180 = 3 · 48 + 36\n48 = 1 · 36 + 12\n36 = 3 · 12 + 0\n\nНОД(1071, 462) = 21\n\nШаги:\n\n1071 = 2 · 462 + 147\n462 = 3 · 147 + 21\n147 = 7 · 21 + 0\n\nИдея простая: на каждом шаге заменяем пару чисел (a, b) на (b, a mod b), пока остаток не станет нулем. Последний ненулевой остаток и есть НОД. Это как раз тот классический алгоритм, который разбирается в твоей текущей главе про элементы теории чисел.",
-   "no_answer": false
+   "no_answer": false,
+   "broken_formulas": 0
   },
   {
    "id": "definition_superlinear",
@@ -529,7 +547,8 @@
    "no_answer": false,
    "judge_pass": true,
    "judge_reason": "Дословное определение, предел →0, хорошая расшифровка e_k, квадратичная как частный случай. Формула отрендерилась. Корректно.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "theorem_clt",
@@ -555,7 +574,8 @@
    "no_answer": false,
    "judge_pass": true,
    "judge_reason": "Корректная Теорема 3.3 + ясное объяснение сути; формула стандартная.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "plot_sincos_overlay",
@@ -578,7 +598,8 @@
     "moonshotai/kimi-k2.6"
    ],
    "answer": "Готово! На графике:\n\nsin(x) — синяя кривая, проходит через 0 в начале координат\ncos(x) — оранжевая кривая, равна 1 при x = 0\n\nКлючевые точки:\n\nsin(0) = 0.00, cos(0) = 1.00\nsin(π/2) = 1.00, cos(π/2) = 0.00\n\nОбе функции колеблются между −1 и 1 с периодом 2π ≈ 6.28. Легенда в левом нижнем углу, сетка и оси координат добавлены для удобства.",
-   "no_answer": false
+   "no_answer": false,
+   "broken_formulas": 0
   },
   {
    "id": "fragment_explanation",
@@ -609,7 +630,8 @@
    "no_answer": false,
    "judge_pass": true,
    "judge_reason": "Точно по рубрике: g=½f², g'=f·f', спуск η=1, минимум совпадает с корнем; анализ |T'(x*)| (проверено: T'(√2)=-7), численная расходимость. Глубоко и верно.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "eigenvalues_numpy",
@@ -632,7 +654,8 @@
     "moonshotai/kimi-k2.6"
    ],
    "answer": "Собственные значения матрицы $A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$:\n\nλ₁ = 3.00, λ₂ = 1.00\n\nСоответствующие собственные векторы (нормированные):\n\nдля λ₁ = 3: $\\begin{pmatrix} 0.71 \\\\ 0.71 \\end{pmatrix}$ (или $(1, 1)$)\nдля λ₂ = 1: $\\begin{pmatrix} -0.71 \\\\ 0.71 \\end{pmatrix}$ (или $(-1, 1)$)\n\nПроверка вручную: характеристическое уравнение $\\det(A - \\lambda I) = (2-\\lambda)^2 - 1 = \\lambda^2 - 4\\lambda + 3 = 0$ даёт те же корни $\\lambda = 3$ и $\\lambda = 1$.",
-   "no_answer": false
+   "no_answer": false,
+   "broken_formulas": 0
   },
   {
    "id": "plot_loss_landscape",
@@ -655,7 +678,8 @@
     "moonshotai/kimi-k2.6"
    ],
    "answer": "Вот контурный график для твоих четырёх точек:\n\nКлючевые числа:\n\nОптимум МНК: a = 0.80, b = 1.50\nМинимум функции потерь: L = 1.80\nНа заданной сетке L меняется от 1.80 до 570.00\n\nЧто видно на графике:\n\nЛинии уровня — вытянутые эллипсы. Это типично для квадратичной функции потерь: она образует параболоид в пространстве (a, b, L), а в сечении получаются эллиптические контуры.\nЦентр эллипсов — точка минимума (0.80, 1.50). Именно здесь прямая y = 0.8x + 1.5 наилучшим образом приближает данные по методу наименьших квадратов.\nКонтуры плотнее сближаются к центру: функция потерь растёт медленно вблизи оптимума и быстро на краях сетки (особенно при уходе вправо-вверх или влево-вниз).\n\nТакой график часто используют, чтобы показать, почему градиентный спуск хорошо работает на линейной регрессии: поверхность гладкая, выпуклая, с единственным минимумом.",
-   "no_answer": false
+   "no_answer": false,
+   "broken_formulas": 0
   },
   {
    "id": "diffie_hellman_compute",
@@ -685,7 +709,8 @@
     "moonshotai/kimi-k2.6"
    ],
    "answer": "Ты уже на этой главе — раздел «Протокол Диффи–Хеллмана».\n\nВот пошаговый ход с твоими числами p=23, g=5:\n\n1. Алиса вычисляет своё публичное число:\n\nA=g\na\nmodp=5\n6\nmod23=8\n\nи отправляет его Бобу.\n\n2. Боб вычисляет своё публичное число:\n\nB=g\nb\nmodp=5\n15\nmod23=19\n\nи отправляет его Алисе.\n\n3. Общий секрет каждый получает, возводя чужое публичное число в свою секретную степень:\n\nАлиса: s=B\na\nmod23=19\n6\nmod23=2\nБоб: s=A\nb\nmod23=8\n15\nmod23=2\n\nОбщий секрет — 2.\n\n(Проверка: 19≡−4(mod23), поэтому 19\n6\n≡(−4)\n6\n=4096, а 4096=178⋅23+2.)",
-   "no_answer": false
+   "no_answer": false,
+   "broken_formulas": 0
   },
   {
    "id": "outline_chapter",
@@ -711,7 +736,8 @@
    "no_answer": false,
    "judge_pass": true,
    "judge_reason": "Все 6 реальных h2 с верными пояснениями и корректным указанием подразделов. Полно и точно.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "math_latex_derivation",
@@ -737,7 +763,8 @@
    "no_answer": false,
    "judge_pass": true,
    "judge_reason": "Чёткий пошаговый вывод через касательную, верная финальная формула. Дробь корректно отрендерилась стеком.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "definition_perceptron",
@@ -763,7 +790,8 @@
    "no_answer": false,
    "judge_pass": true,
    "judge_reason": "Суть полностью верна: композиция L слоёв аффинное+σ, softmax, θ, объяснение «полносвязная». Главная рекурсия дана корректным текстом. Только вторичная формула softmax обёрнута битым $$...$* (KaTeX не отрисует, виден сырой LaTeX) — косметика, не валит суть по приоритету суть>битый LaTeX.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "refuse_unknown_year",
@@ -792,7 +820,8 @@
    "no_answer": false,
    "judge_pass": true,
    "judge_reason": "Чётко опровергает предпосылку, верно Хестенес/Стифель 1952, годы жизни Гаусса, корректное уточнение про МНК. Отличный ответ.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   }
  ]
 }

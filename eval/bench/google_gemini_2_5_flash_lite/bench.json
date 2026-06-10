@@ -74,7 +74,8 @@
    "answer": "Я не нашёл информации о Нобелевской премии Канторовича в этой главе. Возможно, стоит поискать в других главах. Хотите, я поищу по всему учебнику?",
    "judge_pass": false,
    "judge_reason": "Ответа нет — только предложил поискать; ни года, ни сути премии.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "newton_formula_recall",
@@ -100,7 +101,8 @@
    "no_answer": false,
    "judge_pass": true,
    "judge_reason": "Верная геометрия и вывод формулы из уравнения касательной; Канторович о сходимости корректно.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "definition_strong_convex",
@@ -127,7 +129,8 @@
    "no_answer": true,
    "judge_pass": false,
    "judge_reason": "пустой ответ (таймаут/обрыв)",
-   "judge": "auto"
+   "judge": "auto",
+   "broken_formulas": 0
   },
   {
    "id": "compute_factorial",
@@ -150,7 +153,8 @@
     "google/gemini-2.5-flash-lite"
    ],
    "answer": "",
-   "no_answer": true
+   "no_answer": true,
+   "broken_formulas": 0
   },
   {
    "id": "compute_taylor_sin",
@@ -174,7 +178,8 @@
    "models_used": [
     "google/gemini-2.5-flash-lite"
    ],
-   "answer": "Разложение sin(x) в ряд Тейлора до 5-го члена: −\n6\nx\n3\n\t​\n\n+x."
+   "answer": "Разложение sin(x) в ряд Тейлора до 5-го члена: −\n6\nx\n3\n\t​\n\n+x.",
+   "broken_formulas": 0
   },
   {
    "id": "compute_plot_newton",
@@ -197,7 +202,8 @@
     "google/gemini-2.5-flash-lite"
    ],
    "answer": "Initial guess x0 = 1.50\nNumber of iterations = 10\nFinal approximation x10 = 1.41\nActual root sqrt(2) = 1.41\n\nГрафик показывает, как метод Ньютона сходится к корню \n2\n\t​\n\n. Начиная с x\n0\n\t​\n\n=1.5, метод быстро приближается к истинному значению корня. Каждая следующая итерация даёт всё более точное приближение.",
-   "no_answer": false
+   "no_answer": false,
+   "broken_formulas": 0
   },
   {
    "id": "compute_plot_gd_vs_newton",
@@ -219,7 +225,8 @@
    "models_used": [
     "google/gemini-2.5-flash-lite"
    ],
-   "answer": "Наблюдения:\n\nМетод Ньютона сходится гораздо быстрее. Он достигает значения, близкого к нулю (минимум функции x\n4\n), за несколько итераций.\nГрадиентный спуск с шагом η=0.1 тоже сходится, но медленнее. Обрати внимание, что он сначала уходит в отрицательную область, а затем постепенно приближается к нулю. При другом шаге η он мог бы и разойтись.\n\nВыводы:\n\nМетод Ньютона демонстрирует сублинейную сходимость, в то время как градиентный спуск показывает линейную сходимость. Для данной функции метод Ньютона значительно эффективнее."
+   "answer": "Наблюдения:\n\nМетод Ньютона сходится гораздо быстрее. Он достигает значения, близкого к нулю (минимум функции x\n4\n), за несколько итераций.\nГрадиентный спуск с шагом η=0.1 тоже сходится, но медленнее. Обрати внимание, что он сначала уходит в отрицательную область, а затем постепенно приближается к нулю. При другом шаге η он мог бы и разойтись.\n\nВыводы:\n\nМетод Ньютона демонстрирует сублинейную сходимость, в то время как градиентный спуск показывает линейную сходимость. Для данной функции метод Ньютона значительно эффективнее.",
+   "broken_formulas": 0
   },
   {
    "id": "rsa_encrypt_small",
@@ -241,7 +248,8 @@
    "models_used": [
     "google/gemini-2.5-flash-lite"
    ],
-   "answer": "Зашифрованное число c=6.\n\nРасчёт:\nc=m\ne\n(modn)\nc=7\n7\n(mod143)\nc=823543(mod143)\nc=6"
+   "answer": "Зашифрованное число c=6.\n\nРасчёт:\nc=m\ne\n(modn)\nc=7\n7\n(mod143)\nc=823543(mod143)\nc=6",
+   "broken_formulas": 0
   },
   {
    "id": "rsa_full_roundtrip",
@@ -263,7 +271,8 @@
    "models_used": [
     "google/gemini-2.5-flash-lite"
    ],
-   "answer": "Хорошо, давай сгенерируем RSA-ключ и проверим шифрование/расшифрование.\n\np=11, q=13\nn=p×q=11×13=143\nϕ(n)=(p−1)(q−1)=(11−1)(13−1)=10×12=120\ne=7 (открытая экспонента)\nd — секретная экспонента, такое число, что d×e≡1(modϕ(n)). В нашем случае d=103, потому что 103×7=721, а 721(mod120)=1 (721=6×120+1).\n\nТеперь проверим шифрование и расшифрование для сообщения m=9:\n\nШифрование: C=m\ne\n(modn)=9\n7\n(mod143).\n\n9\n7\n=4782969.\n4782969(mod143)=48. Так что шифротекст C=48.\n\nРасшифрование: m\n′\n=C\nd\n(modn)=48\n103\n(mod143).\n\n48\n103\n(mod143)=9.\n\nКак видишь, расшифрованное сообщение m\n′\n=9 совпадает с исходным m=9. Всё работает!\n\nБольше про RSA и криптосистемы можно почитать в главе «Криптосистемы RSA и Диффи–Хеллмана»."
+   "answer": "Хорошо, давай сгенерируем RSA-ключ и проверим шифрование/расшифрование.\n\np=11, q=13\nn=p×q=11×13=143\nϕ(n)=(p−1)(q−1)=(11−1)(13−1)=10×12=120\ne=7 (открытая экспонента)\nd — секретная экспонента, такое число, что d×e≡1(modϕ(n)). В нашем случае d=103, потому что 103×7=721, а 721(mod120)=1 (721=6×120+1).\n\nТеперь проверим шифрование и расшифрование для сообщения m=9:\n\nШифрование: C=m\ne\n(modn)=9\n7\n(mod143).\n\n9\n7\n=4782969.\n4782969(mod143)=48. Так что шифротекст C=48.\n\nРасшифрование: m\n′\n=C\nd\n(modn)=48\n103\n(mod143).\n\n48\n103\n(mod143)=9.\n\nКак видишь, расшифрованное сообщение m\n′\n=9 совпадает с исходным m=9. Всё работает!\n\nБольше про RSA и криптосистемы можно почитать в главе «Криптосистемы RSA и Диффи–Хеллмана».",
+   "broken_formulas": 0
   },
   {
    "id": "multihop_newton_vs_gradient",
@@ -289,7 +298,8 @@
    "answer": "В учебнике разбирается метод Ньютона (в главе 2, \"Метод Ньютона – Σ Сигма\") и градиентный спуск (в главе \"Как методы спускаются с горы: GD, momentum, Adam\").\n\nОсновное отличие методов в том, что градиентный спуск использует только информацию о первой производной (градиенте) для определения направления шага, тогда как метод Ньютона использует информацию о второй производной (гессиане).\n\nГрадиентный спуск: w\nt+1\n\t​\n\n=w\nt\n\t​\n\n−η∇L(w\nt\n\t​\n\n). Шаг делается прямо против градиента. Это просто, но может быть медленно на задачах с \"оврагами\" (сильно вытянутыми областями кривизны).\nМетод Ньютона: w\nt+1\n\t​\n\n=w\nt\n\t​\n\n−(∇\n2\nL(w\nt\n\t​\n\n))\n−1\n∇L(w\nt\n\t​\n\n). Шаг делается в направлении, обратном градиенту, но домноженном на обратную матрицу вторых производных (гессиан). Это позволяет делать более быстрые и точные шаги, особенно вблизи минимума, так как учитывает кривизну функции.\n\nМетод Ньютона обычно сходится быстрее градиентного спуска, но требует вычисления и обращения гессиана, что может быть вычислительно дорого на задачах с большим количеством переменных.",
    "judge_pass": true,
    "judge_reason": "Ньютон — гессиан/кривизна (гл. 2), GD — только первая производная, названа отдельная глава GD. Различие g''/g' и глава 2 указаны.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "structural_kantorovich_theorem",
@@ -316,7 +326,8 @@
    "no_answer": true,
    "judge_pass": false,
    "judge_reason": "пустой ответ (таймаут/обрыв)",
-   "judge": "auto"
+   "judge": "auto",
+   "broken_formulas": 0
   },
   {
    "id": "vision_refine_diverging_sgd",
@@ -345,7 +356,8 @@
    "answer": "Теперь с шагом η=0.4 метод сходится к минимуму функции f(x)=x\n2\n, который находится в точке x=0. Последнее значение x очень близко к нулю (около 0.00).",
    "judge_pass": true,
    "judge_reason": "Два запуска python; показал сходимость при η=0.4 к x=0. Явного текста о расхождении нет, но рабочий шаг корректен — маргинальный зачёт.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "hashlib_demo",
@@ -367,7 +379,8 @@
    "models_used": [
     "google/gemini-2.5-flash-lite"
    ],
-   "answer": "SHA-256 хеш строки 'sigma' равен 38de90475bb334fb3dea5d54f250500aba60fe2c6158115d342b06bcb46e39bf."
+   "answer": "SHA-256 хеш строки 'sigma' равен 38de90475bb334fb3dea5d54f250500aba60fe2c6158115d342b06bcb46e39bf.",
+   "broken_formulas": 0
   },
   {
    "id": "linreg_simple",
@@ -389,7 +402,8 @@
    "models_used": [
     "google/gemini-2.5-flash-lite"
    ],
-   "answer": "Линейная регрессия для точек (1, 2.1), (2, 3.9), (3, 6.2), (4, 7.8) имеет вид:\n\nКоэффициент a = 1.94\nКоэффициент b = 0.15\n\nУравнение регрессии: **y = 1.94*x + 0.15**\n\nНа графике видно, что синяя линия (линейная регрессия) проходит близко к красным точкам (исходные данные), что говорит о хорошем подборе модели."
+   "answer": "Линейная регрессия для точек (1, 2.1), (2, 3.9), (3, 6.2), (4, 7.8) имеет вид:\n\nКоэффициент a = 1.94\nКоэффициент b = 0.15\n\nУравнение регрессии: **y = 1.94*x + 0.15**\n\nНа графике видно, что синяя линия (линейная регрессия) проходит близко к красным точкам (исходные данные), что говорит о хорошем подборе модели.",
+   "broken_formulas": 0
   },
   {
    "id": "out_of_scope_recipe",
@@ -414,7 +428,8 @@
    "answer": "Я могу помочь с вопросами по учебнику \"Σ Сигма\". Рецепт борща — это вне темы.",
    "judge_pass": true,
    "judge_reason": "Кратко отказал, вне темы.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "rsa_history",
@@ -442,7 +457,8 @@
    "no_answer": false,
    "judge_pass": false,
    "judge_reason": "Все трое названы, но год 1977 вместо рубричного/учебникового 1978. Незачёт по году.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "greeting_minimal",
@@ -465,7 +481,8 @@
    "answer": "Привет! Чем могу помочь?",
    "judge_pass": true,
    "judge_reason": "24 знака, приветствие + 'чем могу помочь'. По сути верно. Зачёт.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "euclid_gcd_python",
@@ -487,7 +504,8 @@
    "models_used": [
     "google/gemini-2.5-flash-lite"
    ],
-   "answer": "НОД(48, 180) = 12.\nНОД(1071, 462) = 21.\n\nАлгоритм Евклида — это эффективный способ найти наибольший общий делитель (НОД) двух целых чисел. Он основан на принципе, что НОД двух чисел не меняется, если большее число заменить на его остаток от деления на меньшее число. Этот процесс повторяется до тех пор, пока одно из чисел не станет нулём, тогда второе число и будет НОД.\n\nВот как это работает для ваших примеров:\n\nНОД(48, 180)\n\n180 = 3 * 48 + 36\n48 = 1 * 36 + 12\n36 = 3 * 12 + 0\n\nПоследний ненулевой остаток — 12. Значит, НОД(48, 180) = 12.\n\nНОД(1071, 462)\n\n1071 = 2 * 462 + 147\n462 = 3 * 147 + 21\n147 = 7 * 21 + 0\n\nПоследний ненулевой остаток — 21. Значит, НОД(1071, 462) = 21.\n\nЭтот алгоритм является основой многих криптографических систем и используется в теории чисел."
+   "answer": "НОД(48, 180) = 12.\nНОД(1071, 462) = 21.\n\nАлгоритм Евклида — это эффективный способ найти наибольший общий делитель (НОД) двух целых чисел. Он основан на принципе, что НОД двух чисел не меняется, если большее число заменить на его остаток от деления на меньшее число. Этот процесс повторяется до тех пор, пока одно из чисел не станет нулём, тогда второе число и будет НОД.\n\nВот как это работает для ваших примеров:\n\nНОД(48, 180)\n\n180 = 3 * 48 + 36\n48 = 1 * 36 + 12\n36 = 3 * 12 + 0\n\nПоследний ненулевой остаток — 12. Значит, НОД(48, 180) = 12.\n\nНОД(1071, 462)\n\n1071 = 2 * 462 + 147\n462 = 3 * 147 + 21\n147 = 7 * 21 + 0\n\nПоследний ненулевой остаток — 21. Значит, НОД(1071, 462) = 21.\n\nЭтот алгоритм является основой многих криптографических систем и используется в теории чисел.",
+   "broken_formulas": 0
   },
   {
    "id": "definition_superlinear",
@@ -514,7 +532,8 @@
    "no_answer": true,
    "judge_pass": false,
    "judge_reason": "пустой ответ (таймаут/обрыв)",
-   "judge": "auto"
+   "judge": "auto",
+   "broken_formulas": 0
   },
   {
    "id": "theorem_clt",
@@ -540,7 +559,8 @@
    "no_answer": false,
    "judge_pass": true,
    "judge_reason": "Верная формулировка + словесная суть (сумма iid → нормальное).",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "plot_sincos_overlay",
@@ -562,7 +582,8 @@
    "models_used": [
     "google/gemini-2.5-flash-lite"
    ],
-   "answer": "The plot shows the graphs of sin(x) and cos(x) on the interval [-2π, 2π]. The blue line represents sin(x), and the red line represents cos(x). Both functions are periodic with a period of 2π. The sine function starts at 0, increases to 1 at π/2, decreases to 0 at π, reaches -1 at 3π/2, and returns to 0 at 2π. The cosine function starts at 1, decreases to 0 at π/2, reaches -1 at π, increases to 0 at 3π/2, and returns to 1 at 2π. The two graphs intersect at points where sin(x) = cos(x), which occurs when x = π/4, 5π/4, etc."
+   "answer": "The plot shows the graphs of sin(x) and cos(x) on the interval [-2π, 2π]. The blue line represents sin(x), and the red line represents cos(x). Both functions are periodic with a period of 2π. The sine function starts at 0, increases to 1 at π/2, decreases to 0 at π, reaches -1 at 3π/2, and returns to 0 at 2π. The cosine function starts at 1, decreases to 0 at π/2, reaches -1 at π, increases to 0 at 3π/2, and returns to 1 at 2π. The two graphs intersect at points where sin(x) = cos(x), which occurs when x = π/4, 5π/4, etc.",
+   "broken_formulas": 0
   },
   {
    "id": "fragment_explanation",
@@ -590,7 +611,8 @@
    "answer": "Студент, ты сейчас на главе \"Метод Ньютона – Σ Сигма\" (slug=\"ch02_newton\").\n\nПредложенное тобой обновление x\nk+1\n\t​\n\n=x\nk\n\t​\n\n−f(x\nk\n\t​\n\n)⋅f\n′\n(x\nk\n\t​\n\n) — это и есть классический метод Ньютона для решения уравнения f(x)=0.\n\nВот как он работает:\n\nНачинаем с некоторого начального приближения x\n0\n\t​\n\n.\nНа каждом шаге k находим касательную к графику функции f(x) в точке (x\nk\n\t​\n\n,f(x\nk\n\t​\n\n)).\nСледующее приближение x\nk+1\n\t​\n\n — это точка, где эта касательная пересекает ось x.\n\nФормула для x\nk+1\n\t​\n\n получается из уравнения касательной:\ny−f(x\nk\n\t​\n\n)=f\n′\n(x\nk\n\t​\n\n)(x−x\nk\n\t​\n\n)\nПриравнивая y=0 (пересечение с осью x), получаем:\n0−f(x\nk\n\t​\n\n)=f\n′\n(x\nk\n\t​\n\n)(x\nk+1\n\t​\n\n−x\nk\n\t​\n\n)\nx\nk+1\n\t​\n\n−x\nk\n\t​\n\n=−\nf\n′\n(x\nk\n\t​\n\n)\nf(x\nk\n\t​\n\n)\n\t​\n\n\nx\nk+1\n\t​\n\n=x\nk\n\t​\n\n−\nf\n′\n(x\nk\n\t​\n\n)\nf(x\nk\n\t​\n\n)\n\t​\n\n\nТак что это не \"другая идея\", а самая что ни на есть классика. И работает она отлично, если выполняются условия:\n\nФункция f(x) дважды дифференцируема.\nНачальное приближение x\n0\n\t​\n\n достаточно близко к корню.\nf\n′\n(x)\n\n=0 в окрестности корня.\n\nВ учебнике метод Ньютона подробно разбирается в главе 2. Я могу показать тебе её содержание, если хочешь.",
    "judge_pass": false,
    "judge_reason": "Грубая галлюцинация: заявил, что предложенная формула 'и есть классический Ньютон' и 'работает отлично'. Ложное подтверждение неверной предпосылки.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "eigenvalues_numpy",
@@ -612,7 +634,8 @@
    "models_used": [
     "google/gemini-2.5-flash-lite"
    ],
-   "answer": "Собственные значения матрицы [[2, 1], [1, 2]] равны 3.0 и 1.0."
+   "answer": "Собственные значения матрицы [[2, 1], [1, 2]] равны 3.0 и 1.0.",
+   "broken_formulas": 0
   },
   {
    "id": "plot_loss_landscape",
@@ -636,7 +659,8 @@
    "models_used": [
     "google/gemini-2.5-flash-lite"
    ],
-   "answer": "The plot shows the contour lines of the loss function L(a,b)=∑\ni=1\n4\n\t​\n\n(ax\ni\n\t​\n\n+b−y\ni\n\t​\n\n)\n2\n for the given points. The minimum loss is found at a≈0.79 and b≈1.55, with a minimum loss value of approximately 1.80. The contour plot visually represents how the loss changes across the grid of possible 'a' and 'b' values, with the color gradient indicating lower loss in the central region and higher loss towards the edges."
+   "answer": "The plot shows the contour lines of the loss function L(a,b)=∑\ni=1\n4\n\t​\n\n(ax\ni\n\t​\n\n+b−y\ni\n\t​\n\n)\n2\n for the given points. The minimum loss is found at a≈0.79 and b≈1.55, with a minimum loss value of approximately 1.80. The contour plot visually represents how the loss changes across the grid of possible 'a' and 'b' values, with the color gradient indicating lower loss in the central region and higher loss towards the edges.",
+   "broken_formulas": 0
   },
   {
    "id": "diffie_hellman_compute",
@@ -658,7 +682,8 @@
    "models_used": [
     "google/gemini-2.5-flash-lite"
    ],
-   "answer": "Общий секрет — 2.\n\nВот как это работает:\n\nАлиса вычисляет свой публичный ключ A=g\na\n(modp).\n\nA=5\n6\n(mod23)=15625(mod23)=8.\n\nБоб вычисляет свой публичный ключ B=g\nb\n(modp).\n\nB=5\n15\n(mod23)=30517578125(mod23)=19.\n\nАлиса получает публичный ключ Боба B и вычисляет общий секрет S\nA\n\t​\n\n=B\na\n(modp).\n\nS\nA\n\t​\n\n=19\n6\n(mod23)=47045881(mod23)=2.\n\nБоб получает публичный ключ Алисы A и вычисляет общий секрет S\nB\n\t​\n\n=A\nb\n(modp).\n\nS\nB\n\t​\n\n=8\n15\n(mod23)=35184372088832(mod23)=2.\n\nОба получают одно и то же значение — 2. Это и есть общий секрет."
+   "answer": "Общий секрет — 2.\n\nВот как это работает:\n\nАлиса вычисляет свой публичный ключ A=g\na\n(modp).\n\nA=5\n6\n(mod23)=15625(mod23)=8.\n\nБоб вычисляет свой публичный ключ B=g\nb\n(modp).\n\nB=5\n15\n(mod23)=30517578125(mod23)=19.\n\nАлиса получает публичный ключ Боба B и вычисляет общий секрет S\nA\n\t​\n\n=B\na\n(modp).\n\nS\nA\n\t​\n\n=19\n6\n(mod23)=47045881(mod23)=2.\n\nБоб получает публичный ключ Алисы A и вычисляет общий секрет S\nB\n\t​\n\n=A\nb\n(modp).\n\nS\nB\n\t​\n\n=8\n15\n(mod23)=35184372088832(mod23)=2.\n\nОба получают одно и то же значение — 2. Это и есть общий секрет.",
+   "broken_formulas": 0
   },
   {
    "id": "outline_chapter",
@@ -684,7 +709,8 @@
    "no_answer": false,
    "judge_pass": true,
    "judge_reason": "3 реальных h2 + 1 реальный подраздел (сжимающее отображение) — всё из текста главы, выдумок нет, минимум рубрики (3-4) выполнен.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "math_latex_derivation",
@@ -709,7 +735,8 @@
    "answer": "Студент уже на нужной главе!\n\nТеорема 2.5. Сверхлинейная сходимость метода Ньютона\n\nВ учебнике приводится теорема о сверхлинейной сходимости метода Ньютона. Она гарантирует, что если выполнены определённые условия (гладкость функции, неотрицательность второй производной или сильная выпуклость), то метод сходится квадратично.\n\nФормула, которую вы ищете, скорее всего, подразумевается в контексте вывода этой теоремы. Метод Ньютона для нахождения корня f(x)=0 использует касательную к графику функции y=f(x) в точке (x\nk\n\t​\n\n,f(x\nk\n\t​\n\n)). Уравнение касательной:\n\ny−f(x\nk\n\t​\n\n)=f\n′\n(x\nk\n\t​\n\n)(x−x\nk\n\t​\n\n)\n\nСледующая итерация x\nk+1\n\t​\n\n находится как точка пересечения этой касательной с осью x (то есть y=0):\n\n0−f(x\nk\n\t​\n\n)=f\n′\n(x\nk\n\t​\n\n)(x\nk+1\n\t​\n\n−x\nk\n\t​\n\n)\n\nОтсюда выражаем x\nk+1\n\t​\n\n:\n\n−f(x\nk\n\t​\n\n)=f\n′\n(x\nk\n\t​\n\n)x\nk+1\n\t​\n\n−f\n′\n(x\nk\n\t​\n\n)x\nk\n\t​\n\n\nf\n′\n(x\nk\n\t​\n\n)x\nk+1\n\t​\n\n=f\n′\n(x\nk\n\t​\n\n)x\nk\n\t​\n\n−f(x\nk\n\t​\n\n)\nx\nk+1\n\t​\n\n=x\nk\n\t​\n\n−\nf\n′\n(x\nk\n\t​\n\n)\nf(x\nk\n\t​\n\n)\n\t​\n\n\nЭто и есть формула метода Ньютона, полученная через касательную. В LaTeX она выглядит так:\n\nx\nk+1\n\t​\n\n=x\nk\n\t​\n\n−\nf\n′\n(x\nk\n\t​\n\n)\nf(x\nk\n\t​\n\n)\n\t​\n",
    "judge_pass": true,
    "judge_reason": "Несмотря на придуманную рамку про 'Теорему 2.5 о сверхлинейной сходимости' (мягкая галлюцинация про источник) и оговорку 'скорее всего подразумевается', далее идёт ПОЛНЫЙ корректный пошаговый вывод через касательную и верная итоговая формула. Рубрика грейдит корректность формулы и вывода — оба присутствуют и верны.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "definition_perceptron",
@@ -735,7 +762,8 @@
    "no_answer": true,
    "judge_pass": false,
    "judge_reason": "пустой ответ (таймаут/обрыв)",
-   "judge": "auto"
+   "judge": "auto",
+   "broken_formulas": 0
   },
   {
    "id": "refuse_unknown_year",
@@ -760,7 +788,8 @@
    "answer": "Я не нашёл информацию о том, когда Гаусс изобрёл метод сопряжённых градиентов. В учебнике упоминается, что Гаусс жил почти двести лет назад и занимался теорией чисел, которая сейчас востребована в криптографии. Также есть упоминание его имени в контексте метода наименьших квадратов (МНК), который был открыт Лежандром в 1805 году, а Гауссом — в 1809 году.",
    "judge_pass": true,
    "judge_reason": "Не нашла в учебнике, год Гауссу не приписала, ложного подтверждения нет. Рубрика требует лишь отсутствия выдуманного года.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   }
  ],
  "answered": 24,

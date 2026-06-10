@@ -74,7 +74,8 @@
    "garbage": false,
    "judge_pass": true,
    "judge_reason": "1975, экономика, за оптимальное распределение ресурсов; 1948 отделено корректно.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "newton_formula_recall",
@@ -102,7 +103,8 @@
    "garbage": false,
    "judge_pass": true,
    "judge_reason": "Корректно: геометрия касательной, пересечение с осью x, вывод формулы, верное расширение на оптимизацию через Тейлор.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "definition_strong_convex",
@@ -129,7 +131,8 @@
    "garbage": false,
    "judge_pass": true,
    "judge_reason": "Формальное определение g∈C², g''(x)≥μ>0 приведено корректно.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "compute_factorial",
@@ -153,7 +156,8 @@
    ],
    "answer": "30! равно 265 252 859 812 191 058 636 308 480 000 000.",
    "unexpected": [],
-   "garbage": false
+   "garbage": false,
+   "broken_formulas": 0
   },
   {
    "id": "compute_taylor_sin",
@@ -178,7 +182,8 @@
    ],
    "answer": "Разложение функции sin(x) в ряд Тейлора (в окрестности точки 0, то есть ряд Маклорена) выглядит следующим образом:\n\nsin(x)=x−\n3!\nx\n3\n\t​\n\n+\n5!\nx\n5\n\t​\n\n−\n7!\nx\n7\n\t​\n\n+\n9!\nx\n9\n\t​\n\n−…\n\nПервые 5 ненулевых членов ряда:\n\nx\n−\n6\nx\n3\n\t​\n\n120\nx\n5\n\t​\n\n−\n5040\nx\n7\n\t​\n\n362880\nx\n9\n\t​\n\n\nСумма этих пяти членов:\n\n362880\nx\n9\n\t​\n\n−\n5040\nx\n7\n\t​\n\n+\n120\nx\n5\n\t​\n\n−\n6\nx\n3\n\t​\n\n+x",
    "unexpected": [],
-   "garbage": false
+   "garbage": false,
+   "broken_formulas": 0
   },
   {
    "id": "compute_plot_newton",
@@ -202,7 +207,8 @@
    ],
    "answer": "thought\nТы уже находишься в главе «Метод Ньютона – Σ Сигма».\n\nМетод Ньютона демонстрирует очень быструю (квадратичную) сходимость к корню. Для функции f(x)=x\n2\n−2 и начального приближения x\n0\n\t​\n\n=1.5 итерации выглядят так:\n\nx\n0\n\t​\n\n=1.5\nx\n1\n\t​\n\n≈1.4167\nx\n2\n\t​\n\n≈1.4142\nx\n3\n\t​\n\n≈1.4142\nx\n4\n\t​\n\n≈1.4142\nx\n5\n\t​\n\n≈1.4142\n\nКак видишь, уже на второй итерации значение практически совпадает с \n2\n\t​\n\n≈1.4142. На графике это выглядит как резкий «прыжок» к корню и последующая стабилизация.",
    "unexpected": [],
-   "garbage": false
+   "garbage": false,
+   "broken_formulas": 0
   },
   {
    "id": "compute_plot_gd_vs_newton",
@@ -226,7 +232,8 @@
    ],
    "answer": ".dart\nТы уже находишься в главе «Метод Ньютона – Σ Сигма».\n\nКак видишь на графике, метод Ньютона сходится значительно быстрее градиентного спуска. Для функции f(x)=x\n4\n метод Ньютона использует информацию о кривизне (вторую производную), что позволяет ему «подстраиваться» под форму функции.\n\nМетод Ньютона: за 10 итераций значение x уменьшилось до 0.0347. Он демонстрирует квадратичную сходимость вблизи минимума.\nГрадиентный спуск: за те же 10 итераций с шагом η=0.01 значение x лишь приблизилось к 0.9327. Он движется гораздо медленнее, так как учитывает только направление антиградиента и сильно зависит от выбора шага.\n\nВ этой главе ты можешь подробнее изучить:\n\nПочему метод Ньютона так эффективен для гладких функций.\nПроблемы метода при плохой обусловленности или невыпуклости.\nСвязь метода Ньютона с квадратичной аппроксимацией функции.",
    "unexpected": [],
-   "garbage": false
+   "garbage": false,
+   "broken_formulas": 0
   },
   {
    "id": "rsa_encrypt_small",
@@ -250,7 +257,8 @@
    ],
    "answer": "Для шифрования сообщения m в системе RSA используется формула:\n\nc=m\ne\n(modn)\n\nПодставим ваши значения: m=7, e=7, n=143.\n\nc=7\n7\n(mod143)\n\nВыполнив вычисления, получаем:\n7\n7\n=823543\n823543÷143=5759 с остатком 6.\n\nТаким образом, зашифрованное сообщение c=6.",
    "unexpected": [],
-   "garbage": false
+   "garbage": false,
+   "broken_formulas": 0
   },
   {
    "id": "rsa_full_roundtrip",
@@ -274,7 +282,8 @@
    ],
    "answer": "Для генерации ключей RSA и проверки процесса используем заданные параметры p=11, q=13, e=7.\n\n1. Генерация ключей\nМодуль n: n=p⋅q=11⋅13=143.\nФункция Эйлера ϕ(n): ϕ(n)=(p−1)(q−1)=10⋅12=120.\nСекретная экспонента d: Это число, обратное e по модулю ϕ(n), то есть d⋅7≡1(mod120). Вычисление дает d=103.\n\nТаким образом:\n\nОткрытый ключ: (e,n)=(7,143).\nЗакрытый ключ: (d,n)=(103,143).\n2. Шифрование и расшифрование сообщения m=9\nШифрование: c=m\ne\n(modn)=9\n7\n(mod143)=4782969(mod143)=48.\nРасшифрование: m\ndec\n\t​\n\n=c\nd\n(modn)=48\n103\n(mod143)=9.\n\nКак видишь, после расшифровки мы получили исходное число 9. Всё работает верно!",
    "unexpected": [],
-   "garbage": false
+   "garbage": false,
+   "broken_formulas": 0
   },
   {
    "id": "multihop_newton_vs_gradient",
@@ -303,7 +312,8 @@
    "garbage": false,
    "judge_pass": true,
    "judge_reason": "Различие g'/g'' и квадратичная модель (парабола) показаны, формула x-g'/g'', названа глава «Метод Ньютона». Соответствует рубрике.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "structural_kantorovich_theorem",
@@ -330,7 +340,8 @@
    "garbage": false,
    "judge_pass": true,
    "judge_reason": "Полная Теорема 2.1, x_0>0, √a, обе оценки ошибки, корректное объяснение квадратичной сходимости.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "vision_refine_diverging_sgd",
@@ -359,7 +370,8 @@
    "garbage": false,
    "judge_pass": true,
    "judge_reason": "Корректный диагноз расхождения (|1−2η|>1, x→474.75) и рабочий шаг η=0.1 со сходимостью к 0.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "hashlib_demo",
@@ -383,7 +395,8 @@
    ],
    "answer": "SHA-256 хеш строки 'sigma' в шестнадцатеричном представлении:\n\n38de90475bb334fb3dea5d54f250500aba60fe2c6158115d342b06bcb46e39bf",
    "unexpected": [],
-   "garbage": false
+   "garbage": false,
+   "broken_formulas": 0
   },
   {
    "id": "linreg_simple",
@@ -407,7 +420,8 @@
    ],
    "answer": "Для заданных точек (1,2.1),(2,3.9),(3,6.2),(4,7.8) методом наименьших квадратов была подобрана линейная регрессия y=ax+b.\n\nКоэффициенты:\n\na=1.94\nb=0.15\n\nИтоговое уравнение: y=1.94x+0.15.\n\nНа графике ниже красными точками отмечены исходные данные, а синяя линия представляет полученную модель:\n\n!График линейной регрессии",
    "unexpected": [],
-   "garbage": false
+   "garbage": false,
+   "broken_formulas": 0
   },
   {
    "id": "out_of_scope_recipe",
@@ -432,7 +446,8 @@
    "garbage": false,
    "judge_pass": true,
    "judge_reason": "Отказал, предложил темы по Ньютону.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "rsa_history",
@@ -460,7 +475,8 @@
    "garbage": false,
    "judge_pass": true,
    "judge_reason": "1978, все трое, MIT — соответствует рубрике. Доп. факт про Кокса верен.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "greeting_minimal",
@@ -485,7 +501,8 @@
    "garbage": false,
    "judge_pass": false,
    "judge_reason": "643 знака: расписал идею метода, геометрию, условия сходимости — простыня, нарушает <150 и 'без длинных простыней'. Незачёт.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "euclid_gcd_python",
@@ -509,7 +526,8 @@
    ],
    "answer": "Для вычисления наибольшего общего делителя (НОД) алгоритм Евклида последовательно заменяет пару чисел (a,b) на (b,a(modb)), пока остаток не станет равен нулю.\n\nРезультаты расчёта:\n\nНОД(48, 180) = 12\nНОД(1071, 462) = 21\n\nТы сейчас находишься в главе Элементы теории чисел – Σ Сигма, где этот алгоритм подробно описан. В этой главе также рассматриваются:\n\nДеление с остатком.\nСвойства НОД.\nРасширенный алгоритм Евклида.",
    "unexpected": [],
-   "garbage": false
+   "garbage": false,
+   "broken_formulas": 0
   },
   {
    "id": "definition_superlinear",
@@ -536,7 +554,8 @@
    "garbage": false,
    "judge_pass": true,
    "judge_reason": "Точное определение 2.3, предел =0, верное пояснение.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "theorem_clt",
@@ -564,7 +583,8 @@
    "garbage": false,
    "judge_pass": true,
    "judge_reason": "Суть ЦПТ передана дословно как в источнике: нормированная сумма iid с конечной дисперсией стремится к нормальному; рубрика требует лишь суть.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "plot_sincos_overlay",
@@ -588,7 +608,8 @@
    ],
    "answer": "تانboxthought\nГрафики sin(x) и cos(x) на интервале [−2π,2π] построены. Ты сейчас находишься в главе «Метод Ньютона», где эти функции часто используются для демонстрации работы итерационных методов поиска корней.",
    "unexpected": [],
-   "garbage": false
+   "garbage": false,
+   "broken_formulas": 0
   },
   {
    "id": "fragment_explanation",
@@ -616,7 +637,8 @@
    "garbage": false,
    "judge_pass": false,
    "judge_reason": "Правильно отметил умножение vs деление и расходимость, но назвал формулу 'случайной комбинацией символов' — прямо противоречит рубрике (это осмысленный градиентный спуск на ½f²). Ключевую идею упустил.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "eigenvalues_numpy",
@@ -640,7 +662,8 @@
    ],
    "answer": "Собственные значения матрицы $\\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$ равны $3.0$ и $1.0$.",
    "unexpected": [],
-   "garbage": false
+   "garbage": false,
+   "broken_formulas": 0
   },
   {
    "id": "plot_loss_landscape",
@@ -664,7 +687,8 @@
    ],
    "answer": "thought\nТы уже находишься в главе «Линейная регрессия и метод наименьших квадратов – Σ Сигма».\n\nНа графике ниже представлены линии уровня функции потерь L(a,b) для заданных точек. Минимум функции, отмеченный красным крестиком, соответствует оптимальным параметрам прямой y=ax+b.\n\nМинимум функции: достигается в точке a=0.80, b=1.50.\nЗначение функции в минимуме: L=1.80.\n\nКонтуры функции потерь представляют собой эллипсы (в данном случае сильно вытянутые), что характерно для квадратичной формы, которую мы минимизируем в методе наименьших квадратов.",
    "unexpected": [],
-   "garbage": false
+   "garbage": false,
+   "broken_formulas": 0
   },
   {
    "id": "diffie_hellman_compute",
@@ -688,7 +712,8 @@
    ],
    "answer": "В протоколе Диффи–Хеллмана для параметров p=23, g=5 и выбранных секретных ключей a=6 (Алиса) и b=15 (Боб) вычисления проходят так:\n\nАлиса вычисляет открытый ключ A=g\na\n(modp)=5\n6\n(mod23)=8.\nБоб вычисляет открытый ключ B=g\nb\n(modp)=5\n15\n(mod23)=19.\nОбщий секрет s вычисляется обеими сторонами:\nАлиса: s=B\na\n(modp)=19\n6\n(mod23)=2.\nБоб: s=A\nb\n(modp)=8\n15\n(mod23)=2.\n\nОбщий секрет равен 2.\n\nТы сейчас находишься в главе Криптосистемы RSA и Диффи–Хеллмана, где подробно описаны:\n\nПринцип работы протокола Диффи–Хеллмана.\nМатематическая основа (дискретное возведение в степень).\nСтойкость протокола к атакам.",
    "unexpected": [],
-   "garbage": false
+   "garbage": false,
+   "broken_formulas": 0
   },
   {
    "id": "outline_chapter",
@@ -713,7 +738,8 @@
    "garbage": false,
    "judge_pass": false,
    "judge_reason": "Без инструмента выдуманы разделы (Постановка задачи, Геометрическая интерпретация, Алгоритм, Сходимость, Проблемы и ограничения) — ни один не совпадает с реальными заголовками ch02_newton. Галлюцинация.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "math_latex_derivation",
@@ -741,7 +767,8 @@
    "garbage": false,
    "judge_pass": true,
    "judge_reason": "Чёткий вывод: уравнение касательной → y=0 → верная формула (2.1).",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "definition_perceptron",
@@ -768,7 +795,8 @@
    "garbage": false,
    "judge_pass": true,
    "judge_reason": "Передаёт суть Определения 3.12: композиция L слоёв, линейное преобразование W,b + активация σ + softmax. Аффинное+нелинейное присутствует (описано словами). Утёкший преамбул не отменяет корректности по существу.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   },
   {
    "id": "refuse_unknown_year",
@@ -798,7 +826,8 @@
    "garbage": false,
    "judge_pass": true,
    "judge_reason": "Прямо опровергла предпосылку, указала Хестенеса и Штифеля 1952, год Гауссу не приписала.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "broken_formulas": 0
   }
  ]
 }
