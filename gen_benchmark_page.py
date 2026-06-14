@@ -32,6 +32,31 @@ DEAD_FRAC = 0.5   # >half the cases broken ⇒ infra-failed run, not a quality s
 GLYPH = {"pass": ("✓", "ok"), "fail": ("✕", "no"), "broken": ("⚠", "warn")}
 
 
+def is_raw_toolcall(a):
+    """A dumped, UNEXECUTED tool call left as the final answer. The agent loop
+    consumes only NATIVE tool_calls; a model that emits a textual/fenced tool call
+    in `content` dead-ends with the raw JSON/code shown as its 'answer'. That is a
+    protocol DNF (the harness failed to obtain a real answer), NOT the model
+    answering the question wrong — so it must count as broken, not fail."""
+    s = (a or "").strip()
+    if not s:
+        return False
+    low = s.lower()
+    tm = ('"type"' in s or '"query"' in s) and (
+        "search_textbook" in low or "read_chapter" in low
+        or "find_definition" in low or "find_theorem" in low or '"type"' in s)
+    if s.startswith("```json") and tm:
+        return True
+    if s[0] in "[{" and tm:
+        return True
+    if s.startswith("```python"):              # unexecuted code block as the whole answer
+        parts = s.split("```")
+        after = "```".join(parts[2:]).strip() if len(parts) > 2 else ""
+        if len(after) < 80:
+            return True
+    return False
+
+
 def esc(s):
     return html.escape(str(s if s is not None else ""))
 
@@ -68,6 +93,8 @@ def case_state(c):
         return "broken", "нет ответа"
     if alen < MIN_ANS:
         return "broken", "оборван"
+    if is_raw_toolcall(c.get("answer")):
+        return "broken", "сырой tool-call (протокол не выполнен)"
     return ("pass", "") if c.get("pass") else ("fail", "промах по ключу")
 
 
@@ -308,6 +335,9 @@ a{color:var(--accent)}
 #detail .ans table.sigma-tbl th{background:var(--card);font-weight:700}
 #detail .ans .katex-error{color:#b91c1c}
 #detail .ans hr{border:none;border-top:1px solid var(--line);margin:10px 0}
+#detail .ans .figs{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+#detail .ans .figs .figcap{font-size:12px;color:var(--mut);font-weight:600}
+#detail .ans .figs img.fig{max-width:100%;border:1px solid var(--line);border-radius:8px;background:#fff}
 #detail .x{position:absolute;top:10px;right:14px;cursor:pointer;width:40px;height:40px;border-radius:10px;font-size:22px;color:var(--mut);border:none;background:none;line-height:1}
 #detail .x:hover{background:#f1f5f9}
 @media(min-width:920px){
@@ -422,6 +452,17 @@ function openDetail(el){
   // assistant.js. Broken formulas → .katex-error (red); count & flag them, as a
   // malformed formula is a real model/agent defect worth surfacing.
   da.innerHTML = d.answer ? renderMarkdown(d.answer) : '(пустой ответ)';
+  // Agent-drawn figures (python/matplotlib → .sigma-figure), saved as base64
+  // with the run. Render them under the answer so a vision question's graph is
+  // actually visible in the drawer (not just counted).
+  if(d.figures && d.figures.length){
+    const fw=document.createElement('div'); fw.className='figs';
+    const cap=document.createElement('div'); cap.className='figcap';
+    cap.textContent='Графики, построенные агентом ('+d.figures.length+'):';
+    fw.appendChild(cap);
+    for(const src of d.figures){ const im=document.createElement('img'); im.className='fig'; im.src=src; im.loading='lazy'; fw.appendChild(im); }
+    da.appendChild(fw);
+  }
   const broken = da.querySelectorAll('.katex-error').length;
   if(broken) bits.push('⚠ битых формул: '+broken);
   document.getElementById('dm').textContent='Вопрос: '+d.q+'  ·  '+bits.join('  ·  ');
@@ -631,6 +672,7 @@ def build():
                 "model": short_model(m), "q": meta["question"], "cat": CAT_LABEL.get(meta["category"], meta["category"]),
                 "answer": c.get("answer", ""), "tools": c.get("tools", []), "missing": c.get("missing"),
                 "cost": c.get("cost"), "img": c.get("images", 0), "elapsed": c.get("elapsed", 0),
+                "figures": c.get("figures", []),
                 "state": st, "cause": cause,
             }
             A(f"<td><span class='cellmark {gcls}' data-k='{esc(key)}'>{g}</span></td>")
