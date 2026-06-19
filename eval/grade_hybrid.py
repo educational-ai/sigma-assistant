@@ -76,8 +76,14 @@ def main():
         for c in b["cases"]:
             case = cases.get(c["id"])
             cat = c.get("category", "?")
-            broken = int((bk.get(c["id"]) or {}).get("broken", 0))
+            gd = bk.get(c["id"]) or {}
+            broken = int(gd.get("broken", 0))
+            # Raw \(…\)/\[…\] delimiters the page won't render → reader sees raw
+            # LaTeX. Treated as a render defect on par with a broken $-formula.
+            raw_def = render_gate.raw_render_defective(
+                int(gd.get("dollar", 0)), int(gd.get("raw_unrendered", 0)))
             c["broken_formulas"] = broken
+            c["raw_unrendered"] = int(gd.get("raw_unrendered", 0))
             if case and cat in SEMANTIC:
                 jp, reason, judge = verdict_for(c["id"], model_short, c.get("answer", ""))
                 if jp is None:
@@ -104,6 +110,13 @@ def main():
                 c["pass"] = False
                 c["answer_match"] = False
                 note = f"⚠ {broken} битых формул (KaTeX не рендерит)"
+                c["judge_reason"] = (c.get("judge_reason") or "").strip()
+                c["judge_reason"] = (c["judge_reason"] + "; " + note).lstrip("; ") if c["judge_reason"] else note
+            # Raw-delimiter gate: math written in \(…\)/\[…\] shows raw on the page.
+            if raw_def and c.get("pass"):
+                c["pass"] = False
+                c["answer_match"] = False
+                note = f"⚠ {c['raw_unrendered']} формул в \\(…\\)/\\[…\\] — сайт рендерит только $/$$, читатель видит сырой LaTeX"
                 c["judge_reason"] = (c.get("judge_reason") or "").strip()
                 c["judge_reason"] = (c["judge_reason"] + "; " + note).lstrip("; ") if c["judge_reason"] else note
             d = by_cat.setdefault(cat, {"passed": 0, "total": 0})

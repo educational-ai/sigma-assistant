@@ -30,3 +30,7 @@ node_modules/
 # scratch
 /tmp/
 *.tmp
+
+# scratch (underscore-prefixed) + screenshot dirs
+_*
+eval/shots/

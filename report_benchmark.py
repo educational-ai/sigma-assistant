@@ -64,6 +64,24 @@ def main():
                          f"wf_adversarial_grade.js → persist_verdicts.py → grade_hybrid.py → regen")
     except Exception:
         pass
+
+    # Grader-health gate: surface any DEAD/STALE grading subsystem (a grader that
+    # was built but never run, or whose verdicts no longer match current answers).
+    # Without this, the board silently degrades to a cruder path and looks fine.
+    try:
+        import subprocess, json as _json
+        from pathlib import Path as _P
+        out = subprocess.run(["python3", str(_P(__file__).parent/"eval"/"bench_health.py"), "--json"],
+                             capture_output=True, text=True, timeout=30)
+        h = _json.loads(out.stdout or "{}")
+        bads = [s for s in h.get("subsystems", []) if s.get("state") in ("DEAD", "STALE")]
+        if bads:
+            lines.append("")
+            lines.append("🩺 *Грейдеры (build≠run):* " + ", ".join(
+                f"{s['subsystem']}={s['state']} ({s.get('fresh',0)}/{s.get('need',0)})" for s in bads))
+    except Exception:
+        pass
+
     if dead:
         lines.append("")
         lines.append(f"⚰️ *Мёртвые (инфра-фейл, вне лидерборда):* " +

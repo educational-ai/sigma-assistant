@@ -91,7 +91,10 @@ def case_state(c):
     alen = len((c.get("answer") or "").strip())
     if c.get("no_answer") or alen == 0:
         return "broken", "нет ответа"
-    if alen < MIN_ANS:
+    # A short answer the grader PASSED is a valid terse reply ("c = 6", "Привет! Чем
+    # могу помочь?"), NOT a truncated огрызок — don't punish brevity. Only short AND
+    # failed answers are treated as broken, where the brevity likely means truncation.
+    if alen < MIN_ANS and not c.get("pass"):
         return "broken", "оборван"
     if is_raw_toolcall(c.get("answer")):
         return "broken", "сырой tool-call (протокол не выполнен)"
@@ -152,7 +155,7 @@ def short_model(m):
     return m.replace(":free", " ·free").split("/")[-1]
 
 
-def scatter_svg(order, summ):
+def scatter_svg(order, scoremap):
     """Inline SVG cost-vs-quality scatter (no JS/deps). x = стоимость ПРОГОНА
     (total_cost_usd, log), y = clean-rate. Decision is made per full run, not
     per question, so the axis is the whole-run cost. The Pareto frontier is
@@ -163,7 +166,7 @@ def scatter_svg(order, summ):
         cq = b.get("total_cost_usd")
         if cq is None or cq <= 0:
             continue
-        pts.append((cq, summ[b["model"]]["rate"], short_model(b["model"])))
+        pts.append((cq, scoremap[b["model"]], short_model(b["model"])))
     if len(pts) < 2:
         return ""
     # number every model by leaderboard rank; the number is shown in the dot AND in the
@@ -338,6 +341,9 @@ a{color:var(--accent)}
 #detail .ans .figs{margin-top:12px;display:flex;flex-direction:column;gap:8px}
 #detail .ans .figs .figcap{font-size:12px;color:var(--mut);font-weight:600}
 #detail .ans .figs img.fig{max-width:100%;border:1px solid var(--line);border-radius:8px;background:#fff}
+#detail .ans figure.figref{margin:8px 0;display:flex;flex-direction:column;gap:4px}
+#detail .ans figure.figref img{max-width:100%;border:1px solid var(--line);border-radius:8px;background:#fff}
+#detail .ans .figcap{font-size:12px;color:var(--mut);line-height:1.4}
 #detail .x{position:absolute;top:10px;right:14px;cursor:pointer;width:40px;height:40px;border-radius:10px;font-size:22px;color:var(--mut);border:none;background:none;line-height:1}
 #detail .x:hover{background:#f1f5f9}
 @media(min-width:920px){
@@ -400,6 +406,16 @@ function renderMarkdown(md){
   }
   closeList();
   s=out.join("\n");
+  // Images first: real ones (book figures /figures/…, http(s), data:) render inline;
+  // the model's invented placeholder refs (png://, media://, sandbox:, attachment:, bare
+  // names) become a caption, not a broken "!"+link.
+  s=s.replace(/!\[([^\]\n]*)\]\(([^()\s]+)\)/g,(_,alt,u)=>{
+    if(/^(https?:\/\/|data:image\/|\/)/.test(u)){
+      const cap=alt?'<figcaption class="figcap">'+alt+'</figcaption>':'';
+      return '<figure class="figref"><img src="'+u+'" loading="lazy">'+cap+'</figure>';
+    }
+    return alt?'<span class="figcap">🖼 '+alt+'</span>':'';
+  });
   s=s.replace(/\[([^\]\n]+)\]\(([^()\s]+)\)/g,(_,t,u)=>{
     const external=/^https?:\/\//.test(u)&&!/sigma\.fmin\.xyz/.test(u);
     const tgt=external?' target="_blank" rel="noopener"':'';
@@ -407,8 +423,8 @@ function renderMarkdown(md){
   });
   s=s.replace(/\*\*([^*\n]+)\*\*/g,"<strong>$1</strong>");
   s=s.replace(/(?<!\w)\*([^*\n]+)\*(?!\w)/g,"<em>$1</em>");
-  const BLOCK=/^<(h[1-6]|ul|ol|li|hr|blockquote|pre|table|tr|td|th|thead|tbody|p|div)/i;
-  const BLOCK_END=/^<\/(h[1-6]|ul|ol|li|hr|blockquote|pre|table|tr|td|th|thead|tbody|p|div)/i;
+  const BLOCK=/^<(h[1-6]|ul|ol|li|hr|blockquote|pre|table|tr|td|th|thead|tbody|p|div|figure|figcaption)/i;
+  const BLOCK_END=/^<\/(h[1-6]|ul|ol|li|hr|blockquote|pre|table|tr|td|th|thead|tbody|p|div|figure|figcaption)/i;
   const finalLines=s.split("\n");
   const result=[];
   let para=[];
@@ -515,7 +531,28 @@ def build():
     dead = [b for b in benches if summ[b["model"]]["dead"]]
     if not live:                       # degenerate: everything failed
         live, dead = benches, []
-    order = sorted(live, key=lambda b: -summ[b["model"]]["rate"])  # best clean-rate first
+
+    # THE score: one blended continuous number over ALL cases — semantic cases get a
+    # per-criterion rubric score (0..1), compute/plot cases the deterministic 0/1
+    # (grade_rubric.py). This is the headline metric, the ranking key, AND the y-axis
+    # of the cost↔quality plot. Falls back to binary clean-rate only if a run has no
+    # rubric score yet.
+    def score_of(b):
+        # ONE score over the WHOLE question set: each answer earns weighted rubric points
+        # (semantic cases by criteria met/partial/none; compute cases 0/1), summed and
+        # divided by ALL questions. A model that just won't answer under a correct run
+        # scores 0 on that question (not excluded) — the eval retries to get an answer;
+        # if it still can't, 0 stands. Denominator is always the full set.
+        cases = b["cases"]
+        tot = 0.0
+        for c in cases:
+            if case_state(c)[0] == "broken":
+                tot += 0.0                      # no usable answer → 0 for that question
+            else:
+                rs = c.get("rubric_score")
+                tot += rs if rs is not None else (1.0 if c.get("pass") else 0.0)
+        return tot / (len(cases) or 1)
+    order = sorted(live, key=lambda b: -score_of(b))  # best score first
     multi = len(live) > 1
 
     has_cost = any(b.get("total_cost_usd") is not None for b in live)
@@ -540,17 +577,13 @@ def build():
     top = order[0]
     s0 = summ[top["model"]]
     if multi:
-        # Honest: don't crown a single winner on a tie. List ALL models that
-        # share the best clean-rate (cheapest first), so a tie reads as a tie.
-        best = s0["clean"]
-        tied = sorted((b for b in order if summ[b["model"]]["clean"] == best),
-                      key=lambda b: b.get("total_cost_usd") or 0)
-        names = ", ".join(f"<b>{esc(short_model(b['model']))}</b>" for b in tied)
-        word = "Лучший результат" if len(tied) > 1 else "Лучшая"
-        lead = (f"{word} среди {len(live)} {plural(len(live),('модели','моделей','моделей'))} — "
-                f"{best}/{s0['n']} чисто: {names}.")
+        # Crown by the continuous score — it breaks the 28/29 ties the binary count can't.
+        top_score = score_of(top)
+        lead = (f"Лучший <b>score</b> среди {len(live)} "
+                f"{plural(len(live),('модели','моделей','моделей'))} — "
+                f"<b>{esc(short_model(top['model']))}</b> ({top_score*100:.0f}%).")
     else:
-        lead = f"<b>{esc(short_model(top['model']))}</b> — {s0['clean']}/{s0['n']} задач чисто."
+        lead = f"<b>{esc(short_model(top['model']))}</b> — score {score_of(top)*100:.0f}%."
     prov = " · <b class=prov>предварительный прогон</b>" if provisional else ""
     A(f"<p class=sub>Тот же агент, что на сайте — меняется <b>только модель</b>. {lead} "
       f"{len(qorder)} {plural(len(qorder),('вопрос','вопроса','вопросов'))} · "
@@ -558,11 +591,11 @@ def build():
 
 
     # ---- Leaderboard table FIRST (the hero) ----
-    lead_clean = max((summ[b["model"]]["clean"] for b in order), default=-1)
+    lead_score = max((score_of(b) for b in order), default=-1)
     A(f"<h2 style='margin-top:24px'>Лидерборд <span class=muted style='font-weight:400;font-size:14px'>"
-      f"— чисто пройдено из {len(qorder)}, лидер выделен</span></h2>")
+      f"— по непрерывному score (0–100&nbsp;%), лидер выделен</span></h2>")
     A("<div class=scroll><table><thead><tr>")
-    A("<th class=rk>#</th><th class=l>Модель</th><th>Чисто</th><th>Промах</th><th>Оборвано</th><th>Время (медиана / макс)</th>")
+    A("<th class=rk>#</th><th class=l>Модель</th><th>Score</th><th>Чисто</th><th>Время (медиана / макс)</th>")
     if has_cost:
         A("<th>$ всего</th><th>$ / вопрос</th>")
     if has_tok:
@@ -571,13 +604,14 @@ def build():
     medal = {1: "🥇", 2: "🥈", 3: "🥉"}
     for i, b in enumerate(order, 1):
         m = b["model"]; s = summ[m]
-        A(f"<tr class={'lead' if s['clean'] == lead_clean else ''}>")
+        A(f"<tr class={'lead' if score_of(b) == lead_score else ''}>")
         A(f"<td class=rk>{medal.get(i, i)}</td>")
         A(f"<td class='l model'>{esc(short_model(m))}<div class=pill>{esc(m)}</div></td>")
+        # THE score first (ranking metric): weighted rubric points over ALL questions.
+        sc = score_of(b)
+        A(f"<td><span class=rate style='background:{heat_bg(sc)}'><b>{sc*100:.0f}%</b></span></td>")
         A(f"<td><span class=rate style='background:{heat_bg(s['rate'])}'>{s['clean']}/{s['n']}</span>"
           f"<div class=muted style='font-size:12px'>{s['rate']*100:.0f}%</div></td>")
-        A(f"<td class={'no' if s['fail'] else 'muted'}>{s['fail'] or '—'}</td>")
-        A(f"<td class={'warn' if s['broken'] else 'muted'}>{s['broken'] or '—'}</td>")
         A(f"<td class=muted>{s['median']:.0f} с / {s['max']:.0f} с</td>")
         if has_cost:
             A(f"<td class=cost><b>{money(b.get('total_cost_usd'), 4)}</b></td>")
@@ -588,14 +622,22 @@ def build():
             A(f"<td class='muted cost'>{pin:,}/{pout:,}</td>")
         A("</tr>")
     A("</tbody></table></div>")
+    A("<div class=note style='margin-top:10px'><b>Score</b> — один непрерывный показатель 0–100&nbsp;%: "
+      "каждый ответ набирает взвешенные баллы по критериям рубрики (met / partial / none, "
+      "<b>critical</b>-гейт: галлюцинация факта → 0). Смысловые кейсы оценивают состязательные "
+      "Claude-судьи (судья → адверсариальный рефутер → аудит), расчётные и графики — детерминированный "
+      "код-грейдинг (0/1). Сумма баллов делится на <b>все вопросы</b>. Если модель при корректном "
+      "запуске так и не выдала ответ (после ретраев) — это <b>0</b> за этот вопрос, а не вычёркивание. "
+      "По этому score ранжируем и строим график «score ↔ стоимость». «Чисто» (бинарное из "
+      f"{len(qorder)}) оставлено для сравнения.</div>")
 
     # ---- Cost vs quality scatter (under the leaderboard) ----
     if multi and has_cost:
-        svg = scatter_svg(order, summ)
+        svg = scatter_svg(order, {b["model"]: score_of(b) for b in order})
         if svg:
-            A("<h2>Цена и качество <span class=muted style='font-weight:400;font-size:14px'>"
-              "— чем выше и левее, тем лучше; пунктир — граница Парето (синие точки), "
-              "номера на точках = модели в легенде ниже</span></h2>")
+            A("<h2>Score ↔ стоимость <span class=muted style='font-weight:400;font-size:14px'>"
+              "— ось Y = score (0–100&nbsp;%), ось X = стоимость прогона; выше и левее тем лучше; "
+              "пунктир — граница Парето (синие точки), номера на точках = модели в легенде ниже</span></h2>")
             A(f"<div class=scroll>{svg}</div>")
 
     # Infra-failed runs (dead) are simply omitted — no "didn't qualify" note (noise).

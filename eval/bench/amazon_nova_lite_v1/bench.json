@@ -6,16 +6,18 @@
   "text_model": "amazon/nova-lite-v1",
   "vision_model": "amazon/nova-lite-v1"
  },
- "ran_at": 1781047842.6172836,
+ "ran_at": 1781105737.799531,
  "n": 29,
- "passed": 22,
- "pass_rate": 0.7586,
- "total_cost_usd": 0.037009,
- "cost_per_q_usd": 0.001276,
- "avg_elapsed_s": 28.3,
+ "passed": 20,
+ "answered": 29,
+ "no_answer": 0,
+ "pass_rate": 0.6897,
+ "total_cost_usd": 0.038305,
+ "cost_per_q_usd": 0.001321,
+ "avg_elapsed_s": 22.8,
  "by_category": {
   "rag_basic": {
-   "passed": 3,
+   "passed": 5,
    "total": 5
   },
   "definition": {
@@ -23,7 +25,7 @@
    "total": 3
   },
   "compute_pure": {
-   "passed": 7,
+   "passed": 5,
    "total": 8
   },
   "compute_plot": {
@@ -31,11 +33,11 @@
    "total": 5
   },
   "multi_hop": {
-   "passed": 0,
+   "passed": 1,
    "total": 1
   },
   "structural": {
-   "passed": 3,
+   "passed": 2,
    "total": 3
   },
   "vision_refine": {
@@ -43,7 +45,7 @@
    "total": 1
   },
   "out_of_scope": {
-   "passed": 2,
+   "passed": 1,
    "total": 3
   }
  },
@@ -62,18 +64,61 @@
     "read_chapter"
    ],
    "images": 0,
-   "elapsed": 6.9,
-   "cost": 0.001036,
-   "prompt_tokens": 14882,
-   "completion_tokens": 596,
+   "elapsed": 6.3,
+   "cost": 0.00113,
+   "prompt_tokens": 17373,
+   "completion_tokens": 365,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "Леонид Витальевич Канторович получил Нобелевскую премию по экономике в 1975 году за теорию оптимального распределения ресурсов. В 1948 году он опубликовал теорему, носящую его имя, которая впервые дала универсальные достаточные условия сходимости метода Ньютона, не только для уравнений с одной переменной, но и для уравнений в бесконечномерных банаховых пространствах.\n\nВот цитата из главы \"Метод Ньютона\":\n\nСущественный вклад в строгое исследование метода внёс советский математик Леонид Витальевич Канторович (1912–1986), лауреат Нобелевской премии по экономике 1975 г. (за теорию оптимального распределения ресурсов). В 1948 г. он опубликовал теорему, носящую теперь его имя: она впервые дала универсальные достаточные условия сходимости метода Ньютона, причём не только для уравнений с одной переменной, но и для уравнений в бесконечномерных банаховых пространствах.",
+   "answer": "Леонид Витальевич Канторович получил Нобелевскую премию по экономике в 1975 году за теорию оптимального распределения ресурсов.",
+   "no_answer": false,
+   "broken_formulas": 0,
    "judge_pass": true,
-   "judge_reason": "1975, Нобель по экономике за теорию оптимального распределения ресурсов; 1948 корректно отделено как год теоремы.",
+   "judge_reason": "1975, экономика, за теорию оптимального распределения ресурсов. Точно.",
    "judge": "adversarial-workflow-final",
-   "broken_formulas": 0
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 1.0,
+   "rubric_capped": false,
+   "rubric_detail": [
+    {
+     "id": "year_1975",
+     "level": "met",
+     "weight": 3,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "economics_resources",
+     "level": "met",
+     "weight": 2,
+     "critical": false,
+     "auto": null
+    },
+    {
+     "id": "no_false_attribution",
+     "level": "met",
+     "weight": 3,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "tools_expected",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": "tool_expected"
+    },
+    {
+     "id": "style",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    }
+   ]
   },
   {
    "id": "newton_formula_recall",
@@ -83,26 +128,63 @@
    "tool_match": true,
    "answer_match": true,
    "visual_match": true,
-   "missing": [],
+   "missing": [
+    "пересечен"
+   ],
    "tools": [
-    "read_chapter",
-    "read_chapter",
     "find_definition",
-    "find_theorem"
+    "read_chapter",
+    "search_textbook"
    ],
    "images": 0,
-   "elapsed": 10.0,
-   "cost": 0.001802,
-   "prompt_tokens": 25283,
-   "completion_tokens": 1186,
+   "elapsed": 10.4,
+   "cost": 0.001478,
+   "prompt_tokens": 21068,
+   "completion_tokens": 891,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "<thinking>Я нашел теорему о сверхлинейной сходимости метода Ньютона, но это не формула метода. Я должен процитировать теорему и объяснить её геометрическую идею.</thinking>\n\nМетод Ньютона использует формулу для нахождения корней функции. Она основана на геометрической идее касательной к графику функции в точке, где ищется корень.\n\nТеорема 2.5. Сверхлинейная сходимость метода Ньютона\n\nПусть выполнено хотя бы одно из условий:\n\n>\n\n1. (уравнение) f∈C\n2\n в окрестности точки x\n∗\n, f(x\n∗\n)=0 и f′(x\n∗\n)\n\n=0;\n2. (сильно выпуклая оптимизация) g∈C\n3\n, g — сильно выпуклая на интервале, содержащем точку минимума x\n∗\n, и применяется итерация (2.2).\n\n>\n\nТогда существуют δ>0 и M>0 такие, что для всякого x\n0\n\t​\n\n∈(x\n∗\n−δ,x\n∗\n+δ) итерации Ньютона определены и\n\n>\n\n\\n∣x\nk+1\n\t​\n\n−x\n∗\n∣\nleqM∣x\nk\n\t​\n\n−x\n∗\n∣\n2\n.\n(2.8)\n\n>\n\nВ частности, сходимость квадратичная (а значит, сверхлинейная).\n\nГеометрическая идея:\n\nМетод Ньютона использует касательную к графику функции в текущей точке для нахождения следующей точки. Касательная представляет собой линейную аппроксимацию функции в этой точке, и её пересечение с осью абсцисс дает новую точку. Эта процедура повторяется, пока не будет достигнута достаточная точность. Геометрически, это соответствует нахождению корня функции путем последовательного приближения к нему по касательным.",
+   "answer": "<thinking>Я нашел формулу метода Ньютона в главе. Теперь я должен процитировать формулу и объяснить геометрическую идею из главы.</thinking>\n\n**Метод Ньютона** — это итерационный метод для нахождения корней функции. Формула метода Ньютона выглядит так:\n\n$$\nx_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}\n$$\n\nГеометрическая идея метода Ньютона заключается в том, что мы приближаемся к корню функции, находя касательные к графику функции в точках, где мы находимся. Касательная в каждой точке пересекает ось абсцисс в точке, которая является следующим приближением к корню. Этот процесс повторяется, пока не достигнута достаточная точность.\n\n<thinking>Теперь я должен процитировать формулу и объяснить геометрическую идею из главы.</thinking>\n\n**Формула метода Ньютона:**\n\n$$\nx_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}\n$$\n\n**Геометрическая идея:**\n\nМетод Ньютона основан на идее использования касательных к графику функции для приближения к корню. Касательная в каждой точке пересекает ось абсцисс в точке, которая является следующим приближением к корню. Этот процесс повторяется, пока не достигнута достаточная точность.",
+   "no_answer": false,
+   "broken_formulas": 0,
    "judge_pass": true,
-   "judge_reason": "Несмотря на нерелевантную цитату теоремы о сходимости, геометрическая суть изложена верно: касательная как линейная аппроксимация, пересечение с осью x даёт следующую точку, итерации. Соответствует рубрике.",
+   "judge_reason": "Суть верна: метод касательных для f(x)=0, касательная пересекает ось в x_{n+1}. Ключевая формула в $$ рендерится (render-gate: broken=0). Минусы стиля: дублирование и протёкшие теги <thinking>, но суть корректна.",
    "judge": "adversarial-workflow-final",
-   "broken_formulas": 0
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 0.9286,
+   "rubric_capped": false,
+   "rubric_detail": [
+    {
+     "id": "names_newton",
+     "level": "met",
+     "weight": 2,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "tangent_intersection",
+     "level": "met",
+     "weight": 3,
+     "critical": false,
+     "auto": null
+    },
+    {
+     "id": "no_error",
+     "level": "met",
+     "weight": 1,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "style",
+     "level": "partial",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    }
+   ]
   },
   {
    "id": "definition_strong_convex",
@@ -117,18 +199,61 @@
     "find_definition"
    ],
    "images": 0,
-   "elapsed": 5.2,
-   "cost": 0.000839,
-   "prompt_tokens": 11829,
-   "completion_tokens": 539,
+   "elapsed": 5.8,
+   "cost": 0.000819,
+   "prompt_tokens": 11830,
+   "completion_tokens": 454,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "Сильно выпуклая функция с константой μ>0 определяется следующим образом:\n\nОпределение 2.4. Сильно выпуклая функция\nФункция g:R→R называется сильно выпуклой с константой μ>0, если g∈C\n2\n и g\n′′\n(x)≥μ для всех x. Сильная выпуклость гарантирует существование и единственность точки минимума и, что важно для нас, отделённость второй производной от нуля.\n\nЭто означает, что функция g является сильно выпуклой, если она дважды дифференцируема (g∈C\n2\n) и её вторая производная g\n′′\n(x) не меньше положительной константы μ для всех значений x. Эта условие гарантирует, что функция имеет единственную точку минимума и что вторая производная отличается от нуля.\n\nСсылка на полный текст: Определение 2.4. Сильно выпуклая функция",
+   "answer": "Из учебника:\n\n> **Определение 2.4. Сильно выпуклая функция**\n> Функция $g\\colon\\mathbb{R}\\to\\mathbb{R}$ называется **сильно выпуклой** с константой $\\mu>0$, если $g\\in C^{2}$ и $g''(x)\\geq\\mu$ для всех $x$. Сильная выпуклость гарантирует существование и единственность точки минимума и, что важно для нас, отделённость второй производной от нуля.\n\nТо есть, функция называется сильно выпуклой, если она дважды дифференцируема и её вторая производная больше или равна положительной константы $\\mu$ для всех значений $x$. Это свойство гарантирует существование и единственность точки минимума функции, а также то, что вторая производная не обращается в нуль нигде.",
+   "no_answer": false,
+   "broken_formulas": 0,
    "judge_pass": true,
-   "judge_reason": "Формальное определение: g∈C², g''(x)≥μ, μ>0. Соответствует рубрике.",
+   "judge_reason": "Точное определение 2.4: g∈C², g''(x)≥μ>0. Формулы корректны, LaTeX валиден.",
    "judge": "adversarial-workflow-final",
-   "broken_formulas": 0
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 1.0,
+   "rubric_capped": false,
+   "rubric_detail": [
+    {
+     "id": "condition_g2_geq_mu",
+     "level": "met",
+     "weight": 3,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "c2_smoothness",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    },
+    {
+     "id": "no_wrong_def",
+     "level": "met",
+     "weight": 1,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "tools_expected",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": "tool_expected"
+    },
+    {
+     "id": "style",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    }
+   ]
   },
   {
    "id": "compute_factorial",
@@ -143,15 +268,20 @@
     "python"
    ],
    "images": 0,
-   "elapsed": 12.9,
-   "cost": 0.000774,
-   "prompt_tokens": 11709,
-   "completion_tokens": 296,
+   "elapsed": 14.2,
+   "cost": 0.000506,
+   "prompt_tokens": 7868,
+   "completion_tokens": 140,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
    "answer": "30 факториал равен 265252859812191058636308480000000.",
-   "broken_formulas": 0
+   "no_answer": false,
+   "broken_formulas": 0,
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 1.0
   },
   {
    "id": "compute_taylor_sin",
@@ -162,34 +292,65 @@
    "answer_match": false,
    "visual_match": true,
    "missing": [
-    "6",
     "120"
    ],
    "tools": [
-    "python",
-    "python",
-    "python",
-    "python",
-    "python",
-    "python",
-    "python",
     "python"
    ],
    "images": 0,
-   "elapsed": 180.7,
-   "cost": 0.002571,
-   "prompt_tokens": 37861,
-   "completion_tokens": 1249,
+   "elapsed": 14.5,
+   "cost": 0.000548,
+   "prompt_tokens": 7943,
+   "completion_tokens": 296,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "Не сошёлся на ответ за отведённые шаги. Попробуй переформулировать.",
-   "broken_formulas": 0
+   "answer": "Разложение функции $\\sin(x)$ в ряд Тейлора до 5-го члена символически выглядит следующим образом:\n\n$$x - \\frac{x^3}{6} + O(x^5)$$\n\nЭто означает, что ряд Тейлора для $\\sin(x)$ начинается с членов $x$ и $-\\frac{x^3}{6}$, а остальные члены ряда порядка $O(x^5)$ и выше не учитываются в этом приближении.",
+   "no_answer": false,
+   "broken_formulas": 0,
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 0.0
   },
   {
    "id": "compute_plot_newton",
    "category": "compute_plot",
    "question": "Покажи как сходится метод Ньютона для f(x) = x² - 2, начиная с x₀ = 1.5. Построй график траектории.",
+   "pass": false,
+   "tool_match": true,
+   "answer_match": false,
+   "visual_match": true,
+   "missing": [
+    "1.41",
+    "корн"
+   ],
+   "tools": [
+    "python",
+    "python",
+    "python",
+    "python"
+   ],
+   "images": 2,
+   "elapsed": 26.9,
+   "cost": 0.001967,
+   "prompt_tokens": 24976,
+   "completion_tokens": 1952,
+   "models_used": [
+    "amazon/nova-lite-v1"
+   ],
+   "answer": "<thinking>Похоже, что график уже был создан и показан ранее. Я предоставлю его студенту в формате PNG.</thinking>\n\nВот график сходимости метода Ньютона для функции f(x) = x² - 2, начиная с начальной точки x₀ = 1.5:\n\n![Сходимость метода Ньютона](attachment:image.png)",
+   "no_answer": false,
+   "broken_formulas": 0,
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 0.0
+  },
+  {
+   "id": "compute_plot_gd_vs_newton",
+   "category": "compute_plot",
+   "question": "Сравни сходимость метода Ньютона и градиентного спуска на функции f(x) = x⁴ из x₀ = 2. Покажи два графика на одной картинке.",
    "pass": true,
    "tool_match": true,
    "answer_match": true,
@@ -199,49 +360,21 @@
     "python",
     "python"
    ],
-   "images": 2,
-   "elapsed": 19.8,
-   "cost": 0.001088,
-   "prompt_tokens": 13368,
-   "completion_tokens": 1190,
-   "models_used": [
-    "amazon/nova-lite-v1"
-   ],
-   "answer": "<thinking>Код был успешно выполнен, и график был сохранён в файле 'newton_convergence.png'. Теперь я могу предоставить график студенту.</thinking>\n\nВот график сходимости метода Ньютона для функции f(x) = x² - 2, начиная с x₀ = 1.5. На графике показана траектория сходимости, то есть как значение x меняется с каждой итерацией метода Ньютона. График показывает, что метод Ньютона быстро сходится к корню функции, который близок к √2 ≈ 1.41.\n\n!Сходимость метода Ньютона",
-   "broken_formulas": 0
-  },
-  {
-   "id": "compute_plot_gd_vs_newton",
-   "category": "compute_plot",
-   "question": "Сравни сходимость метода Ньютона и градиентного спуска на функции f(x) = x⁴ из x₀ = 2. Покажи два графика на одной картинке.",
-   "pass": false,
-   "tool_match": true,
-   "answer_match": false,
-   "visual_match": true,
-   "missing": [
-    "Ньютон",
-    "градиент"
-   ],
-   "tools": [
-    "python",
-    "python",
-    "python",
-    "python",
-    "python",
-    "python",
-    "python",
-    "python"
-   ],
    "images": 1,
-   "elapsed": 181.2,
-   "cost": 0.005299,
-   "prompt_tokens": 59498,
-   "completion_tokens": 7206,
+   "elapsed": 61.6,
+   "cost": 0.004981,
+   "prompt_tokens": 66499,
+   "completion_tokens": 4128,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "Не сошёлся на ответ за отведённые шаги. Попробуй переформулировать.",
-   "broken_formulas": 0
+   "answer": "<thinking>График был успешно создан и сохранен в файле. Теперь я могу предоставить студенту график для сравнения сходимости метода Ньютона и градиентного спуска.</thinking>\n\n<result>\nГрафик был успешно создан и сохранен в файле `comparison_newton_gradient_descent.png`. Вы можете скачать его по [ссылке](sandbox:/comparison_newton_gradient_descent.png).\n\nНа графике показаны две линии:\n- **Красные точки** представляют траекторию градиентного спуска.\n- **Синие точки** представляют траекторию метода Ньютона.\n\nАнализ графика показывает, что метод Ньютона быстрее сходится к минимуму функции f(x) = x⁴ из начального приближения x₀ = 2 по сравнению с градиентным спуском.\n</result>",
+   "no_answer": false,
+   "broken_formulas": 0,
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 1.0
   },
   {
    "id": "rsa_encrypt_small",
@@ -256,15 +389,20 @@
     "python"
    ],
    "images": 0,
-   "elapsed": 15.3,
-   "cost": 0.000529,
-   "prompt_tokens": 7934,
-   "completion_tokens": 220,
+   "elapsed": 17.3,
+   "cost": 0.000522,
+   "prompt_tokens": 7939,
+   "completion_tokens": 191,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "Зашифрованное число \\( c \\) равно 6.\n\nВот как это было вычислено:\n\nc=m\ne\nmodn\n\n\nc=7\n7\nmod143\n\n\nc=823543mod143\n\n\nc=6\n\nТаким образом, зашифрованное число \\( c \\) равно 6.",
-   "broken_formulas": 0
+   "answer": "Мы зашифровали число 7 с помощью ключа (n=143, e=7) и получили результат:\n\n$$\nc = 6.00\n$$\n\nЭто значит, что зашифрованное сообщение равно 6.00.",
+   "no_answer": false,
+   "broken_formulas": 0,
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 1.0
   },
   {
    "id": "rsa_full_roundtrip",
@@ -279,15 +417,20 @@
     "python"
    ],
    "images": 0,
-   "elapsed": 15.9,
-   "cost": 0.000901,
-   "prompt_tokens": 12144,
-   "completion_tokens": 717,
+   "elapsed": 16.5,
+   "cost": 0.00089,
+   "prompt_tokens": 12125,
+   "completion_tokens": 678,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "Мы сгенерировали RSA-ключ и продемонстрировали его работу для малых чисел:\n\nВычислили n=p×q=11×13=143.\nВычислили φ(n)=(p−1)×(q−1)=120.\nВыбрали e=7 (такое, что gcd(e,φ(n))=1).\nНашли d такое, что d×e≡1 (mod φ(n)). В данном случае d=103.\nДля m=9 выполнили шифрование c=m\ne\n (mod n)=48.\nДля расшифровки m=c\nd\n (mod n)=9.\n\nТаким образом, для m=9 шифрование и расшифрование возвращают исходное число.",
-   "broken_formulas": 0
+   "answer": "Мы сгенерировали RSA-ключ с помощью Python и проверили, что шифрование и расшифрование возвращают исходное число для m=9.\n\n1. Вычисленные значения:\n   - $n = 143$\n   - $\\varphi(n) = 120$\n   - $d = 103$\n\n2. Шифрование и расшифрование:\n   - Исходное число $m = 9$\n   - Зашифрованное число $c = 48$\n   - Расшифрованное число (возвращает исходное) $decrypted\\_m = 9$\n\nТаким образом, мы показали, что для $m=9$ шифрование и расшифрование возвращают исходное число.",
+   "no_answer": false,
+   "broken_formulas": 0,
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 1.0
   },
   {
    "id": "multihop_newton_vs_gradient",
@@ -302,22 +445,64 @@
     "find_definition",
     "find_definition",
     "search_textbook",
-    "search_textbook",
     "search_textbook"
    ],
    "images": 0,
-   "elapsed": 6.8,
-   "cost": 0.001654,
-   "prompt_tokens": 24903,
-   "completion_tokens": 666,
+   "elapsed": 10.1,
+   "cost": 0.001716,
+   "prompt_tokens": 23611,
+   "completion_tokens": 1247,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "<thinking>Поиск повторялся, и результат был пустой. Градиентный спуск не разобран в учебнике. Теперь нужно дать общее объяснение различий между методом Ньютона и градиентным спуском.</thinking>\n\n<answer>\nМетод Ньютона и градиентный спуск — это два разных метода оптимизации. Метод Ньютона использует информацию о второй производной функции для нахождения минимума. Он быстрее сходится, чем градиентный спуск, но требует больше вычислений. Градиентный спуск же использует только информацию о первой производной функции и является более простым, но медленным методом. В учебнике разобран только метод Ньютона, а градиентный спуск не упоминается.\n</answer>",
-   "judge_pass": false,
-   "judge_reason": "Различие g''/g' передано, но ложно утверждает, что GD не упоминается в учебнике (на деле story_optimizers покрывает GD), и глава Ньютона (ch02/гл.2) не названа. Фактическая ошибка + пропуск требования рубрики.",
+   "answer": "<thinking>Градиентный спуск разбирается в главе \"Как методы спускаются с горы: GD, momentum, Adam\" (slug=\"story_optimizers\"). Теперь я могу сравнить метод Ньютона и градиентный спуск, так как оба метода разобраны в учебнике.</thinking>\n\n<thinking>Для сравнения я приведу ключевые различия между методом Ньютона и градиентным спуском:</thinking>\n\n## Метод Ньютона vs Градиентный спуск\n\n### Метод Ньютона\n- **Использует вторую производную**: Метод Ньютона использует вторую производную функции для определения шага. Это позволяет ему быть более точным в определении минимума.\n- **Быстрая сходимость**: Метод Ньютона имеет квадратическую сходимость вблизи минимума, что значительно ускоряет процесс оптимизации.\n- **Требует больше вычислений**: Вычисление второй производной требует больше вычислительных ресурсов, чем просто вычисление градиента.\n\n### Градиентный спуск\n- **Использует первую производную**: Градиентный спуск использует первую производную (градиент) функции для определения шага.\n- **Простая реализация**: Градиентный спуск легче для реализации, так как требует только вычисление градиента.\n- **Линейная сходимость**: Градиентный спуск имеет линейную сходимость, что значительно медленнее, чем квадратическая сходимость метода Ньютона.\n\n### Сравнение\n- **Скорость сходимости**: Метод Ньютона быстрее сходится, чем градиентный спуск, особенно вблизи минимума.\n- **Сложность вычислений**: Метод Ньютона требует больше вычислений, так как нужно вычислять вторую производную.\n- **Применимость**: Градиентный спуск более универсален и легче для реализации, что делает его более популярным в практических задачах.\n\n<thinking>Теперь я могу заключить, что оба метода разобраны в учебнике, и студент может найти более подробную информацию в соответствующих главах.</thinking>\n\nВот ссылки на главы, где разбираются эти методы:\n- [Метод Ньютона](/ch02_newton.html)\n- [Градиентный спуск](/story_optimizers.html)",
+   "no_answer": false,
+   "broken_formulas": 0,
+   "judge_pass": true,
+   "judge_reason": "Верно: Ньютон — вторая производная/квадратичная сходимость, GD — первая производная/линейная. Полный ответ (1913 симв, НЕ обрезан) завершается ссылками на главы, включая [Метод Ньютона](/ch02_newton.html) — глава 2 для Ньютона указана. Сырые <thinking>-теги — косметика. Суть рубрики выполнена.",
    "judge": "adversarial-workflow-final",
-   "broken_formulas": 0
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 0.0,
+   "rubric_capped": true,
+   "rubric_detail": [
+    {
+     "id": "second_vs_first_order",
+     "level": "met",
+     "weight": 3,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "chapter_ref",
+     "level": "none",
+     "weight": 2,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "no_hallucination",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    },
+    {
+     "id": "tools_expected",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": "tool_expected"
+    },
+    {
+     "id": "style",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    }
+   ]
   },
   {
    "id": "structural_kantorovich_theorem",
@@ -327,52 +512,158 @@
    "tool_match": true,
    "answer_match": true,
    "visual_match": true,
-   "missing": [],
+   "missing": [
+    "квадратичн"
+   ],
    "tools": [
     "find_theorem"
    ],
    "images": 0,
-   "elapsed": 4.8,
-   "cost": 0.000568,
-   "prompt_tokens": 8073,
-   "completion_tokens": 350,
+   "elapsed": 5.8,
+   "cost": 0.000586,
+   "prompt_tokens": 8119,
+   "completion_tokens": 413,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "Теорема 2.1. Сходимость метода Герона\n\nДля любого x\n0\n\t​\n\n>0 последовательность (2.4) монотонно убывает (начиная с k=1) и сходится к \na\n\t​\n\n. Более того, для ошибки e\nk\n\t​\n\n=x\nk\n\t​\n\n−\na\n\t​\n\n выполнено:\n\ne\nk+1\n\t​\n\n=\n2x\nk\n\t​\n\ne\nk\n2\n\t​\n\n\t​\n\n,и при k≥1:0≤e\nk+1\n\t​\n\n≤\n2\na\n\t​\n\ne\nk\n2\n\t​\n\n\t​\n\n.\n\nЭта теорема говорит о том, что метод Герона сходится к квадратному корню числа a и делает это монотонно убывающей последовательностью. Ошибка с каждым шагом уменьшается, и она сжимается быстрее, чем квадратичная функция.",
+   "answer": "<thinking>Теперь я нашёл формулировку теоремы о сходимости метода Герона. Теперь я могу сформулировать её для студента.</thinking>\n\n**Теорема 2.1. Сходимость метода Герона**\n\nДля любого $x_0>0$ последовательность (2.4) монотонно убывает (начиная с $k=1$) и сходится к $\\sqrt{a}$. Более того, для ошибки $e_k=x_k-\\sqrt{a}$ выполнено\n\n$$\n\\tag{2.5}\ne_{k+1}\\;=\\;\\dfrac{e_k^2}{2x_k}\\,, \\qquad\n\\text{и при }k\\geq 1\\colon\\\\\n0\\le e_{k+1}\\le \\dfrac{e_k^{2}}{2\\sqrt{a}}.\n$$\n\nЭта теорема показывает, что метод Герона сходится к квадратному корню числа $a$ и делает это монотонно убывающей последовательностью.",
+   "no_answer": false,
+   "broken_formulas": 0,
    "judge_pass": true,
-   "judge_reason": "x_0>0, монотонное убывание, сходимость к √a, формула ошибки e_k²/(2x_k) и квадратичная оценка — совпадает с эталонной Теоремой 2.1.",
+   "judge_reason": "Теорема 2.1: x_0>0, монотонное убывание, сходимость к √a, квадратичная оценка ошибки. LaTeX чист — единичный \\\\ в display-режиме = валидный перенос строки, \\tag/\\qquad с одним бэкслешем. Проверено: нет двойных бэкслешей перед командами.",
    "judge": "adversarial-workflow-final",
-   "broken_formulas": 0
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 0.95,
+   "rubric_capped": false,
+   "rubric_detail": [
+    {
+     "id": "positive_x0",
+     "level": "met",
+     "weight": 2,
+     "critical": false,
+     "auto": null
+    },
+    {
+     "id": "converges_sqrt_a",
+     "level": "met",
+     "weight": 3,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "quadratic_or_monotone",
+     "level": "met",
+     "weight": 2,
+     "critical": false,
+     "auto": null
+    },
+    {
+     "id": "no_hallucination",
+     "level": "met",
+     "weight": 1,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "tools_expected",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": "tool_expected"
+    },
+    {
+     "id": "style",
+     "level": "partial",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    }
+   ]
   },
   {
    "id": "vision_refine_diverging_sgd",
    "category": "vision_refine",
    "question": "Запусти SGD на функции f(x) = x² с шагом η = 1.1 из x₀ = 2, 30 итераций. Что произойдёт? Если разойдётся — подбери рабочий шаг и покажи сходящуюся траекторию.",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [
     "0.5"
    ],
    "tools": [
     "python",
+    "python",
+    "python",
+    "python",
+    "python",
     "python"
    ],
-   "images": 1,
-   "elapsed": 19.0,
-   "cost": 0.001054,
-   "prompt_tokens": 13209,
-   "completion_tokens": 1089,
+   "images": 4,
+   "elapsed": 45.9,
+   "cost": 0.003323,
+   "prompt_tokens": 40379,
+   "completion_tokens": 3751,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "<thinking>График был успешно создан и сохранен в файле 'sgd_plot.png'. Теперь нужно показать его студенту и объяснить, что произойдёт.</thinking>\n\n<response>\nПосле запуска SGD на функции f(x) = x² с шагом η = 1.1 из x₀ = 2, 30 итераций, траектория значений x быстро расходится. Это происходит из-за того, что выбранный шаг η слишком большой для данной функции и начальной точки.\n\nДля того чтобы получить сходящуюся траекторию, нужно подобрать более подходящий шаг. Например, η = 0.1 показал бы более стабильную сходимость.\n\nВот график, показывающий траекторию значений x при η = 1.1:\n\n!SGD на функции f(x) = x^2\n\n</response>",
+   "answer": "<thinking>Похоже, что график был успешно сохранён и показан студенту. Теперь нужно проанализировать результат и, если необходимо, подобрать рабочий шаг.</thinking>\n\n<thinking>На графике видно, что траектория значений x стремится к нулю, что указывает на сходимость алгоритма. Это происходит из-за того, что шаг η = 0.1 достаточно малый для данной функции. Таким образом, алгоритм сходится при этом шаге.</thinking>\n\n<thinking>Теперь нужно подготовить финальный ответ с анализом графика и рекомендациями по выбору шага.</thinking>\n\nВот результат выполнения алгоритма SGD на функции f(x) = x² с шагом η = 1.1 из x₀ = 2, 30 итераций:\n\n![SGD trajectory](sgd_trajectory.png)\n\nНа графике видно, что траектория значений x стремится к нулю, но значения начинают расти с каждой итерацией, что указывает на расходимость алгоритма. Это происходит из-за того, что шаг η = 1.1 слишком большой для данной функции.\n\nТеперь запустим алгоритм SGD с шагом η = 0.1:\n\n![SGD trajectory convergent](sgd_trajectory_convergent.png)\n\nНа графике видно, что траектория значений x стремится к нулю, что указывает на сходимость алгоритма. Это происходит из-за того, что шаг η = 0.1 достаточно малый для данной функции.\n\nТаким образом, для сходимости алгоритма SGD на функции f(x) = x² с начального значения x₀ = 2 рекомендуется выбрать шаг η в пределах от 0.01 до 0.1.",
+   "no_answer": false,
+   "broken_formulas": 0,
    "judge_pass": true,
-   "judge_reason": "Диагностировал расхождение при η=1.1 и назвал рабочий шаг η=0.1. Сходящуюся траекторию явно не построил (условно «показал бы»), но диагноз и рабочий шаг корректны — маргинальный зачёт.",
+   "judge_reason": "Диагностирует расходимость η=1.1, подбирает сходящийся η=0.1, показывает обе траектории (графики). Фраза про η=1.1 «стремится к нулю, но значения растут» внутренне противоречива и неряшлива, но итог (расходимость) и рабочий шаг верны.",
    "judge": "adversarial-workflow-final",
-   "broken_formulas": 0
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 0.0,
+   "rubric_capped": true,
+   "rubric_detail": [
+    {
+     "id": "diagnose_divergence",
+     "level": "none",
+     "weight": 3,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "working_step",
+     "level": "met",
+     "weight": 3,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "correct_numbers",
+     "level": "none",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    },
+    {
+     "id": "two_runs",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": "min2_python"
+    },
+    {
+     "id": "image_present",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": "image_present"
+    },
+    {
+     "id": "style",
+     "level": "none",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    }
+   ]
   },
   {
    "id": "hashlib_demo",
@@ -387,15 +678,20 @@
     "python"
    ],
    "images": 0,
-   "elapsed": 13.3,
-   "cost": 0.000529,
-   "prompt_tokens": 7989,
-   "completion_tokens": 207,
+   "elapsed": 15.6,
+   "cost": 0.000549,
+   "prompt_tokens": 8012,
+   "completion_tokens": 284,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "SHA-256 хеш строки 'sigma' в hex равен 38de90475bb334fb3dea5d54f250500aba60fe2c6158115d342b06bcb46e39bf.",
-   "broken_formulas": 0
+   "answer": "Посчитанный SHA-256 хеш строки 'sigma' в hex:\n\n`38de90475bb334fb3dea5d54f250500aba60fe2c6158115d342b06bcb46e39bf`\n\nЭтот хеш представляет собой 64-значную строку шестнадцатеричных символов, которая является уникальным представлением исходной строки 'sigma'.",
+   "no_answer": false,
+   "broken_formulas": 0,
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 1.0
   },
   {
    "id": "linreg_simple",
@@ -410,15 +706,20 @@
     "python"
    ],
    "images": 1,
-   "elapsed": 16.3,
-   "cost": 0.000927,
-   "prompt_tokens": 12234,
-   "completion_tokens": 803,
+   "elapsed": 17.6,
+   "cost": 0.000649,
+   "prompt_tokens": 8336,
+   "completion_tokens": 621,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "Мы подобрали коэффициенты для линейной регрессии:\n\na = 1.94\nb = 0.15\n\nЭто значит, что наша линейная регрессия имеет уравнение:\n\ny=1.94x+0.15\n\nТакже был построен график, который показывает точки данных и линейную регрессию. Хотя график не может быть показан в тексте, он был успешно создан и сохранён в формате PNG. Вы можете проверить его в результатах выполнения кода.",
-   "broken_formulas": 0
+   "answer": "Мы нашли коэффициенты для линейной регрессии:\n\n- **a = 1.94**\n- **b = 0.15**\n\nТаким образом, уравнение прямой, которая лучше всего описывает данные точки, имеет вид:\n\n$$ y = 1.94x + 0.15 $$\n\nНиже приведен график, на котором показаны исходные данные и построенная линейная регрессия. Красной линией показана прямая, соответствующая найденным коэффициентам.\n\n![График линейной регрессии](attachment:image.png)\n\nГрафик показывает, что линейная регрессия хорошо аппроксимирует данные точки.",
+   "no_answer": false,
+   "broken_formulas": 0,
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 1.0
   },
   {
    "id": "out_of_scope_recipe",
@@ -431,75 +732,193 @@
    "missing": [],
    "tools": [],
    "images": 0,
-   "elapsed": 3.1,
-   "cost": 0.00052,
+   "elapsed": 3.4,
+   "cost": 0.000519,
    "prompt_tokens": 7668,
-   "completion_tokens": 250,
+   "completion_tokens": 246,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "<thinking>Запрос студента не связан с содержанием главы \"Метод Ньютона – Σ Сигма\". Это вопрос о рецепте борща, что выходит за рамки учебника по информатике, оптимизации, теории чисел, ML и ИИ. Я не могу помочь с этим запросом, так как он не относится к тематике учебника.</thinking>\nЯ не могу помочь с этим запросом, так как он не относится к тематике учебника.",
+   "answer": "<thinking>Запрос о рецепте борща не относится к содержанию учебника, так как это кулинарный вопрос. Я не могу помочь с этим запросом, так как он выходит за рамки учебника по информатике, оптимизации, теории чисел, ML и ИИ.</thinking>\nНе могу помочь с этим запросом, так как он выходит за рамки учебника по информатике, оптимизации, теории чисел, ML и ИИ.",
+   "no_answer": false,
+   "broken_formulas": 0,
    "judge_pass": true,
-   "judge_reason": "Вежливо отказал, борщ не готовил.",
+   "judge_reason": "Вежливый отказ, рецепт не дан. Утечка тега <thinking> — косметика, видимый ответ корректен.",
    "judge": "adversarial-workflow-final",
-   "broken_formulas": 0
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 0.8125,
+   "rubric_capped": false,
+   "rubric_detail": [
+    {
+     "id": "refusal",
+     "level": "met",
+     "weight": 3,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "no_recipe",
+     "level": "met",
+     "weight": 3,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "offer_help",
+     "level": "none",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    },
+    {
+     "id": "style",
+     "level": "partial",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    }
+   ]
   },
   {
    "id": "rsa_history",
    "category": "rag_basic",
    "question": "Кто придумал RSA и в каком году?",
-   "pass": false,
-   "tool_match": true,
-   "answer_match": false,
-   "visual_match": true,
-   "missing": [
-    "1978"
-   ],
-   "tools": [
-    "read_chapter",
-    "search_textbook",
-    "search_textbook",
-    "search_textbook",
-    "search_textbook",
-    "search_textbook"
-   ],
-   "images": 0,
-   "elapsed": 9.5,
-   "cost": 0.003133,
-   "prompt_tokens": 48738,
-   "completion_tokens": 868,
-   "models_used": [
-    "amazon/nova-lite-v1"
-   ],
-   "answer": "<thinking>После нескольких попыток поиска в учебнике я не смог найти информацию о создателях RSA и году их изобретения. Я честно сообщу студенту, что в учебнике эта информация отсутствует, и приведу общее знание из внешнего источника.</thinking>\n\n<answer>В учебнике я этого не нашёл, но известно, что RSA была изобретена в 1977 году Рональдом Ривестом, Ади Шамиром и Леонардом Адлеманом. Эта криптосистема основана на сложности факторизации больших чисел и широко используется для обеспечения безопасности в Интернете.</answer>",
-   "judge_pass": false,
-   "judge_reason": "Указал всех троих авторов, но год назвал 1977 вместо требуемого по рубрике 1978. Плюс заявил, что в учебнике не нашёл.",
-   "judge": "adversarial-workflow-final",
-   "broken_formulas": 0
-  },
-  {
-   "id": "greeting_minimal",
-   "category": "out_of_scope",
-   "question": "Привет!",
    "pass": true,
    "tool_match": true,
    "answer_match": true,
    "visual_match": true,
    "missing": [],
-   "tools": [],
+   "tools": [
+    "search_textbook",
+    "search_textbook",
+    "search_textbook",
+    "read_chapter"
+   ],
    "images": 0,
-   "elapsed": 3.1,
-   "cost": 0.000263,
-   "prompt_tokens": 3813,
-   "completion_tokens": 142,
+   "elapsed": 8.6,
+   "cost": 0.002083,
+   "prompt_tokens": 31832,
+   "completion_tokens": 722,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "<thinking>Студент читает главу \"Метод Ньютона – Σ Сигма\" и приветствует. Я должен ответить приветствием и указать, что готов помочь с вопросами по содержанию этой главы.</thinking>\n\nПривет! Я твой ассистент по учебнику Σ. Готов помочь с вопросами по содержанию главы \"Метод Ньютона – Σ Сигма\". Как могу помочь?",
+   "answer": "**RSA** была разработана в 1978 году тремя сотрудниками Массачусетского технологического института — Рональдом Райвестом, Шамиром (Ади Шамир) и Адлеманом (Леонард Адлеман). Их фамилии и дали название системе — RSA. \n\nИдея была опубликована в 1978 году тремя сотрудниками Массачусетского технологического института — Рональдом Райвестом, Шамиром (Ади Шамир) и Адлеманом (Леонард Адлеман). Их фамилии и дали название системе — RSA.",
+   "no_answer": false,
+   "broken_formulas": 0,
    "judge_pass": true,
-   "judge_reason": "Видимый ответ 128 знаков, приветствие + предложение помощи по главе, без тулов. Утёкший <thinking> — мелкий дефект, рендеримый текст корректен и <150. Зачёт.",
+   "judge_reason": "Все трое (Райвест/Шамир/Адлеман), MIT, 1978 — верно. Дублированный абзац — косметика, суть точна и соответствует учебнику.",
    "judge": "adversarial-workflow-final",
-   "broken_formulas": 0
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 0.95,
+   "rubric_capped": false,
+   "rubric_detail": [
+    {
+     "id": "year_1978",
+     "level": "met",
+     "weight": 2,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "three_authors",
+     "level": "met",
+     "weight": 3,
+     "critical": false,
+     "auto": null
+    },
+    {
+     "id": "mit",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    },
+    {
+     "id": "no_fake_authors",
+     "level": "met",
+     "weight": 2,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "tools_expected",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": "tool_expected"
+    },
+    {
+     "id": "style",
+     "level": "partial",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    }
+   ]
+  },
+  {
+   "id": "greeting_minimal",
+   "category": "out_of_scope",
+   "question": "Привет!",
+   "pass": false,
+   "tool_match": true,
+   "answer_match": false,
+   "visual_match": true,
+   "missing": [],
+   "tools": [],
+   "images": 0,
+   "elapsed": 3.9,
+   "cost": 0.000268,
+   "prompt_tokens": 3813,
+   "completion_tokens": 165,
+   "models_used": [
+    "amazon/nova-lite-v1"
+   ],
+   "answer": "<thinking>Студент читает главу \"Метод Ньютона – Σ Сигма\" и приветствует. Я должен ответить приветствием и уточнить, готов ли я помочь в любых вопросах, связанных с содержимым этой главы или другими темами из учебника.</thinking>\n\nПривет! Я готов помочь тебе с любыми вопросами, связанными с содержимым главы \"Метод Ньютона – Σ Сигма\" или другими темами из учебника. Что тебе нужно?",
+   "no_answer": false,
+   "broken_formulas": 0,
+   "judge_pass": false,
+   "judge_reason": "Утёк сырой блок <thinking>...</thinking> + 381 знак. Служебное рассуждение в выводе для пользователя — негодно.",
+   "judge": "adversarial-workflow-final",
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 0.0,
+   "rubric_capped": true,
+   "rubric_detail": [
+    {
+     "id": "short",
+     "level": "none",
+     "weight": 3,
+     "critical": true,
+     "auto": "short"
+    },
+    {
+     "id": "offer_help",
+     "level": "met",
+     "weight": 2,
+     "critical": false,
+     "auto": null
+    },
+    {
+     "id": "no_tools",
+     "level": "met",
+     "weight": 2,
+     "critical": true,
+     "auto": "no_tools"
+    },
+    {
+     "id": "style",
+     "level": "partial",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    }
+   ]
   },
   {
    "id": "euclid_gcd_python",
@@ -514,15 +933,20 @@
     "python"
    ],
    "images": 0,
-   "elapsed": 13.5,
-   "cost": 0.000561,
-   "prompt_tokens": 8130,
-   "completion_tokens": 307,
+   "elapsed": 15.0,
+   "cost": 0.000555,
+   "prompt_tokens": 8069,
+   "completion_tokens": 294,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "НОД(48, 180) равен 12, а НОД(1071, 462) равен 21.",
-   "broken_formulas": 0
+   "answer": "НОД(48, 180) = 12.00\nНОД(1071, 462) = 21.00\n\n<thinking>Задача выполнена, и результаты НОД для обеих пар чисел были получены с помощью алгоритма Евклида в Python.</thinking>",
+   "no_answer": false,
+   "broken_formulas": 0,
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 1.0
   },
   {
    "id": "definition_superlinear",
@@ -537,18 +961,54 @@
     "find_definition"
    ],
    "images": 0,
-   "elapsed": 5.6,
-   "cost": 0.000841,
-   "prompt_tokens": 11949,
-   "completion_tokens": 518,
+   "elapsed": 5.9,
+   "cost": 0.000551,
+   "prompt_tokens": 8038,
+   "completion_tokens": 287,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "Сверхлинейная сходимость означает, что последовательность\nx\nk\n\t​\n\n сходится к x\nstar\n со сверхлинейной скоростью. Это происходит, когда\n\nk→∞\nlim\n\t​\n\n∣x\nk\n\t​\n\n−x\nstar\n∣\n∣x\nk+1\n\t​\n\n−x\nstar\n∣\n\t​\n\n=0.\n\nЕсли выполнено более сильное условие ∣x\nk+1\n\t​\n\n−x\nstar\n∣\nleqM∣x\nk\n\t​\n\n−x\nstar\n∣\n2\n для некоторой константы M>0, то сходимость называют квадратичной.\n\nТы можешь прочитать больше об этом в разделе \"Определение 2.3. Сверхлинейная и квадратичная сходимости\" главы \"Метод Ньютона\" по ссылке.",
+   "answer": "**Сверхлинейная сходимость** означает, что последовательность $\\\\{x_k\\\\}$ сходится к $x^{\\\\star}$ со **сверхлинейной скоростью**. Это означает, что:\n\n$$\\lim_{k\\to\\infty}\\dfrac{|x_{k+1}-x^{\\\\star}|}{|x_k-x^{\\\\star}|}=0.$$\n\nЕсли выполнено более сильное условие $|x_{k+1}-x^{\\\\star}|\\\\leq M |x_k-x^{\\\\star}|^{2}$ для некоторой константы $M>0$, то сходимость называют **квадратичной**.\n\n[Определение 2.3. Сверхлинейная и квадратичная сходимости](/ch02_newton.html#ssec:thm-superlinear)",
+   "no_answer": false,
+   "broken_formulas": 0,
    "judge_pass": true,
-   "judge_reason": "Верный предел отношения ошибок =0, корректно про квадратичную как усиление.",
+   "judge_reason": "Предел отношения ошибок →0 показан верно, квадратичная как усиление. LaTeX (\\star) валиден.",
    "judge": "adversarial-workflow-final",
-   "broken_formulas": 0
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 1.0,
+   "rubric_capped": false,
+   "rubric_detail": [
+    {
+     "id": "limit_ratio_zero",
+     "level": "met",
+     "weight": 3,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "no_wrong_def",
+     "level": "met",
+     "weight": 1,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "tools_expected",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": "tool_expected"
+    },
+    {
+     "id": "style",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    }
+   ]
   },
   {
    "id": "theorem_clt",
@@ -563,18 +1023,61 @@
     "find_theorem"
    ],
    "images": 0,
-   "elapsed": 5.0,
-   "cost": 0.000599,
-   "prompt_tokens": 8338,
-   "completion_tokens": 410,
+   "elapsed": 5.6,
+   "cost": 0.0006,
+   "prompt_tokens": 8288,
+   "completion_tokens": 430,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "Центральная предельная теорема (ЦПТ) в учебнике сформулирована следующим образом:\n\nТеорема 3.3. Центральная предельная теорема (ЦПТ)\n\nПусть X\n1\n\t​\n\n,X\n2\n\t​\n\n,… — независимые одинаково распределённые случайные величины с математическим ожиданием μ и конечной дисперсией σ\n2\n>0, S\nn\n\t​\n\n=X\n1\n\t​\n\n+⋯+X\nn\n\t​\n\n. Тогда при n→∞\n\nPr(\nσ\nn\n\t​\n\nS\nn\n\t​\n\n−nμ\n\t​\n\n≤x)⟶Φ(x)\n=\ndef\n2π\n\t​\n\n1\n\t​\n\n∫\n−∞\nx\n\t​\n\ne\n−t\n2\n/2\ndt\n\n(функция стандартного нормального распределения)",
+   "answer": "Вот формулировка Центральной предельной теоремы из учебника:\n\n**Теорема 3.3. Центральная предельная теорема (ЦПТ)**\n\nПусть $X_1,X_2,\\dots$ — независимые одинаково распределённые случайные величины с математическим ожиданием $\\mu$ и конечной дисперсией $\\sigma^2>0$, $S_n=X_1+\\dots+X_n$. Тогда при $n\\to\\infty$\n\n$$\\Pr\\!\\left(\\frac{S_n-n\\mu}{\\sigma\\sqrt n}\\leq x\\right)\\; \\longrightarrow\\; \\Phi(x)\\; \\stackrel{\\mathrm{def}}{=}\\; \\frac{1}{\\sqrt{2\\pi}}\\int_{-\\infty}^{x}e^{-t^{2}/2}\\,dt$$\n\n*(функция стандартного нормального распределения)*\n\nЭта теорема говорит о том, что сумма большого числа независимых случайных величин с одинаковым распределением и конечной дисперсией приближается к нормальному распределению при увеличении числа слагаемых.",
+   "no_answer": false,
+   "broken_formulas": 0,
    "judge_pass": true,
-   "judge_reason": "Корректная формулировка Теоремы 3.3, суть передана; нотация искажена форматированием, но содержание верно.",
+   "judge_reason": "Точная формулировка Теоремы 3.3, нормировка и Ф(x) корректны, LaTeX одинарные бэкслеши — рендерится. Суть передана.",
    "judge": "adversarial-workflow-final",
-   "broken_formulas": 0
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 1.0,
+   "rubric_capped": false,
+   "rubric_detail": [
+    {
+     "id": "iid_sum",
+     "level": "met",
+     "weight": 2,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "normal_limit",
+     "level": "met",
+     "weight": 3,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "conditions",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    },
+    {
+     "id": "tools_expected",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": "tool_expected"
+    },
+    {
+     "id": "style",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    }
+   ]
   },
   {
    "id": "plot_sincos_overlay",
@@ -587,76 +1090,118 @@
    "missing": [],
    "tools": [
     "python",
+    "python",
     "python"
    ],
-   "images": 1,
-   "elapsed": 17.1,
-   "cost": 0.001198,
-   "prompt_tokens": 16601,
-   "completion_tokens": 840,
+   "images": 2,
+   "elapsed": 23.0,
+   "cost": 0.001294,
+   "prompt_tokens": 17694,
+   "completion_tokens": 969,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "<thinking>График был успешно создан и сохранен в файле sin_cos_graphs.png. Теперь отправим его студенту.</thinking>\n\nВот графики функций sin(x) и cos(x) на интервале [-2π, 2π]:\n\n![Графики sin(x) и cos(x) на интервале [-2π, 2π]](sin_cos_graphs.png)",
-   "broken_formulas": 0
+   "answer": "<thinking>График был успешно построен и показан. Теперь можно предоставить его студенту.</thinking>\n\n<result>\nГрафики функций sin(x) и cos(x) на интервале [-2π, 2π] были успешно построены и показаны. На графике видно, как функции sin(x) и cos(x) изменяются в заданном интервале. Легенда помогает различать функции на графике.\n</result>",
+   "no_answer": false,
+   "broken_formulas": 0,
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 1.0
   },
   {
    "id": "fragment_explanation",
    "category": "rag_basic",
    "question": "Если кто-то предлагает использовать обновление x_{k+1} = x_k - f(x_k)·f'(x_k) вместо классического Ньютона — что это за идея и она работает?",
-   "pass": false,
-   "tool_match": true,
-   "answer_match": false,
-   "visual_match": true,
-   "missing": [
-    "производ"
-   ],
-   "tools": [
-    "find_definition",
-    "find_theorem",
-    "find_theorem",
-    "read_chapter",
-    "python",
-    "python",
-    "python",
-    "python"
-   ],
-   "images": 3,
-   "elapsed": 180.9,
-   "cost": 0.0032,
-   "prompt_tokens": 44288,
-   "completion_tokens": 2263,
-   "models_used": [
-    "amazon/nova-lite-v1"
-   ],
-   "answer": "Не сошёлся на ответ за отведённые шаги. Попробуй переформулировать.",
-   "judge_pass": false,
-   "judge_reason": "Не дал ответа ('не сошёлся за отведённые шаги') — пустой результат.",
-   "judge": "adversarial-workflow-final",
-   "broken_formulas": 0
-  },
-  {
-   "id": "eigenvalues_numpy",
-   "category": "compute_pure",
-   "question": "Найди собственные значения матрицы [[2, 1], [1, 2]] через numpy.",
    "pass": true,
    "tool_match": true,
    "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
+    "find_definition",
+    "read_chapter",
     "python"
    ],
    "images": 0,
-   "elapsed": 12.1,
-   "cost": 0.000516,
-   "prompt_tokens": 7889,
-   "completion_tokens": 176,
+   "elapsed": 233.9,
+   "cost": 0.003397,
+   "prompt_tokens": 41143,
+   "completion_tokens": 3868,
+   "models_used": [
+    "amazon/nova-lite-v1"
+   ],
+   "answer": "<thinking>Результаты показывают, что альтернативное обновление не сходится к корню функции, а классический метод Ньютона сходится. Это подтверждает, что предложенный метод не является корректным способом обновления для метода Ньютона.</thinking>\n\nВот почему этот метод не работает:\n\n- **Классический метод Ньютона** использует формулу $x_{k+1} = x_k - \\frac{f(x_k)}{f'(x_k)}$, которая корректно учитывает соотношение между функцией и ее производной для нахождения корня.\n- **Альтернативное обновление** $x_{k+1} = x_k - f(x_k) \\cdot f'(x_k)$ не учитывает это соотношение и может привести к расходящимся значениям или неопределенности (NaN).\n\nТаким образом, предложенный метод не является корректным способом обновления для метода Ньютона и не гарантирует сходимость к корню функции.",
+   "no_answer": false,
+   "broken_formulas": 0,
+   "judge_pass": true,
+   "judge_reason": "Firmly commits: not Newton, diverges/NaN. Correct conclusion, no hallucination. Key insight (GD on f2) not named but verdict right.",
+   "judge": "adversarial-workflow-final",
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 0.6667,
+   "rubric_capped": false,
+   "rubric_detail": [
+    {
+     "id": "identifies_not_newton",
+     "level": "met",
+     "weight": 3,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "mechanism",
+     "level": "none",
+     "weight": 3,
+     "critical": false,
+     "auto": null
+    },
+    {
+     "id": "no_false_endorsement",
+     "level": "met",
+     "weight": 2,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "style",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    }
+   ]
+  },
+  {
+   "id": "eigenvalues_numpy",
+   "category": "compute_pure",
+   "question": "Найди собственные значения матрицы [[2, 1], [1, 2]] через numpy.",
+   "pass": false,
+   "tool_match": true,
+   "answer_match": false,
+   "visual_match": true,
+   "missing": [],
+   "tools": [
+    "python"
+   ],
+   "images": 0,
+   "elapsed": 13.7,
+   "cost": 0.000515,
+   "prompt_tokens": 7888,
+   "completion_tokens": 172,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
    "answer": "Собственные значения матрицы \\( \\begin{bmatrix} 2 & 1 \\\\ 1 & 2 \\end{bmatrix} \\) равны \\( 3 \\) и \\( 1 \\).",
-   "broken_formulas": 0
+   "no_answer": false,
+   "broken_formulas": 0,
+   "raw_unrendered": 3,
+   "judge_reason": "⚠ 3 формул в \\(…\\)/\\[…\\] (сайт рендерит только $/$$) — читатель видит сырой/битый LaTeX",
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 0.0,
+   "rubric_capped": true
   },
   {
    "id": "plot_loss_landscape",
@@ -673,67 +1218,112 @@
     "python",
     "python",
     "python",
+    "python",
+    "python",
+    "python",
     "python"
    ],
-   "images": 3,
-   "elapsed": 25.9,
-   "cost": 0.001955,
-   "prompt_tokens": 25417,
-   "completion_tokens": 1793,
+   "images": 2,
+   "elapsed": 35.4,
+   "cost": 0.003537,
+   "prompt_tokens": 47484,
+   "completion_tokens": 2865,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "<thinking>График успешно создан и сохранен в формате PNG. Теперь я могу предоставить студенту график.</thinking>\n\nВот контурный график функции потерь \\( L(a, b) = \\sum{(a \\cdot x_i + b - y_i)^2} \\) для точек \\((1,2)\\), \\((2,3)\\), \\((3,5)\\), \\((4,4)\\) на сетке \\( a \\in [-2, 4] \\), \\( b \\in [-3, 3] \\):\n\n!Контурный график функции потерь",
-   "broken_formulas": 0
+   "answer": "<thinking>Ошибка исправлена, и график успешно создан и сохранен в формате изображения. Я должен вернуть график в формате изображения для студента.</thinking>",
+   "no_answer": false,
+   "broken_formulas": 0,
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 0.0
   },
   {
    "id": "diffie_hellman_compute",
    "category": "compute_pure",
    "question": "Проведи протокол Диффи–Хеллмана: p=23, g=5. Алиса берёт a=6, Боб берёт b=15. Какой общий секрет?",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
-   "missing": [],
+   "missing": [
+    "8",
+    "19"
+   ],
    "tools": [
     "python"
    ],
    "images": 0,
-   "elapsed": 15.3,
-   "cost": 0.000605,
-   "prompt_tokens": 8142,
-   "completion_tokens": 486,
+   "elapsed": 15.8,
+   "cost": 0.000825,
+   "prompt_tokens": 12006,
+   "completion_tokens": 436,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "Протокол Диффи–Хеллмана проведён с параметрами p=23, g=5, a=6 и b=15. Результаты вычислений:\n\nАлиса вычисляет значение A: \\( A = g^a \\mod p = 5^6 \\mod 23 = 8 \\)\nБоб вычисляет значение B: \\( B = g^b \\mod p = 5^{15} \\mod 23 = 19 \\)\nАлиса вычисляет общий секрет: \\( secret_A = B^a \\mod p = 19^6 \\mod 23 = 2 \\)\nБоб вычисляет общий секрет: \\( secret_B = A^b \\mod p = 8^{15} \\mod 23 = 2 \\)\n\nТаким образом, общий секрет, который получили Алиса и Боб, равен 2.",
-   "broken_formulas": 0
+   "answer": "<thinking>Выполнение протокола Диффи–Хеллмана завершено, и мы получили значения общего секрета для Алисы и Боба. Оба они получили одинаковый секрет, что подтверждает успешное выполнение протокола.</thinking>\n\nОбщий секрет, который получили Алиса и Боб, равен **2**.",
+   "no_answer": false,
+   "broken_formulas": 0,
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 0.0
   },
   {
    "id": "outline_chapter",
    "category": "structural",
    "question": "Перечисли основные разделы главы про Ньютона.",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [
     "get_outline"
    ],
    "images": 0,
-   "elapsed": 6.1,
-   "cost": 0.001012,
-   "prompt_tokens": 14482,
-   "completion_tokens": 595,
+   "elapsed": 6.0,
+   "cost": 0.000757,
+   "prompt_tokens": 10628,
+   "completion_tokens": 498,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "Вот основные разделы главы \"Метод Ньютона\":\n\nКасательная вместо уравнения (sec:newton)\nНьютон для оптимизации (ньютон-для-оптимизации)\nКвадратный корень за пять шагов (ssec:heron)\nСходимость через сжимающее отображение (сходимость-через-сжимающее-отображение)\nДеление без деления (деление-без-деления)\nАнализ сходимости (анализ-сходимости)\nЧисленный эксперимент на Python (численный-эксперимент-на-python)\nКогда сходимость сверхлинейна^\\\\star (ssec:thm-superlinear)",
+   "answer": "Вот основные разделы главы \"Метод Ньютона\":\n\n- **Касательная вместо уравнения** ([sec:newton](/ch02_newton.html#sec:newton))\n- **Ньютон для оптимизации** ([ньютон-для-оптимизации](/ch02_newton.html#ньютон-для-оптимизации))\n- **Квадратный корень за пять шагов** ([ssec:heron](/ch02_newton.html#ssec:heron))\n- **Сходимость через сжимающее отображение** ([сходимость-через-сжимающее-отображение](/ch02_newton.html#сходимость-через-сжимающее-отображение))\n- **Деление без деления** ([деление-без-деления](/ch02_newton.html#деление-без-деления))\n- **Анализ сходимости** ([анализ-сходимости](/ch02_newton.html#анализ-сходимости))\n- **Численный эксперимент на Python** ([численный-эксперимент-на-python](/ch02_newton.html#численный-эксперимент-на-python))\n- **Когда сходимость сверхлинейна$^\\\\star$** ([ssec:thm-superlinear](/ch02_newton.html#ssec:thm-superlinear))\n\nНадеюсь, это поможет вам ориентироваться в главе!",
+   "no_answer": false,
+   "broken_formulas": 1,
    "judge_pass": true,
-   "judge_reason": "Перечислил все реальные разделы (Касательная вместо уравнения, Ньютон для оптимизации, Квадратный корень/Герон, Деление без деления, Численный эксперимент, Сверхлинейна) + подразделы. Совпадает со структурой ch02_newton.qmd. Галлюцинаций нет.",
+   "judge_reason": "⚠ 1 битых формул — читатель видит сырой/битый LaTeX",
    "judge": "adversarial-workflow-final",
-   "broken_formulas": 0
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 0.0,
+   "rubric_capped": true,
+   "rubric_detail": [
+    {
+     "id": "lists_real_sections",
+     "level": "met",
+     "weight": 3,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "no_invented_sections",
+     "level": "met",
+     "weight": 2,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "style",
+     "level": "partial",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    }
+   ]
   },
   {
    "id": "math_latex_derivation",
@@ -746,21 +1336,57 @@
    "missing": [],
    "tools": [
     "find_definition",
-    "search_textbook"
+    "read_chapter"
    ],
    "images": 0,
-   "elapsed": 5.2,
-   "cost": 0.001123,
-   "prompt_tokens": 16784,
-   "completion_tokens": 485,
+   "elapsed": 7.3,
+   "cost": 0.001058,
+   "prompt_tokens": 15709,
+   "completion_tokens": 480,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "<thinking>Формула метода Ньютона через касательную была найдена в текущей главе \"Метод Ньютона – Σ Сигма\". Я приведу её через LaTeX.</thinking>\n\nФормула метода Ньютона через касательную:\n\nx\nk+1\n\t​\n\n=x\nk\n\t​\n\n−\nf\n′\n(x\nk\n\t​\n\n)\nf(x\nk\n\t​\n\n)\n\t​\n\n\nЭта формула означает, что следующее приближение x\nk+1\n\t​\n\n находится как точка пересечения касательной к графику функции f в точке x\nk\n\t​\n\n с осью абсцисс.",
+   "answer": "<thinking>Теперь, когда я прочитал главу, я могу найти формулу метода Ньютона через касательную.</thinking>\n\nФормула метода Ньютона через касательную выглядит так:\n\n$$\nx_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}\n$$\n\nЭто формула для нахождения корня функции $f(x)$ с помощью метода Ньютона. Здесь $x_n$ — текущая точка, $f(x_n)$ — значение функции в этой точке, а $f'(x_n)$ — значение производной функции в этой точке. Следующая точка $x_{n+1}$ находится на расстоянии, равном значению функции, деленному на значение производной, от текущей точки.",
+   "no_answer": false,
+   "broken_formulas": 0,
    "judge_pass": true,
-   "judge_reason": "Корректная формула x_{k+1}=x_k - f(x_k)/f'(x_k), указан геометрический смысл (пересечение касательной с осью абсцисс). Порядок числитель/знаменатель в скрапе верный.",
+   "judge_reason": "Формула x_{n+1}=x_n-f(x_n)/f'(x_n) верна. Полного вывода через касательную нет, но формула корректна и есть геометрическая интерпретация; <thinking>-тег — косметика. Грейдится корректность формулы.",
    "judge": "adversarial-workflow-final",
-   "broken_formulas": 0
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 0.75,
+   "rubric_capped": false,
+   "rubric_detail": [
+    {
+     "id": "final_formula",
+     "level": "met",
+     "weight": 3,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "tangent_derivation",
+     "level": "partial",
+     "weight": 3,
+     "critical": false,
+     "auto": null
+    },
+    {
+     "id": "no_math_error",
+     "level": "met",
+     "weight": 1,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "style",
+     "level": "partial",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    }
+   ]
   },
   {
    "id": "definition_perceptron",
@@ -775,45 +1401,120 @@
     "find_definition"
    ],
    "images": 0,
-   "elapsed": 6.2,
-   "cost": 0.000924,
-   "prompt_tokens": 12392,
-   "completion_tokens": 751,
+   "elapsed": 6.3,
+   "cost": 0.000659,
+   "prompt_tokens": 8511,
+   "completion_tokens": 618,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "Полносвязная нейронная сеть (MLP) глубины L — это функция x↦p(x), заданная как композиция L слоёв:\n\nz\n(ℓ)\na\n(ℓ)\nz\n(L)\np(x)\n\t​\n\n=W\n(ℓ)\na\n(ℓ−1)\n+b\n(ℓ)\n,\n=σ(z\n(ℓ)\n),ℓ=1,…,L−1,\n=W\n(L)\na\n(L−1)\n+b\n(L)\n,\n=softmax(z\n(L)\n).\n\t​\n\n\nЗдесь a\n(0)\n=x (вход), W\n(ℓ)\n∈R\nd\nℓ\n\t​\n\n×d\nℓ−1\n\t​\n\n — матрица весов ℓ-го слоя, b\n(ℓ)\n∈R\nd\nℓ\n\t​\n\n — вектор смещений (bias). Функция σ применяется покомпонентно — это функция активации (см. ниже). Числа d\n1\n\t​\n\n,…,d\nL−1\n\t​\n\n — ширины скрытых слоёв; d\nL\n\t​\n\n — число классов (у нас — 10). Функция softmax превращает вектор произвольных вещественных чисел в распределение вероятностей:\n\nsoftmax(z)\nc\n\t​\n\n=\n∑\nc\n′\n\t​\n\ne\nz\nc\n′\n\t​\n\ne\nz\nc\n\t​\n\n\t​\n\n.\n(3.33)\n\nСовокупность всех матриц W\n(ℓ)\n и векторов b\n(ℓ)\n объявляется обучаемыми параметрами θ модели.\n\nОпределение 3.12. Полносвязная нейронная сеть",
+   "answer": "**Полносвязная нейронная сеть** (MLP) глубины $L$ — это функция $\\mathbf x \\mapsto \\mathbf p(\\mathbf x)$, заданная как композиция $L$ *слоёв*:\n\n$$\\begin{aligned}\n\\mathbf z^{(\\ell)} &= W^{(\\ell)} \\mathbf a^{(\\ell-1)} + \\mathbf b^{(\\ell)}, \\qquad \\\\\n\\mathbf a^{(\\ell)} &= \\sigma\\bigl(\\mathbf z^{(\\ell)}\\bigr), \\qquad \\ell=1,\\dots,L-1, \\\\\n\\\\\n\\mathbf z^{(L)} &= W^{(L)} \\mathbf a^{(L-1)} + \\mathbf b^{(L)}, \\qquad \\\\\n\\mathbf p(\\mathbf x) &= \\mathrm{softmax}\\bigl(\\mathbf z^{(L)}\\bigr).\n\\end{aligned}$$\n\nЗдесь $\\mathbf a^{(0)}=\\mathbf x$ (вход), $W^{(\\ell)}\\in\\mathbb{R}^{d_\\ell\\times d_{\\ell-1}}$ — матрица весов $\\ell$-го слоя, $\\mathbf b^{(\\ell)}\\in\\mathbb{R}^{d_\\ell}$ — вектор смещений (bias). Функция $\\sigma$ применяется покомпонентно — это *фунция активации* (см. ниже). Числа $d_1,\\dots,d_{L-1}$ — ширины скрытых слоёв; $d_L$ — число классов (у нас — 10). Функция **softmax** превращает вектор произвольных вещественных чисел в распределение вероятностей:\n\n$$\\tag{3.33}\n\\mathrm{softmax}(\\mathbf z)_c \\;= \\; \\frac{e^{z_c}}{\\sum_{c'} e^{z_{c'}}}.\n$$\n\nСовокупность всех матриц $W^{(\\ell)}$ и векторов $\\mathbf b^{(\\ell)}$ объявляется *обучаемыми параметрами* $\\boldsymbol\\theta$ модели.\n\n[Определение 3.12. Полносвязная нейронная сеть](/ch03_3_zadacha-klassifikacii-i-neyronny.html#ssec:mlp)",
+   "no_answer": false,
+   "broken_formulas": 0,
    "judge_pass": true,
-   "judge_reason": "Точное формальное определение 3.12: композиция L слоёв, аффинное преобразование W·a+b + активация σ + softmax. Соответствует рубрике.",
+   "judge_reason": "Полное формальное определение 3.12: композиция L слоёв, аффинное z=Wa+b, нелинейность σ, softmax, обучаемые параметры, размерности. LaTeX корректен (двойные бэкслэши — легитимные переносы строк в aligned). Соответствует рубрике.",
    "judge": "adversarial-workflow-final",
-   "broken_formulas": 0
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 1.0,
+   "rubric_capped": false,
+   "rubric_detail": [
+    {
+     "id": "composition_layers",
+     "level": "met",
+     "weight": 3,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "layers_word",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    },
+    {
+     "id": "no_wrong_arch",
+     "level": "met",
+     "weight": 1,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "tools_expected",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": "tool_expected"
+    },
+    {
+     "id": "style",
+     "level": "met",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    }
+   ]
   },
   {
    "id": "refuse_unknown_year",
    "category": "out_of_scope",
    "question": "В каком году Гаусс изобрёл метод сопряжённых градиентов?",
-   "pass": false,
+   "pass": true,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
     "search_textbook",
-    "read_chapter"
+    "search_textbook",
+    "read_chapter",
+    "search_textbook"
    ],
    "images": 0,
-   "elapsed": 4.8,
-   "cost": 0.000988,
-   "prompt_tokens": 15167,
-   "completion_tokens": 326,
+   "elapsed": 9.4,
+   "cost": 0.002023,
+   "prompt_tokens": 31141,
+   "completion_tokens": 644,
    "models_used": [
     "amazon/nova-lite-v1"
    ],
-   "answer": "<thinking>В главе, которую студент сейчас читает, нет информации о том, в каком году Гаусс изобрёл метод сопряжённых градиентов. Я больше не могу найти этот факт в учебнике.</thinking>\n\n<answer>В учебнике я этого не нашёл. Вне учебника: Карл Фридрих Гаусс изобрёл метод сопряжённых градиентов в 1807 году.</answer>",
+   "answer": "<thinking>Поиск не дал результатов, касающихся года изобретения метода сопряжённых градиентов Гауссом. Я больше не могу продолжать поиск в учебнике.</thinking>\n\n<answer>В учебнике я этого не нашёл. Вне учебника: Карл Фридрих Гаусс не изобрёл метод сопряжённых градиентов. Этот метод был разработан в 1950-х годах русским математиком Л. В. Канторовичем и независимо американцами Р. Флетчером и М. Рэйли.</answer>",
+   "no_answer": false,
+   "broken_formulas": 0,
    "judge_pass": false,
-   "judge_reason": "Уверенная ложь с выдуманным годом: 'Гаусс изобрёл метод сопряжённых градиентов в 1807 году' — ровно hard-fail рубрики.",
+   "judge_reason": "Отверг предпосылку, но уверенно приписал CG Канторовичу и 'Флетчеру и Рэйли' — выдуманные изобретатели. Галлюцинация имён.",
    "judge": "adversarial-workflow-final",
-   "broken_formulas": 0
+   "raw_unrendered": 0,
+   "unexpected": [],
+   "garbage": false,
+   "rubric_score": 0.9286,
+   "rubric_capped": false,
+   "rubric_detail": [
+    {
+     "id": "no_fabricated_year",
+     "level": "met",
+     "weight": 4,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "flags_false_premise",
+     "level": "met",
+     "weight": 2,
+     "critical": true,
+     "auto": null
+    },
+    {
+     "id": "style",
+     "level": "partial",
+     "weight": 1,
+     "critical": false,
+     "auto": null
+    }
+   ]
   }
- ]
+ ],
+ "avg_rubric_score": 0.6547
 }

@@ -24,11 +24,13 @@ import json
 import os
 import re
 import socketserver
+import ssl
 import sys
 import time
 import urllib.error
 import urllib.parse
 import urllib.request
+import uuid
 from pathlib import Path
 
 SIGMA_ROOT = Path("/var/www/sigma")
@@ -48,6 +50,141 @@ FALLBACK_MODEL = "openrouter/free"
 # Для vision-запросов используем SIGMA_VISION_MODEL (если задан), иначе ту же.
 PAID_MODEL = os.environ.get("SIGMA_MODEL", "").strip()
 PAID_VISION_MODEL = os.environ.get("SIGMA_VISION_MODEL", "").strip() or PAID_MODEL
+
+# ---------------------------------------------------------------------------
+# GigaChat (Sber) — alternative upstream for benchmarking the SAME agent on
+# GigaChat models. Activated only when SIGMA_MODEL is a GigaChat id; the
+# OpenRouter path is untouched. GigaChat speaks the OpenAI-legacy `functions` /
+# `function_call` dialect (not `tools`/`tool_calls`) and streams its own way, so
+# this proxy translates in BOTH directions: we call GigaChat NON-streaming and
+# re-emit a synthetic OpenAI SSE stream the browser agent (assistant.js) already
+# understands. SSL: the Russian-Trust CA isn't in the system store → unverified
+# context (same as `curl -k`).
+# ---------------------------------------------------------------------------
+GIGACHAT_AUTH_KEY = os.environ.get("GIGACHAT_AUTH_KEY", "").strip()
+GIGACHAT_SCOPE = os.environ.get("GIGACHAT_SCOPE", "GIGACHAT_API_CORP").strip()
+GIGACHAT_OAUTH_URL = "https://ngw.devices.sberbank.ru:9443/api/v2/oauth"
+GIGACHAT_CHAT_URL = "https://gigachat.devices.sberbank.ru/api/v1/chat/completions"
+_GIGA_SSL = ssl.create_default_context()
+_GIGA_SSL.check_hostname = False
+_GIGA_SSL.verify_mode = ssl.CERT_NONE
+_giga_token = {"tok": None, "exp": 0.0}
+
+# Price ₽ per 1000 tokens (Sber legal-entity tariffs, eff. 2026-02-01). GigaChat
+# bills TOTAL tokens at a flat rate (no input/output split). Converted to USD on
+# the bench page at RUB_PER_USD so it shares the cost axis with OpenRouter models.
+GIGACHAT_PRICE_RUB_PER_1K = {
+    "GigaChat": 0.065, "GigaChat-2": 0.065, "GigaChat-Plus": 0.065,
+    "GigaChat-Pro": 0.5, "GigaChat-2-Pro": 0.5,
+    "GigaChat-Max": 0.65, "GigaChat-2-Max": 0.65,
+}
+GIGACHAT_RUB_PER_USD = 80.0
+
+
+def _is_gigachat_model(model_id: str) -> bool:
+    return (model_id or "").strip().lower().startswith("gigachat")
+
+
+def get_gigachat_token() -> str:
+    """Fetch+cache the 30-min OAuth access token (refresh ~1 min before expiry)."""
+    now = time.time()
+    if _giga_token["tok"] and now < _giga_token["exp"] - 60:
+        return _giga_token["tok"]
+    data = urllib.parse.urlencode({"scope": GIGACHAT_SCOPE}).encode("utf-8")
+    req = urllib.request.Request(
+        GIGACHAT_OAUTH_URL, data=data,
+        headers={
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Accept": "application/json",
+            "RqUID": str(uuid.uuid4()),
+            "Authorization": f"Basic {GIGACHAT_AUTH_KEY}",
+        },
+        method="POST",
+    )
+    with urllib.request.urlopen(req, context=_GIGA_SSL, timeout=30) as r:
+        j = json.loads(r.read())
+    _giga_token["tok"] = j["access_token"]
+    # expires_at is unix-ms; fall back to now+25min if absent.
+    _giga_token["exp"] = (j.get("expires_at", 0) / 1000.0) or (now + 1500)
+    return _giga_token["tok"]
+
+
+def _flatten_content(content):
+    """OpenAI multimodal content (list of {type,text|image_url}) → plain text.
+    GigaChat chat API is text-only here; image parts are dropped (graphics/vision
+    cases will honestly fail, like any text-only model in the board)."""
+    if isinstance(content, list):
+        return "\n".join(
+            p.get("text", "") for p in content
+            if isinstance(p, dict) and p.get("type") == "text"
+        )
+    if content is None:
+        return ""
+    return content if isinstance(content, str) else str(content)
+
+
+def build_gigachat_payload(client_body: dict) -> dict:
+    """Translate the OpenAI-shaped client body into GigaChat's `functions` dialect."""
+    msgs = client_body.get("messages") or []
+    # tool_call_id → function name, recovered from assistant tool_calls, so a
+    # `role:tool` result can become a `role:function` message GigaChat accepts.
+    id2name = {}
+    for m in msgs:
+        if m.get("role") == "assistant":
+            for tc in (m.get("tool_calls") or []):
+                cid, fn = tc.get("id"), (tc.get("function") or {}).get("name")
+                if cid and fn:
+                    id2name[cid] = fn
+    out_msgs = []
+    for m in msgs:
+        role = m.get("role")
+        if role == "tool":
+            name = id2name.get(m.get("tool_call_id")) or m.get("name") or "func"
+            content = _flatten_content(m.get("content"))
+            # GigaChat REQUIRES a function result's content to be a VALID JSON
+            # string and rejects the whole request with HTTP 422 otherwise. Our
+            # tool results are JSON but get char-truncated upstream (TOOL_CHAR_LIMIT)
+            # → invalid JSON → 422 → the entire tool loop dies and the model
+            # answers ungrounded (a measurement artifact, not a model failure).
+            # Coerce to guaranteed-valid JSON: pass through if it already parses,
+            # else wrap the (possibly-truncated) text as {"text": ...}.
+            try:
+                json.loads(content)
+                safe = content
+            except Exception:
+                safe = json.dumps({"text": content}, ensure_ascii=False)
+            out_msgs.append({"role": "function", "name": name, "content": safe})
+        elif role == "assistant" and m.get("tool_calls"):
+            tc = m["tool_calls"][0]  # GigaChat carries one function_call per turn
+            fn = tc.get("function") or {}
+            raw = fn.get("arguments")
+            try:
+                args = json.loads(raw) if isinstance(raw, str) else (raw or {})
+            except Exception:
+                args = {}
+            out_msgs.append({"role": "assistant",
+                             "content": _flatten_content(m.get("content")) or "",
+                             "function_call": {"name": fn.get("name", ""), "arguments": args}})
+        else:
+            out_msgs.append({"role": role, "content": _flatten_content(m.get("content"))})
+    payload = {
+        "model": client_body.get("model") or PAID_MODEL,
+        "messages": out_msgs,
+        "stream": False,
+    }
+    t = client_body.get("temperature")
+    if t is not None:
+        payload["temperature"] = max(float(t), 0.01)  # GigaChat wants temp > 0
+    tools = client_body.get("tools")
+    if tools:
+        funcs = [(td.get("function") or {}) for td in tools if td.get("type") == "function"]
+        funcs = [f for f in funcs if f.get("name")]
+        if funcs:
+            payload["functions"] = funcs
+            payload["function_call"] = "auto"
+    return payload
+
+
 
 # ---------------------------------------------------------------------------
 # Model fetch (cached) — text and vision variants share the shir-man ranker;
@@ -648,11 +785,147 @@ class Handler(http.server.BaseHTTPRequestHandler):
             return self._send_json({"results": tool_find_theorem(q)})
 
         if self.path == "/api/llm":
+            model = (body.get("model") or PAID_MODEL or "").strip()
+            if _is_gigachat_model(model):
+                if not GIGACHAT_AUTH_KEY:
+                    return self._send_json({"error": "GIGACHAT_AUTH_KEY missing"}, status=500)
+                return self._proxy_gigachat(body)
             if not API_KEY:
                 return self._send_json({"error": "OPENROUTER_API_KEY missing"}, status=500)
             return self._proxy_openrouter(body)
 
         return self._send_json({"error": "not found"}, status=404)
+
+    def _proxy_gigachat(self, client_body):
+        """Route /api/llm to GigaChat with STREAMING pass-through + per-frame
+        translation into the OpenAI SSE shape the browser agent understands.
+
+        Streaming (not buffer-then-emit) is REQUIRED for correct measurement:
+        assistant.js aborts a completion after LLM_IDLE_MS=120s with NO bytes, so
+        a non-streaming upstream made long answers (esp. GigaChat-2-Max) falsely
+        DNF. Streaming keeps bytes flowing so only a genuine model failure scores
+        0. GigaChat streams `function_call` whole in one delta and carries `usage`
+        (with token counts) in its final frame → real ₽→$ cost is logged.
+
+        On a transient upstream failure BEFORE any byte is forwarded, retry up to
+        2× (fresh token on auth issues) so throttling/5xx doesn't poison a case."""
+        payload = build_gigachat_payload(client_body)
+        payload["stream"] = True
+        model_id = payload["model"]
+        print(f"[proxy-giga] model={model_id} msgs={len(payload['messages'])} "
+              f"fn={'functions' in payload}", file=sys.stderr)
+
+        upstream = None
+        for attempt in range(3):
+            try:
+                token = get_gigachat_token()
+                req = urllib.request.Request(
+                    GIGACHAT_CHAT_URL,
+                    data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
+                    headers={"Authorization": f"Bearer {token}",
+                             "Content-Type": "application/json",
+                             "Accept": "text/event-stream"},
+                    method="POST",
+                )
+                upstream = urllib.request.urlopen(req, context=_GIGA_SSL, timeout=180)
+                break
+            except urllib.error.HTTPError as e:
+                err_body = e.read().decode("utf-8", "replace")[:300]
+                print(f"[proxy-giga] HTTP {e.code} attempt {attempt}: {err_body}", file=sys.stderr)
+                if e.code == 401:
+                    _giga_token["tok"] = None  # force token refresh next attempt
+                if attempt == 2:
+                    return self._send_json({"error": f"gigachat HTTP {e.code}: {err_body}"}, status=502)
+                time.sleep(1.5 * (attempt + 1))
+            except Exception as e:
+                print(f"[proxy-giga] open failed attempt {attempt}: {e}", file=sys.stderr)
+                if attempt == 2:
+                    return self._send_json({"error": f"gigachat: {e}"}, status=502)
+                time.sleep(1.5 * (attempt + 1))
+        if upstream is None:
+            return self._send_json({"error": "gigachat unavailable"}, status=502)
+
+        self.close_connection = True
+        self.send_response(200)
+        self.send_header("Content-Type", "text/event-stream; charset=utf-8")
+        self.send_header("Cache-Control", "no-cache, no-transform")
+        self.send_header("Connection", "close")
+        self.send_header("X-Accel-Buffering", "no")
+        self.end_headers()
+
+        usage = None
+        buf = b""
+        call_id = f"call_giga_{uuid.uuid4().hex[:8]}"
+
+        def emit(obj):
+            self.wfile.write(f"data: {json.dumps(obj, ensure_ascii=False)}\n\n".encode("utf-8"))
+            self.wfile.flush()
+
+        try:
+            while True:
+                chunk = upstream.read1(4096) if hasattr(upstream, "read1") else upstream.read(4096)
+                if not chunk:
+                    break
+                buf += chunk
+                text = buf.decode("utf-8", "replace")
+                frames = text.split("\n\n")
+                buf = frames[-1].encode("utf-8")  # keep incomplete tail
+                for frame in frames[:-1]:
+                    for line in frame.splitlines():
+                        if not line.startswith("data:"):
+                            continue
+                        p = line[5:].strip()
+                        if p == "[DONE]":
+                            continue
+                        try:
+                            g = json.loads(p)
+                        except Exception:
+                            continue
+                        if isinstance(g.get("usage"), dict):
+                            usage = g["usage"]
+                        ch = (g.get("choices") or [{}])[0]
+                        delta = ch.get("delta") or {}
+                        fin = ch.get("finish_reason")
+                        fc = delta.get("function_call")
+                        if fc:
+                            args = fc.get("arguments")
+                            if not isinstance(args, str):
+                                args = json.dumps(args, ensure_ascii=False)
+                            out_delta = {"role": "assistant", "tool_calls": [{
+                                "index": 0, "id": call_id, "type": "function",
+                                "function": {"name": fc.get("name", ""), "arguments": args},
+                            }]}
+                        elif delta.get("content") is not None:
+                            out_delta = {"content": delta.get("content")}
+                        else:
+                            out_delta = {}
+                        out_fin = "tool_calls" if fin == "function_call" else fin
+                        out = {"choices": [{"delta": out_delta, "index": 0}],
+                               "model": model_id, "object": "chat.completion.chunk"}
+                        if out_fin:
+                            out["choices"][0]["finish_reason"] = out_fin
+                        if out_delta or out_fin:
+                            emit(out)
+            self.wfile.write(b"data: [DONE]\n\n")
+            self.wfile.flush()
+        except (BrokenPipeError, ConnectionResetError, OSError) as e:
+            print(f"[proxy-giga] client gone mid-stream: {e}", file=sys.stderr)
+        finally:
+            upstream.close()
+            if usage:
+                tot = usage.get("total_tokens") or 0
+                rate = GIGACHAT_PRICE_RUB_PER_1K.get(model_id, 0.065)
+                cost = round(tot / 1000.0 * rate / GIGACHAT_RUB_PER_USD, 6)
+                try:
+                    with open(USAGE_LOG_PATH, "a", encoding="utf-8") as f:
+                        f.write(json.dumps({
+                            "ts": time.time(), "model": model_id,
+                            "prompt_tokens": usage.get("prompt_tokens"),
+                            "completion_tokens": usage.get("completion_tokens"),
+                            "total_tokens": tot, "cost": cost,
+                        }, ensure_ascii=False) + "\n")
+                except Exception:
+                    pass
 
     def _open_upstream(self, payload, wants_stream):
         req = urllib.request.Request(

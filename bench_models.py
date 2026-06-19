@@ -189,7 +189,12 @@ def bench_one(model):
             "visual_match": r["score"]["visual_match"],
             "missing": r["score"].get("missing"),
             "tools": [t["tool"] for t in r["obs"]["trace"]],
+            # full trace (tool + args) so the python CODE that drew a figure is
+            # saved — previously only names were kept, so figures couldn't be
+            # regenerated. Figures themselves stored as base64 data-URLs.
+            "trace": r["obs"]["trace"],
             "images": r["obs"]["images"],
+            "figures": r["obs"].get("figures", []),
             "elapsed": round(r.get("elapsed", 0), 1),
             "cost": r.get("cost", 0),
             "prompt_tokens": r.get("prompt_tokens", 0),

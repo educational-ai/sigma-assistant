@@ -65,6 +65,21 @@ Workflow tool, which bash can't invoke.
    native tool-calling, NOT a parser bug we own. Don't build a text-fallback (rewards
    non-compliance). Flag or drop such models; their score is not a quality signal.
 
+6b. **Raw `\(…\)` / `\[…\]` delimiters render as garbage (2026-06-10).** The site's
+   `renderMarkdown` renders ONLY `$…$` and `$$…$$`. Math written with `\(…\)`/`\[…\]`
+   passes through `escapeHtml` and the reader sees raw backslash-LaTeX — as bad as a
+   `.katex-error`. `validate_render.js` can't see this (it only extracts `$`-formulas),
+   so it reported `broken=0` and these answers scored as clean passes. **Found only by
+   opening the live page in a browser and clicking cells** — the text-judge reads
+   `\( x_0 = 2 \)` as legible intent and passes it. Three models emit this wholesale:
+   seed-1.6-flash, ministral-8b, mistral-small (and stray cases in nova). **Fixed**:
+   `render_gate._delim_counts` + `raw_render_defective` (rule: `raw>=2 and raw>=dollar`
+   → the reader sees predominantly raw math → fail), wired into `grade_hybrid` next to
+   the broken-formula gate. Calibrated against anchors: mistral-small newton (R=34,D=0,
+   already failed by audit) and seed/ministral newton (central formula in `$$`, only
+   prose `\(x_k\)` leaks → pass). Always run the live-page click-sweep after generating —
+   on-disk `clean` count is blind to this class of defect.
+
 6. **Page is served at `/benchmark/`** (301 from `/benchmark`); nginx injects the
    assistant widget scripts so served bytes > on-disk. Verify with `curl -L` or a
    real browser, and cache-bust (`?cb=…`).
@@ -83,3 +98,26 @@ cd /root/sigma_assistant && python3 gen_benchmark_page.py
 # → report_benchmark.py ; then safe_restart claude-tg (activates send_telegram_message)
 # bench commit ONLY with Daniil's OK.
 ```
+
+## Rubric grading (added 2026-06-11) — replaces binary judge for semantic cases
+
+Daniil's directive: сложные вопросы под Claude-as-judge не должны грейдиться бинарно.
+Вместо `pass:true/false` каждый семантический ответ грейдится **по рубрике из критериев**.
+
+Artifacts:
+- `rubrics.jsonl` — per semantic case: `criteria:[{id,text,weight,critical,auto?}]`.
+  - `critical:true` → уровень `none` обнуляет весь балл (галлюцинация/нарушение/битый ключ).
+  - `auto:"tool_expected"|"no_tools"|"image_present"` → уровень считается из данных
+    прогона (tools/images), НЕ судьёй. Многомерность по запросу Даниила: суть, стиль,
+    scope, инструменты (где нужно/не нужно), картинка.
+- `rubric_score.py` — детерминированная агрегация: met=1.0/partial=0.5/none=0.0,
+  score = Σ(w·level)/Σw, critical-none → 0. `PASS_THRESHOLD=0.6` для опц. бинарного вида.
+- `wf_rubric_grade.js` — Workflow: judge→refute→audit, выдаёт уровни ПО КАЖДОМУ
+  судейскому критерию (auto-критерии исключены из дампа судьи).
+- `persist_rubric_verdicts.py` — finalVerdicts → `rubric_verdicts.jsonl` (key: case+sha1+model).
+- `grade_rubric.py` — рубрично-осознанный грейдер: semantic → continuous rubric_score,
+  deterministic → 0/1, рендер-гейты (broken/raw `\(…\)`) по-прежнему капят в 0.
+  Пишет `rubric_score`, `rubric_capped`, `rubric_detail` на кейс; `avg_rubric_score` на модель.
+
+Run order (after a fresh rerun): wf_rubric_grade.js → persist_rubric_verdicts.py
+→ читать auditReport → grade_rubric.py → gen_benchmark_page.py → browser verify.

@@ -144,9 +144,15 @@ async def run_one(page, case):
                 };
             });
             const aEl = last.querySelector('.sigma-answer');
+            const figEls = Array.from(last.querySelectorAll('.sigma-figure'));
             return {
                 trace,
-                images: last.querySelectorAll('.sigma-figure').length,
+                images: figEls.length,
+                // Persist the ACTUAL base64 of every agent-drawn figure (python
+                // matplotlib → .sigma-figure). Previously only COUNTED — so the
+                // bench drawer showed no graph and the figures were lost forever
+                // (the browser DOM is gone after capture). Now saved with the run.
+                figures: figEls.map(i => i.getAttribute('src') || i.src || '').filter(Boolean),
                 // Capture the RAW model markdown/LaTeX source (stashed on
                 // dataset.raw by assistant.js), NOT the KaTeX-rendered innerText
                 // (innerText flattens an exponent onto a separate line and drops
@@ -155,7 +161,7 @@ async def run_one(page, case):
                 answer: aEl ? (aEl.dataset.raw ?? aEl.innerText ?? '') : '',
             };
         }"""
-    ) or {"trace": [], "images": 0, "answer": ""}
+    ) or {"trace": [], "images": 0, "figures": [], "answer": ""}
     # Prefer the stabilised RAW source — the final evaluate can still catch a
     # re-render. Use the raw markdown (not rendered innerText) for the same reason.
     stable_raw = (last or {}).get("raw") or ""
