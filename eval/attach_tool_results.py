@@ -35,6 +35,18 @@ def _tool_msgs(rec):
     return [m.get("content") or "" for m in msgs if m.get("role") == "tool"]
 
 
+def _tool_calls(rec):
+    """Полные вызовы (имя + аргументы целиком, включая python-код) в порядке
+    исполнения — виджетный трейс хранит только первую строку аргумента."""
+    out = []
+    for m in rec.get("request_messages") or []:
+        if m.get("role") == "assistant":
+            for tc in m.get("tool_calls") or []:
+                fn = tc.get("function") or {}
+                out.append(fn.get("arguments") or "")
+    return out
+
+
 def attach(bench_dir: Path, convo_rows: list) -> int:
     """Подшить result в trace всех кейсов bench.json. Возвращает число кейсов."""
     bj = bench_dir / "bench.json"
@@ -51,13 +63,17 @@ def attach(bench_dir: Path, convo_rows: list) -> int:
         in_win = [r for r in convo_rows if t0 - 1 <= r.get("ts", 0) <= t1 + 3]
         if not in_win:
             continue
-        # последняя запись кейса несёт ВСЮ историю (все tool-ответы по порядку)
+        # последняя запись кейса несёт ВСЮ историю (вызовы и ответы по порядку)
         tools = _tool_msgs(in_win[-1])
+        calls = _tool_calls(in_win[-1])
         trace = c.get("trace") or []
         attached = False
         for i, t in enumerate(trace):
             if i < len(tools) and tools[i]:
                 t["result"] = tools[i]
+                attached = True
+            if i < len(calls) and calls[i]:
+                t["call_args"] = calls[i]
                 attached = True
         if attached:
             n += 1

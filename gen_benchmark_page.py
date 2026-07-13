@@ -29,6 +29,21 @@ def fmt_tool_result(raw, cap=6000):
     return pretty
 
 
+def fmt_call_args(raw, cap=6000):
+    """Аргументы вызова: {"code": "..."} → сам код, иначе pretty-JSON."""
+    try:
+        obj = json.loads(raw)
+        if isinstance(obj, dict) and len(obj) == 1 and isinstance(next(iter(obj.values())), str):
+            pretty = next(iter(obj.values()))
+        else:
+            pretty = json.dumps(obj, ensure_ascii=False, indent=2)
+    except Exception:
+        pretty = raw
+    if len(pretty) > cap:
+        pretty = pretty[:cap] + "\n…[обрезано; полностью — в bench.json]"
+    return pretty
+
+
 def load_tool_icons():
     """Иконки/лейблы тулзов — ровно те же, что в виджете на сайте
     (TOOL_ICONS/TOOL_LABELS/DOT_ICON из assistant.js). Парсим объект-литерал;
@@ -552,10 +567,19 @@ function openDetail(el){
           +'<span class=ta>'+args+'</span>'
           +(st?'<span class=ts>'+st+'</span>':'');
         inner.appendChild(row); rows.push(row);
-        if(t.result){
-          row.classList.add('expandable'); row.title='показать ответ инструмента';
+        if(t.result||t.call_args){
+          row.classList.add('expandable'); row.title='показать вызов и ответ инструмента';
           const res=document.createElement('div'); res.className='tres';
-          const pre=document.createElement('pre'); pre.textContent=t.result; res.appendChild(pre);
+          if(t.call_args){
+            const c1=document.createElement('div'); c1.className='figcap'; c1.textContent='Вызов:';
+            const p1=document.createElement('pre'); p1.textContent=t.call_args;
+            res.appendChild(c1); res.appendChild(p1);
+          }
+          if(t.result){
+            const c2=document.createElement('div'); c2.className='figcap'; c2.style.marginTop='8px'; c2.textContent='Ответ:';
+            const p2=document.createElement('pre'); p2.textContent=t.result;
+            res.appendChild(c2); res.appendChild(p2);
+          }
           inner.appendChild(res);
           row.addEventListener('click',()=>res.classList.toggle('open'));
         }
@@ -863,7 +887,10 @@ def build(bench_dir=None, out=None, version=None, versions=()):
                 "answer": c.get("answer", ""), "tools": c.get("tools", []), "missing": c.get("missing"),
                 "cost": c.get("cost"), "img": c.get("images", 0), "elapsed": c.get("elapsed", 0),
                 "figures": figs,
-                "trace": [dict(t, result=fmt_tool_result(t["result"])) if t.get("result") else t
+                "trace": [dict(t,
+                               result=fmt_tool_result(t["result"]) if t.get("result") else None,
+                               call_args=fmt_call_args(t["call_args"]) if t.get("call_args") else None)
+                          if (t.get("result") or t.get("call_args")) else t
                           for t in c.get("trace", [])],
                 "shot": f"shots/{bdir}/{qid}.png" if shot_src.exists() else None,
                 "state": st, "cause": cause,
