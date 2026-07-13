@@ -1,64 +1,135 @@
-# Sigma Assistant — Eval Test Set
+# Sigma Assistant — Eval & Benchmark
 
-Objective: track tool-use correctness, answer quality, and visual outputs over time as we iterate on the browser-side agent.
+Цель: следить за качеством агента (tool-use, ответы, графики) на живом сайте
+и сравнивать модели между собой. Принцип: **сохраняем максимально всё** —
+невоспроизводимые артефакты прогона (ответы, диалоги, графики, трейсы, центы)
+пишутся файлами, чтобы с данными можно было работать потом.
 
-## Files
+## Быстрый старт
 
-- `cases.jsonl` — golden test cases (one per line, see schema below).
-- `run_eval.py` — runner: replays each case against the agent endpoint, captures full trace + final answer + any images, scores against golden.
-- `reports/` — markdown reports per run, with embedded images.
-- `logs/` — raw JSONL of every case run (for regression diff).
+```bash
+cd /root/sigma_assistant
 
-## Case schema
+# бенч по списку моделей одной командой (последовательно, ~10-60 мин/модель)
+python3 bench_models.py qwen/qwen3.5-9b google/gemini-3.5-flash
+
+python3 bench_models.py                       # весь дефолтный список MODELS
+python3 bench_models.py --dev <модели>        # гнать на dev-стенде (sigmadev) — прод не трогается
+python3 bench_models.py --force <модели>      # перепрогнать поверх существующих результатов
+python3 bench_models.py --version v2 <модели> # писать в новую версию бенча
+```
+
+Что делает `bench_models.py` для каждой модели: подменяет `SIGMA_MODEL` в `.env`
+цели → рестартует сервис → `eval/run_eval.py` гоняет все кейсы через headless-браузер
+по **живой странице** (тот же виджет, что видит читатель) → привязывает реальную
+стоимость из usage-лога → собирает `bench.json` → подшивает полные вызовы/ответы
+тулзов из серверного лога диалогов → перегенерирует страницу `/benchmark`.
+`.env` бэкапится и восстанавливается даже по SIGTERM.
+
+Один прогон без смены модели (отладка, gap-fill):
+
+```bash
+cd eval && python3 run_eval.py --base https://sigmadev.fmin.xyz --only case_id1,case_id2 --out /tmp/probe
+```
+
+## Версии бенча
+
+Версия = папка `eval/bench_v1`, `bench_v2`, … Каждая **самодостаточна**: внутри
+`cases.jsonl` (вопросы; снапшотится при первом прогоне версии) и все результаты.
+Раннер пишет в последнюю версию; если `eval/cases.jsonl` уехал от снапшота —
+откажется и попросит `--version v<N+1>` (иначе результаты несравнимы).
+Скрипты грейдинга берут последнюю `bench_v*`.
+
+## Артефакты: что и куда сохраняется
+
+`eval/bench_v<N>/<model_slug>/`:
+
+| Файл | Что внутри |
+|---|---|
+| `bench.json` | всё по кейсам: сырой markdown-ответ, `trace` (тул + аргумент + статус + **`call_args`** — полные аргументы вызова, **`result`** — полный ответ тула), `figures` (пути к графикам), реальные центы, токены, тайминги, `bench_version` |
+| `<case_id>.png` | скрин живой страницы с ответом (как видит читатель, с виджетом) |
+| `figs/<case>_<i>.png` | графики, построенные агентом (декодированы из DOM в файлы) |
+| `results.jsonl` | сырые результаты раннера с окнами времени `t_start`/`t_end` (по ним джойнится стоимость и диалоги) |
+| `report.md` | markdown-отчёт прогона |
+| `run.log` | полный лог прогона |
+
+Всё вышеперечисленное — **в git** (в `.gitignore` явные негации для png/log бенча).
+
+Серверные логи (на диске, в git не влезают):
+
+- `eval/llm_log.jsonl` (прод) / `eval/llm_log_dev.jsonl` (dev; путь через env
+  `SIGMA_CONVO_LOG`) — **полные LLM-диалоги**: каждый `/api/llm` пишет все
+  `messages` запроса (системный промпт, вопрос, все tool-вызовы и tool-ответы)
+  + собранный из SSE ответ модели + usage. Пишет `server.py::_log_convo`,
+  ротация в датированные файлы после 500MB, ничего не удаляется.
+- `eval/usage_log.jsonl` — по-запросные токены и стоимость.
+
+Стоимость: OpenRouter-модели — **реальный биллинг** из API (`usage.cost`).
+GigaChat ходит НЕ через OpenRouter (свои креды `GIGACHAT_AUTH_KEY`), его
+стоимость **расчётная**: рублёвый тариф за 1K токенов × живой курс USD с API
+ЦБ на момент прогона (кэш 12ч, фоллбэк 80; использованный курс пишется в
+usage-запись полем `rub_per_usd`).
+
+`eval/attach_tool_results.py` — джойнит лог диалогов с кейсами по окнам времени
+и подшивает `call_args`/`result` в трейсы `bench.json` (встроено в `bench_one`;
+вручную: `python3 eval/attach_tool_results.py --all`).
+
+## Скоринг и грейдинг
+
+1. **Сабстринг-грейдер** (`run_eval.score_one`): tool match + `expected_answer_contains`/
+   `excludes` (нормализация + русский стемминг) + garbage-гейт + гейт битых
+   KaTeX-формул + `expected_visual` → картинка обязана существовать.
+2. **`regrade.py`** — перескорить сохранённые ответы текущим грейдером. Гонять после
+   каждого фикса грейдера, иначе оценки протухают (инцидент «✕ Привет!» 2026-07-13:
+   идеальный ответ висел провалом со старой оценкой).
+3. **LLM-as-judge** — адверсариальные воркфлоу `wf_adversarial_grade.js` /
+   `wf_rubric_grade.js` (Claude-судья по рубрикам из `rubrics.jsonl`).
+
+Железное правило: бенч должен ЛОВИТЬ дефекты модели, а не маскировать их;
+таймаут/обрыв/сырой tool-call в ответе — это `broken` (DNF), не pass и не fail.
+
+## Репортинг
+
+- **`gen_benchmark_page.py`** → https://sigma.fmin.xyz/benchmark — сводная таблица
+  (heatmap по категориям, стоимость, латентность), панель кейса: ответ как его
+  видит читатель, чипы тулзов с иконками виджета (клик по чипу → детали конкретного
+  вызова: секции «Вызов» и «Ответ» целиком), графики агента, скрин живой страницы,
+  честные пометки о несохранённых артефактах. Последняя версия бенча — на
+  `/benchmark/`, старые — на `/benchmark/v1/` и т.д. Все числа пересчитываются
+  из сырых кейсов (`case_state`), не из сохранённых флагов.
+- **`report_benchmark.py`** — краткий TG-отчёт по последней версии.
+
+## Cron
+
+Еженедельный прогон: вс 03:00 MSK → отчёт в TG (`/root/scripts/sigma_eval_weekly.sh`).
+
+## Схема кейса (`cases.jsonl`)
 
 ```json
 {
   "id": "unique-slug",
   "category": "rag_basic | definition | compute_pure | compute_plot | multi_hop | vision_refine | structural | out_of_scope",
-  "chapter_slug": "ch02_newton",         // optional: simulates reading context
-  "fragment": "выделенный пользователем текст",  // optional
+  "chapter_slug": "ch02_newton",
+  "fragment": "выделенный пользователем текст",
   "question": "Что задаёт студент",
-  "history": [],                          // optional: prior turn(s)
-  "expected_tools": [                    // ordered list; partial subset match
-    {"name": "search", "args_contain": ["Канторович"]},
-    {"name": "answer"}
-  ],
-  "expected_answer_contains": ["1975", "Нобел"],   // ALL substrings must be present
-  "expected_answer_excludes": ["Шпильман"],         // NONE of these may appear
-  "expected_visual": false,               // true if a plot/image is required
-  "rubric": "плейн-текст для LLM-as-judge: что считается хорошим ответом"
+  "history": [],
+  "expected_tools": [{"name": "search", "args_contain": ["Канторович"]}],
+  "expected_answer_contains": ["1975", "Нобел"],
+  "expected_answer_excludes": ["Шпильман"],
+  "expected_visual": false,
+  "rubric": "плейн-текст для LLM-as-judge"
 }
 ```
 
-## Categories
+## Категории
 
-| Category | Что проверяет | Tools that should fire |
+| Category | Что проверяет | Ожидаемые тулзы |
 |---|---|---|
-| `rag_basic` | Простой факт из учебника | `search` или `read_chapter` → answer |
-| `definition` | Lookup определения по термину | `find_definition` → answer |
-| `compute_pure` | Численный/символьный расчёт без графика | `python` → answer |
-| `compute_plot` | Расчёт с визуализацией | `python` (с matplotlib) → answer + image |
-| `multi_hop` | Сопоставление 2+ глав | 2-3× search/read → answer |
-| `vision_refine` | Агент строит график, смотрит, корректирует | `python` → vision-обратная связь → `python` снова → answer |
-| `structural` | Lookup теоремы/леммы по имени | `find_theorem` → answer |
-| `out_of_scope` | Вопрос не из учебника | Любые tools или нет, но answer должен явно отказать |
-
-## Scoring
-
-1. **Tool order correctness** (binary per expected tool): был ли вызван tool с substring args.
-2. **Answer substring match** (binary): все `expected_answer_contains` присутствуют, ни одного `expected_answer_excludes`.
-3. **LLM-as-judge** (1-5 score): дешёвая модель оценивает соответствие rubric. Промпт включает question + answer + rubric.
-4. **Visual presence** (binary): если `expected_visual` — был ли возвращён image_url с непустым PNG.
-
-Aggregate: pass rate per category + overall composite score.
-
-## Running
-
-```bash
-cd /root/sigma_assistant/eval
-OPENROUTER_API_KEY=... python3 run_eval.py --cases cases.jsonl --report reports/$(date +%F).md
-```
-
-## Cron
-
-Weekly run on Sunday 03:00 MSK → report sent to TG (DIRECT). See `scripts/eval_sigma_weekly.sh`.
+| `rag_basic` | Простой факт из учебника | `search` или `read_chapter` |
+| `definition` | Lookup определения | `find_definition` |
+| `compute_pure` | Расчёт без графика | `python` |
+| `compute_plot` | Расчёт с визуализацией | `python` + картинка |
+| `multi_hop` | Сопоставление 2+ глав | 2-3× search/read |
+| `vision_refine` | График → смотрит → корректирует | `python` → vision → `python` |
+| `structural` | Lookup теоремы по имени | `find_theorem` |
+| `out_of_scope` | Вопрос не из учебника | Явный отказ |
