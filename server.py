@@ -33,7 +33,7 @@ import urllib.request
 import uuid
 from pathlib import Path
 
-SIGMA_ROOT = Path("/var/www/sigma")
+SIGMA_ROOT = Path(os.environ.get("SIGMA_ROOT", "/var/www/sigma"))
 CHAPTERS_DIRS = [SIGMA_ROOT / "book", SIGMA_ROOT / "10", SIGMA_ROOT / "11"]
 SKIP_SLUGS = {"index", "preface"}
 
@@ -345,7 +345,7 @@ HTML_HEADING_RE = re.compile(
 )
 HTML_TAG_RE = re.compile(r"<[^>]+>")
 SECTION_NUMBER_RE = re.compile(r"^[\d.]+\s+")
-SIGMA_DOCS = Path("/var/www/sigma/docs")
+SIGMA_DOCS = SIGMA_ROOT / "docs"
 
 
 LATEX_COMMAND_WORDS = re.compile(
