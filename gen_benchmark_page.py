@@ -244,7 +244,9 @@ def load():
     benches = []
     for p in sorted(BENCH.glob("*/bench.json")):
         try:
-            benches.append(json.loads(p.read_text(encoding="utf-8")))
+            b = json.loads(p.read_text(encoding="utf-8"))
+            b["_dir"] = p.parent.name
+            benches.append(b)
         except Exception:
             pass
     return benches
@@ -479,6 +481,21 @@ function openDetail(el){
     for(const src of d.figures){ const im=document.createElement('img'); im.className='fig'; im.src=src; im.loading='lazy'; fw.appendChild(im); }
     da.appendChild(fw);
   }
+  if(d.img>0 && (!d.figures || !d.figures.length)){
+    const nb=document.createElement('div'); nb.className='figcap';
+    nb.textContent='⚠ Агент построил картинок: '+d.img+', но раннер этого прогона их не сохранил — графики видны на скрине ниже.';
+    da.appendChild(nb);
+  }
+  if(d.shot){
+    const sw=document.createElement('div'); sw.className='figs';
+    const cap=document.createElement('div'); cap.className='figcap';
+    cap.textContent='Скрин ответа на живой странице (клик — открыть в полном размере):';
+    sw.appendChild(cap);
+    const a=document.createElement('a'); a.href=d.shot; a.target='_blank'; a.rel='noopener';
+    const im=document.createElement('img'); im.className='fig'; im.src=d.shot; im.loading='lazy';
+    a.appendChild(im); sw.appendChild(a);
+    da.appendChild(sw);
+  }
   const broken = da.querySelectorAll('.katex-error').length;
   if(broken) bits.push('⚠ битых формул: '+broken);
   document.getElementById('dm').textContent='Вопрос: '+d.q+'  ·  '+bits.join('  ·  ');
@@ -710,11 +727,17 @@ def build():
             st, cause = case_state(c)
             g, gcls = GLYPH[st]
             key = f"{slugify(m)}__{qid}"
+            # /figures/<uuid>.png — файлы прогона, которых больше нет на диске
+            # (старый раннер сохранял только счётчик). Мёртвую ссылку не рендерим.
+            figs = [f for f in c.get("figures", []) if not f.startswith("/figures/")]
+            bdir = b.get("_dir", slugify(m))
+            shot_src = BENCH / bdir / f"{qid}.png"
             data_js[key] = {
                 "model": short_model(m), "q": meta["question"], "cat": CAT_LABEL.get(meta["category"], meta["category"]),
                 "answer": c.get("answer", ""), "tools": c.get("tools", []), "missing": c.get("missing"),
                 "cost": c.get("cost"), "img": c.get("images", 0), "elapsed": c.get("elapsed", 0),
-                "figures": c.get("figures", []),
+                "figures": figs,
+                "shot": f"shots/{bdir}/{qid}.png" if shot_src.exists() else None,
                 "state": st, "cause": cause,
             }
             A(f"<td><span class='cellmark {gcls}' data-k='{esc(key)}'>{g}</span></td>")
@@ -761,8 +784,23 @@ def build():
     A("</div></body></html>")
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text("".join(P), encoding="utf-8")
+    # Скрины ответов (eval/bench/<dir>/<case>.png) → docs/benchmark/shots/ —
+    # иначе странице нечего показывать: /root никому кроме nginx-копии не виден.
+    import shutil
+    nshots = 0
+    for b in benches:
+        bdir = b.get("_dir")
+        if not bdir:
+            continue
+        dst = OUT.parent / "shots" / bdir
+        dst.mkdir(parents=True, exist_ok=True)
+        for png in (BENCH / bdir).glob("*.png"):
+            t = dst / png.name
+            if not t.exists() or t.stat().st_mtime < png.stat().st_mtime:
+                shutil.copy2(png, t)
+            nshots += 1
     print(f"wrote {OUT} ({len(benches)} models, {len(qorder)} questions, "
-          f"clean={s0['clean']}/{s0['n']}, has_cost={has_cost}, has_tok={has_tok})")
+          f"clean={s0['clean']}/{s0['n']}, has_cost={has_cost}, has_tok={has_tok}, shots={nshots})")
 
 
 if __name__ == "__main__":

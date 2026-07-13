@@ -9,6 +9,9 @@
 
 # per-case screenshots (regenerable) — drop everywhere
 *.png
+# ...кроме скринов ответов бенча: это визуальное свидетельство прогонов,
+# их показывает /benchmark (решение Дани 2026-07-13 — храним в репо)
+!eval/bench/*/*.png
 eval/reports/
 
 # stale bench backups/stashes — keep only live eval/bench/*/bench.json
