@@ -1,0 +1,94 @@
+=== eval run 2026-06-10 20:41:26 · 29 cases · https://sigma.fmin.xyz ===
+
+[newton_kantorovich_history  ] rag_basic      → https://sigma.fmin.xyz/ch02_newton.html
+  FAIL  tools=[] imgs=0 miss=['1975', 'оптимал']
+
+[newton_formula_recall       ] rag_basic      → https://sigma.fmin.xyz/ch02_newton.html
+  FAIL  tools=[] imgs=0 miss=['касательн', 'пересечен']
+
+[definition_strong_convex    ] definition     → https://sigma.fmin.xyz/ch02_newton.html
+  FAIL  tools=[] imgs=0 miss=['вторая производ', 'константа']
+
+[compute_factorial           ] compute_pure   → https://sigma.fmin.xyz/ch02_newton.html
+  FAIL  tools=[] imgs=0 miss=['265252859812191058636308480000000']
+
+[compute_taylor_sin          ] compute_pure   → https://sigma.fmin.xyz/ch02_newton.html
+  FAIL  tools=[] imgs=0 miss=['120']
+
+[compute_plot_newton         ] compute_plot   → https://sigma.fmin.xyz/ch02_newton.html
+  FAIL  tools=[] imgs=0 miss=[]
+  [recycle browser after 6 cases]
+
+[compute_plot_gd_vs_newton   ] compute_plot   → https://sigma.fmin.xyz/ch02_newton.html
+  FAIL  tools=[] imgs=0 miss=[]
+
+[rsa_encrypt_small           ] compute_pure   → https://sigma.fmin.xyz/ch04_3_kriptosistemy-rsa-i-diffi-hellma.html
+  FAIL  tools=[] imgs=0 miss=['6']
+
+[rsa_full_roundtrip          ] compute_pure   → https://sigma.fmin.xyz/ch04_3_kriptosistemy-rsa-i-diffi-hellma.html
+  FAIL  tools=[] imgs=0 miss=['143', '120', '103', '48']
+
+[multihop_newton_vs_gradient ] multi_hop      → https://sigma.fmin.xyz/ch02_newton.html
+  FAIL  tools=[] imgs=0 miss=[]
+
+[structural_kantorovich_theorem] structural     → https://sigma.fmin.xyz/ch02_newton.html
+  FAIL  tools=[] imgs=0 miss=['квадратичн', 'убыва']
+
+[vision_refine_diverging_sgd ] vision_refine  → https://sigma.fmin.xyz/ch02_newton.html
+  FAIL  tools=[] imgs=0 miss=['расход', '0.5']
+  [recycle browser after 12 cases]
+
+[hashlib_demo                ] compute_pure   → https://sigma.fmin.xyz/ch04_5_heshirovanie-teoriya-chisel-vstr.html
+  FAIL  tools=[] imgs=0 miss=['38de90475bb334fb3dea5d54f250500aba60fe2c6158115d342b06bcb46e39bf']
+
+[linreg_simple               ] compute_plot   → https://sigma.fmin.xyz/ch03_2_lineynaya-regressiya-i-metod-nai.html
+  FAIL  tools=[] imgs=0 miss=['1.94', '0.15']
+
+[out_of_scope_recipe         ] out_of_scope   → https://sigma.fmin.xyz/ch02_newton.html
+  FAIL  tools=[] imgs=0 miss=['оптимизац']
+
+[rsa_history                 ] rag_basic      → https://sigma.fmin.xyz/ch04_3_kriptosistemy-rsa-i-diffi-hellma.html
+  FAIL  tools=[] imgs=0 miss=['1978']
+
+[greeting_minimal            ] out_of_scope   → https://sigma.fmin.xyz/ch02_newton.html
+  PASS  tools=[] imgs=0 miss=[]
+
+[euclid_gcd_python           ] compute_pure   → https://sigma.fmin.xyz/ch04_1_elementy-teorii-chisel.html
+  FAIL  tools=[] imgs=0 miss=['12', '21']
+  [recycle browser after 18 cases]
+
+[definition_superlinear      ] definition     → https://sigma.fmin.xyz/ch02_newton.html
+  FAIL  tools=[] imgs=0 miss=['lim', '0']
+
+[theorem_clt                 ] structural     → https://sigma.fmin.xyz/ch03_1_prosteyshie-primery-zadach-anali.html
+  FAIL  tools=[] imgs=0 miss=['нормальн']
+
+[plot_sincos_overlay         ] compute_plot   → https://sigma.fmin.xyz/ch02_newton.html
+  FAIL  tools=[] imgs=0 miss=[]
+
+[fragment_explanation        ] rag_basic      → https://sigma.fmin.xyz/ch02_newton.html
+  FAIL  tools=[] imgs=0 miss=['производ']
+
+[eigenvalues_numpy           ] compute_pure   → https://sigma.fmin.xyz/ch_linalg.html
+  FAIL  tools=[] imgs=0 miss=['3']
+
+[plot_loss_landscape         ] compute_plot   → https://sigma.fmin.xyz/ch03_2_lineynaya-regressiya-i-metod-nai.html
+  FAIL  tools=[] imgs=0 miss=['минимум']
+  [recycle browser after 24 cases]
+
+[diffie_hellman_compute      ] compute_pure   → https://sigma.fmin.xyz/ch04_3_kriptosistemy-rsa-i-diffi-hellma.html
+  FAIL  tools=[] imgs=0 miss=['8', '19', '2']
+
+[outline_chapter             ] structural     → https://sigma.fmin.xyz/ch02_newton.html
+  PASS  tools=[] imgs=0 miss=[]
+
+[math_latex_derivation       ] rag_basic      → https://sigma.fmin.xyz/ch02_newton.html
+  PASS  tools=[] imgs=0 miss=[]
+
+[definition_perceptron       ] definition     → https://sigma.fmin.xyz/ch03_3_zadacha-klassifikacii-i-neyronny.html
+  FAIL  tools=[] imgs=0 miss=[]
+
+[refuse_unknown_year         ] out_of_scope   → https://sigma.fmin.xyz/ch02_newton.html
+  FAIL  tools=[] imgs=0 miss=['наш']
+
+report → /root/sigma_assistant/eval/bench/google_gemma_3_27b_it/report.md

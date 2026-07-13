@@ -13,6 +13,30 @@ from pathlib import Path
 ROOT = Path("/root/sigma_assistant")
 BENCH = ROOT / "eval" / "bench"
 OUT = Path("/var/www/sigma/docs/benchmark/index.html")
+ASSISTANT_JS = Path("/var/www/sigma/docs/assistant/assistant.js")
+
+
+def load_tool_icons():
+    """Иконки/лейблы тулзов — ровно те же, что в виджете на сайте
+    (TOOL_ICONS/TOOL_LABELS/DOT_ICON из assistant.js). Парсим объект-литерал;
+    если структура уехала — страница просто падает на текстовый рендер."""
+    import re as _re
+    icons, labels, dot = {}, {}, ""
+    pair = _re.compile(r"""(\w+):\s*\n?\s*(['"])((?:(?!\2).|\\.)*)\2""")
+    try:
+        t = ASSISTANT_JS.read_text(encoding="utf-8")
+        def block(name):
+            m = _re.search("const " + name + r" = \{(.*?)\n  \};", t, _re.S)
+            return m.group(1) if m else ""
+        for k, _q, v in pair.findall(block("TOOL_ICONS")):
+            icons[k] = v
+        for k, _q, v in pair.findall(block("TOOL_LABELS")):
+            labels[k] = v
+        m = _re.search(r"const DOT_ICON =\s*\n?\s*'((?:[^'\\]|\\.)*)'", t)
+        dot = m.group(1) if m else ""
+    except Exception as e:
+        print(f"  ⚠ tool icons not loaded from assistant.js: {e}")
+    return icons, labels, dot
 
 CAT_LABEL = {
     "rag_basic": "Факты", "definition": "Определения", "structural": "Теоремы",
@@ -343,6 +367,10 @@ a{color:var(--accent)}
 #detail .ans .figs{margin-top:12px;display:flex;flex-direction:column;gap:8px}
 #detail .ans .figs .figcap{font-size:12px;color:var(--mut);font-weight:600}
 #detail .ans .figs img.fig{max-width:100%;border:1px solid var(--line);border-radius:8px;background:#fff}
+#detail .toolchips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+#detail .toolchip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 7px;background:#fff}
+#detail .toolchip svg{width:14px;height:14px;flex:none}
+#detail .toolchip .arr{color:var(--line);font-weight:400}
 #detail .ans figure.figref{margin:8px 0;display:flex;flex-direction:column;gap:4px}
 #detail .ans figure.figref img{max-width:100%;border:1px solid var(--line);border-radius:8px;background:#fff}
 #detail .ans .figcap{font-size:12px;color:var(--mut);line-height:1.4}
@@ -453,6 +481,7 @@ function renderMarkdown(md){
 
 DRAWER_JS = """
 const D=__DATA__;
+const TOOL_ICONS=__ICONS__, TOOL_LABELS=__LABELS__, DOT_ICON=__DOT__;
 const detail=document.getElementById('detail'),scrim=document.getElementById('scrim');
 let lastEl=null;
 function openDetail(el){
@@ -460,7 +489,18 @@ function openDetail(el){
   lastEl=el;
   const g=d.state==='pass'?'✓':d.state==='fail'?'✕':'⚠';
   document.getElementById('dt').textContent=g+' '+d.model+' · '+d.cat;
-  let bits=['инструменты: '+(d.tools.join(' → ')||'—'),'картинок: '+d.img,d.elapsed.toFixed(0)+' с'];
+  let bits=['картинок: '+d.img,d.elapsed.toFixed(0)+' с'];
+  const tc=document.getElementById('dtools'); tc.innerHTML='';
+  if(d.tools&&d.tools.length){
+    d.tools.forEach((n,i)=>{
+      if(i>0){const a=document.createElement('span');a.className='arr';a.textContent='→';tc.appendChild(a);}
+      const sp=document.createElement('span'); sp.className='toolchip';
+      sp.innerHTML=(TOOL_ICONS[n]||DOT_ICON)+'<span>'+(TOOL_LABELS[n]||n)+'</span>';
+      tc.appendChild(sp);
+    });
+  } else {
+    tc.innerHTML='<span class="toolchip">'+DOT_ICON+'<span>без инструментов</span></span>';
+  }
   if(d.cost!=null) bits.push('$'+d.cost.toFixed(5));
   if(d.cause) bits.push('состояние: '+d.cause);
   if(d.missing&&d.missing.length) bits.push('не хватило: '+d.missing.join(', '));
@@ -729,7 +769,8 @@ def build():
             key = f"{slugify(m)}__{qid}"
             # /figures/<uuid>.png — файлы прогона, которых больше нет на диске
             # (старый раннер сохранял только счётчик). Мёртвую ссылку не рендерим.
-            figs = [f for f in c.get("figures", []) if not f.startswith("/figures/")]
+            figs = [(f"shots/{b.get('_dir', slugify(m))}/{f}" if f.startswith("figs/") else f)
+                    for f in c.get("figures", []) if not f.startswith("/figures/")]
             bdir = b.get("_dir", slugify(m))
             shot_src = BENCH / bdir / f"{qid}.png"
             data_js[key] = {
@@ -767,7 +808,7 @@ def build():
     A("<div id=scrim></div>")
     A("<div id=detail><button class=x aria-label=Закрыть onclick=\"document.getElementById('detail').classList.remove('open');document.getElementById('scrim').classList.remove('open')\">×</button>"
       "<h3 id=dt></h3><div class=cap style='margin:0 0 8px'>Esc или клик вне окна — закрыть</div>"
-      "<div class=meta id=dm></div><div class=ans id=da></div></div>")
+      "<div class=meta id=dm></div><div class=toolchips id=dtools></div><div class=ans id=da></div></div>")
 
     # ---- Footer (honest timestamps) ----
     built = time.strftime("%Y-%m-%d %H:%M")
@@ -780,7 +821,12 @@ def build():
       "данные: eval/bench/*/bench.json · агент: /assistant/assistant.js (live) · "
       "<a href=\"/\">← к учебнику</a></div>")
 
-    A("<script>" + RENDER_JS + DRAWER_JS.replace("__DATA__", json.dumps(data_js, ensure_ascii=False)) + "</script>")
+    ticons, tlabels, tdot = load_tool_icons()
+    A("<script>" + RENDER_JS + DRAWER_JS
+      .replace("__DATA__", json.dumps(data_js, ensure_ascii=False))
+      .replace("__ICONS__", json.dumps(ticons, ensure_ascii=False))
+      .replace("__LABELS__", json.dumps(tlabels, ensure_ascii=False))
+      .replace("__DOT__", json.dumps(tdot, ensure_ascii=False)) + "</script>")
     A("</div></body></html>")
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text("".join(P), encoding="utf-8")
@@ -794,8 +840,9 @@ def build():
             continue
         dst = OUT.parent / "shots" / bdir
         dst.mkdir(parents=True, exist_ok=True)
-        for png in (BENCH / bdir).glob("*.png"):
-            t = dst / png.name
+        for png in list((BENCH / bdir).glob("*.png")) + list((BENCH / bdir).glob("figs/*.png")):
+            t = dst / png.relative_to(BENCH / bdir)
+            t.parent.mkdir(parents=True, exist_ok=True)
             if not t.exists() or t.stat().st_mtime < png.stat().st_mtime:
                 shutil.copy2(png, t)
             nshots += 1

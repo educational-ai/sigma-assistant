@@ -14,12 +14,41 @@ import json, os, re, signal, subprocess, sys, time, urllib.request
 from pathlib import Path
 
 ROOT = Path("/root/sigma_assistant")
-ENV = ROOT / ".env"
-USAGE_LOG = ROOT / "eval" / "usage_log.jsonl"
-BENCH_DIR = ROOT / "eval" / "bench"
+BENCH_DIR = ROOT / "eval" / "bench"   # артефакты всегда в репо бенча, независимо от цели
 CASES = ROOT / "eval" / "cases.jsonl"
-HEALTH = "http://127.0.0.1:8766/healthz"
-BASE = "https://sigma.fmin.xyz"
+
+# Цель прогона. По умолчанию — прод (тестируем ровно то, что видит читатель).
+# --dev переключает на dev-стенд: прод не трогаем вообще (ни .env, ни рестарты).
+TARGETS = {
+    "prod": {
+        "env": ROOT / ".env",
+        "service": "sigma-assistant.service",
+        "port": 8766,
+        "base": "https://sigma.fmin.xyz",
+        "usage_log": ROOT / "eval" / "usage_log.jsonl",
+    },
+    "dev": {
+        "env": Path("/root/sigma_assistant_dev/.env"),
+        "service": "sigma-assistant-dev.service",
+        "port": 8767,
+        "base": "https://sigmadev.fmin.xyz",
+        "usage_log": Path("/root/sigma_assistant_dev/eval/usage_log.jsonl"),
+    },
+}
+T = TARGETS["prod"]
+ENV = T["env"]
+USAGE_LOG = T["usage_log"]
+HEALTH = f"http://127.0.0.1:{T['port']}/healthz"
+BASE = T["base"]
+
+
+def use_target(name):
+    global T, ENV, USAGE_LOG, HEALTH, BASE
+    T = TARGETS[name]
+    ENV = T["env"]
+    USAGE_LOG = T["usage_log"]
+    HEALTH = f"http://127.0.0.1:{T['port']}/healthz"
+    BASE = T["base"]
 
 # Cheaper-than-current, tool-capable models. (V) = vision-capable (needed for
 # compute_plot / vision_refine cases; non-vision models will visibly fail those).
@@ -53,7 +82,7 @@ def set_model(model):
 
 
 def restart_and_wait(timeout=90):
-    subprocess.run(["systemctl", "restart", "sigma-assistant.service"], check=True)
+    subprocess.run(["systemctl", "restart", T["service"]], check=True)
     t0 = time.time()
     while time.time() - t0 < timeout:
         try:
@@ -68,7 +97,7 @@ def restart_and_wait(timeout=90):
 
 def current_served_model():
     try:
-        return json.load(urllib.request.urlopen("http://127.0.0.1:8766/api/model", timeout=5))
+        return json.load(urllib.request.urlopen(f"http://127.0.0.1:{T['port']}/api/model", timeout=5))
     except Exception:
         return None
 
@@ -120,11 +149,35 @@ def attribute_cost(results, usage_rows):
     return results
 
 
-def bench_one(model):
+def save_figures(out_dir, case_id, figures):
+    """Каждую картинку агента — в файл figs/<case>_<i>.png; в bench.json
+    остаётся относительный путь. base64 в JSON не храним: файлы видны в репо,
+    их отдаёт /benchmark/shots/, и bench.json не разбухает на мегабайты."""
+    import base64
+    saved = []
+    figdir = out_dir / "figs"
+    for i, f in enumerate(figures or []):
+        if f.startswith("data:image/"):
+            try:
+                head, b64 = f.split(",", 1)
+                ext = "png" if "png" in head else ("jpg" if "jpe" in head else "png")
+                figdir.mkdir(parents=True, exist_ok=True)
+                p = figdir / f"{case_id}_{i}.{ext}"
+                p.write_bytes(base64.b64decode(b64))
+                saved.append(f"figs/{p.name}")
+            except Exception as e:
+                print(f"  !! figure save failed ({case_id}_{i}): {e}", flush=True)
+        elif f.startswith("figs/"):
+            saved.append(f)  # уже файл
+        # /figures/<uuid> и прочие внешние ссылки не переживают прогон — дропаем
+    return saved
+
+
+def bench_one(model, force=False):
     sl = slug(model)
     out_dir = BENCH_DIR / sl
     bj = out_dir / "bench.json"
-    if bj.exists():
+    if bj.exists() and not force:
         try:
             existing = json.loads(bj.read_text(encoding="utf-8"))
         except Exception:
@@ -194,7 +247,7 @@ def bench_one(model):
             # regenerated. Figures themselves stored as base64 data-URLs.
             "trace": r["obs"]["trace"],
             "images": r["obs"]["images"],
-            "figures": r["obs"].get("figures", []),
+            "figures": save_figures(out_dir, cmeta_of(r)["id"], r["obs"].get("figures", [])),
             "elapsed": round(r.get("elapsed", 0), 1),
             "cost": r.get("cost", 0),
             "prompt_tokens": r.get("prompt_tokens", 0),
@@ -227,15 +280,28 @@ def _install_signal_restore(env_backup):
 
 
 def main():
+    import argparse
+    ap = argparse.ArgumentParser(
+        description="Прогнать бенч по списку моделей одной командой. "
+                    "Все артефакты — в eval/bench/<slug>/: bench.json (+трейс, стоимость), "
+                    "<case>.png (скрин живой страницы), figs/*.png (графики агента), "
+                    "results.jsonl, run.log, report.md")
+    ap.add_argument("models", nargs="*", help="id моделей OpenRouter; пусто = дефолтный список MODELS")
+    ap.add_argument("--dev", action="store_true", help="гонять на dev-стенде (sigmadev, свой сервис/ключ) — прод не трогается")
+    ap.add_argument("--force", action="store_true", help="перепрогнать даже если bench.json уже есть")
+    args = ap.parse_args()
+    if args.dev:
+        use_target("dev")
+    print(f"target: {BASE} (service {T['service']})", flush=True)
     BENCH_DIR.mkdir(parents=True, exist_ok=True)
     env_backup = ENV.read_text(encoding="utf-8")  # verbatim snapshot for exact restore
     (ROOT / ".env.benchbak").write_text(env_backup, encoding="utf-8")
     print(f"backed up .env ({len(env_backup)} bytes) → .env.benchbak", flush=True)
     _install_signal_restore(env_backup)
-    models = sys.argv[1:] or MODELS
+    models = args.models or MODELS
     try:
         for model in models:
-            bench_one(model)
+            bench_one(model, force=args.force)
             # regenerate the public page after each model so it fills in live
             try:
                 subprocess.run([sys.executable, str(ROOT / "gen_benchmark_page.py")], check=False)
