@@ -372,16 +372,20 @@ a{color:var(--accent)}
 #detail .toolchip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 7px;background:#fff}
 #detail .toolchip svg{width:14px;height:14px;flex:none}
 #detail .toolchip .arr{color:var(--line);font-weight:400}
-#detail .toolchips.clickable .toolchip{cursor:pointer}
-#detail .toolchips.clickable .toolchip:hover{border-color:var(--mut)}
-#detail .tracelist{display:none;margin:0 0 10px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
-#detail .tracelist.open{display:block}
-#detail .tracelist .tr{display:flex;align-items:baseline;gap:8px;padding:6px 10px;font-size:13px;border-top:1px solid var(--line)}
+#detail .toolchips.clickable .toolchip{cursor:pointer;transition:border-color .15s,color .15s,box-shadow .15s}
+#detail .toolchips.clickable .toolchip:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 1px 4px rgba(2,132,199,.15)}
+#detail .toolchips .thint{font-size:11.5px;color:var(--mut);align-self:center;margin-left:2px;user-select:none}
+#detail .tracelist{display:grid;grid-template-rows:0fr;opacity:0;margin:0 0 10px;border:1px solid var(--line);border-radius:12px;background:var(--card);transition:grid-template-rows .22s ease,opacity .22s ease}
+#detail .tracelist.open{grid-template-rows:1fr;opacity:1}
+#detail .tracelist>div{overflow:hidden}
+#detail .tracelist .tr{display:flex;align-items:baseline;gap:9px;padding:7px 12px;font-size:13px;border-top:1px solid var(--line)}
 #detail .tracelist .tr:first-child{border-top:0}
-#detail .tracelist .tr svg{width:13px;height:13px;flex:none;align-self:center;color:var(--mut)}
+#detail .tracelist .tr:nth-child(even){background:#fff}
+#detail .tracelist .tr .st{font-size:11px;color:var(--mut);min-width:16px;text-align:right;font-variant-numeric:tabular-nums}
+#detail .tracelist .tr svg{width:13px;height:13px;flex:none;align-self:center;color:var(--accent)}
 #detail .tracelist .tr .tn{font-weight:600;white-space:nowrap}
-#detail .tracelist .tr .ta{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--mut);word-break:break-word;flex:1}
-#detail .tracelist .tr .ts{font-size:12px;color:var(--mut);white-space:nowrap}
+#detail .tracelist .tr .ta{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--fg);opacity:.75;word-break:break-word;flex:1}
+#detail .tracelist .tr .ts{font-size:11px;color:var(--mut);white-space:nowrap;border:1px solid var(--line);border-radius:999px;padding:1px 8px;background:#fff}
 #detail .ans figure.figref{margin:8px 0;display:flex;flex-direction:column;gap:4px}
 #detail .ans figure.figref img{max-width:100%;border:1px solid var(--line);border-radius:8px;background:#fff}
 #detail .ans .figcap{font-size:12px;color:var(--mut);line-height:1.4}
@@ -510,20 +514,29 @@ function openDetail(el){
       if(i>0){const a=document.createElement('span');a.className='arr';a.textContent='→';tc.appendChild(a);}
       const sp=document.createElement('span'); sp.className='toolchip';
       sp.innerHTML=(TOOL_ICONS[n]||DOT_ICON)+'<span>'+(TOOL_LABELS[n]||n)+'</span>';
-      if(hasTrace){sp.title='история вызовов'; sp.onclick=()=>tl.classList.toggle('open');}
+      if(hasTrace){sp.title='история вызовов';}
       tc.appendChild(sp);
     });
     if(hasTrace){
       tc.classList.add('clickable');
-      for(const t of d.trace){
+      const hint=document.createElement('span'); hint.className='thint'; hint.textContent='история ▾';
+      hint.style.cursor='pointer';
+      const toggle=()=>{tl.classList.toggle('open'); hint.textContent=tl.classList.contains('open')?'история ▴':'история ▾';};
+      hint.onclick=toggle;
+      tc.querySelectorAll('.toolchip').forEach(c=>c.onclick=toggle);
+      tc.appendChild(hint);
+      const inner=document.createElement('div');
+      d.trace.forEach((t,i)=>{
         const row=document.createElement('div'); row.className='tr';
         const args=t.args?esc0(t.args):'—', st=t.status?esc0(t.status):'';
-        row.innerHTML=(TOOL_ICONS[t.tool]||DOT_ICON)
+        row.innerHTML='<span class=st>'+(i+1)+'</span>'
+          +(TOOL_ICONS[t.tool]||DOT_ICON)
           +'<span class=tn>'+esc0(TOOL_LABELS[t.tool]||t.tool)+'</span>'
           +'<span class=ta>'+args+'</span>'
-          +(st?'<span class=ts>→ '+st+'</span>':'');
-        tl.appendChild(row);
-      }
+          +(st?'<span class=ts>'+st+'</span>':'');
+        inner.appendChild(row);
+      });
+      tl.appendChild(inner);
     }
   } else {
     tc.innerHTML='<span class="toolchip">'+DOT_ICON+'<span>без инструментов</span></span>';
