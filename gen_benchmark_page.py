@@ -372,6 +372,16 @@ a{color:var(--accent)}
 #detail .toolchip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 7px;background:#fff}
 #detail .toolchip svg{width:14px;height:14px;flex:none}
 #detail .toolchip .arr{color:var(--line);font-weight:400}
+#detail .toolchips.clickable .toolchip{cursor:pointer}
+#detail .toolchips.clickable .toolchip:hover{border-color:var(--mut)}
+#detail .tracelist{display:none;margin:0 0 10px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+#detail .tracelist.open{display:block}
+#detail .tracelist .tr{display:flex;align-items:baseline;gap:8px;padding:6px 10px;font-size:13px;border-top:1px solid var(--line)}
+#detail .tracelist .tr:first-child{border-top:0}
+#detail .tracelist .tr svg{width:13px;height:13px;flex:none;align-self:center;color:var(--mut)}
+#detail .tracelist .tr .tn{font-weight:600;white-space:nowrap}
+#detail .tracelist .tr .ta{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--mut);word-break:break-word;flex:1}
+#detail .tracelist .tr .ts{font-size:12px;color:var(--mut);white-space:nowrap}
 #detail .ans figure.figref{margin:8px 0;display:flex;flex-direction:column;gap:4px}
 #detail .ans figure.figref img{max-width:100%;border:1px solid var(--line);border-radius:8px;background:#fff}
 #detail .ans .figcap{font-size:12px;color:var(--mut);line-height:1.4}
@@ -483,6 +493,7 @@ function renderMarkdown(md){
 DRAWER_JS = """
 const D=__DATA__;
 const TOOL_ICONS=__ICONS__, TOOL_LABELS=__LABELS__, DOT_ICON=__DOT__;
+function esc0(x){const d=document.createElement('span');d.textContent=x;return d.innerHTML;}
 const detail=document.getElementById('detail'),scrim=document.getElementById('scrim');
 let lastEl=null;
 function openDetail(el){
@@ -491,14 +502,29 @@ function openDetail(el){
   const g=d.state==='pass'?'✓':d.state==='fail'?'✕':'⚠';
   document.getElementById('dt').textContent=g+' '+d.model+' · '+d.cat;
   let bits=['картинок: '+d.img,d.elapsed.toFixed(0)+' с'];
-  const tc=document.getElementById('dtools'); tc.innerHTML='';
+  const tc=document.getElementById('dtools'); tc.innerHTML=''; tc.classList.remove('clickable');
+  const tl=document.getElementById('dtrace'); tl.innerHTML=''; tl.classList.remove('open');
+  const hasTrace=d.trace&&d.trace.length;
   if(d.tools&&d.tools.length){
     d.tools.forEach((n,i)=>{
       if(i>0){const a=document.createElement('span');a.className='arr';a.textContent='→';tc.appendChild(a);}
       const sp=document.createElement('span'); sp.className='toolchip';
       sp.innerHTML=(TOOL_ICONS[n]||DOT_ICON)+'<span>'+(TOOL_LABELS[n]||n)+'</span>';
+      if(hasTrace){sp.title='история вызовов'; sp.onclick=()=>tl.classList.toggle('open');}
       tc.appendChild(sp);
     });
+    if(hasTrace){
+      tc.classList.add('clickable');
+      for(const t of d.trace){
+        const row=document.createElement('div'); row.className='tr';
+        const args=t.args?esc0(t.args):'—', st=t.status?esc0(t.status):'';
+        row.innerHTML=(TOOL_ICONS[t.tool]||DOT_ICON)
+          +'<span class=tn>'+esc0(TOOL_LABELS[t.tool]||t.tool)+'</span>'
+          +'<span class=ta>'+args+'</span>'
+          +(st?'<span class=ts>→ '+st+'</span>':'');
+        tl.appendChild(row);
+      }
+    }
   } else {
     tc.innerHTML='<span class="toolchip">'+DOT_ICON+'<span>без инструментов</span></span>';
   }
@@ -788,6 +814,7 @@ def build(bench_dir=None, out=None, version=None, versions=()):
                 "answer": c.get("answer", ""), "tools": c.get("tools", []), "missing": c.get("missing"),
                 "cost": c.get("cost"), "img": c.get("images", 0), "elapsed": c.get("elapsed", 0),
                 "figures": figs,
+                "trace": c.get("trace", []),
                 "shot": f"shots/{bdir}/{qid}.png" if shot_src.exists() else None,
                 "state": st, "cause": cause,
             }
@@ -818,7 +845,8 @@ def build(bench_dir=None, out=None, version=None, versions=()):
     A("<div id=scrim></div>")
     A("<div id=detail><button class=x aria-label=Закрыть onclick=\"document.getElementById('detail').classList.remove('open');document.getElementById('scrim').classList.remove('open')\">×</button>"
       "<h3 id=dt></h3><div class=cap style='margin:0 0 8px'>Esc или клик вне окна — закрыть</div>"
-      "<div class=meta id=dm></div><div class=toolchips id=dtools></div><div class=ans id=da></div></div>")
+      "<div class=meta id=dm></div><div class=toolchips id=dtools></div>"
+      "<div class=tracelist id=dtrace></div><div class=ans id=da></div></div>")
 
     # ---- Footer (honest timestamps) ----
     built = time.strftime("%Y-%m-%d %H:%M")
