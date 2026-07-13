@@ -638,6 +638,60 @@ def _messages_have_images(messages) -> bool:
 
 
 USAGE_LOG_PATH = Path(__file__).resolve().parent / "eval" / "usage_log.jsonl"
+CONVO_LOG_PATH = Path(__file__).resolve().parent / "eval" / "llm_log.jsonl"
+CONVO_ROTATE_BYTES = 500 * 1024 * 1024  # 500MB → уводим в датированный файл, ничего не удаляем
+
+
+def _log_convo(model_id, client_body, response):
+    """Полная запись обмена: request.messages (внутри — системный промпт, вопрос,
+    ВСЕ результаты тулзов) + собранный ответ модели. Единственная точка, где
+    виден весь диалог агента, — храним всё, чтобы с данными можно было работать
+    (анализ ошибок, дообучение промпта, будущие версии бенча)."""
+    try:
+        rec = {"ts": time.time(), "model": model_id,
+               "request_messages": client_body.get("messages"),
+               "response": response}
+        line = json.dumps(rec, ensure_ascii=False) + "\n"
+        if CONVO_LOG_PATH.exists() and CONVO_LOG_PATH.stat().st_size + len(line) > CONVO_ROTATE_BYTES:
+            CONVO_LOG_PATH.rename(CONVO_LOG_PATH.with_name(
+                time.strftime("llm_log.%Y%m%d_%H%M.jsonl")))
+        with open(CONVO_LOG_PATH, "a", encoding="utf-8") as f:
+            f.write(line)
+    except Exception as e:
+        print(f"[convo-log] failed: {e}", file=sys.stderr)
+
+
+def _assemble_sse_response(raw: bytes):
+    """Собрать из SSE-потока итоговый ответ: текст + tool_calls + usage."""
+    content, tool_calls, usage = [], {}, None
+    for frame in raw.decode("utf-8", "replace").split("\n\n"):
+        for ln in frame.splitlines():
+            if not ln.startswith("data:"):
+                continue
+            p = ln[5:].strip()
+            if not p or p == "[DONE]":
+                continue
+            try:
+                g = json.loads(p)
+            except Exception:
+                continue
+            if isinstance(g.get("usage"), dict):
+                usage = g["usage"]
+            ch = (g.get("choices") or [{}])[0]
+            d = ch.get("delta") or {}
+            if d.get("content"):
+                content.append(d["content"])
+            for tc in d.get("tool_calls") or []:
+                i = tc.get("index", 0)
+                slot = tool_calls.setdefault(i, {"name": "", "arguments": ""})
+                fn = tc.get("function") or {}
+                if fn.get("name"):
+                    slot["name"] = fn["name"]
+                if fn.get("arguments"):
+                    slot["arguments"] += fn["arguments"]
+    return {"content": "".join(content),
+            "tool_calls": [tool_calls[k] for k in sorted(tool_calls)] or None,
+            "usage": usage}
 
 
 def _log_usage(model_id: str, raw: bytes) -> None:
@@ -861,6 +915,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self.wfile.write(f"data: {json.dumps(obj, ensure_ascii=False)}\n\n".encode("utf-8"))
             self.wfile.flush()
 
+        acc_content, acc_calls = [], []
         try:
             while True:
                 chunk = upstream.read1(4096) if hasattr(upstream, "read1") else upstream.read(4096)
@@ -895,8 +950,10 @@ class Handler(http.server.BaseHTTPRequestHandler):
                                 "index": 0, "id": call_id, "type": "function",
                                 "function": {"name": fc.get("name", ""), "arguments": args},
                             }]}
+                            acc_calls.append({"name": fc.get("name", ""), "arguments": args})
                         elif delta.get("content") is not None:
                             out_delta = {"content": delta.get("content")}
+                            acc_content.append(delta.get("content"))
                         else:
                             out_delta = {}
                         out_fin = "tool_calls" if fin == "function_call" else fin
@@ -912,6 +969,9 @@ class Handler(http.server.BaseHTTPRequestHandler):
             print(f"[proxy-giga] client gone mid-stream: {e}", file=sys.stderr)
         finally:
             upstream.close()
+            _log_convo(model_id, client_body,
+                       {"content": "".join(acc_content),
+                        "tool_calls": acc_calls or None, "usage": usage})
             if usage:
                 tot = usage.get("total_tokens") or 0
                 rate = GIGACHAT_PRICE_RUB_PER_1K.get(model_id, 0.065)
@@ -999,6 +1059,10 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
             if not wants_stream:
                 data = upstream.read()
+                try:
+                    _log_convo(model_id, client_body, json.loads(data.decode("utf-8", "replace")))
+                except Exception:
+                    pass
                 self.send_response(200)
                 self.send_header("Content-Type", "application/json; charset=utf-8")
                 self.send_header("Content-Length", str(len(data)))
@@ -1050,6 +1114,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
         finally:
             upstream.close()
             _log_usage(model_id, bytes(cap))
+            _log_convo(model_id, client_body, _assemble_sse_response(bytes(cap)))
 
 
 class ThreadingServer(socketserver.ThreadingMixIn, http.server.HTTPServer):
