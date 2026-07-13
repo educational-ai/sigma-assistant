@@ -40,7 +40,7 @@ for line in (EVAL / "cases.jsonl").read_text(encoding="utf-8").splitlines():
         c = json.loads(line); cats[c["id"]] = c.get("category", "?")
 
 pending = []
-for bj in sorted((EVAL / "bench").glob("*/bench.json")):
+for bj in sorted(sorted(EVAL.glob("bench_v*"), key=lambda p: (len(p.name), p.name))[-1].glob("*/bench.json")):
     b = json.loads(bj.read_text(encoding="utf-8"))
     model_short = b["model"].split("/")[-1]
     for c in b["cases"]:

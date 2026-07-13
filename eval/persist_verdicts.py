@@ -28,7 +28,7 @@ def load_input():
 
 # current answer per (case_id, model_short) from bench.json
 ANS = {}
-for bj in (EVAL / "bench").glob("*/bench.json"):
+for bj in sorted(EVAL.glob("bench_v*"), key=lambda p: (len(p.name), p.name))[-1].glob("*/bench.json"):
     b = json.loads(bj.read_text(encoding="utf-8"))
     ms = b["model"].split("/")[-1]
     for c in b["cases"]:
