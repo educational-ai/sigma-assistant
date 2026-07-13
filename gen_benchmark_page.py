@@ -17,6 +17,18 @@ OUT = Path("/var/www/sigma/docs/benchmark/index.html")
 ASSISTANT_JS = Path("/var/www/sigma/docs/assistant/assistant.js")
 
 
+def fmt_tool_result(raw, cap=6000):
+    """Стена однострочного JSON с юникод-эскейпами нечитаема. Парсим и красиво
+    разворачиваем (отступы, живая кириллица); не-JSON оставляем как есть."""
+    try:
+        pretty = json.dumps(json.loads(raw), ensure_ascii=False, indent=2)
+    except Exception:
+        pretty = raw
+    if len(pretty) > cap:
+        pretty = pretty[:cap] + "\n…[обрезано; полностью — в bench.json]"
+    return pretty
+
+
 def load_tool_icons():
     """Иконки/лейблы тулзов — ровно те же, что в виджете на сайте
     (TOOL_ICONS/TOOL_LABELS/DOT_ICON из assistant.js). Парсим объект-литерал;
@@ -851,9 +863,7 @@ def build(bench_dir=None, out=None, version=None, versions=()):
                 "answer": c.get("answer", ""), "tools": c.get("tools", []), "missing": c.get("missing"),
                 "cost": c.get("cost"), "img": c.get("images", 0), "elapsed": c.get("elapsed", 0),
                 "figures": figs,
-                "trace": [dict(t, result=(t["result"][:4000] + "\n…[обрезано; полностью — в bench.json]")
-                               if len(t.get("result") or "") > 4000 else t.get("result"))
-                          if t.get("result") else t
+                "trace": [dict(t, result=fmt_tool_result(t["result"])) if t.get("result") else t
                           for t in c.get("trace", [])],
                 "shot": f"shots/{bdir}/{qid}.png" if shot_src.exists() else None,
                 "state": st, "cause": cause,
