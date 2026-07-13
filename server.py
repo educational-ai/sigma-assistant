@@ -78,7 +78,24 @@ GIGACHAT_PRICE_RUB_PER_1K = {
     "GigaChat-Pro": 0.5, "GigaChat-2-Pro": 0.5,
     "GigaChat-Max": 0.65, "GigaChat-2-Max": 0.65,
 }
-GIGACHAT_RUB_PER_USD = 80.0
+GIGACHAT_RUB_PER_USD = 80.0  # фоллбэк, если ЦБ недоступен
+_RUB_USD_CACHE = {"rate": None, "ts": 0.0}
+
+
+def rub_per_usd():
+    """Живой курс USD с API ЦБ на момент прогона (кэш 12ч, фоллбэк 80)."""
+    import urllib.request as _ur
+    now = time.time()
+    if _RUB_USD_CACHE["rate"] and now - _RUB_USD_CACHE["ts"] < 12 * 3600:
+        return _RUB_USD_CACHE["rate"]
+    try:
+        d = json.load(_ur.urlopen("https://www.cbr-xml-daily.ru/daily_json.js", timeout=8))
+        rate = float(d["Valute"]["USD"]["Value"])
+        _RUB_USD_CACHE.update(rate=rate, ts=now)
+        return rate
+    except Exception as e:
+        print(f"[rub_per_usd] ЦБ недоступен ({e}) — беру {_RUB_USD_CACHE['rate'] or GIGACHAT_RUB_PER_USD}", file=sys.stderr)
+        return _RUB_USD_CACHE["rate"] or GIGACHAT_RUB_PER_USD
 
 
 def _is_gigachat_model(model_id: str) -> bool:
@@ -976,14 +993,15 @@ class Handler(http.server.BaseHTTPRequestHandler):
             if usage:
                 tot = usage.get("total_tokens") or 0
                 rate = GIGACHAT_PRICE_RUB_PER_1K.get(model_id, 0.065)
-                cost = round(tot / 1000.0 * rate / GIGACHAT_RUB_PER_USD, 6)
+                fx = rub_per_usd()
+                cost = round(tot / 1000.0 * rate / fx, 6)
                 try:
                     with open(USAGE_LOG_PATH, "a", encoding="utf-8") as f:
                         f.write(json.dumps({
                             "ts": time.time(), "model": model_id,
                             "prompt_tokens": usage.get("prompt_tokens"),
                             "completion_tokens": usage.get("completion_tokens"),
-                            "total_tokens": tot, "cost": cost,
+                            "total_tokens": tot, "cost": cost, "rub_per_usd": fx,
                         }, ensure_ascii=False) + "\n")
                 except Exception:
                     pass
