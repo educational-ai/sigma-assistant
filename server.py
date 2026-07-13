@@ -638,7 +638,8 @@ def _messages_have_images(messages) -> bool:
 
 
 USAGE_LOG_PATH = Path(__file__).resolve().parent / "eval" / "usage_log.jsonl"
-CONVO_LOG_PATH = Path(__file__).resolve().parent / "eval" / "llm_log.jsonl"
+CONVO_LOG_PATH = Path(os.environ.get("SIGMA_CONVO_LOG", "").strip()
+                      or Path(__file__).resolve().parent / "eval" / "llm_log.jsonl")
 CONVO_ROTATE_BYTES = 500 * 1024 * 1024  # 500MB → уводим в датированный файл, ничего не удаляем
 
 
