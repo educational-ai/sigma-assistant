@@ -386,6 +386,11 @@ a{color:var(--accent)}
 #detail .tracelist .tr .tn{font-weight:600;white-space:nowrap}
 #detail .tracelist .tr .ta{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--fg);opacity:.75;word-break:break-word;flex:1}
 #detail .tracelist .tr .ts{font-size:11px;color:var(--mut);white-space:nowrap;border:1px solid var(--line);border-radius:999px;padding:1px 8px;background:#fff}
+#detail .tracelist .tr.hl{background:#eef7ff;box-shadow:inset 3px 0 0 var(--accent)}
+#detail .tracelist .tr.expandable{cursor:pointer}
+#detail .tracelist .tres{display:none;margin:0;padding:8px 12px 10px 37px;border-top:1px dashed var(--line);background:#fff}
+#detail .tracelist .tres.open{display:block}
+#detail .tracelist .tres pre{margin:0;font-size:11.5px;line-height:1.5;white-space:pre-wrap;word-break:break-word;max-height:300px;overflow:auto;color:var(--fg);opacity:.85}
 #detail .ans figure.figref{margin:8px 0;display:flex;flex-direction:column;gap:4px}
 #detail .ans figure.figref img{max-width:100%;border:1px solid var(--line);border-radius:8px;background:#fff}
 #detail .ans .figcap{font-size:12px;color:var(--mut);line-height:1.4}
@@ -521,11 +526,11 @@ function openDetail(el){
       tc.classList.add('clickable');
       const hint=document.createElement('span'); hint.className='thint'; hint.textContent='история ▾';
       hint.style.cursor='pointer';
-      const toggle=()=>{tl.classList.toggle('open'); hint.textContent=tl.classList.contains('open')?'история ▴':'история ▾';};
-      hint.onclick=toggle;
-      tc.querySelectorAll('.toolchip').forEach(c=>c.onclick=toggle);
+      const setHint=()=>{hint.textContent=tl.classList.contains('open')?'история ▴':'история ▾';};
+      hint.onclick=()=>{tl.classList.toggle('open'); setHint();};
       tc.appendChild(hint);
       const inner=document.createElement('div');
+      const rows=[];
       d.trace.forEach((t,i)=>{
         const row=document.createElement('div'); row.className='tr';
         const args=t.args?esc0(t.args):'—', st=t.status?esc0(t.status):'';
@@ -534,9 +539,28 @@ function openDetail(el){
           +'<span class=tn>'+esc0(TOOL_LABELS[t.tool]||t.tool)+'</span>'
           +'<span class=ta>'+args+'</span>'
           +(st?'<span class=ts>'+st+'</span>':'');
-        inner.appendChild(row);
+        inner.appendChild(row); rows.push(row);
+        if(t.result){
+          row.classList.add('expandable'); row.title='показать ответ инструмента';
+          const res=document.createElement('div'); res.className='tres';
+          const pre=document.createElement('pre'); pre.textContent=t.result; res.appendChild(pre);
+          inner.appendChild(res);
+          row.addEventListener('click',()=>res.classList.toggle('open'));
+        }
       });
       tl.appendChild(inner);
+      // чип = конкретный вызов: раскрыть панель и подсветить именно его
+      tc.querySelectorAll('.toolchip').forEach((c,i)=>{
+        c.onclick=()=>{
+          const row=rows[i]; if(!row) return;
+          const was=row.classList.contains('hl');
+          rows.forEach(r=>r.classList.remove('hl'));
+          if(tl.classList.contains('open')&&was){tl.classList.remove('open');}
+          else{tl.classList.add('open'); row.classList.add('hl');
+               setTimeout(()=>row.scrollIntoView({block:'nearest',behavior:'smooth'}),240);}
+          setHint();
+        };
+      });
     }
   } else {
     tc.innerHTML='<span class="toolchip">'+DOT_ICON+'<span>без инструментов</span></span>';
