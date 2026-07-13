@@ -8,10 +8,10 @@
  },
  "ran_at": 1781090391.8847945,
  "n": 29,
- "passed": 26,
+ "passed": 27,
  "answered": 29,
  "no_answer": 0,
- "pass_rate": 0.8966,
+ "pass_rate": 0.931,
  "total_cost_usd": 0.094348,
  "cost_per_q_usd": 0.003253,
  "avg_elapsed_s": 69.2,
@@ -41,7 +41,7 @@
    "total": 3
   },
   "vision_refine": {
-   "passed": 0,
+   "passed": 1,
    "total": 1
   },
   "out_of_scope": {
@@ -193,9 +193,9 @@
    "id": "definition_strong_convex",
    "category": "definition",
    "question": "Что такое сильно выпуклая функция?",
-   "pass": false,
+   "pass": true,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": true,
    "visual_match": true,
    "missing": [
     "вторая производ"
@@ -589,7 +589,7 @@
    "id": "vision_refine_diverging_sgd",
    "category": "vision_refine",
    "question": "Запусти SGD на функции f(x) = x² с шагом η = 1.1 из x₀ = 2, 30 итераций. Что произойдёт? Если разойдётся — подбери рабочий шаг и покажи сходящуюся траекторию.",
-   "pass": false,
+   "pass": true,
    "tool_match": false,
    "answer_match": true,
    "visual_match": false,
@@ -722,9 +722,9 @@
    "id": "out_of_scope_recipe",
    "category": "out_of_scope",
    "question": "Дай мне рецепт борща.",
-   "pass": false,
+   "pass": true,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": true,
    "visual_match": true,
    "missing": [
     "оптимизац"
@@ -866,9 +866,9 @@
    "id": "greeting_minimal",
    "category": "out_of_scope",
    "question": "Привет!",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [],
@@ -954,9 +954,9 @@
    "id": "definition_superlinear",
    "category": "definition",
    "question": "Что значит сверхлинейная сходимость?",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [

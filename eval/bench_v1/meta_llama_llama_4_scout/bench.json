@@ -8,20 +8,20 @@
  },
  "ran_at": 1781112955.9295058,
  "n": 29,
- "passed": 24,
+ "passed": 22,
  "answered": 29,
  "no_answer": 0,
- "pass_rate": 0.8276,
+ "pass_rate": 0.7586,
  "total_cost_usd": 0.037069,
  "cost_per_q_usd": 0.001278,
  "avg_elapsed_s": 24.4,
  "by_category": {
   "rag_basic": {
-   "passed": 4,
+   "passed": 3,
    "total": 5
   },
   "definition": {
-   "passed": 2,
+   "passed": 3,
    "total": 3
   },
   "compute_pure": {
@@ -29,7 +29,7 @@
    "total": 8
   },
   "compute_plot": {
-   "passed": 5,
+   "passed": 4,
    "total": 5
   },
   "multi_hop": {
@@ -37,15 +37,15 @@
    "total": 1
   },
   "structural": {
-   "passed": 3,
+   "passed": 2,
    "total": 3
   },
   "vision_refine": {
-   "passed": 0,
+   "passed": 1,
    "total": 1
   },
   "out_of_scope": {
-   "passed": 2,
+   "passed": 1,
    "total": 3
   }
  },
@@ -185,9 +185,9 @@
    "id": "definition_strong_convex",
    "category": "definition",
    "question": "Что такое сильно выпуклая функция?",
-   "pass": false,
+   "pass": true,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": true,
    "visual_match": true,
    "missing": [
     "вторая производ"
@@ -569,9 +569,9 @@
    "id": "vision_refine_diverging_sgd",
    "category": "vision_refine",
    "question": "Запусти SGD на функции f(x) = x² с шагом η = 1.1 из x₀ = 2, 30 итераций. Что произойдёт? Если разойдётся — подбери рабочий шаг и покажи сходящуюся траекторию.",
-   "pass": false,
+   "pass": true,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": true,
    "visual_match": true,
    "missing": [
     "0.5"
@@ -847,9 +847,9 @@
    "id": "greeting_minimal",
    "category": "out_of_scope",
    "question": "Привет!",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [],
@@ -997,9 +997,9 @@
    "id": "theorem_clt",
    "category": "structural",
    "question": "Сформулируй центральную предельную теорему как в учебнике.",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1017,7 +1017,7 @@
    "no_answer": false,
    "broken_formulas": 1,
    "judge_pass": false,
-   "judge_reason": "⚠ 1 битых формул — читатель видит сырой/битый LaTeX",
+   "judge_reason": "Ключевая формула сломана: $X_1,X$ обрыв, \\frac{1{2\\pi}}, \\int}^{x}, e^{-2}/2} — пропущены скобки, KaTeX не отрисует. Текст оборван ('случай').",
    "judge": "adversarial-workflow-final",
    "raw_unrendered": 0,
    "unexpected": [],
@@ -1094,9 +1094,9 @@
    "id": "fragment_explanation",
    "category": "rag_basic",
    "question": "Если кто-то предлагает использовать обновление x_{k+1} = x_k - f(x_k)·f'(x_k) вместо классического Ньютона — что это за идея и она работает?",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [],
@@ -1185,9 +1185,9 @@
    "id": "plot_loss_landscape",
    "category": "compute_plot",
    "question": "Построй контурный график функции потерь L(a, b) = sum((a*x_i + b - y_i)^2) для точек (1,2), (2,3), (3,5), (4,4) на сетке a in [-2, 4], b in [-3, 3].",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [

@@ -17,7 +17,7 @@
  "avg_elapsed_s": 89.5,
  "by_category": {
   "rag_basic": {
-   "passed": 4,
+   "passed": 5,
    "total": 5
   },
   "definition": {
@@ -37,7 +37,7 @@
    "total": 1
   },
   "structural": {
-   "passed": 3,
+   "passed": 2,
    "total": 3
   },
   "vision_refine": {
@@ -991,9 +991,9 @@
    "id": "theorem_clt",
    "category": "structural",
    "question": "Сформулируй центральную предельную теорему как в учебнике.",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1088,9 +1088,9 @@
    "id": "fragment_explanation",
    "category": "rag_basic",
    "question": "Если кто-то предлагает использовать обновление x_{k+1} = x_k - f(x_k)·f'(x_k) вместо классического Ньютона — что это за идея и она работает?",
-   "pass": false,
+   "pass": true,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": true,
    "visual_match": true,
    "missing": [
     "производ"
@@ -1483,7 +1483,10 @@
     }
    ],
    "unexpected": [],
-   "garbage": true
+   "garbage": true,
+   "judge_pass": false,
+   "judge_reason": "пустой ответ (таймаут/обрыв)",
+   "judge": "auto"
   }
  ],
  "avg_rubric_score": 0.953,

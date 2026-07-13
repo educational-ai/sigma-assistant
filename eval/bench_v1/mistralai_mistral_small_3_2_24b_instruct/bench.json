@@ -8,16 +8,16 @@
  },
  "ran_at": 1781106409.850709,
  "n": 29,
- "passed": 20,
+ "passed": 16,
  "answered": 29,
  "no_answer": 0,
- "pass_rate": 0.6897,
+ "pass_rate": 0.5517,
  "total_cost_usd": 0.065495,
  "cost_per_q_usd": 0.002258,
  "avg_elapsed_s": 42.8,
  "by_category": {
   "rag_basic": {
-   "passed": 3,
+   "passed": 2,
    "total": 5
   },
   "definition": {
@@ -25,11 +25,11 @@
    "total": 3
   },
   "compute_pure": {
-   "passed": 7,
+   "passed": 6,
    "total": 8
   },
   "compute_plot": {
-   "passed": 2,
+   "passed": 0,
    "total": 5
   },
   "multi_hop": {
@@ -123,9 +123,9 @@
    "id": "newton_formula_recall",
    "category": "rag_basic",
    "question": "Объясни откуда берётся эта формула — что это за метод и какая геометрическая идея?",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -144,7 +144,7 @@
    "no_answer": false,
    "broken_formulas": 0,
    "judge_pass": false,
-   "judge_reason": "⚠ 34 формул в \\(…\\)/\\[…\\] (сайт рендерит только $/$$) — читатель видит сырой/битый LaTeX",
+   "judge_reason": "[изменено] Проверил фактический renderMarkdown сайта (gen_benchmark_page.py/assistant.js): рендерятся ТОЛЬКО $ и $$; делимитеры \\(...\\) и \\[...\\] проходят через escapeHtml как сырой текст. У этого ответа dollar-count=0: ВСЕ 27 inline \\(...\\) и все 7 display \\[...\\], включая центральную формулу \\[x_{k+1}=x_k-f(x_k)/f'(x_k)\\], отображаются читателю как сырой backslash-LaTeX. Render-gate видит 0 формул. Для учебника весь математический контент = красный/сырой мусор на странице. Первый судья назвал это 'риском', но это подтверждённое реальное поведение сайта. СЛОМАННЫЙ ключевой LaTeX = незачёт.",
    "judge": "adversarial-workflow-final",
    "raw_unrendered": 34,
    "unexpected": [],
@@ -345,9 +345,9 @@
    "id": "compute_plot_gd_vs_newton",
    "category": "compute_plot",
    "question": "Сравни сходимость метода Ньютона и градиентного спуска на функции f(x) = x⁴ из x₀ = 2. Покажи два графика на одной картинке.",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -372,7 +372,7 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 2,
-   "judge_reason": "⚠ 2 формул в \\(…\\)/\\[…\\] (сайт рендерит только $/$$) — читатель видит сырой/битый LaTeX",
+   "judge_reason": "⚠ 2 формул в \\(…\\)/\\[…\\] (сайт рендерит только $/$$) — читатель видит сырой/битый LaTeX; ⚠ 2 формул в \\(…\\)/\\[…\\] — сайт рендерит только $/$$, читатель видит сырой LaTeX",
    "unexpected": [],
    "garbage": false,
    "rubric_score": 0.0,
@@ -410,9 +410,9 @@
    "id": "rsa_full_roundtrip",
    "category": "compute_pure",
    "question": "Возьми p=11, q=13, e=7. Сгенерируй RSA-ключ полностью: вычисли n, φ(n), d. Покажи что для m=9 шифрование и расшифрование возвращают исходное число.",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -430,7 +430,7 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 6,
-   "judge_reason": "⚠ 6 формул в \\(…\\)/\\[…\\] (сайт рендерит только $/$$) — читатель видит сырой/битый LaTeX",
+   "judge_reason": "⚠ 6 формул в \\(…\\)/\\[…\\] (сайт рендерит только $/$$) — читатель видит сырой/битый LaTeX; ⚠ 6 формул в \\(…\\)/\\[…\\] — сайт рендерит только $/$$, читатель видит сырой LaTeX",
    "unexpected": [],
    "garbage": false,
    "rubric_score": 0.0,
@@ -695,9 +695,9 @@
    "id": "linreg_simple",
    "category": "compute_plot",
    "question": "Подбери линейную регрессию y = a*x + b для точек (1, 2.1), (2, 3.9), (3, 6.2), (4, 7.8). Покажи коэффициенты и график.",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -715,7 +715,7 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 12,
-   "judge_reason": "⚠ 12 формул в \\(…\\)/\\[…\\] (сайт рендерит только $/$$) — читатель видит сырой/битый LaTeX",
+   "judge_reason": "⚠ 12 формул в \\(…\\)/\\[…\\] (сайт рендерит только $/$$) — читатель видит сырой/битый LaTeX; ⚠ 12 формул в \\(…\\)/\\[…\\] — сайт рендерит только $/$$, читатель видит сырой LaTeX",
    "unexpected": [],
    "garbage": false,
    "rubric_score": 0.0,

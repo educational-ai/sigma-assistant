@@ -527,7 +527,9 @@ function renderMarkdown(md){
 '''
 
 DRAWER_JS = """
-const D=__DATA__;
+let D={};
+fetch('data.json?b=__DATAVER__').then(r=>r.json()).then(j=>{D=j;document.body.classList.add('data-ready');})
+  .catch(e=>console.error('data.json load failed',e));
 const TOOL_ICONS=__ICONS__, TOOL_LABELS=__LABELS__, DOT_ICON=__DOT__;
 function esc0(x){const d=document.createElement('span');d.textContent=x;return d.innerHTML;}
 const detail=document.getElementById('detail'),scrim=document.getElementById('scrim');
@@ -937,8 +939,11 @@ def build(bench_dir=None, out=None, version=None, versions=()):
       "<a href=\"/\">← к учебнику</a></div>")
 
     ticons, tlabels, tdot = load_tool_icons()
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    dataver = str(int(time.time()))
+    (OUT.parent / "data.json").write_text(json.dumps(data_js, ensure_ascii=False), encoding="utf-8")
     A("<script>" + RENDER_JS + DRAWER_JS
-      .replace("__DATA__", json.dumps(data_js, ensure_ascii=False))
+      .replace("__DATAVER__", dataver)
       .replace("__ICONS__", json.dumps(ticons, ensure_ascii=False))
       .replace("__LABELS__", json.dumps(tlabels, ensure_ascii=False))
       .replace("__DOT__", json.dumps(tdot, ensure_ascii=False)) + "</script>")

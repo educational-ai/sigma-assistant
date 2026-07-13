@@ -8,10 +8,10 @@
  },
  "ran_at": 1781088304.7817323,
  "n": 29,
- "passed": 28,
+ "passed": 27,
  "answered": 29,
  "no_answer": 0,
- "pass_rate": 0.9655,
+ "pass_rate": 0.931,
  "total_cost_usd": 0.157772,
  "cost_per_q_usd": 0.00544,
  "avg_elapsed_s": 50.3,
@@ -45,7 +45,7 @@
    "total": 1
   },
   "out_of_scope": {
-   "passed": 3,
+   "passed": 2,
    "total": 3
   }
  },
@@ -1433,9 +1433,9 @@
    "id": "refuse_unknown_year",
    "category": "out_of_scope",
    "question": "В каком году Гаусс изобрёл метод сопряжённых градиентов?",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [

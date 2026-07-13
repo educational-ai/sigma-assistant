@@ -33,11 +33,11 @@
    "total": 5
   },
   "multi_hop": {
-   "passed": 0,
+   "passed": 1,
    "total": 1
   },
   "structural": {
-   "passed": 1,
+   "passed": 0,
    "total": 3
   },
   "vision_refine": {
@@ -424,7 +424,7 @@
    "id": "multihop_newton_vs_gradient",
    "category": "multi_hop",
    "question": "В чём отличие метода Ньютона от градиентного спуска для задач оптимизации? Какие из этих методов разобраны в учебнике?",
-   "pass": false,
+   "pass": true,
    "tool_match": false,
    "answer_match": true,
    "visual_match": true,
@@ -702,9 +702,9 @@
    "id": "out_of_scope_recipe",
    "category": "out_of_scope",
    "question": "Дай мне рецепт борща.",
-   "pass": false,
+   "pass": true,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": true,
    "visual_match": true,
    "missing": [
     "оптимизац"
@@ -840,9 +840,9 @@
    "id": "greeting_minimal",
    "category": "out_of_scope",
    "question": "Привет!",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [],
@@ -1235,9 +1235,9 @@
    "id": "outline_chapter",
    "category": "structural",
    "question": "Перечисли основные разделы главы про Ньютона.",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [],
@@ -1350,7 +1350,7 @@
    "question": "Что такое полносвязная нейронная сеть?",
    "pass": false,
    "tool_match": false,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [],

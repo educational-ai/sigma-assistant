@@ -64,7 +64,7 @@ def verdict_for(case_id, model_short, answer):
 
 def main():
     total_missing = 0
-    for bj in sorted((EVAL / "bench").glob("*/bench.json")):
+    for bj in sorted(sorted(EVAL.glob("bench_v*"), key=lambda p: (len(p.name), p.name))[-1].glob("*/bench.json")):
         b = json.loads(bj.read_text(encoding="utf-8"))
         model_short = b["model"].split("/")[-1]
         # Render-quality gate: validate every answer's formulas through real

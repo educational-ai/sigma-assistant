@@ -8,16 +8,16 @@
  },
  "ran_at": 1781105088.6681488,
  "n": 29,
- "passed": 24,
+ "passed": 26,
  "answered": 29,
  "no_answer": 0,
- "pass_rate": 0.8276,
+ "pass_rate": 0.8966,
  "total_cost_usd": 0.026616,
  "cost_per_q_usd": 0.000918,
  "avg_elapsed_s": 22.0,
  "by_category": {
   "rag_basic": {
-   "passed": 4,
+   "passed": 5,
    "total": 5
   },
   "definition": {
@@ -33,7 +33,7 @@
    "total": 5
   },
   "multi_hop": {
-   "passed": 0,
+   "passed": 1,
    "total": 1
   },
   "structural": {
@@ -124,9 +124,9 @@
    "id": "newton_formula_recall",
    "category": "rag_basic",
    "question": "Объясни откуда берётся эта формула — что это за метод и какая геометрическая идея?",
-   "pass": false,
+   "pass": true,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": true,
    "visual_match": true,
    "missing": [
     "пересечен"
@@ -428,7 +428,7 @@
    "id": "multihop_newton_vs_gradient",
    "category": "multi_hop",
    "question": "В чём отличие метода Ньютона от градиентного спуска для задач оптимизации? Какие из этих методов разобраны в учебнике?",
-   "pass": false,
+   "pass": true,
    "tool_match": false,
    "answer_match": true,
    "visual_match": true,

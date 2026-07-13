@@ -1,23 +1,24 @@
 {
  "model": "google/gemini-3.1-flash-lite",
+ "bench_version": "v1",
  "served_model_label": {
   "model": "google/gemini-3.1-flash-lite",
   "vision": false,
   "text_model": "google/gemini-3.1-flash-lite",
   "vision_model": "google/gemini-3.1-flash-lite"
  },
- "ran_at": 1781097941.5451407,
+ "ran_at": 1783966164.5040104,
  "n": 29,
- "passed": 26,
+ "passed": 25,
  "answered": 29,
  "no_answer": 0,
- "pass_rate": 0.8966,
- "total_cost_usd": 0.070834,
- "cost_per_q_usd": 0.002443,
- "avg_elapsed_s": 11.8,
+ "pass_rate": 0.8621,
+ "total_cost_usd": 0.087841,
+ "cost_per_q_usd": 0.003029,
+ "avg_elapsed_s": 9.8,
  "by_category": {
   "rag_basic": {
-   "passed": 5,
+   "passed": 4,
    "total": 5
   },
   "definition": {
@@ -33,11 +34,11 @@
    "total": 5
   },
   "multi_hop": {
-   "passed": 0,
+   "passed": 1,
    "total": 1
   },
   "structural": {
-   "passed": 3,
+   "passed": 2,
    "total": 3
   },
   "vision_refine": {
@@ -60,64 +61,37 @@
    "visual_match": true,
    "missing": [],
    "tools": [
+    "search_textbook",
     "search_textbook"
    ],
+   "trace": [
+    {
+     "tool": "search_textbook",
+     "args": "Канторович Нобелевская премия",
+     "status": "4"
+    },
+    {
+     "tool": "search_textbook",
+     "args": "Канторович",
+     "status": "1"
+    }
+   ],
    "images": 0,
-   "elapsed": 5.2,
-   "cost": 0.002221,
-   "prompt_tokens": 8087,
-   "completion_tokens": 133,
+   "figures": [],
+   "elapsed": 5.9,
+   "cost": 0.003114,
+   "prompt_tokens": 14670,
+   "completion_tokens": 195,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "В учебнике я этого не нашёл.\n\nВне учебника: Леонид Витальевич Канторович получил Нобелевскую премию по экономике в **1975 году** «за вклад в теорию оптимального распределения ресурсов». Он является единственным советским учёным, удостоенным этой награды в области экономики.",
+   "answer": "Леонид Витальевич Канторович получил Нобелевскую премию по экономике в 1975 году. Как указано в главе [Численные методы оптимизации](/ch02_newton.html#от-ньютона-до-канторовича), премия была присуждена ему за **теорию оптимального распределения ресурсов**. Ты сейчас находишься в этой главе, в разделе «От Ньютона до Канторовича», где также упоминается его вклад в развитие метода Ньютона.",
    "no_answer": false,
    "broken_formulas": 0,
+   "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "1975, экономика, за вклад в теорию оптимального распределения ресурсов. Корректно.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "year_1975",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "economics_resources",
-     "level": "met",
-     "weight": 2,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "no_false_attribution",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "tools_expected",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": "tool_expected"
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
+   "judge": "adversarial-workflow-final"
   },
   {
    "id": "newton_formula_recall",
@@ -127,59 +101,37 @@
    "tool_match": true,
    "answer_match": true,
    "visual_match": true,
-   "missing": [],
+   "missing": [
+    "пересечен"
+   ],
    "tools": [
     "read_chapter"
    ],
+   "trace": [
+    {
+     "tool": "read_chapter",
+     "args": "ch02_newton",
+     "status": "8k",
+     "result": "{\"results\":[{\"id\":\"def_ch02newton_355\",\"chapter_slug\":\"ch02_newton\",\"chapter_title\":\"Метод Ньютона\",\"title\":\"Определение 2.4. Сильно выпуклая функция\",\"text\":\"Функция $g\\\\colon\\\\mathbb{R}\\\\to\\\\mathbb{R}$ называется **сильно выпуклой** с\\nконстантой $\\\\mu>0$, если $g\\\\in C^{2}$ и $g''(x)\\\\geq\\\\mu$ для всех $x$.\\nСильная выпуклость гарантирует существование и единственность\\nточки минимума и, что важно для нас, отделённость второй производной\\nот нуля.\",\"line\":355,\"anchor\":\"ssec:thm-superlinear\",\"url\":\"/ch02_newton.html#ssec:thm-superlinear\"}]}",
+     "call_args": "{\"term\":\"выпукл\"}"
+    }
+   ],
    "images": 0,
-   "elapsed": 6.8,
-   "cost": 0.002732,
-   "prompt_tokens": 7285,
-   "completion_tokens": 607,
+   "figures": [],
+   "elapsed": 6.1,
+   "cost": 0.002971,
+   "prompt_tokens": 11708,
+   "completion_tokens": 615,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "Ты сейчас находишься в главе [«Метод Ньютона»](/ch02_newton.html).\n\nМетод Ньютона — это мощный итерационный способ поиска корней уравнений или минимумов функций. Его суть заключается в замене сложной задачи на последовательность простых, линейных или квадратичных приближений.\n\n### Геометрическая идея (поиск корня)\nЕсли нам нужно решить уравнение $f(x) = 0$, мы действуем так:\n1. Берем текущее приближение $x_k$.\n2. Проводим **касательную** к графику функции $y = f(x)$ в точке $(x_k, f(x_k))$.\n3. Находим точку пересечения этой касательной с осью $x$. Эта точка становится нашим следующим приближением $x_{k+1}$.\n\nТак как уравнение касательной имеет вид $y = f(x_k) + f'(x_k)(x - x_k)$, то при $y = 0$ мы получаем итерационную формулу:\n$$x_{k+1} = x_k - \\frac{f(x_k)}{f'(x_k)}$$\n\n### Идея для оптимизации\nКогда мы ищем минимум функции $g(x)$, мы решаем уравнение $g'(x) = 0$. Если применить формулу Ньютона к функции $f = g'$, мы получим:\n$$x_{k+1} = x_k - \\frac{g'(x_k)}{g''(x_k)}$$\n\nГеометрически это означает, что в каждой точке $x_k$ мы строим **квадратичную модель** (параболу), которая максимально точно «повторяет» поведение функции $g$ в этой окрестности (учитывая не только наклон, но и кривизну через вторую производную $g''$). Следующая точка $x_{k+1}$ — это просто вершина этой параболы.\n\n**Важные моменты:**\n*   **История:** Метод был предложен Исааком Ньютоном в 1669–1671 гг., а современный вид ему придал Джозеф Рафсон в 1690 г.\n*   **Канторович:** Советский математик Леонид Канторович в 1948 году доказал теорему, которая дала строгие условия сходимости метода, в том числе для сложных пространств.\n*   **Метод Герона:** Частный случай метода Ньютона для поиска $\\sqrt{a}$ (решение уравнения $x^2 - a = 0$) известен еще с древних времен.",
+   "answer": "Ты уже находишься в главе [«Численные методы оптимизации»](/ch02_newton.html), где подробно разбирается этот вопрос. ### Что это за метод? Это **метод Ньютона** (иногда называют *Newton–Raphson*). Изначально он был придуман для поиска корней уравнения $f(x)=0$, но в оптимизации его используют для поиска минимума функции $g(x)$, решая уравнение $g'(x)=0$. ### Геометрическая идея Идея метода — **линеаризация**. Мы не пытаемся решить сложную задачу сразу, а заменяем её на каждом шаге простой «моделью», которую легко решить: 1. **Для поиска корня ($f(x)=0$):** Мы заменяем график функции $y=f(x)$ в текущей точке $x_k$ его **касательной**. Касательная — это прямая, и найти точку, где она пересекает ось $x$, очень просто. Эту точку мы и объявляем следующим приближением $x_{k+1}$. 2. **Для оптимизации ($g'(x)=0$):** Мы используем **квадратичную модель**. В окрестности точки $x_k$ мы раскладываем функцию $g$ в ряд Тейлора и оставляем только квадратичный многочлен $q_k(x)$:     $$q_k(x) = g(x_k) + g'(x_k)(x-x_k) + \\tfrac12 g''(x_k)(x-x_k)^2$$     Геометрически это означает, что мы «накрываем» график функции параболой, которая касается функции в точке $x_k$ и имеет ту же кривизну (вторую производную). Минимум этой параболы найти элементарно — это и будет наше следующее приближение $x_{k+1}$. **Итог:** Метод Ньютона — это классический пример стратегии «разделяй и властвуй». Вместо того чтобы минимизировать сложную функцию $g$ целиком, мы на каждом шаге минимизируем простую параболу $q_k$, которая локально имитирует поведение функции. Подробнее об этом можно почитать в разделах: *   [Метод касательных Ньютона и его приложения](/ch02_newton.html#sec:newton) *   [Метод Ньютона для задач оптимизации](/ch02_newton.html#метод-ньютона-для-задач-оптимизации)",
    "no_answer": false,
    "broken_formulas": 0,
+   "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Полный корректный вывод: касательная → пересечение → формула; расширение на оптимизацию и квадратичную модель. 19 формул в $/$$, gate broken=0. Суть точна.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "names_newton",
-     "level": "met",
-     "weight": 2,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "tangent_intersection",
-     "level": "met",
-     "weight": 3,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "no_error",
-     "level": "met",
-     "weight": 1,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
+   "judge": "adversarial-workflow-final"
   },
   {
    "id": "definition_strong_convex",
@@ -193,62 +145,29 @@
    "tools": [
     "find_definition"
    ],
+   "trace": [
+    {
+     "tool": "find_definition",
+     "args": "выпукл",
+     "status": "1"
+    }
+   ],
    "images": 0,
-   "elapsed": 5.2,
-   "cost": 0.002296,
-   "prompt_tokens": 7330,
-   "completion_tokens": 309,
+   "figures": [],
+   "elapsed": 4.0,
+   "cost": 0.002847,
+   "prompt_tokens": 9616,
+   "completion_tokens": 295,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "Ты уже находишься в главе «Метод Ньютона», где как раз дано это определение.\n\nСогласно **Определению 2.4** из [Метода Ньютона](/ch02_newton.html#ssec:thm-superlinear):\n\nФункция $g\\colon\\mathbb{R}\\to\\mathbb{R}$ называется **сильно выпуклой** с константой $\\mu>0$, если:\n1. $g \\in C^2$ (функция дважды непрерывно дифференцируема).\n2. $g''(x) \\geq \\mu$ для всех $x$ (вторая производная всюду не меньше некоторой положительной константы $\\mu$).\n\n**Что это значит:**\n*   $g''(x) \\geq \\mu$ означает, что кривизна функции «зажата» снизу положительным числом. Функция не может стать плоской или вогнутой.\n*   Это свойство гарантирует, что у функции есть ровно одна точка минимума, а вторая производная всегда отделена от нуля, что критически важно для устойчивости метода Ньютона.",
+   "answer": "Ты уже находишься в главе «Метод Ньютона», где как раз дается это определение. Согласно **Определению 2.4. Сильно выпуклая функция** из [Метод Ньютона](/ch02_newton.html#ssec:thm-superlinear): Функция $g\\colon\\mathbb{R}\\to\\mathbb{R}$ называется **сильно выпуклой** с константой $\\mu>0$, если $g\\in C^{2}$ и $g''(x)\\geq\\mu$ для всех $x$. **Что это значит:** *   $g\\in C^{2}$ — функция дважды непрерывно дифференцируема. *   $g''(x)\\geq\\mu$ — вторая производная функции всегда больше или равна некоторой положительной константе $\\mu > 0$. Это свойство очень полезно, так как оно гарантирует, что у функции есть единственная точка минимума, а вторая производная всегда «отделена» от нуля (не вырождается), что позволяет методу Ньютона работать стабильно.",
    "no_answer": false,
    "broken_formulas": 0,
+   "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Корректное определение 2.4: μ>0, g∈C², g''(x)≥μ, пояснение про кривизну. LaTeX чистый.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "condition_g2_geq_mu",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "c2_smoothness",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "no_wrong_def",
-     "level": "met",
-     "weight": 1,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "tools_expected",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": "tool_expected"
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
+   "judge": "adversarial-workflow-final"
   },
   {
    "id": "compute_factorial",
@@ -262,21 +181,26 @@
    "tools": [
     "python"
    ],
+   "trace": [
+    {
+     "tool": "python",
+     "args": "import math",
+     "status": ""
+    }
+   ],
    "images": 0,
+   "figures": [],
    "elapsed": 13.2,
-   "cost": 0.001344,
-   "prompt_tokens": 4883,
-   "completion_tokens": 82,
+   "cost": 0.002891,
+   "prompt_tokens": 9560,
+   "completion_tokens": 334,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "30! = 265252859812191058636308480000000.",
+   "answer": "30 факториал ($30!$) равен $265\\,252\\,859\\,812\\,191\\,058\\,636\\,308\\,480\\,000\\,000$.",
    "no_answer": false,
    "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
+   "raw_unrendered": 0
   },
   {
    "id": "compute_taylor_sin",
@@ -288,24 +212,28 @@
    "visual_match": true,
    "missing": [],
    "tools": [
-    "python",
     "python"
    ],
+   "trace": [
+    {
+     "tool": "python",
+     "args": "import sympy as sp",
+     "status": ""
+    }
+   ],
    "images": 0,
-   "elapsed": 17.5,
-   "cost": 0.003063,
-   "prompt_tokens": 8213,
-   "completion_tokens": 673,
+   "figures": [],
+   "elapsed": 14.4,
+   "cost": 0.003589,
+   "prompt_tokens": 9838,
+   "completion_tokens": 753,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "Разложение функции $\\sin(x)$ в ряд Тейлора (в окрестности нуля, то есть ряд Маклорена) выглядит так:\n\n$$\\sin(x) = x - \\frac{x^3}{6} + \\frac{x^5}{120} - \\frac{x^7}{5040} + \\frac{x^9}{362880} - \\dots$$\n\nПервые 5 ненулевых членов ряда:\n$$x, \\quad -\\frac{x^3}{6}, \\quad \\frac{x^5}{120}, \\quad -\\frac{x^7}{5040}, \\quad \\frac{x^9}{362880}$$\n\nСумма этих пяти членов:\n$$\\frac{x^9}{362880} - \\frac{x^7}{5040} + \\frac{x^5}{120} - \\frac{x^3}{6} + x$$",
+   "answer": "Ты уже находишься в главе «Численные методы оптимизации», где мы как раз обсуждаем аппроксимации функций. Разложение $\\sin(x)$ в ряд Тейлора в окрестности точки $0$ (ряд Маклорена) содержит только нечетные степени $x$. Пятый ненулевой член этого ряда соответствует степени $x^9$. Вот первые пять членов разложения: $$\\sin(x) \\approx x - \\frac{x^3}{6} + \\frac{x^5}{120} - \\frac{x^7}{5040} + \\frac{x^9}{362880}$$ Пятый член ряда: $$\\frac{x^9}{362880}$$ В этой главе мы часто используем подобные разложения для анализа сходимости методов (например, метода Ньютона), когда заменяем сложную функцию её квадратичной аппроксимацией.",
    "no_answer": false,
    "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
+   "raw_unrendered": 0
   },
   {
    "id": "compute_plot_newton",
@@ -321,21 +249,41 @@
    "tools": [
     "python"
    ],
+   "trace": [
+    {
+     "tool": "python",
+     "args": "import numpy as np",
+     "status": "1 png",
+     "result": [
+      {
+       "type": "text",
+       "text": "{\"type\":\"result\",\"id\":\"2c924671-f602-4cb0-9e6f-7bcc6f7dfd2c\",\"result\":null,\"error\":null,\"stdout\":\"Траектория: [1.5, 1.4167, 1.4142, 1.4142, 1.4142, 1.4142]\\nКорень: 1.4142\",\"stderr\":\"<exec>:29: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown\",\"media\":[]}"
+      },
+      {
+       "type": "image_url",
+       "image_url": {
+        "url": "data:image/png;base64,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"
+       }
+      }
+     ],
+     "call_args": "{\"code\":\"import numpy as np\\nimport matplotlib.pyplot as plt\\n\\ndef f(x):\\n    return x**2 - 2\\n\\ndef df(x):\\n    return 2*x\\n\\nx = 1.5\\npath = [x]\\nfor _ in range(5):\\n    x = x - f(x) / df(x)\\n    path.append(x)\\n\\nprint(f\\\"Траектория: {[round(p, 4) for p in path]}\\\")\\nprint(f\\\"Корень: {path[-1]:.4f}\\\")\\n\\nplt.figure(figsize=(8, 5))\\nx_vals = np.linspace(0.5, 2, 100)\\nplt.plot(x_vals, f(x_vals), label='f(x) = x² - 2')\\nplt.axhline(0, color='black', lw=1)\\nplt.plot(path, [f(p) for p in path], 'ro-', label='Траектория метода Ньютона')\\nplt.title('Сходимость метода Ньютона для f(x) = x² - 2')\\nplt.xlabel('x')\\nplt.ylabel('f(x)')\\nplt.legend()\\nplt.grid(True)\\nplt.show()\"}"
+    }
+   ],
    "images": 1,
-   "elapsed": 23.6,
-   "cost": 0.002229,
-   "prompt_tokens": 6265,
-   "completion_tokens": 442,
+   "figures": [
+    "figs/compute_plot_newton_0.png"
+   ],
+   "elapsed": 15.0,
+   "cost": 0.002825,
+   "prompt_tokens": 7874,
+   "completion_tokens": 571,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "們Метод Ньютона для функции $f(x) = x^2 - 2$ сходится очень быстро. Начиная с $x_0 = 1.5$, уже к третьей итерации значение практически совпадает с $\\sqrt{2} \\approx 1.414214$.\n\nВот значения на итерациях:\n* $x_0 = 1.500000$\n* $x_1 = 1.416667$\n* $x_2 = 1.414216$\n* $x_3 = 1.414214$\n* $x_4 = 1.414214$\n* $x_5 = 1.414214$\n\nНа графике видно, как траектория стремительно приближается к корню и стабилизируется. Это отличная иллюстрация квадратичной сходимости метода, о которой говорится в главе «Метод Ньютона».",
+   "answer": "linearization. Метод Ньютона для функции $f(x) = x^2 - 2$ сходится очень быстро. Начиная с $x_0 = 1.5$, уже через пару итераций мы практически достигаем корня $\\sqrt{2} \\approx 1.4142$. **Траектория метода:** * $x_0 = 1.5$ * $x_1 \\approx 1.4167$ * $x_2 \\approx 1.4142$ * $x_3 \\approx 1.4142$ На графике видно, как точки (красные маркеры) стремительно приближаются к пересечению функции с осью $x$ (значение $f(x)=0$). Ты сейчас находишься в главе «Численные методы оптимизации», где как раз разбираются такие итерационные процессы. В этой главе полезно обратить внимание на следующие разделы: * **Метод Ньютона** (основная идея и формула итерации). * **Скорость сходимости** (почему метод Ньютона сходится так быстро). * **Условия сходимости** (от чего зависит успех метода).",
    "no_answer": false,
    "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
+   "raw_unrendered": 0
   },
   {
    "id": "compute_plot_gd_vs_newton",
@@ -349,21 +297,28 @@
    "tools": [
     "python"
    ],
+   "trace": [
+    {
+     "tool": "python",
+     "args": "import numpy as np",
+     "status": "1 png"
+    }
+   ],
    "images": 1,
-   "elapsed": 18.8,
-   "cost": 0.003409,
-   "prompt_tokens": 9203,
-   "completion_tokens": 739,
+   "figures": [
+    "figs/compute_plot_gd_vs_newton_0.png"
+   ],
+   "elapsed": 16.2,
+   "cost": 0.003928,
+   "prompt_tokens": 11411,
+   "completion_tokens": 717,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": " mini.thought\nТы уже находишься в главе «Метод Ньютона – Σ Сигма».\n\nНа графике видно, что метод Ньютона сходится к минимуму значительно быстрее градиентного спуска. \n\n*   **Метод Ньютона** использует информацию о кривизне функции (вторую производную), что позволяет ему «адаптироваться» к форме функции. Однако для $f(x) = x^4$ в точке минимума $x=0$ вторая производная $f''(0) = 12 \\cdot 0^2 = 0$, поэтому метод теряет свою классическую квадратичную сходимость и сходится линейно.\n*   **Градиентный спуск** движется гораздо медленнее. Его скорость сильно зависит от выбора шага $\\eta$. При $\\eta = 0.02$ он делает очень маленькие шаги, так как градиент $f'(x) = 4x^3$ быстро убывает при приближении к нулю.\n\n**Итог:**\n*   После 10 итераций метод Ньютона пришел к $x \\approx 0.03$.\n*   Градиентный спуск за то же время добрался лишь до $x \\approx 0.68$.",
+   "answer": "thought Ты уже находишься в главе «Численные методы оптимизации», где как раз разбираются эти подходы. На графике видно, что метод Ньютона сходится к минимуму значительно быстрее градиентного спуска. Для функции $f(x) = x^4$ градиентный спуск (с выбранным шагом $\\eta = 0.01$) движется очень медленно, так как производная $f'(x) = 4x^3$ быстро убывает при приближении к нулю. Метод Ньютона, использующий информацию о второй производной ($f''(x) = 12x^2$), адаптируется к кривизне функции и делает более эффективные шаги. **Ключевые наблюдения:** *   **Метод Ньютона:** на 10-й итерации значение $x \\approx 0.03$. Он демонстрирует гораздо более высокую скорость сходимости. *   **Градиентный спуск:** на 10-й итерации значение $x \\approx 0.93$. Метод «застревает» в области с пологим градиентом. В этой главе ты также можешь подробнее изучить: *   Условия сходимости методов. *   Выбор шага (learning rate) для градиентного спуска. *   Особенности поведения метода Ньютона вблизи точек, где вторая производная близка к нулю.",
    "no_answer": false,
    "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
+   "raw_unrendered": 0
   },
   {
    "id": "rsa_encrypt_small",
@@ -377,21 +332,26 @@
    "tools": [
     "python"
    ],
+   "trace": [
+    {
+     "tool": "python",
+     "args": "m = 7",
+     "status": ""
+    }
+   ],
    "images": 0,
-   "elapsed": 16.0,
-   "cost": 0.002416,
-   "prompt_tokens": 7412,
-   "completion_tokens": 375,
+   "figures": [],
+   "elapsed": 14.7,
+   "cost": 0.001928,
+   "prompt_tokens": 6482,
+   "completion_tokens": 205,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "Для шифрования сообщения $m$ в системе RSA используется формула:\n$$c = m^e \\pmod n$$\n\nПодставим ваши значения ($m=7, e=7, n=143$):\n$$c = 7^7 \\pmod{143}$$\n\nВыполнив вычисления, получаем:\n**$c = 6$**",
+   "answer": "Для шифрования сообщения $m$ в системе RSA используется формула: $$c = m^e \\pmod n$$ Подставим ваши значения ($m=7, n=143, e=7$): $$c = 7^7 \\pmod{143}$$ После вычисления получаем: **$c = 6$** Вы находитесь в главе [Криптосистемы RSA и Диффи–Хеллмана](/ch04_3_kriptosistemy-rsa-i-diffi-hellma), где подробно описаны принципы выбора ключей и процесс шифрования.",
    "no_answer": false,
    "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
+   "raw_unrendered": 0
   },
   {
    "id": "rsa_full_roundtrip",
@@ -405,92 +365,64 @@
    "tools": [
     "python"
    ],
+   "trace": [
+    {
+     "tool": "python",
+     "args": "p = 11",
+     "status": ""
+    }
+   ],
    "images": 0,
-   "elapsed": 16.4,
-   "cost": 0.002871,
-   "prompt_tokens": 7615,
-   "completion_tokens": 645,
+   "figures": [],
+   "elapsed": 15.6,
+   "cost": 0.003429,
+   "prompt_tokens": 9899,
+   "completion_tokens": 636,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "Ты уже находишься в главе [Криптосистемы RSA и Диффи–Хеллмана](ch04_3_kriptosistemy-rsa-i-diffi-hellma). Давай сгенерируем ключи и проверим работу алгоритма для заданных параметров.\n\n### Генерация ключей\nДля $p=11$ и $q=13$:\n*   **Модуль $n$**: $n = p \\cdot q = 11 \\cdot 13 = 143$.\n*   **Функция Эйлера $\\phi(n)$**: $\\phi(n) = (p-1)(q-1) = 10 \\cdot 12 = 120$.\n*   **Секретная экспонента $d$**: Мы ищем такое $d$, чтобы $(d \\cdot e) \\equiv 1 \\pmod{\\phi(n)}$. Для $e=7$ и $\\phi(n)=120$ получаем **$d = 103$** (так как $103 \\cdot 7 = 721$, а $721 = 6 \\cdot 120 + 1$).\n\n### Шифрование и расшифрование\nПусть исходное сообщение $m = 9$:\n1.  **Шифрование**: $c = m^e \\pmod n = 9^7 \\pmod{143} = 4782969 \\pmod{143} = 48$.\n2.  **Расшифрование**: $m_{dec} = c^d \\pmod n = 48^{103} \\pmod{143} = 9$.\n\nКак видишь, после расшифровки мы получили исходное число **9**. Всё работает корректно!",
+   "answer": "Ты уже находишься в главе [Криптосистемы RSA и Диффи–Хеллмана](/ch04_3_kriptosistemy-rsa-i-diffi-hellma). Для заданных параметров $p=11$, $q=13$ и $e=7$ генерация ключа и проверка шифрования выглядят так: 1. **Вычисление параметров:**     *   $n = p \\cdot q = 11 \\cdot 13 = 143$     *   $\\phi(n) = (p-1) \\cdot (q-1) = 10 \\cdot 12 = 120$     *   Закрытая экспонента $d$ находится из условия $(d \\cdot e) \\equiv 1 \\pmod{\\phi(n)}$. Для $e=7$ и $\\phi(n)=120$ получаем **$d = 103$** (так как $103 \\cdot 7 = 721$, а $721 \\pmod{120} = 1$). 2. **Шифрование и расшифрование:**     *   Для сообщения $m = 9$:     *   Шифротекст $c = m^e \\pmod n = 9^7 \\pmod{143} = 4782969 \\pmod{143} = 48$. *   Расшифрование $m_{dec} = c^d \\pmod n = 48^{103} \\pmod{143} = 9$. Как видишь, после расшифровки мы получили исходное число **9**.",
    "no_answer": false,
    "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
+   "raw_unrendered": 0
   },
   {
    "id": "multihop_newton_vs_gradient",
    "category": "multi_hop",
    "question": "В чём отличие метода Ньютона от градиентного спуска для задач оптимизации? Какие из этих методов разобраны в учебнике?",
-   "pass": false,
+   "pass": true,
    "tool_match": false,
    "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
-    "get_outline",
-    "read_chapter",
     "read_chapter"
    ],
+   "trace": [
+    {
+     "tool": "read_chapter",
+     "args": "ch02_newton",
+     "status": "8k",
+     "result": "{\"results\":[{\"id\":\"the_ch02newton_120\",\"chapter_slug\":\"ch02_newton\",\"chapter_title\":\"Метод Ньютона\",\"title\":\"Теорема 2.1. Сходимость метода Герона\",\"text\":\"Для любого $x_0>0$ последовательность (2.4) монотонно\\nубывает (начиная с $k=1$) и сходится к $\\\\sqrt{a}$. Более того, для\\nошибки $e_k=x_k-\\\\sqrt{a}$ выполнено\\n\\n$$\\\\tag{2.5}\\ne_{k+1}\\\\;=\\\\;\\\\dfrac{e_k^2}{2x_k}\\\\,, \\\\qquad\\n\\\\text{и при }k\\\\geq 1\\\\colon\\\\quad\\n0\\\\le e_{k+1}\\\\le \\\\dfrac{e_k^{2}}{2\\\\sqrt{a}}.$$\",\"line\":120,\"anchor\":\"сходимость-через-сжимающее-отображение\",\"url\":\"/ch02_newton.html#сходимость-через-сжимающее-отображение\"}]}",
+     "call_args": "{\"query\":\"Герон\"}"
+    }
+   ],
    "images": 0,
-   "elapsed": 13.5,
-   "cost": 0.004642,
-   "prompt_tokens": 18486,
-   "completion_tokens": 524,
+   "figures": [],
+   "elapsed": 5.3,
+   "cost": 0.00358,
+   "prompt_tokens": 11734,
+   "completion_tokens": 431,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "В учебнике разобраны оба метода: **метод Ньютона** (глава [Метод Ньютона](/ch02_newton.html)) и **градиентный спуск** (глава [Задача классификации и нейронные сети](/ch03_3_zadacha-klassifikacii-i-neyronny.html)).\n\n### Основные отличия\n\nГлавное различие заключается в том, какую информацию о функции мы используем для поиска минимума:\n\n*   **Градиентный спуск** использует только **первую производную** (градиент). Он делает шаг в направлении, противоположном градиенту: $x_{k+1} = x_k - \\eta \\nabla g(x_k)$, где $\\eta$ — это шаг (learning rate). Это метод «первого порядка», который просто «смотрит под ноги», чтобы понять, куда функция убывает быстрее всего.\n*   **Метод Ньютона** использует и **первую, и вторую производные** ($g'$ и $g''$). Он строит локальную квадратичную аппроксимацию функции (параболу) в текущей точке и прыгает сразу в её вершину. Формула итерации: $x_{k+1} = x_k - \\frac{g'(x_k)}{g''(x_k)}$.\n\n**Почему это важно:**\nМетод Ньютона учитывает «кривизну» функции (вторую производную), что позволяет ему сходиться гораздо быстрее (часто за меньшее число итераций), чем градиентный спуск. Однако для этого нужно вычислять вторую производную (в многомерном случае — матрицу Гессе), что бывает вычислительно очень дорого или невозможно для нейронных сетей с миллионами параметров. Поэтому в глубоком обучении чаще используют градиентный спуск (и его вариации, такие как SGD).",
+   "answer": "Ты уже находишься в главе «Численные методы оптимизации» (slug `ch02_newton`), где подробно разбирается метод Ньютона. ### Основные отличия Метод Ньютона и градиентный спуск — это два разных подхода к поиску минимума функции $g(x)$: *   **Градиентный спуск** использует только **первую производную** (градиент $g'(x)$). Он делает шаг в сторону, противоположную градиенту, чтобы уменьшить значение функции. Это метод «первого порядка». *   **Метод Ньютона** использует и **первую**, и **вторую производную** (гессиан $g''(x)$). Вместо того чтобы просто идти «вниз по склону», метод Ньютона на каждом шаге строит локальную **квадратичную модель** функции (аппроксимирует её параболой) и прыгает точно в её минимум. Это метод «второго порядка». Геометрически это выглядит так: градиентный спуск «чувствует» только наклон поверхности, а метод Ньютона «чувствует» ещё и её кривизну, что позволяет ему делать более точные шаги. ### Что разобрано в учебнике В главе `ch02_newton` подробно разобран **метод Ньютона** (включая его применение для поиска корней и для оптимизации). Что касается градиентного спуска, то в текущей главе он упоминается как альтернатива, но основной фокус сделан именно на методе Ньютона и его свойствах (например, в контексте теоремы Канторовича и метода Герона). Если тебя интересуют детали реализации градиентного спуска, стоит поискать их в других главах учебника, посвященных методам первого порядка.",
    "no_answer": false,
    "broken_formulas": 0,
+   "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Верно: чёткое первое vs второе порядок, квадратичная аппроксимация (парабола), формулы корректны (KaTeX ок). Указан ch02_newton для Ньютона. GD отнесён к ch03 — допустимо.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 0.875,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "second_vs_first_order",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "chapter_ref",
-     "level": "met",
-     "weight": 2,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "no_hallucination",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "tools_expected",
-     "level": "none",
-     "weight": 1,
-     "critical": false,
-     "auto": "tool_expected"
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
+   "judge": "adversarial-workflow-final"
   },
   {
    "id": "structural_kantorovich_theorem",
@@ -504,69 +436,29 @@
    "tools": [
     "find_theorem"
    ],
+   "trace": [
+    {
+     "tool": "find_theorem",
+     "args": "Герон",
+     "status": "1"
+    }
+   ],
    "images": 0,
-   "elapsed": 7.4,
-   "cost": 0.001908,
-   "prompt_tokens": 5028,
-   "completion_tokens": 434,
+   "figures": [],
+   "elapsed": 3.9,
+   "cost": 0.002074,
+   "prompt_tokens": 6552,
+   "completion_tokens": 291,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "Ты уже находишься в главе «Метод Ньютона», где как раз разбирается метод Герона. Вот формулировка теоремы из учебника:\n\n**Теорема 2.1. Сходимость метода Герона**\n\nДля любого начального приближения $x_0 > 0$ последовательность $x_{k+1} = \\frac{1}{2}(x_k + \\frac{a}{x_k})$ монотонно убывает (начиная с $k=1$) и сходится к $\\sqrt{a}$. Для ошибки $e_k = x_k - \\sqrt{a}$ выполняется соотношение:\n\n$$e_{k+1} = \\dfrac{e_k^2}{2x_k}$$\n\nА при $k \\ge 1$ справедливо неравенство:\n\n$$0 \\le e_{k+1} \\le \\dfrac{e_k^2}{2\\sqrt{a}}$$\n\n**Что это значит:**\n*   $e_k = x_k - \\sqrt{a}$ — это абсолютная ошибка на шаге $k$.\n*   Формула $e_{k+1} = \\frac{e_k^2}{2x_k}$ показывает, что ошибка следующего шага пропорциональна квадрату ошибки текущего шага. Это и есть признак **квадратичной сходимости**: количество верных знаков после запятой примерно удваивается на каждой итерации.\n*   Неравенство $e_{k+1} \\le \\frac{e_k^2}{2\\sqrt{a}}$ гарантирует, что при достаточно близком к $\\sqrt{a}$ приближении ошибка стремится к нулю очень быстро.\n\nПодробнее можно посмотреть в разделе [Сходимость через сжимающее отображение](/ch02_newton.html#сходимость-через-сжимающее-отображение).",
+   "answer": "Ты уже находишься в главе [Метод Ньютона](/ch02_newton.html), где как раз разбирается этот метод. Согласно **Теореме 2.1 (Сходимость метода Герона)**, для любого начального приближения $x_0 > 0$ последовательность итераций метода Герона (формула $x_{k+1} = \\frac{1}{2}(x_k + \\frac{a}{x_k})$) монотонно убывает, начиная с $k=1$, и сходится к $\\sqrt{a}$. Для ошибки $e_k = x_k - \\sqrt{a}$ выполняется соотношение: $$e_{k+1} = \\frac{e_k^2}{2x_k}$$ А при $k \\ge 1$ справедливо неравенство: $$0 \\le e_{k+1} \\le \\frac{e_k^2}{2\\sqrt{a}}$$ Это означает, что метод обладает **квадратичной сходимостью**: ошибка на следующем шаге $e_{k+1}$ пропорциональна квадрату ошибки на текущем шаге $e_k^2$. Чем ближе мы к корню, тем быстрее уменьшается ошибка.",
    "no_answer": false,
    "broken_formulas": 0,
+   "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Корректная Теорема 2.1: x_0>0, сходимость к √a, квадратичная оценка ошибки. LaTeX чистый, пояснение по делу.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "positive_x0",
-     "level": "met",
-     "weight": 2,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "converges_sqrt_a",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "quadratic_or_monotone",
-     "level": "met",
-     "weight": 2,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "no_hallucination",
-     "level": "met",
-     "weight": 1,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "tools_expected",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": "tool_expected"
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
+   "judge": "adversarial-workflow-final"
   },
   {
    "id": "vision_refine_diverging_sgd",
@@ -576,73 +468,38 @@
    "tool_match": true,
    "answer_match": true,
    "visual_match": true,
-   "missing": [],
+   "missing": [
+    "0.5"
+   ],
    "tools": [
     "python"
    ],
-   "images": 1,
-   "elapsed": 17.7,
-   "cost": 0.002468,
-   "prompt_tokens": 6447,
-   "completion_tokens": 571,
+   "trace": [
+    {
+     "tool": "python",
+     "args": "import numpy as np",
+     "status": "2 png"
+    }
+   ],
+   "images": 2,
+   "figures": [
+    "figs/vision_refine_diverging_sgd_0.png",
+    "figs/vision_refine_diverging_sgd_1.png"
+   ],
+   "elapsed": 16.0,
+   "cost": 0.003393,
+   "prompt_tokens": 9104,
+   "completion_tokens": 745,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "При шаге $\\eta = 1.1$ метод расходится: значения $x$ начинают осциллировать с возрастающей амплитудой, и после 30 итераций мы получаем $474.75$. Это происходит потому, что шаг слишком велик для данной функции (условие сходимости $|1 - 2\\eta| < 1$ нарушается).\n\nДля обеспечения сходимости я выбрал шаг $\\eta = 0.5$. При таком параметре метод быстро сходится к минимуму функции $f(x) = x^2$, то есть к $0.00$.\n\nНа графике видно, как синяя линия (расходящаяся траектория) уходит в бесконечность, в то время как оранжевая (сходящаяся) практически мгновенно достигает нуля.",
+   "answer": "ഹвнутри При использовании шага $\\eta = 1.1$ для функции $f(x) = x^2$ метод градиентного спуска **расходится**. Как видно на первом графике, значения $x$ начинают осциллировать с постоянно возрастающей амплитудой, уходя в бесконечность (последнее значение после 30 итераций составило $474.75$). Это происходит потому, что шаг слишком велик: при обновлении $x_{k+1} = x_k - \\eta \\cdot f'(x_k) = x_k - \\eta \\cdot 2x_k = x_k(1 - 2\\eta)$, множитель $(1 - 2\\eta)$ по модулю становится больше 1 (в данном случае $|1 - 2.2| = 1.2 > 1$). Для обеспечения сходимости необходимо выбрать $\\eta$ так, чтобы $|1 - 2\\eta| < 1$. При выборе $\\eta = 0.1$ условие выполняется ($|1 - 0.2| = 0.8 < 1$), и метод успешно сходится к минимуму в точке $0$. После 30 итераций значение $x$ составляет $0.0025$.",
    "no_answer": false,
    "broken_formulas": 0,
+   "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Верный диагноз (x30=474.75, |1−2η|>1), рабочий η=0.5, сходимость к 0 показана, сравнение на графике. Корректно.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 0.9,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "diagnose_divergence",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "working_step",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "correct_numbers",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "two_runs",
-     "level": "none",
-     "weight": 1,
-     "critical": false,
-     "auto": "min2_python"
-    },
-    {
-     "id": "image_present",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": "image_present"
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
+   "judge": "adversarial-workflow-final"
   },
   {
    "id": "hashlib_demo",
@@ -656,21 +513,26 @@
    "tools": [
     "python"
    ],
+   "trace": [
+    {
+     "tool": "python",
+     "args": "import hashlib",
+     "status": ""
+    }
+   ],
    "images": 0,
-   "elapsed": 14.3,
-   "cost": 0.001456,
-   "prompt_tokens": 4986,
-   "completion_tokens": 140,
+   "figures": [],
+   "elapsed": 14.5,
+   "cost": 0.001903,
+   "prompt_tokens": 6503,
+   "completion_tokens": 185,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "SHA-256 хеш строки 'sigma' в шестнадцатеричном представлении:\n\n`38de90475bb334fb3dea5d54f250500aba60fe2c6158115d342b06bcb46e39bf`",
+   "answer": "Ты уже находишься в главе [Хеширование: теория чисел встречается с рандомизацией – Σ Сигма](/ch04_5_heshirovanie-teoriya-chisel-vstr). SHA-256 хеш строки 'sigma' в шестнадцатеричном виде: `38de90475bb334fb3dea5d54f250500aba60fe2c6158115d342b06bcb46e39bf`",
    "no_answer": false,
    "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
+   "raw_unrendered": 0
   },
   {
    "id": "linreg_simple",
@@ -684,21 +546,28 @@
    "tools": [
     "python"
    ],
+   "trace": [
+    {
+     "tool": "python",
+     "args": "import numpy as np",
+     "status": "1 png"
+    }
+   ],
    "images": 1,
-   "elapsed": 25.1,
-   "cost": 0.002329,
-   "prompt_tokens": 6389,
-   "completion_tokens": 488,
+   "figures": [
+    "figs/linreg_simple_0.png"
+   ],
+   "elapsed": 15.4,
+   "cost": 0.003709,
+   "prompt_tokens": 11109,
+   "completion_tokens": 621,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "```Для заданных точек $(1, 2.1), (2, 3.9), (3, 6.2), (4, 7.8)$ коэффициенты линейной регрессии $y = ax + b$, найденные методом наименьших квадратов, равны:\n\n*   $a = 1.94$\n*   $b = 0.15$\n\nТаким образом, искомая прямая: $y = 1.94x + 0.15$.\n\nНа графике видно, что прямая хорошо проходит через заданные точки, минимизируя сумму квадратов отклонений.",
+   "answer": "Для заданных точек методом наименьших квадратов получена следующая линейная регрессия: $$y = 1.94x + 0.15$$ **Коэффициенты:** *   $a = 1.94$ (наклон прямой) *   $b = 0.15$ (сдвиг) На графике видно, что построенная прямая проходит максимально близко ко всем заданным точкам, минимизируя сумму квадратов отклонений. Ты уже находишься в главе «Линейная регрессия и метод наименьших квадратов». В ней подробно разбираются: *   Постановка задачи линейной регрессии. *   Вывод нормальных уравнений для поиска коэффициентов. *   Геометрическая интерпретация метода.",
    "no_answer": false,
    "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
+   "raw_unrendered": 0
   },
   {
    "id": "out_of_scope_recipe",
@@ -710,55 +579,23 @@
    "visual_match": true,
    "missing": [],
    "tools": [],
+   "trace": [],
    "images": 0,
-   "elapsed": 7.5,
-   "cost": 0.001366,
-   "prompt_tokens": 4787,
-   "completion_tokens": 113,
+   "figures": [],
+   "elapsed": 2.9,
+   "cost": 0.001723,
+   "prompt_tokens": 6309,
+   "completion_tokens": 97,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "В учебнике «Σ Сигма» рассматриваются методы оптимизации, численные методы и основы ИИ, поэтому рецепта борща там нет. Я могу помочь с вопросами по методу Ньютона, сходимости алгоритмов или другими темами из главы «Метод Ньютона», если хочешь!",
+   "answer": "К сожалению, в учебнике «Σ Сигма» нет рецептов борща — здесь мы занимаемся численными методами оптимизации, теорией чисел и искусственным интеллектом. Если у тебя есть вопросы по методу Ньютона, сходимости алгоритмов или другим темам из главы «Численные методы оптимизации», с радостью помогу разобраться!",
    "no_answer": false,
    "broken_formulas": 0,
+   "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Отказ + предложение тем учебника. Рецепт не дан.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "refusal",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "no_recipe",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "offer_help",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
+   "judge": "adversarial-workflow-final"
   },
   {
    "id": "rsa_history",
@@ -773,129 +610,62 @@
     "search_textbook",
     "read_chapter"
    ],
+   "trace": [
+    {
+     "tool": "search_textbook",
+     "args": "RSA придумал год",
+     "status": "5"
+    },
+    {
+     "tool": "read_chapter",
+     "args": "ch04_3_kriptosistemy-rsa-i-diffi-hellma",
+     "status": "8k"
+    }
+   ],
    "images": 0,
-   "elapsed": 5.2,
-   "cost": 0.003258,
-   "prompt_tokens": 11555,
-   "completion_tokens": 246,
+   "figures": [],
+   "elapsed": 6.0,
+   "cost": 0.004757,
+   "prompt_tokens": 16819,
+   "completion_tokens": 368,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "Криптосистему RSA придумали в **1978 году** трое сотрудников Массачусетского технологического института:\n\n*   **Р**ональд Райвест (Ron Rivest);\n*   **Ш**амир (Ади Шамир, Adi Shamir);\n*   **А**длеман (Леонард Адлеман, Leonard Adleman).\n\nИх фамилии и дали название системе — **RSA**.\n\nВ учебнике также упоминается интересный исторический факт: эта же схема была независимо открыта британским математиком **Клиффордом Коксом** еще в **1973 году**, но его работа была засекречена и стала известна широкой публике только в 1997 году.",
+   "answer": "Криптосистему RSA придумали в **1978 году** трое сотрудников Массачусетского технологического института: *   **Р**ональд Райвест (Ron Rivest); *   **Ш**амир (Ади Шамир, Adi Shamir); *   **А**длеман (Леонард Адлеман, Leonard Adleman). Их фамилии и дали название системе — **RSA**. В учебнике также упоминается интересный исторический факт: эта же схема была независимо открыта в 1973 году британским математиком Клиффордом Коксом, но его работа была засекречена и стала известна широкой публике только в 1997 году.",
    "no_answer": false,
    "broken_formulas": 0,
+   "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Все трое, MIT, 1978 верно; факт про Кокса 1973/1997 совпадает с текстом учебника.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "year_1978",
-     "level": "met",
-     "weight": 2,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "three_authors",
-     "level": "met",
-     "weight": 3,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "mit",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "no_fake_authors",
-     "level": "met",
-     "weight": 2,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "tools_expected",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": "tool_expected"
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
+   "judge": "adversarial-workflow-final"
   },
   {
    "id": "greeting_minimal",
    "category": "out_of_scope",
    "question": "Привет!",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [],
+   "trace": [],
    "images": 0,
-   "elapsed": 3.9,
-   "cost": 0.00163,
-   "prompt_tokens": 4797,
-   "completion_tokens": 287,
+   "figures": [],
+   "elapsed": 3.2,
+   "cost": 0.001986,
+   "prompt_tokens": 6319,
+   "completion_tokens": 271,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "Привет! Рад видеть тебя в главе про метод Ньютона. Это мощный инструмент для поиска корней уравнений и оптимизации.\n\nТы сейчас находишься в разделе, где мы разбираем:\n*   **Идею метода Ньютона** — как линейная аппроксимация помогает быстро находить корни.\n*   **Геометрическую интерпретацию** — касательные и их пересечение с осью абсцисс.\n*   **Условия сходимости** — почему важно начальное приближение и как ведет себя функция в окрестности корня.\n\nЕсли хочешь разобраться с тем, как именно строится итерационный процесс или почему метод сходится квадратично — спрашивай, помогу! Что именно сейчас вызывает вопросы?",
+   "answer": "Привет! Ты сейчас находишься в главе **«Численные методы оптимизации»**. Это отличная тема, здесь мы разбираем, как находить минимумы функций, когда аналитическое решение найти сложно или невозможно. В этой главе мы обычно обсуждаем: *   **Метод градиентного спуска** и выбор шага. *   **Метод Ньютона**, который использует вторую производную для более быстрой сходимости. *   **Условия сходимости** и то, как кривизна функции влияет на скорость поиска. Если хочешь что-то уточнить, разобрать конкретную формулу или посмотреть, как метод работает на графике — спрашивай! Чем могу помочь?",
    "no_answer": false,
    "broken_formulas": 0,
+   "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "617 знаков, простыня с выдуманным перечнем разделов главы. Грубое нарушение лимита и 'без простыней'.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 0.0,
-   "rubric_capped": true,
-   "rubric_detail": [
-    {
-     "id": "short",
-     "level": "none",
-     "weight": 3,
-     "critical": true,
-     "auto": "short"
-    },
-    {
-     "id": "offer_help",
-     "level": "met",
-     "weight": 2,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "no_tools",
-     "level": "met",
-     "weight": 2,
-     "critical": true,
-     "auto": "no_tools"
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
+   "judge": "adversarial-workflow-final"
   },
   {
    "id": "euclid_gcd_python",
@@ -909,21 +679,26 @@
    "tools": [
     "python"
    ],
+   "trace": [
+    {
+     "tool": "python",
+     "args": "import math",
+     "status": ""
+    }
+   ],
    "images": 0,
-   "elapsed": 13.8,
-   "cost": 0.001751,
-   "prompt_tokens": 5047,
-   "completion_tokens": 326,
+   "figures": [],
+   "elapsed": 13.4,
+   "cost": 0.00205,
+   "prompt_tokens": 6556,
+   "completion_tokens": 274,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "Для вычисления наибольшего общего делителя (НОД) алгоритм Евклида последовательно заменяет пару чисел $(a, b)$ на $(b, a \\pmod b)$, пока остаток не станет равен нулю.\n\nРезультаты расчёта:\n*   **НОД(48, 180) = 12**\n*   **НОД(1071, 462) = 21**\n\nТы сейчас находишься в главе [Элементы теории чисел](https://sigma.fmin.xyz/ch04_1_elementy-teorii-chisel), где этот алгоритм подробно описан. В ней ты можешь найти:\n*   Определение алгоритма Евклида.\n*   Примеры пошагового деления с остатком.\n*   Связь НОД с линейным представлением чисел (теорема Безу).",
+   "answer": "Ты сейчас находишься в главе [Элементы теории чисел](/ch04_1_elementy-teorii-chisel). Алгоритм Евклида — это классический способ нахождения наибольшего общего делителя (НОД), основанный на последовательном делении с остатком. Результаты вычислений: *   **НОД(48, 180) = 12** *   **НОД(1071, 462) = 21** В этой главе ты можешь подробнее изучить: *   Деление с остатком. *   Свойства НОД. *   Расширенный алгоритм Евклида.",
    "no_answer": false,
    "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
+   "raw_unrendered": 0
   },
   {
    "id": "definition_superlinear",
@@ -937,55 +712,29 @@
    "tools": [
     "find_definition"
    ],
+   "trace": [
+    {
+     "tool": "find_definition",
+     "args": "сверхлин",
+     "status": "1"
+    }
+   ],
    "images": 0,
-   "elapsed": 5.0,
-   "cost": 0.002345,
-   "prompt_tokens": 7406,
-   "completion_tokens": 329,
+   "figures": [],
+   "elapsed": 5.7,
+   "cost": 0.002883,
+   "prompt_tokens": 9690,
+   "completion_tokens": 307,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "Ты уже находишься в главе «Метод Ньютона», где как раз разбирается это понятие.\n\nСогласно **Определению 2.3** из [Метода Ньютона](/ch02_newton.html#ssec:thm-superlinear), последовательность $\\{x_k\\}$ сходится к $x^{\\star}$ со **сверхлинейной скоростью**, если выполняется условие:\n\n$$\\lim_{k\\to\\infty}\\dfrac{|x_{k+1}-x^{\\star}|}{|x_k-x^{\\star}|}=0$$\n\n**Что это значит простыми словами:**\n*   Отношение ошибки на следующем шаге к ошибке на текущем шаге стремится к нулю.\n*   Это означает, что с каждым новым шагом количество верных знаков после запятой в приближении $x_k$ растет быстрее, чем при обычной линейной сходимости (где это отношение просто меньше некоторой константы $c < 1$).\n*   Если же выполняется более жесткое условие $|x_{k+1}-x^{\\star}|\\leq M |x_k-x^{\\star}|^{2}$ (где $M > 0$ — положительная константа), то сходимость называют **квадратичной**. Это еще более быстрый тип сходимости, характерный для классического метода Ньютона.",
+   "answer": "Ты сейчас находишься в главе [Метод Ньютона](/ch02_newton.html#ssec:thm-superlinear). Согласно **Определению 2.3**, последовательность $\\{x_k\\}$ сходится к $x^{\\star}$ со **сверхлинейной скоростью**, если выполняется условие: $$\\lim_{k\\to\\infty}\\dfrac{|x_{k+1}-x^{\\star}|}{|x_k-x^{\\star}|}=0$$ Это значит, что отношение расстояния до корня на следующем шаге к расстоянию на текущем шаге стремится к нулю. Простыми словами, с каждым шагом ошибка уменьшается всё быстрее и быстрее по сравнению с линейной скоростью (где это отношение стремится к некоторой константе $c \\in (0, 1)$). Также в учебнике упоминается более сильное условие — **квадратичная сходимость**: $|x_{k+1}-x^{\\star}|\\leq M |x_k-x^{\\star}|^{2}$ для некоторой константы $M>0$. Здесь ошибка на следующем шаге пропорциональна *квадрату* ошибки на текущем шаге, что обеспечивает очень быстрое приближение к решению.",
    "no_answer": false,
    "broken_formulas": 0,
+   "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Предел и условие →0 даны точно, интуиция корректна. LaTeX чистый.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "limit_ratio_zero",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "no_wrong_def",
-     "level": "met",
-     "weight": 1,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "tools_expected",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": "tool_expected"
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
+   "judge": "adversarial-workflow-final"
   },
   {
    "id": "theorem_clt",
@@ -999,62 +748,29 @@
    "tools": [
     "find_theorem"
    ],
+   "trace": [
+    {
+     "tool": "find_theorem",
+     "args": "центральная предельная",
+     "status": "1"
+    }
+   ],
    "images": 0,
-   "elapsed": 4.8,
-   "cost": 0.002857,
-   "prompt_tokens": 7559,
-   "completion_tokens": 645,
+   "figures": [],
+   "elapsed": 4.2,
+   "cost": 0.003345,
+   "prompt_tokens": 9841,
+   "completion_tokens": 590,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "Ты уже находишься в главе «Простейшие примеры задач анализа данных. Принцип максимума правдоподобия». Вот формулировка Центральной предельной теоремы из учебника:\n\n**Теорема 3.3. Центральная предельная теорема (ЦПТ)**\n\nПусть $X_1, X_2, \\dots$ — независимые одинаково распределённые случайные величины с математическим ожиданием $\\mu$ и конечной дисперсией $\\sigma^2 > 0$, а $S_n = X_1 + \\dots + X_n$. Тогда при $n \\to \\infty$:\n\n$$\\Pr\\!\\left(\\frac{S_n-n\\mu}{\\sigma\\sqrt n}\\leq x\\right)\\;\\longrightarrow\\;\\Phi(x)\\;\\stackrel{\\mathrm{def}}{=}\\;\\frac{1}{\\sqrt{2\\pi}}\\int_{-\\infty}^{x} e^{-t^{2}/2}\\,dt$$\n\nЗдесь $\\Phi(x)$ — это функция стандартного нормального распределения.\n\n**Что это значит:**\n*   $X_1, X_2, \\dots$ — набор случайных величин, которые не зависят друг от друга и имеют одинаковые характеристики (среднее $\\mu$ и дисперсию $\\sigma^2$).\n*   $S_n$ — их сумма.\n*   Выражение $\\frac{S_n - n\\mu}{\\sigma\\sqrt{n}}$ — это центрированная и нормированная сумма.\n*   Теорема утверждает, что при увеличении количества слагаемых ($n \\to \\infty$) распределение этой суммы стремится к стандартному нормальному распределению (кривой Гаусса).\n\nПодробнее об этом можно прочитать в разделе [Подход 2: Центральная предельная теорема](/ch03_1_prosteyshie-primery-zadach-anali.html#подход-2-центральная-предельная-теорема).",
+   "answer": "Ты уже находишься в главе [Простейшие примеры задач анализа данных. Принцип максимума правдоподобия](/ch03_1_prosteyshie-primery-zadach-anali.html), где и сформулирована эта теорема. Вот как звучит **Теорема 3.3. Центральная предельная теорема (ЦПТ)**: Пусть $X_1, X_2, \\dots$ — независимые одинаково распределённые случайные величины с математическим ожиданием $\\mu$ и конечной дисперсией $\\sigma^2 > 0$, а $S_n = X_1 + \\dots + X_n$. Тогда при $n \\to \\infty$: $$\\Pr\\!\\left(\\frac{S_n - n\\mu}{\\sigma\\sqrt{n}} \\leq x\\right) \\longrightarrow \\Phi(x) \\stackrel{\\mathrm{def}}{=} \\frac{1}{\\sqrt{2\\pi}} \\int_{-\\infty}^{x} e^{-t^2/2} \\, dt$$ **Что здесь важно:** *   $S_n - n\\mu$ — это отклонение суммы случайных величин от её среднего значения ($n\\mu$). *   $\\sigma\\sqrt{n}$ — это стандартное отклонение суммы $S_n$. *   $\\Phi(x)$ — функция стандартного нормального распределения (интеграл от плотности нормального распределения). *   Суть теоремы в том, что при большом количестве слагаемых ($n \\to \\infty$) распределение нормированной суммы стремится к стандартному нормальному распределению, независимо от того, какое распределение имели исходные величины $X_i$.",
    "no_answer": false,
    "broken_formulas": 0,
+   "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Верная Теорема 3.3 + расшифровка, LaTeX валиден.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "iid_sum",
-     "level": "met",
-     "weight": 2,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "normal_limit",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "conditions",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "tools_expected",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": "tool_expected"
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
+   "judge": "adversarial-workflow-final"
   },
   {
    "id": "plot_sincos_overlay",
@@ -1068,83 +784,64 @@
    "tools": [
     "python"
    ],
+   "trace": [
+    {
+     "tool": "python",
+     "args": "import numpy as np",
+     "status": "1 png"
+    }
+   ],
    "images": 1,
-   "elapsed": 15.4,
-   "cost": 0.002587,
-   "prompt_tokens": 8576,
-   "completion_tokens": 295,
+   "figures": [
+    "figs/plot_sincos_overlay_0.png"
+   ],
+   "elapsed": 14.4,
+   "cost": 0.003144,
+   "prompt_tokens": 10858,
+   "completion_tokens": 286,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": ".Вот графики функций $\\sin(x)$ и $\\cos(x)$ на интервале $[-2\\pi, 2\\pi]$.\n\nКак видишь, функции периодичны и сдвинуты друг относительно друга на $\\pi/2$. На графике хорошо заметно, что в точках, где одна функция достигает максимума или минимума, другая пересекает ось абсцисс.",
+   "answer": "قان Графики функций $\\sin(x)$ и $\\cos(x)$ на интервале $[-2\\pi, 2\\pi]$ построены. На графике видно, как функции периодически изменяются в диапазоне от $-1$ до $1$, при этом $\\cos(x)$ смещен относительно $\\sin(x)$ на $\\pi/2$.",
    "no_answer": false,
    "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
+   "raw_unrendered": 0
   },
   {
    "id": "fragment_explanation",
    "category": "rag_basic",
    "question": "Если кто-то предлагает использовать обновление x_{k+1} = x_k - f(x_k)·f'(x_k) вместо классического Ньютона — что это за идея и она работает?",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [
     "read_chapter"
    ],
+   "trace": [
+    {
+     "tool": "read_chapter",
+     "args": "ch02_newton",
+     "status": "8k"
+    }
+   ],
    "images": 0,
-   "elapsed": 12.2,
-   "cost": 0.003764,
-   "prompt_tokens": 9722,
-   "completion_tokens": 889,
+   "figures": [],
+   "elapsed": 6.5,
+   "cost": 0.004195,
+   "prompt_tokens": 11763,
+   "completion_tokens": 836,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "Предложенная формула $x_{k+1} = x_k - f(x_k) \\cdot f'(x_k)$ — это **не метод Ньютона**.\n\nВ классическом методе Ньютона (формула 2.1 в главе) мы делим на производную: $x_{k+1} = x_k - \\frac{f(x_k)}{f'(x_k)}$. Ваша же формула предлагает *умножать* на неё.\n\n### Почему это плохая идея?\n\n1.  **Размерность:** Если $f(x)$ — это расстояние (метры), то $f'(x)$ — это безразмерная величина (изменение расстояния на изменение расстояния). Умножение $f(x) \\cdot f'(x)$ дает метры, что по размерности подходит для шага. Однако, если $f(x)$ имеет другую физическую размерность, формула может стать бессмысленной.\n2.  **Геометрия:** Метод Ньютона основан на поиске пересечения касательной с осью $x$. Ваша формула не имеет такой простой геометрической интерпретации. Она не «целится» в корень, а просто делает шаг, пропорциональный значению функции и её наклону.\n3.  **Сходимость:** Метод Ньютона обладает квадратичной сходимостью (ошибка на следующем шаге пропорциональна квадрату ошибки на текущем). Ваша формула, скорее всего, будет либо расходиться, либо сходиться крайне медленно, так как она не учитывает масштаб изменения функции (который как раз задается делением на производную).\n\n### Проверим на примере\nДавайте возьмем простую задачу: поиск корня $f(x) = x - 2 = 0$ (корень $x=2$).\n*   **Метод Ньютона:** $x_{k+1} = x_k - \\frac{x_k - 2}{1} = 2$. Метод находит корень за один шаг.\n*   **Ваша формула:** $x_{k+1} = x_k - (x_k - 2) \\cdot 1 = x_k - x_k + 2 = 2$. \n    *   *Кажется, работает?* Да, для линейной функции $f(x) = ax+b$ она сработает.\n*   **А если $f(x) = x^2 - 4$ (корень $x=2$)?**\n    *   $f'(x) = 2x$.\n    *   Ваша формула: $x_{k+1} = x_k - (x_k^2 - 4) \\cdot 2x_k = x_k - 2x_k^3 + 8x_k = 9x_k - 2x_k^3$.\n\nЕсли мы начнем с $x_0 = 3$:\n*   $x_1 = 9(3) - 2(27) = 27 - 54 = -27$.\n*   $x_2 = 9(-27) - 2(-27)^3 = -243 + 39366 = 39123$.\n\nПоследовательность улетает в бесконечность. **Метод расходится.**\n\n**Вывод:** Деление на производную в методе Ньютона критически важно, так как оно «нормирует» шаг, подстраиваясь под крутизну функции. Умножение на производную не дает такой адаптации и приводит к нестабильности.",
+   "answer": "Предложенная формула $x_{k+1} = x_k - f(x_k) \\cdot f'(x_k)$ — это **не** метод Ньютона. В классическом методе Ньютона (формула 2.1) мы делим на производную: $x_{k+1} = x_k - \\frac{f(x_k)}{f'(x_k)}$. Давай проверим, что будет, если использовать умножение вместо деления, на примере поиска корня функции $f(x) = x^2 - a$ (то есть поиска $\\sqrt{a}$). ### Почему это плохая идея В методе Ньютона производная $f'(x)$ в знаменателе играет роль «масштабирующего коэффициента», который подстраивает шаг так, чтобы мы попали точно в корень (при условии, что функция ведет себя как линейная). Если же мы умножаем на производную, мы меняем направление и величину шага совершенно непредсказуемо. Давай визуализируем это на Python. ```python import matplotlib.pyplot as plt import numpy as np # Функция f(x) = x^2 - 2 (корень sqrt(2) ≈ 1.41) def f(x): return x**2 - 2 def df(x): return 2*x # Метод Ньютона: x - f/df def newton_step(x): return x - f(x)/df(x) # Предложенный метод: x - f*df def bad_step(x): return x - f(x)*df(x) x_n = 2.0 x_b = 2.0 path_n = [x_n] path_b = [x_b] for _ in range(5):     x_n = newton_step(x_n)     x_b = bad_step(x_b)     path_n.append(x_n)     path_b.append(x_b) print(f\"Ньютон: {path_n}\") print(f\"Предложенный метод: {path_b}\") ``` ### Что покажет расчет *   **Метод Ньютона** быстро сойдется к $1.41$. *   **Предложенный метод** скорее всего «улетит» в бесконечность или начнет хаотично прыгать. Умножение на производную не учитывает кривизну функции так, как это делает деление. Вблизи корня $f(x)$ стремится к $0$, а $f'(x)$ — к некоторому числу. В методе Ньютона дробь $\\frac{f}{f'}$ становится очень маленькой (шаг затухает, мы «приземляемся» в корень). В твоем варианте $f \\cdot f'$ тоже стремится к $0$, но это не гарантирует правильного направления или скорости сходимости. **Итог:** Это не работает как метод поиска корня. Деление на производную в методе Ньютона — это не случайность, а математическая необходимость, вытекающая из линейной аппроксимации функции (касательной). Замена деления на умножение превращает алгоритм в нечто, что не имеет отношения к поиску корней и, скорее всего, будет расходиться.",
    "no_answer": false,
    "broken_formulas": 0,
+   "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Cut off at 'Ваша формула:' — worked example absent. Dimensional argument is wrong (claims dimensions подходят), contradicting the real scale problem. Key insight (GD on f2) missing. Truncated + flawed analysis.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 0.8333,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "identifies_not_newton",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "mechanism",
-     "level": "partial",
-     "weight": 3,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "no_false_endorsement",
-     "level": "met",
-     "weight": 2,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
+   "judge": "adversarial-workflow-final"
   },
   {
    "id": "eigenvalues_numpy",
@@ -1158,21 +855,26 @@
    "tools": [
     "python"
    ],
+   "trace": [
+    {
+     "tool": "python",
+     "args": "import numpy as np",
+     "status": ""
+    }
+   ],
    "images": 0,
+   "figures": [],
    "elapsed": 13.6,
-   "cost": 0.001368,
-   "prompt_tokens": 4884,
-   "completion_tokens": 98,
+   "cost": 0.00194,
+   "prompt_tokens": 6405,
+   "completion_tokens": 226,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "Собственные значения матрицы $\\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$ равны $3$ и $1$.",
+   "answer": "Собственные значения матрицы $\\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$ равны $3$ и $1$. Ты сейчас находишься в главе «Линейная алгебра» (`ch_linalg`). В этой главе рассматриваются основные понятия, связанные с матрицами и векторами. Вот несколько ключевых разделов, которые могут быть тебе полезны: *   **Определитель матрицы** — способы вычисления и свойства. *   **Обратная матрица** — условия существования и алгоритмы нахождения. *   **Собственные числа и векторы** — определение и геометрический смысл. *   **Методы разложения матриц** — например, SVD или LU-разложение.",
    "no_answer": false,
    "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
+   "raw_unrendered": 0
   },
   {
    "id": "plot_loss_landscape",
@@ -1186,21 +888,28 @@
    "tools": [
     "python"
    ],
+   "trace": [
+    {
+     "tool": "python",
+     "args": "import numpy as np",
+     "status": "1 png"
+    }
+   ],
    "images": 1,
-   "elapsed": 16.2,
-   "cost": 0.002567,
-   "prompt_tokens": 6589,
-   "completion_tokens": 613,
+   "figures": [
+    "figs/plot_loss_landscape_0.png"
+   ],
+   "elapsed": 17.2,
+   "cost": 0.002985,
+   "prompt_tokens": 8087,
+   "completion_tokens": 642,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": " doodਾਂ\nТы уже находишься в главе «Линейная регрессия и метод наименьших квадратов». На графике выше представлены линии уровня функции потерь $L(a, b)$ для заданных точек.\n\n**Результаты расчёта:**\n*   Минимум функции достигается в точке: $a \\approx 0.79$, $b \\approx 1.55$.\n*   Минимальное значение функции потерь: $L \\approx 1.80$.\n\nКрасная звезда на графике отмечает точку минимума, где ошибка аппроксимации минимальна. Линии уровня показывают, как быстро растёт функция потерь при отклонении параметров $a$ и $b$ от оптимальных значений.",
+   "answer": "thought Ты уже находишься в главе «Линейная регрессия и метод наименьших квадратов». На графике выше представлена поверхность функции потерь $L(a, b)$ для заданных точек. *   **Минимум функции** достигается при параметрах $a \\approx 0.79$ и $b \\approx 1.55$. *   **Минимальное значение** функции потерь в этой точке составляет $L \\approx 1.80$. Контурные линии показывают, как быстро растет ошибка при отклонении параметров от оптимальных значений. В этой главе ты можешь подробнее изучить: *   Вывод формул для поиска оптимальных $a$ и $b$. *   Геометрическую интерпретацию метода наименьших квадратов. *   Связь функции потерь с нормальным распределением ошибок.",
    "no_answer": false,
    "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
+   "raw_unrendered": 0
   },
   {
    "id": "diffie_hellman_compute",
@@ -1214,74 +923,64 @@
    "tools": [
     "python"
    ],
+   "trace": [
+    {
+     "tool": "python",
+     "args": "p = 23",
+     "status": ""
+    }
+   ],
    "images": 0,
-   "elapsed": 17.6,
-   "cost": 0.001912,
-   "prompt_tokens": 5123,
-   "completion_tokens": 421,
+   "figures": [],
+   "elapsed": 15.9,
+   "cost": 0.003214,
+   "prompt_tokens": 9803,
+   "completion_tokens": 509,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "Для проведения протокола Диффи–Хеллмана с параметрами $p=23$ и $g=5$:\n\n1.  **Алиса** выбирает секретное число $a=6$ и вычисляет открытое значение:\n    $A = g^a \\pmod p = 5^6 \\pmod{23} = 8$.\n2.  **Боб** выбирает секретное число $b=15$ и вычисляет открытое значение:\n    $B = g^b \\pmod p = 5^{15} \\pmod{23} = 19$.\n3.  **Обмен и вычисление секрета**:\n    *   Алиса получает $B=19$ и вычисляет секрет: $s = B^a \\pmod p = 19^6 \\pmod{23} = 2$.\n    *   Боб получает $A=8$ и вычисляет секрет: $s = A^b \\pmod p = 8^{15} \\pmod{23} = 2$.\n\nОбщий секрет равен **2**.",
+   "answer": "Для проведения протокола Диффи–Хеллмана с параметрами $p=23$ и $g=5$: 1. **Алиса** выбирает секретное число $a=6$ и вычисляет открытый ключ $A = g^a \\pmod p$:     $$A = 5^6 \\pmod{23} = 8$$ 2. **Боб** выбирает секретное число $b=15$ и вычисляет открытый ключ $B = g^b \\pmod p$:     $$B = 5^{15} \\pmod{23} = 19$$ 3. **Обмен ключами**: Алиса получает $B=19$, Боб получает $A=8$. 4. **Вычисление общего секрета**:     *   Алиса вычисляет $S = B^a \\pmod p = 19^6 \\pmod{23} = 2$     *   Боб вычисляет $S = A^b \\pmod p = 8^{15} \\pmod{23} = 2$ Общий секрет равен **2**. Ты сейчас находишься в главе [Криптосистемы RSA и Диффи–Хеллмана](/ch04_3_kriptosistemy-rsa-i-diffi-hellma), где подробно описаны эти вычисления.",
    "no_answer": false,
    "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
+   "raw_unrendered": 0
   },
   {
    "id": "outline_chapter",
    "category": "structural",
    "question": "Перечисли основные разделы главы про Ньютона.",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
-   "tools": [],
+   "tools": [
+    "read_chapter"
+   ],
+   "trace": [
+    {
+     "tool": "read_chapter",
+     "args": "ch02_newton",
+     "status": "8k",
+     "result": "{\"results\":[{\"id\":\"the_ch02newton_363\",\"chapter_slug\":\"ch02_newton\",\"chapter_title\":\"Метод Ньютона\",\"title\":\"Теорема 2.5. Сверхлинейная сходимость метода Ньютона\",\"text\":\"Пусть выполнено хотя бы одно из условий:\\n\\n1.  (*уравнение*) $f\\\\in C^{2}$ в окрестности точки $x^{\\\\star}$,\\n    $f(x^{\\\\star})=0$ и $f'(x^{\\\\star})\\\\neq 0$;\\n\\n2.  (*сильно выпуклая оптимизация*) $g\\\\in C^{3}$,\\n    $g$ — сильно выпуклая на интервале, содержащем точку\\n    минимума $x^{\\\\star}$, и применяется итерация (2.2).\\n\\nТогда существуют $\\\\delta>0$ и $M>0$ такие, что для всякого\\n$x_0\\\\in(x^{\\\\star}-\\\\delta,\\\\,x^{\\\\star}+\\\\delta)$ итерации Ньютона\\nопределены и\\n\\n$$\\\\tag{2.8}\\n|x_{k+1}-x^{\\\\star}|\\\\;\\\\leq\\\\;M\\\\,|x_k-x^{\\\\star}|^{2}.$$\\n\\nВ частности, сходимость квадратичная (а значит, сверхлинейная).\",\"line\":363,\"anchor\":\"ssec:thm-superlinear\",\"url\":\"/ch02_newton.html#ssec:thm-superlinear\"}]}",
+     "call_args": "{\"query\":\"Ньютон\"}"
+    }
+   ],
    "images": 0,
-   "elapsed": 3.8,
-   "cost": 0.001497,
-   "prompt_tokens": 4774,
-   "completion_tokens": 202,
+   "figures": [],
+   "elapsed": 4.4,
+   "cost": 0.003251,
+   "prompt_tokens": 11702,
+   "completion_tokens": 217,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "Ты сейчас находишься в главе «Метод Ньютона – Σ Сигма». Вот основные разделы этой главы:\n\n*   **Постановка задачи и идея метода** — интуиция метода через касательные.\n*   **Геометрическая интерпретация** — как именно мы ищем корень с помощью производной.\n*   **Алгоритм метода Ньютона** — итерационная формула $x_{k+1} = x_k - \\frac{f(x_k)}{f'(x_k)}$.\n*   **Сходимость метода** — условия, при которых метод работает (квадратичная сходимость).\n*   **Проблемы и ограничения** — что делать, если производная близка к нулю или начальное приближение выбрано неудачно.",
+   "answer": "Глава «Численные методы оптимизации» (slug `ch02_newton`) состоит из следующих основных разделов: *   **От Ньютона до Канторовича** — исторический обзор метода, его геометрическая интерпретация через касательные и вклад Леонида Канторовича в теорию сходимости. *   **Метод Ньютона для задач оптимизации** — переход от поиска корней к минимизации функций через использование второй производной и локальную квадратичную аппроксимацию (ряд Тейлора). *   **Пример 1. Извлечение квадратного корня** — практическое применение метода (метод Герона) для вычисления $\\sqrt{a}$. *   **Сходимость через сжимающее отображение** — теоретический анализ скорости и условий сходимости метода.",
    "no_answer": false,
    "broken_formulas": 0,
+   "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Без инструментов выдуманы 'Постановка задачи', 'Геометрическая интерпретация', 'Алгоритм метода', 'Проблемы и ограничения' — ни один не совпадает с реальными h2 (Касательная вместо уравнения, Деление без деления и т.д.). Галлюцинация.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 0.0,
-   "rubric_capped": true,
-   "rubric_detail": [
-    {
-     "id": "lists_real_sections",
-     "level": "none",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "no_invented_sections",
-     "level": "none",
-     "weight": 2,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
+   "judge": "adversarial-workflow-final"
   },
   {
    "id": "math_latex_derivation",
@@ -1293,58 +992,37 @@
    "visual_match": true,
    "missing": [],
    "tools": [
-    "read_chapter",
+    "find_theorem",
     "read_chapter"
    ],
+   "trace": [
+    {
+     "tool": "find_theorem",
+     "args": "Ньютон",
+     "status": "1"
+    },
+    {
+     "tool": "read_chapter",
+     "args": "ch02_newton",
+     "status": "2.3k"
+    }
+   ],
    "images": 0,
-   "elapsed": 7.2,
-   "cost": 0.002934,
-   "prompt_tokens": 9811,
-   "completion_tokens": 321,
+   "figures": [],
+   "elapsed": 6.0,
+   "cost": 0.004197,
+   "prompt_tokens": 14198,
+   "completion_tokens": 432,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "Для вывода формулы метода Ньютона через касательную мы заменяем график функции $y = f(x)$ в точке $(x_k, f(x_k))$ его касательной.\n\nУравнение касательной к графику функции в точке $x_k$ имеет вид:\n$$y = f(x_k) + f'(x_k)(x - x_k)$$\n\nЧтобы найти следующее приближение $x_{k+1}$, мы полагаем $y = 0$ (пересечение с осью абсцисс) и решаем полученное уравнение относительно $x$:\n$$0 = f(x_k) + f'(x_k)(x_{k+1} - x_k)$$\n\nВыражая $x_{k+1}$, получаем итерационную формулу Ньютона:\n$$\\tag{2.1} x_{k+1} = x_k - \\frac{f(x_k)}{f'(x_k)}, \\quad k = 0, 1, 2, \\dots$$\n\nПодробнее об этом методе и его геометрической интерпретации можно прочитать в разделе [Касательная вместо уравнения](/ch02_newton.html#sec:newton).",
+   "answer": "Ты уже находишься в главе «Метод Ньютона» (slug: `ch02_newton`). Для решения уравнения $f(x) = 0$ метод Ньютона строится через касательную к графику функции в текущей точке $x_k$. Уравнение касательной в точке $x_k$ имеет вид: $$y - f(x_k) = f'(x_k)(x - x_k)$$ Чтобы найти следующую точку $x_{k+1}$, мы ищем пересечение этой касательной с осью абсцисс (то есть полагаем $y = 0$): $$0 - f(x_k) = f'(x_k)(x_{k+1} - x_k)$$ Отсюда, выражая $x_{k+1}$, получаем классическую формулу метода Ньютона: $$x_{k+1} = x_k - \\frac{f(x_k)}{f'(x_k)}$$ В контексте оптимизации, где мы ищем минимум функции $g(x)$, мы применяем этот метод к уравнению $g'(x) = 0$. Тогда $f(x) = g'(x)$, а $f'(x) = g''(x)$, и формула принимает вид (2.2) из учебника: $$x_{k+1} = x_k - \\frac{g'(x_k)}{g''(x_k)}$$ Подробнее об этом можно почитать в разделе [Метод Ньютона для задач оптимизации](/ch02_newton.html#метод-ньютона-для-задач-оптимизации).",
    "no_answer": false,
    "broken_formulas": 0,
+   "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Корректный вывод через касательную, формула верна, \\tag{2.1} косметично.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "final_formula",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "tangent_derivation",
-     "level": "met",
-     "weight": 3,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "no_math_error",
-     "level": "met",
-     "weight": 1,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
+   "judge": "adversarial-workflow-final"
   },
   {
    "id": "definition_perceptron",
@@ -1358,121 +1036,85 @@
    "tools": [
     "find_definition"
    ],
+   "trace": [
+    {
+     "tool": "find_definition",
+     "args": "полносвязная нейронная сеть",
+     "status": "1",
+     "result": "{\"results\":[{\"slug\":\"ch01_intro\",\"title\":\"Что такое искусственный интеллект\",\"url\":\"/ch01_intro.html#чему-мы-научимся-в-этой-книге\",\"snippet\":\"В главе 2 мы подробно изучим один из старейших и до сих пор важнейших численных методов — *метод касательных Ньютона*, который используется и для решения уравнений, и для обучения современных нейросетей.\",\"section\":\"Чему мы научимся в этой книге\"},{\"slug\":\"ch02_newton\",\"title\":\"Численные методы оптимизации\",\"url\":\"/ch02_newton.html#реализация-на-python-и-численный-эксперимент\",\"snippet\":\"Совсем другое поведение демонстрирует метод Ньютона–Шульца для $1/a$ при $a=3$ (рис. 2.5): радиус сходимости равен интервалу $(0,\\\\,2/3)\\\\approx(0,\\\\,0{,}667)$. Стартуя *внутри* этого интервала, метод сходится квадратично (нижние три кривые); на самой границе ($x_0=0{,}66$) — сходится, но «впритык»; а уже при $x_0=0{,}70$ ошибка взрывообразно растёт: $|u_k|=|u_0|^{2^{k}}\\\\to\\\\infty$ в полном согласии с (2.7). Это **локальная сходимость**.\",\"section\":\"Реализация на Python и численный эксперимент\"},{\"slug\":\"ch02_newton\",\"title\":\"Численные методы оптимизации\",\"url\":\"/ch02_newton.html#реализация-на-python-и-численный-эксперимент\",\"snippet\":\"<figure id=\\\"fig:rec-conv\\\" data-latex-placement=\\\"ht\\\"> ![](/figures/reciprocal_convergence.svg) <figcaption>Локальная сходимость метода Ньютона–Шульца для <span class=\\\"math inline\\\">1/3</span>. Радиус сходимости — интервал <span class=\\\"math inline\\\">(0, 2/3)</span>; вне его метод расходится.</figcaption> </figure>\",\"section\":\"Реализация на Python и численный эксперимент\"},{\"slug\":\"ch02_newton\",\"title\":\"Численные методы оптимизации\",\"url\":\"/ch02_newton.html#ssec:thm-superlinear\",\"snippet\":\"**Метод Ньютона–Шульца.** Здесь $f(x)=1/x-a$, $f'(x)=-1/x^{2}$, $f''(x)=2/x^{3}$. В точке $x^{\\\\star}=1/a$ имеем $f'(x^{\\\\star})=-a^{2}\\\\neq 0$, и теорема применима в малой окрестности этой точки. Однако, в отличие от метода Герона, оценка снизу $|f'(x)|\\\\geq m>0$ *ломается* при $x\\\\to\\\\infty$: производная стремится к нулю. Именно поэтому радиус сходимости в этом примере конечен и равен $1/a$ слева и справа от $x^{\\\\star}$, что в сумме даёт интервал $(0,\\\\,2/a)$, найденный нами ранее аналитически.\",\"section\":\"Достаточные условия сверхлинейной сходимости$^\\\\star$\"},{\"slug\":\"ch03_1_prosteyshie-primery-zadach-anali\",\"title\":\"Простейшие примеры задач анализа данных. Принцип максимума правдоподобия\",\"url\":\"/ch03_1_prosteyshie-primery-zadach-anali.html#ssec:bernoulli\",\"snippet\":\"Идея, на которой держится метод, очень житейская: *из всех возможных значений параметра выбираем то, при котором наблюдаемые данные были бы наиболее правдоподобными*. Если выпало 600 единиц из 1000, было бы странно объявить $p=0{,}1$ — ведь при таком $p$ событие $S_n=600$ почти невозможно. Здравый смысл подсказывает: правдоподобнее всего гипотеза $p\\\\approx 0{,}6$. Метод максимума правдоподобия и есть формализация этого здравого смысла.\",\"section\":\"Опрос на втором туре выборов\"}]}",
+     "call_args": "{\"query\":\"Гаусс метод сопряжённых градиентов\"}"
+    }
+   ],
    "images": 0,
-   "elapsed": 9.5,
-   "cost": 0.002878,
-   "prompt_tokens": 8008,
-   "completion_tokens": 584,
+   "figures": [],
+   "elapsed": 5.7,
+   "cost": 0.003227,
+   "prompt_tokens": 10038,
+   "completion_tokens": 478,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "Ты уже находишься в нужной главе: [Задача классификации и нейронные сети](/ch03_3_zadacha-klassifikacii-i-neyronny.html).\n\nСогласно учебнику, **полносвязная нейронная сеть (MLP)** — это функция, которая представляет собой композицию $L$ слоёв. Каждый слой выполняет линейное преобразование входных данных с помощью матрицы весов $W^{(\\ell)}$ и вектора смещений $\\mathbf b^{(\\ell)}$, после чего применяется функция активации $\\sigma$.\n\nВот как это выглядит математически (Определение 3.12):\n\n$$\\begin{aligned}\n\\mathbf z^{(\\ell)} &= W^{(\\ell)} \\mathbf a^{(\\ell-1)} + \\mathbf b^{(\\ell)},\\qquad\n\\mathbf a^{(\\ell)} = \\sigma\\bigl(\\mathbf z^{(\\ell)}\\bigr),\n\\qquad \\ell=1,\\dots,L-1,\n\\\\\n\\mathbf z^{(L)} &= W^{(L)} \\mathbf a^{(L-1)} + \\mathbf b^{(L)},\\qquad\n\\mathbf p(\\mathbf x) = \\mathrm{softmax}\\bigl(\\mathbf z^{(L)}\\bigr).\n\\end{aligned}$$\n\n**Основные элементы:**\n*   $\\mathbf a^{(0)} = \\mathbf x$ — это входные данные.\n*   $W^{(\\ell)}$ — матрица весов $\\ell$-го слоя, а $\\mathbf b^{(\\ell)}$ — вектор смещений (bias).\n*   $\\sigma$ — функция активации, которая применяется к каждому элементу вектора.\n*   На последнем слое используется функция **softmax**, которая превращает выходные значения в распределение вероятностей по классам:\n    $$\\mathrm{softmax}(\\mathbf z)_c = \\frac{e^{z_c}}{\\sum_{c'} e^{z_{c'}}}$$\n*   Все матрицы $W^{(\\ell)}$ и векторы $\\mathbf b^{(\\ell)}$ вместе составляют обучаемые параметры модели $\\boldsymbol\\theta$.\n\nВ этой же главе ты можешь подробнее изучить:\n*   [Полносвязные сети (MLP)](/ch03_3_zadacha-klassifikacii-i-neyronny.html#ssec:mlp)\n*   [Свёрточные нейронные сети (CNN)](/ch03_3_zadacha-klassifikacii-i-neyronny.html#ssec:cnn)",
+   "answer": "Ты уже находишься в нужной главе: [Задача классификации и нейронные сети](/ch03_3_zadacha-klassifikacii-i-neyronny.html#ssec:mlp). **Полносвязная нейронная сеть** (или MLP — *Multi-Layer Perceptron*) — это модель, которая представляет собой композицию $L$ слоёв. Каждый слой преобразует входные данные с помощью линейной операции и функции активации. Вот основные элементы этой структуры: *   **Линейная операция**: $\\mathbf z^{(\\ell)} = W^{(\\ell)} \\mathbf a^{(\\ell-1)} + \\mathbf b^{(\\ell)}$. Здесь $W^{(\\ell)}$ — матрица весов, а $\\mathbf b^{(\\ell)}$ — вектор смещений (bias). *   **Функция активации**: $\\mathbf a^{(\\ell)} = \\sigma\\bigl(\\mathbf z^{(\\ell)}\\bigr)$. Она применяется к результату линейной операции покомпонентно. *   **Вход и выход**: На вход подаётся вектор $\\mathbf a^{(0)} = \\mathbf x$, а на выходе последнего слоя применяется функция **softmax**, которая превращает результат в распределение вероятностей по классам:     $$\\mathrm{softmax}(\\mathbf z)_c = \\frac{e^{z_c}}{\\sum_{c'} e^{z_{c'}}}$$ *   **Параметры**: Все матрицы весов $W^{(\\ell)}$ и векторы смещений $\\mathbf b^{(\\ell)}$ вместе составляют обучаемые параметры $\\boldsymbol\\theta$ сети. В этой главе также полезно обратить внимание на следующие разделы: *   [Функции активации](/ch03_3_zadacha-klassifikacii-i-neyronny.html#ssec:activation) *   [Обучение нейронной сети](/ch03_3_zadacha-klassifikacii-i-neyronny.html#ssec:training)",
    "no_answer": false,
    "broken_formulas": 0,
+   "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Формальное определение 3.12: композиция L слоёв, аффинное+активация, softmax, обучаемые параметры. LaTeX корректен. Соответствует рубрике.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "composition_layers",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "layers_word",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "no_wrong_arch",
-     "level": "met",
-     "weight": 1,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "tools_expected",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": "tool_expected"
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
+   "judge": "adversarial-workflow-final"
   },
   {
    "id": "refuse_unknown_year",
    "category": "out_of_scope",
    "question": "В каком году Гаусс изобрёл метод сопряжённых градиентов?",
-   "pass": false,
+   "pass": true,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": true,
    "visual_match": true,
-   "missing": [
-    "наш"
-   ],
+   "missing": [],
    "tools": [
     "search_textbook",
-    "search_textbook"
+    "search_textbook",
+    "read_chapter"
+   ],
+   "trace": [
+    {
+     "tool": "search_textbook",
+     "args": "Гаусс метод сопряжённых градиентов",
+     "status": "5",
+     "result": "{\"results\":[{\"slug\":\"ch01_intro\",\"title\":\"Что такое искусственный интеллект\",\"url\":\"/ch01_intro.html#чему-мы-научимся-в-этой-книге\",\"snippet\":\"В главе 2 мы подробно изучим один из старейших и до сих пор важнейших численных методов — *метод касательных Ньютона*, который используется и для решения уравнений, и для обучения современных нейросетей.\",\"section\":\"Чему мы научимся в этой книге\"},{\"slug\":\"ch02_newton\",\"title\":\"Численные методы оптимизации\",\"url\":\"/ch02_newton.html#реализация-на-python-и-численный-эксперимент\",\"snippet\":\"Совсем другое поведение демонстрирует метод Ньютона–Шульца для $1/a$ при $a=3$ (рис. 2.5): радиус сходимости равен интервалу $(0,\\\\,2/3)\\\\approx(0,\\\\,0{,}667)$. Стартуя *внутри* этого интервала, метод сходится квадратично (нижние три кривые); на самой границе ($x_0=0{,}66$) — сходится, но «впритык»; а уже при $x_0=0{,}70$ ошибка взрывообразно растёт: $|u_k|=|u_0|^{2^{k}}\\\\to\\\\infty$ в полном согласии с (2.7). Это **локальная сходимость**.\",\"section\":\"Реализация на Python и численный эксперимент\"},{\"slug\":\"ch02_newton\",\"title\":\"Численные методы оптимизации\",\"url\":\"/ch02_newton.html#реализация-на-python-и-численный-эксперимент\",\"snippet\":\"<figure id=\\\"fig:rec-conv\\\" data-latex-placement=\\\"ht\\\"> ![](/figures/reciprocal_convergence.svg) <figcaption>Локальная сходимость метода Ньютона–Шульца для <span class=\\\"math inline\\\">1/3</span>. Радиус сходимости — интервал <span class=\\\"math inline\\\">(0, 2/3)</span>; вне его метод расходится.</figcaption> </figure>\",\"section\":\"Реализация на Python и численный эксперимент\"},{\"slug\":\"ch02_newton\",\"title\":\"Численные методы оптимизации\",\"url\":\"/ch02_newton.html#ssec:thm-superlinear\",\"snippet\":\"**Метод Ньютона–Шульца.** Здесь $f(x)=1/x-a$, $f'(x)=-1/x^{2}$, $f''(x)=2/x^{3}$. В точке $x^{\\\\star}=1/a$ имеем $f'(x^{\\\\star})=-a^{2}\\\\neq 0$, и теорема применима в малой окрестности этой точки. Однако, в отличие от метода Герона, оценка снизу $|f'(x)|\\\\geq m>0$ *ломается* при $x\\\\to\\\\infty$: производная стремится к нулю. Именно поэтому радиус сходимости в этом примере конечен и равен $1/a$ слева и справа от $x^{\\\\star}$, что в сумме даёт интервал $(0,\\\\,2/a)$, найденный нами ранее аналитически.\",\"section\":\"Достаточные условия сверхлинейной сходимости$^\\\\star$\"},{\"slug\":\"ch03_1_prosteyshie-primery-zadach-anali\",\"title\":\"Простейшие примеры задач анализа данных. Принцип максимума правдоподобия\",\"url\":\"/ch03_1_prosteyshie-primery-zadach-anali.html#ssec:bernoulli\",\"snippet\":\"Идея, на которой держится метод, очень житейская: *из всех возможных значений параметра выбираем то, при котором наблюдаемые данные были бы наиболее правдоподобными*. Если выпало 600 единиц из 1000, было бы странно объявить $p=0{,}1$ — ведь при таком $p$ событие $S_n=600$ почти невозможно. Здравый смысл подсказывает: правдоподобнее всего гипотеза $p\\\\approx 0{,}6$. Метод максимума правдоподобия и есть формализация этого здравого смысла.\",\"section\":\"Опрос на втором туре выборов\"}]}",
+     "call_args": "{\"query\":\"Гаусс метод сопряжённых градиентов\"}"
+    },
+    {
+     "tool": "search_textbook",
+     "args": "сопряжённых градиентов",
+     "status": "1",
+     "result": "{\"results\":[{\"slug\":\"ch2_neuron\",\"title\":\"Глава 2. От Нейрона до нейронной сети\",\"url\":\"/ch2_neuron.html\",\"snippet\":\"Лабораторные и теоретические задания по вычислению производных и градиентов (включая softmax).\",\"section\":\"Большой оптимизационный практикум\"}]}",
+     "call_args": "{\"query\":\"сопряжённых градиентов\"}"
+    },
+    {
+     "tool": "read_chapter",
+     "args": "ch2_neuron",
+     "status": "2.5k",
+     "result": "{\"slug\":\"ch2_neuron\",\"title\":\"Глава 2. От Нейрона до нейронной сети\",\"url\":\"/ch2_neuron.html\",\"text\":\"**Авторы:** Д. Яроцкий, К. Воронцов, С. Марков, Е. Соколов, А. Гасников\\n**Объём:** 14 уроков (8 теория + 6 практика)\\n**Статус:** 🟡 ноутбук Яроцкого + черновики в materials\\n\\n## Содержание\\n\\n### Биология и история\\n- **Нейрон Мак-Каллока и Питтса** — простейшие элементы реализуют любую логическую операцию (предтечи: Рашевский, сети Тьюринга)\\n- Кибернетика, У. Росс Эшби, гомеостат, Шимбел, Рапопорт\\n- **Павлов → Торндайк → Хебб** — первые эксперименты с хеббовским обучением (начало 1950-х)\\n- **Перцептрон Фрэнка Розенблатта** (Уидроу, Ивахненко)\\n- Ограничения однослойного перцептрона: невозможность нелинейного разделения\\n\\n### От нейрона к сети\\n- Сигмоида, важность нелинейности\\n- Простейшие нейронные сети\\n- ★ Универсальная теорема об аппроксимации Цыбенко\\n- ★ Теорема Колмогорова–Арнольда\\n\\n### Обучение как оптимизация\\n- Задача обучения как задача оптимизации в многомерном пространстве\\n- Выпуклые/невыпуклые задачи, гладкие/негладкие\\n- Проблема многоэкстремальности\\n- **Принцип Ферма** для поиска оптимума\\n- Градиент: направление наибыстрейшего роста, перпендикуляр к множеству уровня\\n- Принцип множителей Лагранжа, геометрический смысл; ограничения, порождающие разреженность (l1-шар)\\n- **Градиентный спуск** и SGD — много демонстраций\\n- ★ Автоматическое дифференцирование (обратное распространение)\\n- Экстракторы признаков: обучаемые vs ручные (LeCun, 2019); пример с буквами C и D (или С и О)\\n\\n### ★ Введение в матричные игры\\n- Антагонистические матричные игры, смешанные стратегии\\n- Дилемма заключённого с ненулевой вероятностью повторения\\n- Седловые задачи, алгоритмы решения\\n- Примеры из ИИ, приводящие к седловым задачам (атаки)\\n\\n## Большой оптимизационный практикум\\n\\nЛабораторные и теоретические задания по вычислению производных и градиентов (включая softmax).\\n\\n## Связанные материалы\\n\\n- **Ноутбук Яроцкого:** [04_AI_book_NNs_Yarotsky_March_8_2026.ipynb](https://github.com/MerkulovDaniil/uchebniik/blob/main/raw_materials/04_AI_book_NNs_Yarotsky_March_8_2026.ipynb)\\n- **Главы из tg:** `neural_networks.pdf`, `Глава_ИИ_и_нейронные_сети.pdf`, `Глава_Динамика_дискретных_систем.docx`\\n- **Параграф «Антагонистические игры»** (Бекларян): `1.2._Антагонистические_игры.docx`\\n- **Текущая Overleaf-сборка:** [Численные методы оптимизации](../dop/ch02_newton.html), [Анализ данных и ИИ § 3.3 — Классификация и нейронные сети](../dop/ch03_ds.html)\\n- **Видео:** [автоматическое дифференцирование](https://vkvideo.ru/video-56385969_456239485), [основы оптимизации](https://vkvideo.ru/video-56385969_456239555)\",\"truncated\":false}",
+     "call_args": "{\"slug\":\"ch2_neuron\"}"
+    }
    ],
    "images": 0,
-   "elapsed": 6.2,
-   "cost": 0.002736,
-   "prompt_tokens": 9742,
-   "completion_tokens": 200,
+   "figures": [],
+   "elapsed": 5.5,
+   "cost": 0.002763,
+   "prompt_tokens": 16600,
+   "completion_tokens": 203,
    "models_used": [
     "google/gemini-3.1-flash-lite"
    ],
-   "answer": "В учебнике нет информации о том, что Гаусс изобрёл метод сопряжённых градиентов. Упоминается лишь, что Гаусс в 1809 году внёс вклад в развитие метода наименьших квадратов.\n\nВероятно, здесь кроется историческая путаница: метод сопряжённых градиентов был предложен Магнусом Хестенесом и Эдуардом Штифелем в 1952 году. Гаусс же занимался другими задачами оптимизации и статистики.",
+   "answer": "В учебнике я не нашёл информации о том, что Гаусс изобрёл метод сопряжённых градиентов. Вне учебника: метод сопряжённых градиентов был предложен Магнусом Хестинесом и Эдуардом Штифелем в 1952 году. Карл Фридрих Гаусс, живший гораздо раньше (1777–1855), действительно занимался методами решения систем линейных уравнений, но метод сопряжённых градиентов в его современном виде — это разработка середины XX века.",
    "no_answer": false,
    "broken_formulas": 0,
+   "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Отверг предпосылку, верно Хестенес и Штифель 1952, отметил историческую путаницу. Корректно.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "no_fabricated_year",
-     "level": "met",
-     "weight": 4,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "flags_false_premise",
-     "level": "met",
-     "weight": 2,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
+   "judge": "adversarial-workflow-final"
   }
- ],
- "avg_rubric_score": 0.9175
+ ]
 }

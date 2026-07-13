@@ -8,20 +8,20 @@
  },
  "ran_at": 1781113674.106892,
  "n": 29,
- "passed": 27,
+ "passed": 25,
  "answered": 29,
  "no_answer": 0,
- "pass_rate": 0.931,
+ "pass_rate": 0.8621,
  "total_cost_usd": 0.054666,
  "cost_per_q_usd": 0.001885,
  "avg_elapsed_s": 47.4,
  "by_category": {
   "rag_basic": {
-   "passed": 4,
+   "passed": 5,
    "total": 5
   },
   "definition": {
-   "passed": 3,
+   "passed": 2,
    "total": 3
   },
   "compute_pure": {
@@ -37,15 +37,15 @@
    "total": 1
   },
   "structural": {
-   "passed": 3,
+   "passed": 2,
    "total": 3
   },
   "vision_refine": {
-   "passed": 0,
+   "passed": 1,
    "total": 1
   },
   "out_of_scope": {
-   "passed": 3,
+   "passed": 1,
    "total": 3
   }
  },
@@ -565,9 +565,9 @@
    "id": "vision_refine_diverging_sgd",
    "category": "vision_refine",
    "question": "Запусти SGD на функции f(x) = x² с шагом η = 1.1 из x₀ = 2, 30 итераций. Что произойдёт? Если разойдётся — подбери рабочий шаг и покажи сходящуюся траекторию.",
-   "pass": false,
+   "pass": true,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": true,
    "visual_match": true,
    "missing": [
     "0.5"
@@ -759,7 +759,7 @@
    "id": "rsa_history",
    "category": "rag_basic",
    "question": "Кто придумал RSA и в каком году?",
-   "pass": false,
+   "pass": true,
    "tool_match": false,
    "answer_match": true,
    "visual_match": true,
@@ -835,9 +835,9 @@
    "id": "greeting_minimal",
    "category": "out_of_scope",
    "question": "Привет!",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [],
@@ -1234,9 +1234,9 @@
    "id": "outline_chapter",
    "category": "structural",
    "question": "Перечисли основные разделы главы про Ньютона.",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [],
@@ -1347,9 +1347,9 @@
    "id": "definition_perceptron",
    "category": "definition",
    "question": "Что такое полносвязная нейронная сеть?",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1416,9 +1416,9 @@
    "id": "refuse_unknown_year",
    "category": "out_of_scope",
    "question": "В каком году Гаусс изобрёл метод сопряжённых градиентов?",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [],

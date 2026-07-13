@@ -8,10 +8,10 @@
  },
  "ran_at": 1781108434.3281236,
  "n": 29,
- "passed": 26,
+ "passed": 24,
  "answered": 29,
  "no_answer": 0,
- "pass_rate": 0.8966,
+ "pass_rate": 0.8276,
  "total_cost_usd": 0.045968,
  "cost_per_q_usd": 0.001585,
  "avg_elapsed_s": 13.3,
@@ -37,7 +37,7 @@
    "total": 1
   },
   "structural": {
-   "passed": 3,
+   "passed": 1,
    "total": 3
   },
   "vision_refine": {
@@ -998,9 +998,9 @@
    "id": "theorem_clt",
    "category": "structural",
    "question": "Сформулируй центральную предельную теорему как в учебнике.",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1245,9 +1245,9 @@
    "id": "outline_chapter",
    "category": "structural",
    "question": "Перечисли основные разделы главы про Ньютона.",
-   "pass": true,
+   "pass": false,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [],
