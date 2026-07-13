@@ -227,6 +227,9 @@ def bench_one(model, force=False):
     results = [json.loads(l) for l in res_path.read_text(encoding="utf-8").splitlines() if l.strip()]
     usage = load_usage(since)
     results = attribute_cost(results, usage)
+    # полные ответы тулзов из серверного лога диалогов → в trace кейсов
+    # (bench.json собирается ниже уже с обогащённым results? нет — attach работает
+    # по готовому bench.json, поэтому зовём его в самом конце bench_one)
     # results.jsonl carries case_id (not the full case) → join with cases.jsonl
     cmeta = {c["id"]: c for c in (json.loads(l) for l in CASES.read_text(encoding="utf-8").splitlines() if l.strip())}
     def cmeta_of(r):
@@ -282,6 +285,15 @@ def bench_one(model, force=False):
         } for r in results],
     }
     (out_dir / "bench.json").write_text(json.dumps(bench, ensure_ascii=False, indent=1), encoding="utf-8")
+    try:
+        sys.path.insert(0, str(ROOT / "eval"))
+        from attach_tool_results import attach, load_convo
+        convo = load_convo(Path(os.environ.get("SIGMA_CONVO_LOG", "")) if os.environ.get("SIGMA_CONVO_LOG")
+                           else ROOT / "eval" / ("llm_log_dev.jsonl" if T is TARGETS["dev"] else "llm_log.jsonl"))
+        n = attach(out_dir, convo)
+        print(f"  подшиты полные ответы тулзов: {n} кейсов", flush=True)
+    except Exception as e:
+        print(f"  !! attach_tool_results failed: {e}", flush=True)
     print(f"  → {passed}/{total} pass · ${total_cost:.4f} total · ${bench['cost_per_q_usd']:.5f}/q", flush=True)
     return bench
 

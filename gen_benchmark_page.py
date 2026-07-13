@@ -851,7 +851,10 @@ def build(bench_dir=None, out=None, version=None, versions=()):
                 "answer": c.get("answer", ""), "tools": c.get("tools", []), "missing": c.get("missing"),
                 "cost": c.get("cost"), "img": c.get("images", 0), "elapsed": c.get("elapsed", 0),
                 "figures": figs,
-                "trace": c.get("trace", []),
+                "trace": [dict(t, result=(t["result"][:4000] + "\n…[обрезано; полностью — в bench.json]")
+                               if len(t.get("result") or "") > 4000 else t.get("result"))
+                          if t.get("result") else t
+                          for t in c.get("trace", [])],
                 "shot": f"shots/{bdir}/{qid}.png" if shot_src.exists() else None,
                 "state": st, "cause": cause,
             }
