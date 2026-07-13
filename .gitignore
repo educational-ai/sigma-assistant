@@ -1,5 +1,5 @@
 # --- Sigma benchmark harness .gitignore ---
-# Keep: code (*.py, *.js), cases.jsonl, bench/*/bench.json (results), judge_verdicts.jsonl.
+# Keep: code (*.py, *.js), cases.jsonl, bench_v<N>/*/bench.json (results), judge_verdicts.jsonl.
 # Drop: regenerable screenshots/intermediate artifacts (~200M), secrets, caches.
 
 # secrets / env
@@ -11,8 +11,8 @@
 *.png
 # ...кроме скринов ответов бенча: это визуальное свидетельство прогонов,
 # их показывает /benchmark (решение Дани 2026-07-13 — храним в репо)
-!eval/bench/*/*.png
-!eval/bench/*/figs/*.png
+!eval/bench_v*/*/*.png
+!eval/bench_v*/*/figs/*.png
 eval/reports/
 
 # stale bench backups/stashes — keep only live eval/bench/*/bench.json
@@ -40,4 +40,4 @@ _*
 eval/shots/
 
 # лог прогона бенча — артефакт (негация в конце, чтобы перебить *.log выше)
-!eval/bench/*/run.log
+!eval/bench_v*/*/run.log

@@ -61,7 +61,7 @@ for cr in rub['${cid}']:
     if cr.get('auto'): continue
     print(' -',cr['id'],'(вес',cr['weight'],('КРИТИЧ' if cr['critical'] else 'обычн')+'):',cr['text'])
 print('='*80)
-dirs=['bench/gigachat_2/bench.json','bench/gigachat_2_pro/bench.json','bench/gigachat_2_max/bench.json','bench/google_gemini_3_5_flash/bench.json','bench/qwen_qwen3_5_9b/bench.json']
+dirs=['bench_v1/gigachat_2/bench.json','bench_v1/gigachat_2_pro/bench.json','bench_v1/gigachat_2_max/bench.json','bench_v1/google_gemini_3_5_flash/bench.json','bench_v1/qwen_qwen3_5_9b/bench.json']
 for d in dirs:
     b=json.load(open(d))
     for x in b['cases']:

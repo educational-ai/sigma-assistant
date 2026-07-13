@@ -23,7 +23,7 @@ for line in (EVAL / "cases.jsonl").read_text(encoding="utf-8").splitlines():
 
 ASK = getattr(RE, "ASK_TIMEOUT_S", 180)
 total_flips = 0
-for bj in sorted((EVAL / "bench").glob("*/bench.json")):
+for bj in sorted(sorted(EVAL.glob('bench_v*'), key=lambda p: (len(p.name), p.name))[-1].glob('*/bench.json')):
     b = json.loads(bj.read_text(encoding="utf-8"))
     flips = 0
     by_cat = {}

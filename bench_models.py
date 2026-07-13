@@ -14,8 +14,31 @@ import json, os, re, signal, subprocess, sys, time, urllib.request
 from pathlib import Path
 
 ROOT = Path("/root/sigma_assistant")
-BENCH_DIR = ROOT / "eval" / "bench"   # артефакты всегда в репо бенча, независимо от цели
-CASES = ROOT / "eval" / "cases.jsonl"
+EVAL = ROOT / "eval"
+# версии бенча = папки eval/bench_v1, bench_v2, … (внутри cases.jsonl + ответы)
+BENCH_DIR = sorted(EVAL.glob('bench_v*'), key=lambda p: (len(p.name), p.name))[-1]
+CASES = EVAL / "cases.jsonl"
+
+
+def prepare_bench_dir(allow_drift=False):
+    """Папка версии самодостаточна: cases.jsonl снапшотится при первом прогоне.
+    Датасет уехал от снапшота → это уже ДРУГОЙ бенч: гони с --version v<N+1>."""
+    BENCH_DIR.mkdir(parents=True, exist_ok=True)
+    snap = BENCH_DIR / "cases.jsonl"
+    cur = CASES.read_text(encoding="utf-8")
+    if not snap.exists():
+        snap.write_text(cur, encoding="utf-8")
+        print(f"  датасет снапшотнут в {snap}", flush=True)
+        return True
+    if snap.read_text(encoding="utf-8") == cur:
+        return True
+    msg = (f"!! eval/cases.jsonl отличается от {snap} — это уже другая версия бенча.\n"
+           f"   Запусти с --version v<следующий> (папка создастся сама).")
+    if allow_drift:
+        print(msg + "\n   --allow-dataset-drift: ЕДУ ДАЛЬШЕ ПО ТВОЕМУ ПРИКАЗУ", flush=True)
+        return True
+    print(msg, flush=True)
+    return False
 
 # Цель прогона. По умолчанию — прод (тестируем ровно то, что видит читатель).
 # --dev переключает на dev-стенд: прод не трогаем вообще (ни .env, ни рестарты).
@@ -221,6 +244,7 @@ def bench_one(model, force=False):
     total_cost = round(sum(r.get("cost", 0) for r in results), 6)
     bench = {
         "model": model,
+        "bench_version": BENCH_DIR.name.replace("bench_", ""),
         "served_model_label": served,
         "ran_at": t0,
         "n": total,
@@ -283,17 +307,25 @@ def main():
     import argparse
     ap = argparse.ArgumentParser(
         description="Прогнать бенч по списку моделей одной командой. "
-                    "Все артефакты — в eval/bench/<slug>/: bench.json (+трейс, стоимость), "
+                    "Все артефакты — в eval/bench_v<N>/<slug>/: bench.json (+трейс, стоимость), "
                     "<case>.png (скрин живой страницы), figs/*.png (графики агента), "
                     "results.jsonl, run.log, report.md")
     ap.add_argument("models", nargs="*", help="id моделей OpenRouter; пусто = дефолтный список MODELS")
     ap.add_argument("--dev", action="store_true", help="гонять на dev-стенде (sigmadev, свой сервис/ключ) — прод не трогается")
     ap.add_argument("--force", action="store_true", help="перепрогнать даже если bench.json уже есть")
+    ap.add_argument("--version", default=None, help="версия бенча (папка eval/bench_<v>); по умолчанию — последняя")
+    ap.add_argument("--allow-dataset-drift", action="store_true",
+                    help="гнать несмотря на расхождение cases.jsonl со снапшотом версии (результаты несравнимы!)")
     args = ap.parse_args()
+    if args.version:
+        global BENCH_DIR
+        BENCH_DIR = EVAL / f"bench_{args.version}"
     if args.dev:
         use_target("dev")
-    print(f"target: {BASE} (service {T['service']})", flush=True)
+    print(f"target: {BASE} (service {T['service']}) · {BENCH_DIR.name}", flush=True)
     BENCH_DIR.mkdir(parents=True, exist_ok=True)
+    if not prepare_bench_dir(allow_drift=args.allow_dataset_drift):
+        sys.exit(2)
     env_backup = ENV.read_text(encoding="utf-8")  # verbatim snapshot for exact restore
     (ROOT / ".env.benchbak").write_text(env_backup, encoding="utf-8")
     print(f"backed up .env ({len(env_backup)} bytes) → .env.benchbak", flush=True)

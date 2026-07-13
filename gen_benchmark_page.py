@@ -11,7 +11,8 @@ import json, html, time, statistics
 from pathlib import Path
 
 ROOT = Path("/root/sigma_assistant")
-BENCH = ROOT / "eval" / "bench"
+EVAL = ROOT / "eval"
+BENCH = sorted(EVAL.glob('bench_v*'), key=lambda p: (len(p.name), p.name))[-1]  # последняя версия; build_all рендерит все
 OUT = Path("/var/www/sigma/docs/benchmark/index.html")
 ASSISTANT_JS = Path("/var/www/sigma/docs/assistant/assistant.js")
 
@@ -264,9 +265,9 @@ def slugify(m):
     return re.sub(r"[^a-z0-9]+", "_", m.lower()).strip("_")
 
 
-def load():
+def load(bench_dir=None):
     benches = []
-    for p in sorted(BENCH.glob("*/bench.json")):
+    for p in sorted((bench_dir or BENCH).glob("*/bench.json")):
         try:
             b = json.loads(p.read_text(encoding="utf-8"))
             b["_dir"] = p.parent.name
@@ -549,8 +550,11 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail();});
 """
 
 
-def build():
-    benches = load()
+def build(bench_dir=None, out=None, version=None, versions=()):
+    global BENCH, OUT
+    BENCH = bench_dir or BENCH
+    OUT = out or OUT
+    benches = load(BENCH)
     if not benches:
         OUT.parent.mkdir(parents=True, exist_ok=True)
         OUT.write_text(
@@ -629,6 +633,12 @@ def build():
     A("<script defer src=\"https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js\"></script>")
     A(f"<style>{CSS}</style></head><body><div class=wrap>")
     A("<h1>Σ Бенчмарк агента</h1>")
+    if version:
+        vlinks = " · ".join(
+            f"<b>{esc(v)}</b>" if v == version else f"<a href='{esc(href)}'>{esc(v)}</a>"
+            for v, href in versions) or esc(version)
+        A(f"<div class=cap style='margin:-6px 0 10px'>Версия бенча: {vlinks} · {len(load(BENCH)[0]['cases']) if False else ''}"
+          f"кейсов в датасете: {sum(1 for l in (BENCH / 'cases.jsonl').read_text(encoding='utf-8').splitlines() if l.strip()) if (BENCH / 'cases.jsonl').exists() else '—'}</div>")
 
     # ---- One compact context line, then straight to the data ----
     top = order[0]
@@ -850,5 +860,19 @@ def build():
           f"clean={s0['clean']}/{s0['n']}, has_cost={has_cost}, has_tok={has_tok}, shots={nshots})")
 
 
+def build_all():
+    """Последняя версия (eval/bench_v<max>) → /benchmark/, остальные → /benchmark/<v>/."""
+    vs = [(p.name.replace("bench_", ""), p)
+          for p in sorted(EVAL.glob("bench_v*"), key=lambda p: (len(p.name), p.name))]
+    if not vs:
+        return
+    root_out = Path("/var/www/sigma/docs/benchmark/index.html")
+    latest, _ = vs[-1]
+    versions = [(v, "/benchmark/" if v == latest else f"/benchmark/{v}/") for v, _p in vs]
+    for v, p in vs:
+        out = root_out if v == latest else root_out.parent / v / "index.html"
+        build(p, out, version=v, versions=versions)
+
+
 if __name__ == "__main__":
-    build()
+    build_all()

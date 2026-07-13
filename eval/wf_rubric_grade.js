@@ -61,7 +61,7 @@ for cr in rub['${cid}']:
     if cr.get('auto'): continue
     print(' -',cr['id'],'(вес',cr['weight'],('КРИТИЧ' if cr['critical'] else 'обычн')+'):',cr['text'])
 print('='*80)
-for d in sorted(glob.glob('bench/*/bench.json')):
+for d in sorted(glob.glob('bench_v*/*/bench.json')):
     b=json.load(open(d))
     for x in b['cases']:
         if x['id']=='${cid}':

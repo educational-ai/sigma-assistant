@@ -47,7 +47,7 @@ const DUMP = (cid) =>
 cases={json.loads(l)['id']:json.loads(l) for l in open('cases.jsonl') if l.strip()}
 c=cases['${cid}']
 print('QUESTION:',c['question']); print('RUBRIC:',c.get('rubric','')); print('='*80)
-for d in sorted(glob.glob('bench/*/bench.json')):
+for d in sorted(glob.glob('bench_v*/*/bench.json')):
     b=json.load(open(d))
     for x in b['cases']:
         if x['id']=='${cid}':
@@ -111,7 +111,7 @@ ${flat.join('\n')}
 
 Также по желанию проверь детерминированные кейсы (compute_pure/compute_plot/vision_refine) — их грейдит код по точным числам/хэшам; убедись, что нет очевидных несоответствий:
 cd /root/sigma_assistant/eval && python3 -c "import json,glob
-for d in sorted(glob.glob('bench/*/bench.json')):
+for d in sorted(glob.glob('bench_v*/*/bench.json')):
  b=json.load(open(d))
  for c in b['cases']:
   if c['category'] in ('compute_pure','compute_plot','vision_refine'):

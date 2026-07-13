@@ -69,7 +69,7 @@ def answers_from_bench(bj: Path):
 def main():
     args = sys.argv[1:]
     if args and args[0] == "--all":
-        for bj in sorted((EVAL / "bench").glob("*/bench.json")):
+        for bj in sorted(sorted(EVAL.glob('bench_v*'), key=lambda p: (len(p.name), p.name))[-1].glob('*/bench.json')):
             out = EVAL / "shots" / bj.parent.name
             idx = asyncio.run(shoot(answers_from_bench(bj), out))
             nb = sum(1 for r in idx if r["broken"])

@@ -24,7 +24,7 @@ for f in ["eval/cases.jsonl", "eval/cases_extra.jsonl"]:
             exp[c["id"]] = c
 
 susp = []
-for d in sorted(glob.glob(os.path.join(ROOT, "eval/bench/*/bench.json"))):
+for d in sorted(glob.glob(os.path.join(ROOT, "eval/bench_v*/*/bench.json"))):
     model = os.path.basename(os.path.dirname(d))
     j = json.load(open(d))
     for c in j["cases"]:
