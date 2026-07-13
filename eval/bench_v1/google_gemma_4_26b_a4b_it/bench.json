@@ -1,1470 +1,1470 @@
 {
- "model": "google/gemma-4-26b-a4b-it",
- "served_model_label": {
   "model": "google/gemma-4-26b-a4b-it",
-  "vision": false,
-  "text_model": "google/gemma-4-26b-a4b-it",
-  "vision_model": "google/gemma-4-26b-a4b-it"
- },
- "ran_at": 1781113674.106892,
- "n": 29,
- "passed": 27,
- "answered": 29,
- "no_answer": 0,
- "pass_rate": 0.931,
- "total_cost_usd": 0.054666,
- "cost_per_q_usd": 0.001885,
- "avg_elapsed_s": 47.4,
- "by_category": {
-  "rag_basic": {
-   "passed": 5,
-   "total": 5
+  "served_model_label": {
+    "model": "google/gemma-4-26b-a4b-it",
+    "vision": false,
+    "text_model": "google/gemma-4-26b-a4b-it",
+    "vision_model": "google/gemma-4-26b-a4b-it"
   },
-  "definition": {
-   "passed": 2,
-   "total": 3
-  },
-  "compute_pure": {
-   "passed": 8,
-   "total": 8
-  },
-  "compute_plot": {
-   "passed": 5,
-   "total": 5
-  },
-  "multi_hop": {
-   "passed": 1,
-   "total": 1
-  },
-  "structural": {
-   "passed": 2,
-   "total": 3
-  },
-  "vision_refine": {
-   "passed": 1,
-   "total": 1
-  },
-  "out_of_scope": {
-   "passed": 1,
-   "total": 3
-  }
- },
- "cases": [
-  {
-   "id": "newton_kantorovich_history",
-   "category": "rag_basic",
-   "question": "Когда Канторович получил Нобелевскую премию и за что?",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "search_textbook"
-   ],
-   "images": 0,
-   "elapsed": 7.2,
-   "cost": 0.000424,
-   "prompt_tokens": 5319,
-   "completion_tokens": 152,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "В учебнике указано следующее:\n\n**Леонид Витальевич Канторович** (1912–1986) получил Нобелевскую премию по экономике в **1975 году**.\n\nПремия была присуждена за **теорию оптимального распределения ресурсов**.\n\nКстати, в контексте твоей текущей главы (Метод Ньютона), Канторович важен тем, что в 1948 году он сформулировал теорему, которая даёт универсальные условия сходимости метода Ньютона даже в бесконечномерных пространствах.",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "judge_pass": true,
-   "judge_reason": "1975, экономика, распределение ресурсов; 1948 теорема и годы жизни корректно отделены. Верно.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "year_1975",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
+  "ran_at": 1781113674.106892,
+  "n": 29,
+  "passed": 27,
+  "answered": 29,
+  "no_answer": 0,
+  "pass_rate": 0.931,
+  "total_cost_usd": 0.054666,
+  "cost_per_q_usd": 0.001885,
+  "avg_elapsed_s": 47.4,
+  "by_category": {
+    "rag_basic": {
+      "passed": 4,
+      "total": 5
     },
-    {
-     "id": "economics_resources",
-     "level": "met",
-     "weight": 2,
-     "critical": false,
-     "auto": null
+    "definition": {
+      "passed": 3,
+      "total": 3
     },
-    {
-     "id": "no_false_attribution",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
+    "compute_pure": {
+      "passed": 8,
+      "total": 8
     },
-    {
-     "id": "tools_expected",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": "tool_expected"
+    "compute_plot": {
+      "passed": 5,
+      "total": 5
     },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
+    "multi_hop": {
+      "passed": 1,
+      "total": 1
+    },
+    "structural": {
+      "passed": 3,
+      "total": 3
+    },
+    "vision_refine": {
+      "passed": 0,
+      "total": 1
+    },
+    "out_of_scope": {
+      "passed": 3,
+      "total": 3
     }
-   ]
   },
-  {
-   "id": "newton_formula_recall",
-   "category": "rag_basic",
-   "question": "Объясни откуда берётся эта формула — что это за метод и какая геометрическая идея?",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [],
-   "images": 0,
-   "elapsed": 18.9,
-   "cost": 0.000594,
-   "prompt_tokens": 5105,
-   "completion_tokens": 697,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Ты уже на этой главе! В ней разбирается один из самых мощных инструментов оптимизации и поиска корней.\n\nЕсли вкратце: **метод Ньютона** — это итерационный процесс, который позволяет найти корень функции $f(x) = 0$ (или точку экстремума), используя информацию о значении функции и её производной в текущей точке.\n\n### Геометрическая идея\n\nПредставь, что ты стоишь в какой-то точке на кривой функции $f(x)$ и не знаешь, где она пересекает ось $X$. Вместо того чтобы гадать, ты делаешь следующее:\n\n1.  **Проводишь касательную**: В текущей точке $x_n$ ты строишь касательную к графику функции.\n2.  **Ищешь пересечение**: Ты смотришь, в каком месте эта прямая (касательная) пересекает ось $X$.\n3.  **Делаешь шаг**: Точка пересечения становится твоим следующим приближением $x_{n+1}$.\n\n**Суть:** Мы заменяем сложную кривую простой прямой (линейная аппроксимация) в локальной области. Мы верим, что если мы будем постоянно «подправлять» наше положение, двигаясь по касательным, то быстро придем к истинному корню.\n\n### Откуда берётся формула?\n\nФормула выводится напрямую из уравнения прямой. Уравнение касательной в точке $(x_n, f(x_n))$ выглядит так:\n$$y - f(x_n) = f'(x_n)(x - x_n)$$\n\nМы хотим найти точку, где эта касательная пересекает ось $X$. В этой точке координата $y$ равна нулю ($y = 0$). Подставим это в уравнение:\n$$0 - f(x_n) = f'(x_n)(x_{n+1} - x_n)$$\n\nТеперь выразим $x_{n+1}$ (наше следующее приближение):\n1.  $-f(x_n) = f'(x_n) \\cdot x_{n+1} - f'(x_n) \\cdot x_n$\n2.  Переносим слагаемые: $f'(x_n) \\cdot x_{n+1} = f'(x_n) \\cdot x_n - f(x_n)$\n3.  Делим на $f'(x_n)$ (при условии, что производная не равна нулю):\n\n$$x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$$\n\nЭто и есть та самая классическая **итерационная формула метода Ньютона**.\n\n**Резюме:**\n*   **Что это:** Метод поиска корней через линейную аппроксимацию.\n*   **Геометрия:** Движение по точкам пересечения касательных с осью $X$.\n*   **Формула:** $x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$.",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "judge_pass": true,
-   "judge_reason": "Корректная геометрическая идея и вывод из уравнения касательной; 19 формул в $$, gate broken=0. Суть верна.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0,
-   "rubric_capped": false,
-   "rubric_detail": [
+  "cases": [
     {
-     "id": "names_newton",
-     "level": "met",
-     "weight": 2,
-     "critical": true,
-     "auto": null
+      "id": "newton_kantorovich_history",
+      "category": "rag_basic",
+      "question": "Когда Канторович получил Нобелевскую премию и за что?",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "search_textbook"
+      ],
+      "images": 0,
+      "elapsed": 7.2,
+      "cost": 0.000424,
+      "prompt_tokens": 5319,
+      "completion_tokens": 152,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "В учебнике указано следующее:\n\n**Леонид Витальевич Канторович** (1912–1986) получил Нобелевскую премию по экономике в **1975 году**.\n\nПремия была присуждена за **теорию оптимального распределения ресурсов**.\n\nКстати, в контексте твоей текущей главы (Метод Ньютона), Канторович важен тем, что в 1948 году он сформулировал теорему, которая даёт универсальные условия сходимости метода Ньютона даже в бесконечномерных пространствах.",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "judge_pass": true,
+      "judge_reason": "1975, экономика, распределение ресурсов; 1948 теорема и годы жизни корректно отделены. Верно.",
+      "judge": "adversarial-workflow-final",
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0,
+      "rubric_capped": false,
+      "rubric_detail": [
+        {
+          "id": "year_1975",
+          "level": "met",
+          "weight": 3,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "economics_resources",
+          "level": "met",
+          "weight": 2,
+          "critical": false,
+          "auto": null
+        },
+        {
+          "id": "no_false_attribution",
+          "level": "met",
+          "weight": 3,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "tools_expected",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": "tool_expected"
+        },
+        {
+          "id": "style",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        }
+      ]
     },
     {
-     "id": "tangent_intersection",
-     "level": "met",
-     "weight": 3,
-     "critical": false,
-     "auto": null
+      "id": "newton_formula_recall",
+      "category": "rag_basic",
+      "question": "Объясни откуда берётся эта формула — что это за метод и какая геометрическая идея?",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [],
+      "images": 0,
+      "elapsed": 18.9,
+      "cost": 0.000594,
+      "prompt_tokens": 5105,
+      "completion_tokens": 697,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Ты уже на этой главе! В ней разбирается один из самых мощных инструментов оптимизации и поиска корней.\n\nЕсли вкратце: **метод Ньютона** — это итерационный процесс, который позволяет найти корень функции $f(x) = 0$ (или точку экстремума), используя информацию о значении функции и её производной в текущей точке.\n\n### Геометрическая идея\n\nПредставь, что ты стоишь в какой-то точке на кривой функции $f(x)$ и не знаешь, где она пересекает ось $X$. Вместо того чтобы гадать, ты делаешь следующее:\n\n1.  **Проводишь касательную**: В текущей точке $x_n$ ты строишь касательную к графику функции.\n2.  **Ищешь пересечение**: Ты смотришь, в каком месте эта прямая (касательная) пересекает ось $X$.\n3.  **Делаешь шаг**: Точка пересечения становится твоим следующим приближением $x_{n+1}$.\n\n**Суть:** Мы заменяем сложную кривую простой прямой (линейная аппроксимация) в локальной области. Мы верим, что если мы будем постоянно «подправлять» наше положение, двигаясь по касательным, то быстро придем к истинному корню.\n\n### Откуда берётся формула?\n\nФормула выводится напрямую из уравнения прямой. Уравнение касательной в точке $(x_n, f(x_n))$ выглядит так:\n$$y - f(x_n) = f'(x_n)(x - x_n)$$\n\nМы хотим найти точку, где эта касательная пересекает ось $X$. В этой точке координата $y$ равна нулю ($y = 0$). Подставим это в уравнение:\n$$0 - f(x_n) = f'(x_n)(x_{n+1} - x_n)$$\n\nТеперь выразим $x_{n+1}$ (наше следующее приближение):\n1.  $-f(x_n) = f'(x_n) \\cdot x_{n+1} - f'(x_n) \\cdot x_n$\n2.  Переносим слагаемые: $f'(x_n) \\cdot x_{n+1} = f'(x_n) \\cdot x_n - f(x_n)$\n3.  Делим на $f'(x_n)$ (при условии, что производная не равна нулю):\n\n$$x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$$\n\nЭто и есть та самая классическая **итерационная формула метода Ньютона**.\n\n**Резюме:**\n*   **Что это:** Метод поиска корней через линейную аппроксимацию.\n*   **Геометрия:** Движение по точкам пересечения касательных с осью $X$.\n*   **Формула:** $x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$.",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "judge_pass": true,
+      "judge_reason": "Корректная геометрическая идея и вывод из уравнения касательной; 19 формул в $$, gate broken=0. Суть верна.",
+      "judge": "adversarial-workflow-final",
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0,
+      "rubric_capped": false,
+      "rubric_detail": [
+        {
+          "id": "names_newton",
+          "level": "met",
+          "weight": 2,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "tangent_intersection",
+          "level": "met",
+          "weight": 3,
+          "critical": false,
+          "auto": null
+        },
+        {
+          "id": "no_error",
+          "level": "met",
+          "weight": 1,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "style",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        }
+      ]
     },
     {
-     "id": "no_error",
-     "level": "met",
-     "weight": 1,
-     "critical": true,
-     "auto": null
+      "id": "definition_strong_convex",
+      "category": "definition",
+      "question": "Что такое сильно выпуклая функция?",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "find_definition"
+      ],
+      "images": 0,
+      "elapsed": 10.7,
+      "cost": 0.000485,
+      "prompt_tokens": 5313,
+      "completion_tokens": 334,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Ты уже на главе про метод Ньютона, и это определение там как раз критически важно для понимания скорости сходимости.\n\n> **Определение 2.4. Сильно выпуклая функция**\n> Функция $g\\colon\\mathbb{R}\\to\\mathbb{R}$ называется **сильно выпуклой** с константой $\\mu>0$, если $g\\in C^{2}$ и $g''(x)\\geq\\mu$ для всех $x$.\n\n**Что это значит простыми словами:**\n\n*   **$g \\in C^2$**: функция достаточно «гладкая», у неё есть вторая производная, и она непрерывна.\n*   **$g''(x) \\geq \\mu$**: вторая производная не просто больше нуля (как у обычной выпуклой функции), а **строго отделена от нуля** снизу какой-то положительной константой $\\mu$. \n\n**Зачем это нужно в методе Ньютона?**\nЕсли функция просто выпуклая, она может быть «плоской» в районе минимума (например, $x^4$), и тогда метод может сходиться медленно. Сильная выпуклость гарантирует, что функция имеет четкий, «крутой» минимум, и вторая производная не «схлопнется» в ноль. Это обеспечивает ту самую сверхлинейную (квадратичную) сходимость, ради которой мы и используем метод Ньютона.",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "judge_pass": true,
+      "judge_reason": "Точное определение, контраст с x⁴ и отделённость от нуля. LaTeX корректен.",
+      "judge": "adversarial-workflow-final",
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0,
+      "rubric_capped": false,
+      "rubric_detail": [
+        {
+          "id": "condition_g2_geq_mu",
+          "level": "met",
+          "weight": 3,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "c2_smoothness",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        },
+        {
+          "id": "no_wrong_def",
+          "level": "met",
+          "weight": 1,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "tools_expected",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": "tool_expected"
+        },
+        {
+          "id": "style",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        }
+      ]
     },
     {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
+      "id": "compute_factorial",
+      "category": "compute_pure",
+      "question": "Сколько будет 30 факториал?",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "python"
+      ],
+      "images": 0,
+      "elapsed": 15.7,
+      "cost": 0.000409,
+      "prompt_tokens": 5265,
+      "completion_tokens": 119,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "30! = 265 252 859 812 191 058 636 308 480 000 000",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0
+    },
+    {
+      "id": "compute_taylor_sin",
+      "category": "compute_pure",
+      "question": "Покажи разложение sin(x) в ряд Тейлора до 5-го члена символически (через sympy).",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "python"
+      ],
+      "images": 0,
+      "elapsed": 26.1,
+      "cost": 0.000509,
+      "prompt_tokens": 5311,
+      "completion_tokens": 404,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Лови разложение $\\sin(x)$ в ряд Тейлора (точнее, в ряд Маклорена, так как разложение идет в окрестности $x=0$) до 5-го порядка:\n\n$$ \\sin(x) \\approx x - \\frac{x^3}{6} + \\frac{x^5}{120} $$\n\n**Как это получилось:**\n1. Мы берем производные функции $f(x) = \\sin(x)$ в точке $0$.\n2. Подставляем их в общую формулу ряда: $\\sum_{n=0}^{\\infty} \\frac{f^{(n)}(0)}{n!} x^n$.\n3. Для синуса это дает чередующиеся знаки и только нечетные степени:\n   * $f'(0) = \\cos(0) = 1 \\implies$ член $x$\n   * $f'''(0) = -\\cos(0) = -1 \\implies$ член $-\\frac{x^3}{3!}$ (где $3! = 6$)\n   * $f^{(5)}(0) = \\cos(0) = 1 \\implies$ член $\\frac{x^5}{5!}$ (где $5! = 120$)\n\nЭто разложение часто используется в методе Ньютона для аппроксимации тригонометрических функций, чтобы упростить вычисления.",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0
+    },
+    {
+      "id": "compute_plot_newton",
+      "category": "compute_plot",
+      "question": "Покажи как сходится метод Ньютона для f(x) = x² - 2, начиная с x₀ = 1.5. Построй график траектории.",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "python"
+      ],
+      "images": 1,
+      "elapsed": 37.9,
+      "cost": 0.001015,
+      "prompt_tokens": 6264,
+      "completion_tokens": 973,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Для функции $f(x) = x^2 - 2$ метод Ньютона ищет корень, который равен $\\sqrt{2} \\approx 1.414214$. \n\nИтерационная формула для этого случая:\n$$x_{n+1} = x_n - \\frac{x_n^2 - 2}{2x_n}$$\n\n**Результаты расчёта:**\nПри старте с $x_0 = 1.5$ метод сходится невероятно быстро (квадратичная сходимость):\n\n* $x_0 = 1.50$, $f(x_0) = 0.25$\n* $x_1 = 1.42$, $f(x_1) = 0.0069$\n* $x_2 = 1.41$, $f(x_2) = 0.000006$\n* $x_3 = 1.41$, $f(x_3) \\approx 0.00$ (точность до $10^{-12}$)\n\n**Анализ графика:**\nНа графике видно, как синие точки (итерации) стремительно «прыгают» к пересечению параболы с осью $X$. \n1. Первая точка ($x_0=1.5$) находится заметно выше нуля.\n2. Вторая точка ($x_1$) уже практически лежит на оси.\n3. Последующие шаги визуально сливаются в одну точку, так как ошибка уменьшается в квадрате на каждом шаге.\n\nЭто классическая демонстрация того, как метод Ньютона «схлопывает» расстояние до корня за считанные итерации, если начальное приближение выбрано достаточно близко.",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0
+    },
+    {
+      "id": "compute_plot_gd_vs_newton",
+      "category": "compute_plot",
+      "question": "Сравни сходимость метода Ньютона и градиентного спуска на функции f(x) = x⁴ из x₀ = 2. Покажи два графика на одной картинке.",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "python"
+      ],
+      "images": 1,
+      "elapsed": 168.1,
+      "cost": 0.017023,
+      "prompt_tokens": 79455,
+      "completion_tokens": 8939,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Для функции $f(x) = x^4$ с начальной точки $x_0 = 2$ сравнение методов будет выгля следующим образом:\n\n### 1. Анализ сходимости\n\n*   **Градиентный спуск (GD):** Скорость сходимости — **линейная**. На функции $x^4$ градиент $f'(x) = 4x^3$ становится очень маленьким при приближении к минимуму ($x=0$). Это заставляет алгоритм \"замедляться\" по мере приближения к цели. На графике это видно как постепенное, затухающее уменьшение шага.\n*   **Метод Ньютона:** Скорость сходимости — **суперлинейная** (в идеальных условиях квадратичная). Однако для функции $x^4$ в точке минимума вторая производная $f''(0) = 0$. Это \"вырожденный\" случай, из-за чего метод Ньютона теряет свою сверхбыструю квадратичную сходимость и переходит к линейной, но всё равно остается быстрее градиентного спуска.\n\n### 2. Результаты расчёта\n\nСогласно выполненному коду (при шаге обучения $\\eta = 0.1$ для GD):\n\n*   **Градиентный спуск:** После 10 итераций значение $x$ составляет примерно **$-0.30$**. Он движется к нулю очень медленно.\n*   **Метод Ньютона:** После 10 итераций значение $x$ составляет примерно **$0.03$**. Он значительно ближе к истинному минимуму.\n\n### 3. Визуализация\n\nНа графиках ниже показано:\n1.  **Сходимость $x_n$:** Как значения аргумента приближаются к $0$. Синяя линия (Ньютон) падает к нулю гораздо круче красной (GD).\n2.  **Значение функции $\\log(f(x_n))$:** Как быстро уменьшается значение самой функции. Использование логарифмической шкалы позволяет увидеть, что метод Ньютона \"пролетает\" вниз по значениям функции намного быстрее.\n\n![Сравнение методов](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABIEAAAKkCAYAAACXhy9+AAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjguNCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8fJSN1AAAACXBIWXMAABJ0AAASdAHeZh94AAEAAElEQVR4nOzdd3gUVRfH8e8mWQIkdAi9CUiXIiBFepVeRBFRqiBNUJFiwQDSVJQi+EoNiiId6SpVBQRBQUJTmogCAUILNWXeP8ZdsqTDbjbZ/D7PkyezM7MzZ2+AXM7ce67FMAwDERERERERERHxaF7uDkBERERERERERFxPSSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASS",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0
+    },
+    {
+      "id": "rsa_encrypt_small",
+      "category": "compute_pure",
+      "question": "Зашифруй число m=7 ключом (n=143, e=7). Покажи c.",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "python"
+      ],
+      "images": 0,
+      "elapsed": 17.6,
+      "cost": 0.000458,
+      "prompt_tokens": 5356,
+      "completion_tokens": 243,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Для шифрования в RSA используется формула:\n$$c = m^e \\pmod n$$\n\nПодставим твои значения:\n*   $m = 7$ (открытое сообщение)\n*   $e = 7$ (открытая экспонента)\n*   $n = 143$ (модуль)\n\n**Расчёт:**\n$$c = 7^7 \\pmod{143}$$\n$$7^7 = 823543$$\n$$823543 = 5759 \\times 143 + 6$$\n\n**Результат:**\n$c = 6$",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0
+    },
+    {
+      "id": "rsa_full_roundtrip",
+      "category": "compute_pure",
+      "question": "Возьми p=11, q=13, e=7. Сгенерируй RSA-ключ полностью: вычисли n, φ(n), d. Покажи что для m=9 шифрование и расшифрование возвращают исходное число.",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "python"
+      ],
+      "images": 0,
+      "elapsed": 32.5,
+      "cost": 0.000727,
+      "prompt_tokens": 5845,
+      "completion_tokens": 934,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Разбираем генерацию ключей RSA по шагам для твоих параметров:\n\n**1. Генерация параметров:**\n*   **Вычисляем $n$:** \n    $n = p \\cdot q = 11 \\cdot 13 = 143$\n*   **Вычисляем $\\phi(n)$ (функция Эйлера):**\n    $\\phi(n) = (p - 1)(q - 1) = 10 \\cdot 12 = 120$\n*   **Находим секретный ключ $d$:**\n    Это число, обратное $e$ по модулю $\\phi(n)$. То есть $d \\cdot e \\equiv 1 \\pmod{\\phi(n)}$.\n    Для $e = 7$ и $\\phi(n) = 120$ находим $d = 103$ (так как $7 \\cdot 103 = 721$, а $721 = 6 \\cdot 120 + 1$).\n\n**Итоговые ключи:**\n*   **Открытый ключ:** $(e, n) = (7, 143)$\n*   **Закрытый ключ:** $(d, n) = (103, 143)$\n\n**2. Проверка (шифрование и расшифрование):**\nВозьмём сообщение $m = 9$.\n\n*   **Шифрование ($c = m^e \\pmod n$):**\n    $c = 9^7 \\pmod{143} = 4782969 \\pmod{143} = 48$\n*   **Расшифрование ($m_{dec} = c^d \\pmod n$):**\n    $m_{dec} = 48^{103} \\pmod{143} = 9$\n\n**Результат:**\nКак видишь, $48^{103} \\pmod{143}$ возвращает исходное число **9**. Математика сработала!",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0
+    },
+    {
+      "id": "multihop_newton_vs_gradient",
+      "category": "multi_hop",
+      "question": "В чём отличие метода Ньютона от градиентного спуска для задач оптимизации? Какие из этих методов разобраны в учебнике?",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "search_textbook"
+      ],
+      "images": 0,
+      "elapsed": 16.8,
+      "cost": 0.000821,
+      "prompt_tokens": 8653,
+      "completion_tokens": 632,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "<|channel>thought\n<channel|>Ты уже на главе [Метод Ньютона – Σ Сигма](ch02_newton).\n\n### В чём отличие?\n\nЕсли говорить просто, разница в том, **какую информацию о функции использует метод** для определения шага:\n\n1.  **Градиентный спуск (First-order method)** использует только **первую производную** (градиент $\\nabla f(x)$). Он знает, в какую сторону «склон» идет вниз, но не знает, насколько сильно этот склон искривлен. Из-за этого в «оврагах» (где одна сторона крутая, а другая пологая) градиентный спуск часто начинает осциллировать (зигзагообразно прыгать от стенки к стенке), делая очень маленькие шаги.\n2.  **Метод Ньютона (Second-order method)** использует и градиент, и **вторую производную** (Гессиан $\\nabla^2 f(x)$). Он учитывает **кривизну** поверхности. Это позволяет методу Ньютона «понимать» геометрию оврага и делать более умные, прямые шаги сразу к минимуму. В идеальном случае (для квадратичной функции) метод Ньютона находит минимум за один шаг.\n\n**Главный минус Ньютона:** вычислять и обращать матрицу Гессиана $\\nabla^2 f(x)$ очень дорого, если у тебя миллионы параметров (как в нейросетях). Градиентный спуск в этом плане гораздо дешевле и быстрее на больших данных.\n\n### Что разобрано в учебнике?\n\nСудя по структуре, в учебнике подробно представлены:\n*   **Метод Ньютона** (ты сейчас его читаешь в `ch02_newton`).\n*   **Градиентный спуск (GD)** и его вариации:\n    *   Классический GD.\n    *   Методы с **импульсом (Momentum)** — чтобы «разгоняться» в оврагах.\n    *   **Adam** — адаптивный метод, подстраивающий шаг под каждую координату.\n*   **Безградиентные методы** (например, метод Нелдера–Мида), которые работают вообще без производных.\n*   **Динамика Ланжевена** — градиентный спуск с добавлением шума для поиска глобального минимума.",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "judge_pass": true,
+      "judge_reason": "Верно по сути: первый vs второй порядок, кривизна/гессиан, овраги, формулы корректны. Указан ch02_newton, GD в др. главах. Сырой тег <|channel>thought — стилевая шероховатость, суть рубрики выполнена.",
+      "judge": "adversarial-workflow-final",
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 0.9375,
+      "rubric_capped": false,
+      "rubric_detail": [
+        {
+          "id": "second_vs_first_order",
+          "level": "met",
+          "weight": 3,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "chapter_ref",
+          "level": "met",
+          "weight": 2,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "no_hallucination",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        },
+        {
+          "id": "tools_expected",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": "tool_expected"
+        },
+        {
+          "id": "style",
+          "level": "partial",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        }
+      ]
+    },
+    {
+      "id": "structural_kantorovich_theorem",
+      "category": "structural",
+      "question": "Сформулируй теорему о сходимости метода Герона.",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "find_theorem"
+      ],
+      "images": 0,
+      "elapsed": 9.7,
+      "cost": 0.000493,
+      "prompt_tokens": 5397,
+      "completion_tokens": 340,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Ты уже на этой главе. Вот формулировка теоремы из учебника:\n\n> **Теорема 2.1. Сходимость метода Герона**\n> Для любого $x_0>0$ последовательность (2.4) монотонно убывает (начиная с $k=1$) и сходится к $\\sqrt{a}$. Более того, для ошибки $e_k=x_k-\\sqrt{a}$ выполнено\n> $$e_{k+1} = \\dfrac{e_k^2}{2x_k}, \\qquad \\text{и при } k \\geq 1: \\quad 0 \\le e_{k+1} \\le \\dfrac{e_k^2}{2\\sqrt{a}}.$$\n\n**Разбор нотации:**\n*   $x_k$ — текущее приближение корня на шаге $k$.\n*   $e_k = x_k - \\sqrt{a}$ — ошибка (разность между текущим значением и истинным корнем $\\sqrt{a}$).\n*   $e_{k+1} \\le \\frac{e_k^2}{2\\sqrt{a}}$ — это ключевой момент, который показывает **квадратичную сходимость**. Ошибка на следующем шаге пропорциональна *квадрату* предыдущей ошибки. На практике это значит, что количество верных знаков после запятой примерно удваивается с каждой итерацией.",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "judge_pass": true,
+      "judge_reason": "Корректная Теорема 2.1: x_0>0, сходимость к √a, квадратичная оценка ошибки. LaTeX рендерится, разбор нотации уместен.",
+      "judge": "adversarial-workflow-final",
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0,
+      "rubric_capped": false,
+      "rubric_detail": [
+        {
+          "id": "positive_x0",
+          "level": "met",
+          "weight": 2,
+          "critical": false,
+          "auto": null
+        },
+        {
+          "id": "converges_sqrt_a",
+          "level": "met",
+          "weight": 3,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "quadratic_or_monotone",
+          "level": "met",
+          "weight": 2,
+          "critical": false,
+          "auto": null
+        },
+        {
+          "id": "no_hallucination",
+          "level": "met",
+          "weight": 1,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "tools_expected",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": "tool_expected"
+        },
+        {
+          "id": "style",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        }
+      ]
+    },
+    {
+      "id": "vision_refine_diverging_sgd",
+      "category": "vision_refine",
+      "question": "Запусти SGD на функции f(x) = x² с шагом η = 1.1 из x₀ = 2, 30 итераций. Что произойдёт? Если разойдётся — подбери рабочий шаг и покажи сходящуюся траекторию.",
+      "pass": false,
+      "tool_match": true,
+      "answer_match": false,
+      "visual_match": true,
+      "missing": [
+        "0.5"
+      ],
+      "tools": [
+        "python"
+      ],
+      "images": 1,
+      "elapsed": 52.0,
+      "cost": 0.000972,
+      "prompt_tokens": 6133,
+      "completion_tokens": 901,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "При шаге $\\eta = 1.1$ произойдёт **расходимость** алгоритма.\n\n**Что именно происходит:**\nВ методе градиентного спуска (SGD) обновление выглядит так: $x_{t+1} = x_t - \\eta \\cdot f'(x_t)$. \nДля функции $f(x) = x^2$ градиент $f'(x) = 2x$. Подставим это в формулу:\n$$x_{t+1} = x_t - \\eta \\cdot (2x_t) = x_t(1 - 2\\eta)$$\n\nЕсли $|1 - 2\\eta| > 1$, то значение $x$ будет увеличиваться по модулю с каждой итерацией, осциллируя вокруг нуля. \nВ твоём случае: $|1 - 2 \\cdot 1.1| = |1 - 2.2| = |-1.2| = 1.2$. \nТак как $1.2 > 1$, ошибка растёт в геометрической прогрессии.\n\n**Результаты расчёта:**\n*   При $\\eta = 1.1$: значения прыгают через ноль и разлетаются. Последнее значение (30-я итерация) $\\approx 474.75$.\n*   При $\\eta = 0.1$: шаг стал достаточно малым ($|1 - 2 \\cdot 0.1| = 0.8 < 1$), и алгоритм плавно сходится к минимуму. Последнее значение $\\approx 0.00$.\n\n**Графики:**\nНа левом графике видна характерная «пила» с растущей амплитудой — это и есть расходимость. На правом графике — классическая экспоненциальная сходимость к $x = 0$.",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "judge_pass": true,
+      "judge_reason": "Верный диагноз (|1−2·1.1|=1.2>1, x30≈474.75), рабочий η=0.1 со сходимостью к 0, описаны оба графика («пила» vs экспонента). LaTeX корректен.",
+      "judge": "adversarial-workflow-final",
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 0.9,
+      "rubric_capped": false,
+      "rubric_detail": [
+        {
+          "id": "diagnose_divergence",
+          "level": "met",
+          "weight": 3,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "working_step",
+          "level": "met",
+          "weight": 3,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "correct_numbers",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        },
+        {
+          "id": "two_runs",
+          "level": "none",
+          "weight": 1,
+          "critical": false,
+          "auto": "min2_python"
+        },
+        {
+          "id": "image_present",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": "image_present"
+        },
+        {
+          "id": "style",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        }
+      ]
+    },
+    {
+      "id": "hashlib_demo",
+      "category": "compute_pure",
+      "question": "Посчитай SHA-256 хеш строки 'sigma' в hex.",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "python"
+      ],
+      "images": 0,
+      "elapsed": 17.7,
+      "cost": 0.000428,
+      "prompt_tokens": 5361,
+      "completion_tokens": 156,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Хеш SHA-256 для строки `'sigma'` в шестнадцатеричном формате (hex):\n\n`38de90475bb334fb3dea5d54f250500aba60fe2c6158115d342b06bcb46e39bf`",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0
+    },
+    {
+      "id": "linreg_simple",
+      "category": "compute_plot",
+      "question": "Подбери линейную регрессию y = a*x + b для точек (1, 2.1), (2, 3.9), (3, 6.2), (4, 7.8). Покажи коэффициенты и график.",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "python"
+      ],
+      "images": 1,
+      "elapsed": 37.1,
+      "cost": 0.000797,
+      "prompt_tokens": 5856,
+      "completion_tokens": 536,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Для твоих точек методом наименьших квадратов (МНК) подобрана следующая линейная регрессия:\n\n**$y = 1.94x + 0.15$**\n\n**Коэффициенты:**\n*   **$a$ (наклон)** = $1.94$\n*   **$b$ (сдвиг/свободный член)** = $0.15$\n\n**Интерпретация графика:**\nНа графике видно, что синяя линия проходит максимально близко ко всем красным точкам, минимизируя сумму квадратов вертикальных отклонений (остатков). Линия имеет четкий положительный наклон, что соответствует росту $y$ при увеличении $x$. Точки лежат почти на одной прямой, поэтому аппроксимация выглядит очень точной.",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0
+    },
+    {
+      "id": "out_of_scope_recipe",
+      "category": "out_of_scope",
+      "question": "Дай мне рецепт борща.",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [],
+      "images": 0,
+      "elapsed": 3.8,
+      "cost": 0.000202,
+      "prompt_tokens": 2547,
+      "completion_tokens": 70,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Я — ассистент учебника по информатике, оптимизации и математике, поэтому рецептами борща не владею. Могу помочь с методами оптимизации, теорией чисел или алгоритмами. \n\nЕсли захочешь обсудить сходимость метода Ньютона или его применение — я к твоим услугам!",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "judge_pass": true,
+      "judge_reason": "Вежливый отказ, предложил темы учебника.",
+      "judge": "adversarial-workflow-final",
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0,
+      "rubric_capped": false,
+      "rubric_detail": [
+        {
+          "id": "refusal",
+          "level": "met",
+          "weight": 3,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "no_recipe",
+          "level": "met",
+          "weight": 3,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "offer_help",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        },
+        {
+          "id": "style",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        }
+      ]
+    },
+    {
+      "id": "rsa_history",
+      "category": "rag_basic",
+      "question": "Кто придумал RSA и в каком году?",
+      "pass": false,
+      "tool_match": false,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "read_chapter"
+      ],
+      "images": 0,
+      "elapsed": 8.6,
+      "cost": 0.000601,
+      "prompt_tokens": 7598,
+      "completion_tokens": 204,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Криптосистема RSA была опубликована в **1978 году**.\n\nЕё придумали трое сотрудников Массачусетского технологического института (MIT):\n* **Р**ональд Райвест;\n* **Ш**амир (Ади Шамир);\n* **А**длеман (Леонард Адлеман).\n\nНазвание системы — это акроним из первых букв их фамилий. \n\n*Интересный факт из учебника:* та же схема была независимо открыта ещё в 1973 году британским математиком Клиффордом Коксом, но так как он работал в спецслужбе (GCHQ), его открытие было засекречено и стало известно миру только в 1997 году.",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "judge_pass": true,
+      "judge_reason": "Все трое, MIT, 1978 верно; факт про Кокса корректен и совпадает с учебником.",
+      "judge": "adversarial-workflow-final",
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 0.9,
+      "rubric_capped": false,
+      "rubric_detail": [
+        {
+          "id": "year_1978",
+          "level": "met",
+          "weight": 2,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "three_authors",
+          "level": "met",
+          "weight": 3,
+          "critical": false,
+          "auto": null
+        },
+        {
+          "id": "mit",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        },
+        {
+          "id": "no_fake_authors",
+          "level": "met",
+          "weight": 2,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "tools_expected",
+          "level": "none",
+          "weight": 1,
+          "critical": false,
+          "auto": "tool_expected"
+        },
+        {
+          "id": "style",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        }
+      ]
+    },
+    {
+      "id": "greeting_minimal",
+      "category": "out_of_scope",
+      "question": "Привет!",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [],
+      "images": 0,
+      "elapsed": 5.7,
+      "cost": 0.000211,
+      "prompt_tokens": 2542,
+      "completion_tokens": 96,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Привет! Вижу, ты сейчас изучаешь **метод Ньютона** (глава `ch02_newton`). \n\nЭто мощный инструмент для поиска корней функций, но у него есть свои нюансы сходимости и выбора начальной точки. Если возникнут вопросы по формулам, доказательствам или захочешь визуализировать, как метод «прыгает» по касательным к графику — пиши, разберемся! 🚀",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "judge_pass": false,
+      "judge_reason": "337 знаков — более чем вдвое сверх лимита, простыня-описание метода вместо короткого отклика. Без выдуманных разделов, но это стена.",
+      "judge": "adversarial-workflow-final",
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 0.0,
+      "rubric_capped": true,
+      "rubric_detail": [
+        {
+          "id": "short",
+          "level": "none",
+          "weight": 3,
+          "critical": true,
+          "auto": "short"
+        },
+        {
+          "id": "offer_help",
+          "level": "met",
+          "weight": 2,
+          "critical": false,
+          "auto": null
+        },
+        {
+          "id": "no_tools",
+          "level": "met",
+          "weight": 2,
+          "critical": true,
+          "auto": "no_tools"
+        },
+        {
+          "id": "style",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        }
+      ]
+    },
+    {
+      "id": "euclid_gcd_python",
+      "category": "compute_pure",
+      "question": "Посчитай НОД(48, 180) и НОД(1071, 462) через алгоритм Евклида в python.",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "python"
+      ],
+      "images": 0,
+      "elapsed": 23.9,
+      "cost": 0.000489,
+      "prompt_tokens": 5391,
+      "completion_tokens": 328,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Лови результаты вычислений через алгоритм Евклида:\n\n* **НОД(48, 180) = 12**\n* **НОД(1071, 462) = 21**\n\nЕсли интересно, как это работает «в уме» по шагам:\n1. Для первого случая: $180 = 48 \\cdot 3 + 36 \\to 48 = 36 \\cdot 1 + 12 \\to 36 = 12 \\cdot 3 + 0$. Последний ненулевой остаток — **12**.\n2. Для второго: $1071 = 462 \\cdot 2 + 147 \\to 462 = 147 \\cdot 3 + 21 \\to 147 = 21 \\cdot 7 + 0$. Итог — **21**.",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0
+    },
+    {
+      "id": "definition_superlinear",
+      "category": "definition",
+      "question": "Что значит сверхлинейная сходимость?",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "find_definition"
+      ],
+      "images": 0,
+      "elapsed": 18.8,
+      "cost": 0.000705,
+      "prompt_tokens": 7950,
+      "completion_tokens": 436,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Ты уже на главе про метод Ньютона, и это как раз то место, где обсуждается скорость его работы.\n\nСогласно учебнику:\n\n> **Определение 2.3. Сверхлинейная и квадратичная сходимости**\n> Говорят, что последовательность $\\{x_k\\}$ сходится к $x^{\\star}$ со **сверхлинейной скоростью**, если\n> $$\\lim_{k\\to\\infty}\\dfrac{|x_{k+1}-x^{\\star}|}{|x_k-x^{\\star}|}=0.$$\n\n**Что это значит простыми словами:**\n\n*   **Суть формулы:** Отношение ошибки на следующем шаге $|x_{k+1}-x^{\\star}|$ к ошибке на текущем шаге $|x_k-x^{\\star}|$ стремится к нулю. \n*   **Интуиция:** Это значит, что ошибка уменьшается **быстрее**, чем в геометрической прогрессии (линейной сходимости). В линейной сходимости это отношение — константа (например, $0.5$), а здесь оно само становится всё меньше и меньше с каждым шагом.\n*   **Связь с квадратичной сходимостью:** Сверхлинейная сходимость — это «зонтичный» термин. Если ошибка уменьшается пропорционально **квадрату** предыдущей ошибки ($|x_{k+1}-x^{\\star}| \\leq M |x_k-x^{\\star}|^{2}$), то такая сходимость является частным (и более мощным) случаем сверхлинейной.\n\nМетод Ньютона в идеальных условиях (когда корень простой и функция достаточно гладкая) как раз обладает **квадратичной** сходимостью, что является «супер-версией» сверхлинейной.",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "judge_pass": true,
+      "judge_reason": "Точная цитата определения с пределом →0, верная связь с квадратичной. LaTeX корректен.",
+      "judge": "adversarial-workflow-final",
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0,
+      "rubric_capped": false,
+      "rubric_detail": [
+        {
+          "id": "limit_ratio_zero",
+          "level": "met",
+          "weight": 3,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "no_wrong_def",
+          "level": "met",
+          "weight": 1,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "tools_expected",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": "tool_expected"
+        },
+        {
+          "id": "style",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        }
+      ]
+    },
+    {
+      "id": "theorem_clt",
+      "category": "structural",
+      "question": "Сформулируй центральную предельную теорему как в учебнике.",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "find_theorem",
+        "find_definition",
+        "search_textbook",
+        "read_chapter",
+        "read_chapter"
+      ],
+      "images": 0,
+      "elapsed": 28.5,
+      "cost": 0.001655,
+      "prompt_tokens": 20962,
+      "completion_tokens": 552,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "В текущей главе, которую ты читаешь, центральная предельная теорема (ЦПТ) упоминается лишь в контексте подходов к анализу данных, но её **полная формальная формулировка** в этом разделе не приведена (там разбирается метод максимума правдоподобия).\n\nОднако, основываясь на сниппетах из других разделов учебника, ЦПТ формулируется следующим образом:\n\n> **Центральная предельная теорема (ЦПТ)** утверждает, что распределение нормированной суммы независимых одинаково распределённых случайных величин с конечной дисперсией стремится к нормальному.\n\nЕсли перевести это на более простой язык:\n*   **Суть:** Если ты возьмёшь очень много независимых случайных факторов (например, ошибки измерения, где каждый фактор — это маленькая случайная величина) и сложишь их вместе, то их общая сумма будет распределена примерно по **нормальному (гауссову) закону**.\n*   **Условие:** Это работает, если у величин **конечная дисперсия** (то есть они не «взрываются» и не имеют слишком «тяжёлых хвостов», как распределение Коши).\n*   **Почему это важно для анализа данных:** Именно благодаря ЦПТ мы часто встречаем нормальное распределение в шумах и ошибках. Как сказано в учебнике, ошибка измерения — это почти всегда сумма множества мелких независимых факторов, поэтому она «стремится к гауссу».\n\n**Важное замечание из учебника:**\nЕсли дисперсия **бесконечна** (как в случае с распределением Коши), то ЦПТ **не работает**, и сумма величин не будет стремиться к нормальному распределению.",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "judge_pass": true,
+      "judge_reason": "Не нашёл точную формулу, но дал корректную суть ЦПТ (нормированная сумма iid с конечной дисперсией → нормальное) с условиями, без галлюцинаций. Рубрика 'передать суть' выполнена.",
+      "judge": "adversarial-workflow-final",
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0,
+      "rubric_capped": false,
+      "rubric_detail": [
+        {
+          "id": "iid_sum",
+          "level": "met",
+          "weight": 2,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "normal_limit",
+          "level": "met",
+          "weight": 3,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "conditions",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        },
+        {
+          "id": "tools_expected",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": "tool_expected"
+        },
+        {
+          "id": "style",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        }
+      ]
+    },
+    {
+      "id": "plot_sincos_overlay",
+      "category": "compute_plot",
+      "question": "Построй графики sin(x) и cos(x) на интервале [-2π, 2π] на одном поле. Сделай легенду.",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "python"
+      ],
+      "images": 1,
+      "elapsed": 32.4,
+      "cost": 0.000964,
+      "prompt_tokens": 8466,
+      "completion_tokens": 484,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Вот графики функций $\\sin(x)$ и $\\cos(x)$ на интервале $[-2\\pi, 2\\pi]$.\n\nНа графике видно характерное смещение: $\\cos(x)$ — это та же синусоида, но сдвинутая влево на $\\pi/2$.\n\n**Ключевые точки для проверки:**\n* $\\sin(0) = 0.00$, $\\cos(0) = 1.00$\n* $\\sin(\\pi/2) = 1.00$, $\\cos(\\pi/2) = 0.00$\n\n{figure}",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0
+    },
+    {
+      "id": "fragment_explanation",
+      "category": "rag_basic",
+      "question": "Если кто-то предлагает использовать обновление x_{k+1} = x_k - f(x_k)·f'(x_k) вместо классического Ньютона — что это за идея и она работает?",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "read_chapter",
+        "python",
+        "python"
+      ],
+      "images": 1,
+      "elapsed": 54.3,
+      "cost": 0.002382,
+      "prompt_tokens": 20112,
+      "completion_tokens": 1557,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Идея заменить классическое обновление $x_{k+1} = x_k - \\frac{f(x_k)}{f'(x_k)}$ на $x_{k+1} = x_k - f(x_k) \\cdot f'(x_k)$ математически ошибочна для поиска корней, и вот почему.\n\n### В чём ошибка?\nКлассический метод Ньютона основан на поиске пересечения **касательной** с осью $x$. Как сказано в учебнике, уравнение касательной:\n$$y = f(x_k) + f'(x_k)(x - x_k)$$\nЧтобы найти точку пересечения с осью ($y=0$), мы решаем уравнение относительно $x$, что и даёт деление на производную: $\\Delta x = -f(x_k)/f'(x_k)$.\n\nПредложенная формула $x_{k+1} = x_k - f(x_k) \\cdot f'(x_k)$ — это не метод Ньютона. Это попытка применить что-то вроде **градиентного спуска** к функции $f(x)$, но с очень странным «шагом». В градиентном спуске мы идем в сторону, противоположную производной: $x_{k+1} = x_k - \\eta \\cdot f'(x_k)$. В твоём же варианте «шаг» зависит от самого значения функции $f(x_k)$.\n\n### Что происходит на практике?\nЯ запустил симуляцию для уравнения $f(x) = x^3 - 2x - 5$ (корень $\\approx 2.09$), чтобы проверить, как это работает.\n\n**Результаты расчёта:**\n*   **Классический Ньютон:** $x_0 = 2.0 \\to 2.1 \\to 2.0945...$ (сходится мгновенно).\n*   **Твой вариант:** $x_0 = 2.0 \\to 12.0 \\to -730558.0 \\to \\dots \\to \\text{Overflow}$ (улетает в бесконечность).\n\n**Вывод из эксперимента:**\nВместо того чтобы приближаться к корню, значения начинают осциллировать с гигантской амплитудой и мгновенно вызывают переполнение (Overflow). \n\n**Почему так?**\n1.  **Размерность шага:** В Ньютоне мы делим на $f'(x_k)$. Если производная большая, шаг становится маленьким и аккуратным. В твоей формуле мы **умножаем** на $f'(x_k)$. Если производная большая, шаг становится огромным, и мы «пролетаем» корень, улетая в другую часть графика.\n2.  **Геометрия:** Твой метод не ищет пересечение касательной. Он делает прыжок, размер которого пропорционален произведению значения функции и её наклона. Это не имеет устойчивого математического смысла для поиска корня.\n\n**Вердикт:** Использовать это нельзя. Метод не только не сходится, но и ведет себя крайне нестабильно.",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "judge_pass": true,
+      "judge_reason": "Correct: not Newton, GD-like with strange step, numerical divergence (Overflow) shown. GD on f-squared implied. Sound.",
+      "judge": "adversarial-workflow-final",
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 0.8333,
+      "rubric_capped": false,
+      "rubric_detail": [
+        {
+          "id": "identifies_not_newton",
+          "level": "met",
+          "weight": 3,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "mechanism",
+          "level": "partial",
+          "weight": 3,
+          "critical": false,
+          "auto": null
+        },
+        {
+          "id": "no_false_endorsement",
+          "level": "met",
+          "weight": 2,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "style",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        }
+      ]
+    },
+    {
+      "id": "eigenvalues_numpy",
+      "category": "compute_pure",
+      "question": "Найди собственные значения матрицы [[2, 1], [1, 2]] через numpy.",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "python"
+      ],
+      "images": 0,
+      "elapsed": 17.9,
+      "cost": 0.000444,
+      "prompt_tokens": 5309,
+      "completion_tokens": 214,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Собственные значения матрицы $\\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$ через `numpy` равны:\n\n**3.0** и **1.0**.\n\nВот как это выглядит в коде и выводе:\n* `eigenvalues = [3. 1.]`\n\nЕсли тебе интересно, как это работает математически: для этой матрицы характеристическое уравнение $\\det(A - \\lambda I) = 0$ превращается в $(2-\\lambda)^2 - 1 = 0$, откуда $\\lambda_1 = 3$ и $\\lambda_2 = 1$.",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0
+    },
+    {
+      "id": "plot_loss_landscape",
+      "category": "compute_plot",
+      "question": "Построй контурный график функции потерь L(a, b) = sum((a*x_i + b - y_i)^2) для точек (1,2), (2,3), (3,5), (4,4) на сетке a in [-2, 4], b in [-3, 3].",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "python"
+      ],
+      "images": 1,
+      "elapsed": 604.5,
+      "cost": 0.019888,
+      "prompt_tokens": 97603,
+      "completion_tokens": 10142,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Для построения контурного графика функции потерь $L(a, b) = \\sum_{i=1}^{4} (a \\cdot x_i + b - y_i)^2$ по точкам $(1,2), (2,3), (3,5), (4,4)$ я выполнил расчет на сетке $a \\in [-2, 4]$ и $b \\in [-3, 3]$.\n\n### Результаты расчёта:\n*   **Приблизительный минимум:** $a \\approx 0.79$, $b \\approx 1.55$\n*   **Минимальное значение потерь:** $L \\approx 1.80$\n\n### Контурный график:\nНа графике ниже контуры функции потерь наглядно показывают «чашу» (параболоид), центр которой находится в точке минимума. Чем ближе к центру, тем меньше значение функции потерь.\n\n![Контурный график функции потерь](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAy4AAAKRCAYAAACyWP2/AAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjguNCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8fJSN1AAAACXBIWXMAABJ0AAASdAHeZh94AAEAAElEQVR4nOy9eZhjZZn+f2dfK3tSe1Vq7wVcEBkUxRawwQVtRRzXYRFQwREXdBDwS6OAyk8YFIUBURtBHRlwGFEWHadBHWFUFKXp7lpTqS1V2VNV2Zfz++M9KbrorZKc5JyTej7XleuCquSc96ROv+d93ud+nlvBcRwHgiAIgiAIgiAICaMUewAEQRAEQRAEQRDHgwIXgiAIgiAIgiAkDwUuBEEQBEEQBEFIHgpcCIIgCIIgCIKQPBS4EARBEARBEAQheShwIQiCIAiCIAhC8lDgQhAEQRAEQRCE5KHAhSAIgiAIgiAIyUOBC0EQBEEQBEEQkocCF4IgCIIgCIIgJA8FLgRBEARBEARBSB4KXAiCIAiCIAiCkDwUuBAEQRAEQRAEIXkocCGITcijjz6KV7/61SiVSms/27VrF6666ioRR0UQBAH80z/9EzweD5LJZMPOeeedd0KhUOD73//+cd/73HPPQaFQ4Hvf+14DRkYQxKFQ4EIIjkKhgEKhOOrvb7nlFigUCrS3t+PAgQMNHBlR5h/+4R8wMTGBN7/5zfjiF7+Id77znfiv//ovnHnmmWIPTXCeeuopKBQK7N69W+yhVIXcx08QZ5xxBhQKBX73u98d971//vOf8cADD+Dqq6+GyWRqwOgYf/nLXwAArn3v/717/777/j3333H7755vj777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0
+    },
+    {
+      "id": "diffie_hellman_compute",
+      "category": "compute_pure",
+      "question": "Проведи протокол Диффи–Хеллмана: p=23, g=5. Алиса берёт a=6, Боб берёт b=15. Какой общий секрет?",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "python"
+      ],
+      "images": 0,
+      "elapsed": 30.7,
+      "cost": 0.000616,
+      "prompt_tokens": 5590,
+      "completion_tokens": 662,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Давай разберем этот протокол по шагам. Суть Диффи–Хеллмана в том, что стороны обмениваются публичными значениями, которые позволяют им вычислить одно и то же число, не передавая сам секрет по открытому каналу.\n\n**Пошаговый расчет:**\n\n1.  **Публичные параметры:** $p = 23$ (простое число), $g = 5$ (основание).\n2.  **Шаг Алисы:**\n    *   Её секретный ключ: $a = 6$.\n    *   Она вычисляет публичное значение: $A = g^a \\pmod{p} = 5^6 \\pmod{23}$.\n    *   $5^6 = 15625$. При делении на $23$ остаток равен **8**.\n3.  **Шаг Боба:**\n    *   Его секретный ключ: $b = 15$.\n    *   Он вычисляет публичное значение: $B = g^b \\pmod{p} = 5^{15} \\pmod{23}$.\n    *   После вычислений получаем **19**.\n4.  **Обмен и вычисление секрета:**\n    *   Алиса получает $B = 19$ и считает: $s = B^a \\pmod{p} = 19^6 \\pmod{23} = \\mathbf{2}$.\n    *   Боб получает $A = 8$ и считает: $s = A^b \\pmod{p} = 8^{15} \\pmod{23} = \\mathbf{2}$.\n\n**Ответ:** Общий секрет равен **2**.",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0
+    },
+    {
+      "id": "outline_chapter",
+      "category": "structural",
+      "question": "Перечисли основные разделы главы про Ньютона.",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [],
+      "images": 0,
+      "elapsed": 10.3,
+      "cost": 0.000228,
+      "prompt_tokens": 2549,
+      "completion_tokens": 145,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Ты уже на этой главе. Вот её основные разделы:\n\n*   **Геометрическая интерпретация** (как касательная помогает искать корень);\n*   **Алгоритм метода** (формула итерации $x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$);\n*   **Условия сходимости** (когда метод работает быстро, а когда — нет);\n*   **Скорость сходимости** (почему он считается квадратичным);\n*   **Проблемы и ограничения** (проблема деления на ноль и чувствительность к начальному приближению).",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "judge_pass": false,
+      "judge_reason": "'Геометрическая интерпретация', 'Условия сходимости', 'Проблемы и ограничения' не совпадают с реальными разделами. Галлюцинация без инструментов.",
+      "judge": "adversarial-workflow-final",
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 0.0,
+      "rubric_capped": true,
+      "rubric_detail": [
+        {
+          "id": "lists_real_sections",
+          "level": "none",
+          "weight": 3,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "no_invented_sections",
+          "level": "none",
+          "weight": 2,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "style",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        }
+      ]
+    },
+    {
+      "id": "math_latex_derivation",
+      "category": "rag_basic",
+      "question": "Выведи формулу метода Ньютона через касательную. Формулу запиши через LaTeX.",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [],
+      "images": 0,
+      "elapsed": 8.0,
+      "cost": 0.000248,
+      "prompt_tokens": 2559,
+      "completion_tokens": 203,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "Ты уже на этой главе.\n\nМетод Ньютона можно представить геометрически: мы ищем корень функции, проводя касательную к графику в текущей точке и находя точку, где эта касательная пересекает ось $x$.\n\nФормула метода Ньютона через касательную:\n\n$$x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$$\n\n**Как это работает:**\n1. Берем текущую точку $x_n$.\n2. Строим касательную к графику функции $f(x)$ в этой точке. Уравнение касательной: $y - f(x_n) = f'(x_n)(x - x_n)$.\n3. Находим точку пересечения этой прямой с осью $x$ (где $y = 0$).\n4. Полученное значение $x$ и становится нашим следующим приближением $x_{n+1}$.",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "judge_pass": true,
+      "judge_reason": "Верная формула + корректное пошаговое геометрическое описание вывода через касательную (уравнение касательной, y=0).",
+      "judge": "adversarial-workflow-final",
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 0.8125,
+      "rubric_capped": false,
+      "rubric_detail": [
+        {
+          "id": "final_formula",
+          "level": "met",
+          "weight": 3,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "tangent_derivation",
+          "level": "partial",
+          "weight": 3,
+          "critical": false,
+          "auto": null
+        },
+        {
+          "id": "no_math_error",
+          "level": "met",
+          "weight": 1,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "style",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        }
+      ]
+    },
+    {
+      "id": "definition_perceptron",
+      "category": "definition",
+      "question": "Что такое полносвязная нейронная сеть?",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [
+        "find_definition"
+      ],
+      "images": 0,
+      "elapsed": 44.6,
+      "cost": 0.000643,
+      "prompt_tokens": 6100,
+      "completion_tokens": 635,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "\n\n> **Определение 3.12. Полносвязная нейронная сеть (MLP)**\n> \n> Полносвязная нейронная сеть глубины $L$ — это функция $\\mathbf x \\mapsto \\mathbf p(\\mathbf x)$, заданная как композиция $L$ слоёв:\n> \n> $$\\begin{aligned}\n> \\mathbf z^{(\\ell)} &= W^{(\\ell)} \\mathbf a^{(\\\\ell-1)} + \\mathbf b^{(\\ell)}, \\quad \\mathbf a^{(\\ell)} = \\sigma\\bigl(\\mathbf z^{(\\ell)}\\bigr), \\quad \\ell=1,\\dots,L-1 \\\\\n> \\mathbf z^{(L)} &= W^{(L)} \\mathbf a^{(\\ell-1)} + \\mathbf b^{(\\ell)}, \\quad \\mathbf p(\\mathbf x) = \\mathrm{softmax}\\bigl(\\mathbf z^{(L)}\\bigr)\n> \\end{aligned}$$\n> \n> Здесь $\\mathbf a^{(0)}=\\mathbf x$ (вход), $W^{(\\ell)}$ — матрица весов $\\ell$-го слоя, $\\mathbf b^{(\\ell)}$ — вектор смещений (bias), $\\sigma$ — функция активации, а $\\mathrm{softmax}$ превращает вектор в распределение вероятностей.\n\n**Если перевести это на человеческий язык:**\n\n1.  **Слои и композиция:** Сеть — это цепочка из $L$ слоёв. Результат одного слоя (активации $\\mathbf a$) становится входом для следующего.\n2.  **Линейная часть:** На каждом слое мы берём входной вектор, умножаем его на матрицу весов $W$ и прибавляем вектор смещения $\\mathbf b$. Это классическая операция $y = Wx + b$.\n3.  **Нелинейность:** Чтобы сеть могла выучить сложные зависимости, а не просто работать как одна большая линейная функция, мы пропускаем результат через функцию активации $\\sigma$ (например, ReLU или сигмоиду).\n4.  **Выход (Softmax):** На последнем слое используется функция **softmax**, которая «сжимает» выходные числа так, чтобы их сумма была равна 1. Это позволяет интерпретировать числа как вероятности принадлежности к разным классам.\n5.  **Параметры:** Всё, что сеть «учит» — это значения в матрицах $W$ и векторах $\\mathbf b$.\n\n**Почему она «полносвязная»?**\nПотому что в таком слое каждый нейрон предыдущего слоя соединён с каждым нейроном текущего слоя через веса в матрице $W$.",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "judge_pass": false,
+      "judge_reason": "Подтверждён фатальный битый LaTeX в ГЛАВНОЙ формуле слоя: 'a^{(\\\\ell-1)}' — двойной бэкслэш = перенос строки в aligned внутри незакрытого надстрочного индекса '(', что валит парсинг всего блока aligned → красная ошибка KaTeX на центральной формуле определения. Плюс индексная ошибка a^{(ℓ-1)} в последнем слое. Суть верна, но требуемая рубрикой формула не отрендерится.",
+      "judge": "adversarial-workflow-final",
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 1.0,
+      "rubric_capped": false,
+      "rubric_detail": [
+        {
+          "id": "composition_layers",
+          "level": "met",
+          "weight": 3,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "layers_word",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        },
+        {
+          "id": "no_wrong_arch",
+          "level": "met",
+          "weight": 1,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "tools_expected",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": "tool_expected"
+        },
+        {
+          "id": "style",
+          "level": "met",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        }
+      ]
+    },
+    {
+      "id": "refuse_unknown_year",
+      "category": "out_of_scope",
+      "question": "В каком году Гаусс изобрёл метод сопряжённых градиентов?",
+      "pass": true,
+      "tool_match": true,
+      "answer_match": true,
+      "visual_match": true,
+      "missing": [],
+      "tools": [],
+      "images": 0,
+      "elapsed": 14.9,
+      "cost": 0.000235,
+      "prompt_tokens": 2559,
+      "completion_tokens": 164,
+      "models_used": [
+        "google/gemma-4-26b-a4b-it"
+      ],
+      "answer": "В учебнике я этого не нашёл.\n\n**Вне учебника:**\nМетод сопряжённых градиентов (Conjugate Gradient method) не является изобретением Гаусса. Он был разработан **Барриса (Barrett)** и **Хершбергом (Herschberg)** в 1952 году, а наиболее известная его форма была представлена **Конде (Hestenes)** и **Штайбелем (Stiefel)** в **1952** году.\n\nГаусс же известен своими работами по методу наименьших квадратов и решению систем линейных уравнений, которые лежат в основе многих современных итерационных методов, но сам метод сопряжённых градиентов появился значительно позже.",
+      "no_answer": false,
+      "broken_formulas": 0,
+      "judge_pass": false,
+      "judge_reason": "Выдумал изобретателей 'Barrett/Herschberg', искажённые имена. Грубая галлюцинация.",
+      "judge": "adversarial-workflow-final",
+      "raw_unrendered": 0,
+      "unexpected": [],
+      "garbage": false,
+      "rubric_score": 0.8571,
+      "rubric_capped": false,
+      "rubric_detail": [
+        {
+          "id": "no_fabricated_year",
+          "level": "met",
+          "weight": 4,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "flags_false_premise",
+          "level": "met",
+          "weight": 2,
+          "critical": true,
+          "auto": null
+        },
+        {
+          "id": "style",
+          "level": "none",
+          "weight": 1,
+          "critical": false,
+          "auto": null
+        }
+      ]
     }
-   ]
-  },
-  {
-   "id": "definition_strong_convex",
-   "category": "definition",
-   "question": "Что такое сильно выпуклая функция?",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "find_definition"
-   ],
-   "images": 0,
-   "elapsed": 10.7,
-   "cost": 0.000485,
-   "prompt_tokens": 5313,
-   "completion_tokens": 334,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Ты уже на главе про метод Ньютона, и это определение там как раз критически важно для понимания скорости сходимости.\n\n> **Определение 2.4. Сильно выпуклая функция**\n> Функция $g\\colon\\mathbb{R}\\to\\mathbb{R}$ называется **сильно выпуклой** с константой $\\mu>0$, если $g\\in C^{2}$ и $g''(x)\\geq\\mu$ для всех $x$.\n\n**Что это значит простыми словами:**\n\n*   **$g \\in C^2$**: функция достаточно «гладкая», у неё есть вторая производная, и она непрерывна.\n*   **$g''(x) \\geq \\mu$**: вторая производная не просто больше нуля (как у обычной выпуклой функции), а **строго отделена от нуля** снизу какой-то положительной константой $\\mu$. \n\n**Зачем это нужно в методе Ньютона?**\nЕсли функция просто выпуклая, она может быть «плоской» в районе минимума (например, $x^4$), и тогда метод может сходиться медленно. Сильная выпуклость гарантирует, что функция имеет четкий, «крутой» минимум, и вторая производная не «схлопнется» в ноль. Это обеспечивает ту самую сверхлинейную (квадратичную) сходимость, ради которой мы и используем метод Ньютона.",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "judge_pass": true,
-   "judge_reason": "Точное определение, контраст с x⁴ и отделённость от нуля. LaTeX корректен.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "condition_g2_geq_mu",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "c2_smoothness",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "no_wrong_def",
-     "level": "met",
-     "weight": 1,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "tools_expected",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": "tool_expected"
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
-  },
-  {
-   "id": "compute_factorial",
-   "category": "compute_pure",
-   "question": "Сколько будет 30 факториал?",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "python"
-   ],
-   "images": 0,
-   "elapsed": 15.7,
-   "cost": 0.000409,
-   "prompt_tokens": 5265,
-   "completion_tokens": 119,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "30! = 265 252 859 812 191 058 636 308 480 000 000",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
-  },
-  {
-   "id": "compute_taylor_sin",
-   "category": "compute_pure",
-   "question": "Покажи разложение sin(x) в ряд Тейлора до 5-го члена символически (через sympy).",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "python"
-   ],
-   "images": 0,
-   "elapsed": 26.1,
-   "cost": 0.000509,
-   "prompt_tokens": 5311,
-   "completion_tokens": 404,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Лови разложение $\\sin(x)$ в ряд Тейлора (точнее, в ряд Маклорена, так как разложение идет в окрестности $x=0$) до 5-го порядка:\n\n$$ \\sin(x) \\approx x - \\frac{x^3}{6} + \\frac{x^5}{120} $$\n\n**Как это получилось:**\n1. Мы берем производные функции $f(x) = \\sin(x)$ в точке $0$.\n2. Подставляем их в общую формулу ряда: $\\sum_{n=0}^{\\infty} \\frac{f^{(n)}(0)}{n!} x^n$.\n3. Для синуса это дает чередующиеся знаки и только нечетные степени:\n   * $f'(0) = \\cos(0) = 1 \\implies$ член $x$\n   * $f'''(0) = -\\cos(0) = -1 \\implies$ член $-\\frac{x^3}{3!}$ (где $3! = 6$)\n   * $f^{(5)}(0) = \\cos(0) = 1 \\implies$ член $\\frac{x^5}{5!}$ (где $5! = 120$)\n\nЭто разложение часто используется в методе Ньютона для аппроксимации тригонометрических функций, чтобы упростить вычисления.",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
-  },
-  {
-   "id": "compute_plot_newton",
-   "category": "compute_plot",
-   "question": "Покажи как сходится метод Ньютона для f(x) = x² - 2, начиная с x₀ = 1.5. Построй график траектории.",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "python"
-   ],
-   "images": 1,
-   "elapsed": 37.9,
-   "cost": 0.001015,
-   "prompt_tokens": 6264,
-   "completion_tokens": 973,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Для функции $f(x) = x^2 - 2$ метод Ньютона ищет корень, который равен $\\sqrt{2} \\approx 1.414214$. \n\nИтерационная формула для этого случая:\n$$x_{n+1} = x_n - \\frac{x_n^2 - 2}{2x_n}$$\n\n**Результаты расчёта:**\nПри старте с $x_0 = 1.5$ метод сходится невероятно быстро (квадратичная сходимость):\n\n* $x_0 = 1.50$, $f(x_0) = 0.25$\n* $x_1 = 1.42$, $f(x_1) = 0.0069$\n* $x_2 = 1.41$, $f(x_2) = 0.000006$\n* $x_3 = 1.41$, $f(x_3) \\approx 0.00$ (точность до $10^{-12}$)\n\n**Анализ графика:**\nНа графике видно, как синие точки (итерации) стремительно «прыгают» к пересечению параболы с осью $X$. \n1. Первая точка ($x_0=1.5$) находится заметно выше нуля.\n2. Вторая точка ($x_1$) уже практически лежит на оси.\n3. Последующие шаги визуально сливаются в одну точку, так как ошибка уменьшается в квадрате на каждом шаге.\n\nЭто классическая демонстрация того, как метод Ньютона «схлопывает» расстояние до корня за считанные итерации, если начальное приближение выбрано достаточно близко.",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
-  },
-  {
-   "id": "compute_plot_gd_vs_newton",
-   "category": "compute_plot",
-   "question": "Сравни сходимость метода Ньютона и градиентного спуска на функции f(x) = x⁴ из x₀ = 2. Покажи два графика на одной картинке.",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "python"
-   ],
-   "images": 1,
-   "elapsed": 168.1,
-   "cost": 0.017023,
-   "prompt_tokens": 79455,
-   "completion_tokens": 8939,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Для функции $f(x) = x^4$ с начальной точки $x_0 = 2$ сравнение методов будет выгля следующим образом:\n\n### 1. Анализ сходимости\n\n*   **Градиентный спуск (GD):** Скорость сходимости — **линейная**. На функции $x^4$ градиент $f'(x) = 4x^3$ становится очень маленьким при приближении к минимуму ($x=0$). Это заставляет алгоритм \"замедляться\" по мере приближения к цели. На графике это видно как постепенное, затухающее уменьшение шага.\n*   **Метод Ньютона:** Скорость сходимости — **суперлинейная** (в идеальных условиях квадратичная). Однако для функции $x^4$ в точке минимума вторая производная $f''(0) = 0$. Это \"вырожденный\" случай, из-за чего метод Ньютона теряет свою сверхбыструю квадратичную сходимость и переходит к линейной, но всё равно остается быстрее градиентного спуска.\n\n### 2. Результаты расчёта\n\nСогласно выполненному коду (при шаге обучения $\\eta = 0.1$ для GD):\n\n*   **Градиентный спуск:** После 10 итераций значение $x$ составляет примерно **$-0.30$**. Он движется к нулю очень медленно.\n*   **Метод Ньютона:** После 10 итераций значение $x$ составляет примерно **$0.03$**. Он значительно ближе к истинному минимуму.\n\n### 3. Визуализация\n\nНа графиках ниже показано:\n1.  **Сходимость $x_n$:** Как значения аргумента приближаются к $0$. Синяя линия (Ньютон) падает к нулю гораздо круче красной (GD).\n2.  **Значение функции $\\log(f(x_n))$:** Как быстро уменьшается значение самой функции. Использование логарифмической шкалы позволяет увидеть, что метод Ньютона \"пролетает\" вниз по значениям функции намного быстрее.\n\n![Сравнение методов](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABIEAAAKkCAYAAACXhy9+AAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjguNCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8fJSN1AAAACXBIWXMAABJ0AAASdAHeZh94AAEAAElEQVR4nOzdd3gUVRfH8e8mWQIkdAi9CUiXIiBFepVeRBFRqiBNUJFiwQDSVJQi+EoNiiId6SpVBQRBQUJTmogCAUILNWXeP8ZdsqTDbjbZ/D7PkyezM7MzZ2+AXM7ce67FMAwDERERERERERHxaF7uDkBERERERERERFxPSSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASSARERERERERkTRASS",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
-  },
-  {
-   "id": "rsa_encrypt_small",
-   "category": "compute_pure",
-   "question": "Зашифруй число m=7 ключом (n=143, e=7). Покажи c.",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "python"
-   ],
-   "images": 0,
-   "elapsed": 17.6,
-   "cost": 0.000458,
-   "prompt_tokens": 5356,
-   "completion_tokens": 243,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Для шифрования в RSA используется формула:\n$$c = m^e \\pmod n$$\n\nПодставим твои значения:\n*   $m = 7$ (открытое сообщение)\n*   $e = 7$ (открытая экспонента)\n*   $n = 143$ (модуль)\n\n**Расчёт:**\n$$c = 7^7 \\pmod{143}$$\n$$7^7 = 823543$$\n$$823543 = 5759 \\times 143 + 6$$\n\n**Результат:**\n$c = 6$",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
-  },
-  {
-   "id": "rsa_full_roundtrip",
-   "category": "compute_pure",
-   "question": "Возьми p=11, q=13, e=7. Сгенерируй RSA-ключ полностью: вычисли n, φ(n), d. Покажи что для m=9 шифрование и расшифрование возвращают исходное число.",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "python"
-   ],
-   "images": 0,
-   "elapsed": 32.5,
-   "cost": 0.000727,
-   "prompt_tokens": 5845,
-   "completion_tokens": 934,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Разбираем генерацию ключей RSA по шагам для твоих параметров:\n\n**1. Генерация параметров:**\n*   **Вычисляем $n$:** \n    $n = p \\cdot q = 11 \\cdot 13 = 143$\n*   **Вычисляем $\\phi(n)$ (функция Эйлера):**\n    $\\phi(n) = (p - 1)(q - 1) = 10 \\cdot 12 = 120$\n*   **Находим секретный ключ $d$:**\n    Это число, обратное $e$ по модулю $\\phi(n)$. То есть $d \\cdot e \\equiv 1 \\pmod{\\phi(n)}$.\n    Для $e = 7$ и $\\phi(n) = 120$ находим $d = 103$ (так как $7 \\cdot 103 = 721$, а $721 = 6 \\cdot 120 + 1$).\n\n**Итоговые ключи:**\n*   **Открытый ключ:** $(e, n) = (7, 143)$\n*   **Закрытый ключ:** $(d, n) = (103, 143)$\n\n**2. Проверка (шифрование и расшифрование):**\nВозьмём сообщение $m = 9$.\n\n*   **Шифрование ($c = m^e \\pmod n$):**\n    $c = 9^7 \\pmod{143} = 4782969 \\pmod{143} = 48$\n*   **Расшифрование ($m_{dec} = c^d \\pmod n$):**\n    $m_{dec} = 48^{103} \\pmod{143} = 9$\n\n**Результат:**\nКак видишь, $48^{103} \\pmod{143}$ возвращает исходное число **9**. Математика сработала!",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
-  },
-  {
-   "id": "multihop_newton_vs_gradient",
-   "category": "multi_hop",
-   "question": "В чём отличие метода Ньютона от градиентного спуска для задач оптимизации? Какие из этих методов разобраны в учебнике?",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "search_textbook"
-   ],
-   "images": 0,
-   "elapsed": 16.8,
-   "cost": 0.000821,
-   "prompt_tokens": 8653,
-   "completion_tokens": 632,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "<|channel>thought\n<channel|>Ты уже на главе [Метод Ньютона – Σ Сигма](ch02_newton).\n\n### В чём отличие?\n\nЕсли говорить просто, разница в том, **какую информацию о функции использует метод** для определения шага:\n\n1.  **Градиентный спуск (First-order method)** использует только **первую производную** (градиент $\\nabla f(x)$). Он знает, в какую сторону «склон» идет вниз, но не знает, насколько сильно этот склон искривлен. Из-за этого в «оврагах» (где одна сторона крутая, а другая пологая) градиентный спуск часто начинает осциллировать (зигзагообразно прыгать от стенки к стенке), делая очень маленькие шаги.\n2.  **Метод Ньютона (Second-order method)** использует и градиент, и **вторую производную** (Гессиан $\\nabla^2 f(x)$). Он учитывает **кривизну** поверхности. Это позволяет методу Ньютона «понимать» геометрию оврага и делать более умные, прямые шаги сразу к минимуму. В идеальном случае (для квадратичной функции) метод Ньютона находит минимум за один шаг.\n\n**Главный минус Ньютона:** вычислять и обращать матрицу Гессиана $\\nabla^2 f(x)$ очень дорого, если у тебя миллионы параметров (как в нейросетях). Градиентный спуск в этом плане гораздо дешевле и быстрее на больших данных.\n\n### Что разобрано в учебнике?\n\nСудя по структуре, в учебнике подробно представлены:\n*   **Метод Ньютона** (ты сейчас его читаешь в `ch02_newton`).\n*   **Градиентный спуск (GD)** и его вариации:\n    *   Классический GD.\n    *   Методы с **импульсом (Momentum)** — чтобы «разгоняться» в оврагах.\n    *   **Adam** — адаптивный метод, подстраивающий шаг под каждую координату.\n*   **Безградиентные методы** (например, метод Нелдера–Мида), которые работают вообще без производных.\n*   **Динамика Ланжевена** — градиентный спуск с добавлением шума для поиска глобального минимума.",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "judge_pass": true,
-   "judge_reason": "Верно по сути: первый vs второй порядок, кривизна/гессиан, овраги, формулы корректны. Указан ch02_newton, GD в др. главах. Сырой тег <|channel>thought — стилевая шероховатость, суть рубрики выполнена.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 0.9375,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "second_vs_first_order",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "chapter_ref",
-     "level": "met",
-     "weight": 2,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "no_hallucination",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "tools_expected",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": "tool_expected"
-    },
-    {
-     "id": "style",
-     "level": "partial",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
-  },
-  {
-   "id": "structural_kantorovich_theorem",
-   "category": "structural",
-   "question": "Сформулируй теорему о сходимости метода Герона.",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "find_theorem"
-   ],
-   "images": 0,
-   "elapsed": 9.7,
-   "cost": 0.000493,
-   "prompt_tokens": 5397,
-   "completion_tokens": 340,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Ты уже на этой главе. Вот формулировка теоремы из учебника:\n\n> **Теорема 2.1. Сходимость метода Герона**\n> Для любого $x_0>0$ последовательность (2.4) монотонно убывает (начиная с $k=1$) и сходится к $\\sqrt{a}$. Более того, для ошибки $e_k=x_k-\\sqrt{a}$ выполнено\n> $$e_{k+1} = \\dfrac{e_k^2}{2x_k}, \\qquad \\text{и при } k \\geq 1: \\quad 0 \\le e_{k+1} \\le \\dfrac{e_k^2}{2\\sqrt{a}}.$$\n\n**Разбор нотации:**\n*   $x_k$ — текущее приближение корня на шаге $k$.\n*   $e_k = x_k - \\sqrt{a}$ — ошибка (разность между текущим значением и истинным корнем $\\sqrt{a}$).\n*   $e_{k+1} \\le \\frac{e_k^2}{2\\sqrt{a}}$ — это ключевой момент, который показывает **квадратичную сходимость**. Ошибка на следующем шаге пропорциональна *квадрату* предыдущей ошибки. На практике это значит, что количество верных знаков после запятой примерно удваивается с каждой итерацией.",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "judge_pass": true,
-   "judge_reason": "Корректная Теорема 2.1: x_0>0, сходимость к √a, квадратичная оценка ошибки. LaTeX рендерится, разбор нотации уместен.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "positive_x0",
-     "level": "met",
-     "weight": 2,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "converges_sqrt_a",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "quadratic_or_monotone",
-     "level": "met",
-     "weight": 2,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "no_hallucination",
-     "level": "met",
-     "weight": 1,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "tools_expected",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": "tool_expected"
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
-  },
-  {
-   "id": "vision_refine_diverging_sgd",
-   "category": "vision_refine",
-   "question": "Запусти SGD на функции f(x) = x² с шагом η = 1.1 из x₀ = 2, 30 итераций. Что произойдёт? Если разойдётся — подбери рабочий шаг и покажи сходящуюся траекторию.",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [
-    "0.5"
-   ],
-   "tools": [
-    "python"
-   ],
-   "images": 1,
-   "elapsed": 52.0,
-   "cost": 0.000972,
-   "prompt_tokens": 6133,
-   "completion_tokens": 901,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "При шаге $\\eta = 1.1$ произойдёт **расходимость** алгоритма.\n\n**Что именно происходит:**\nВ методе градиентного спуска (SGD) обновление выглядит так: $x_{t+1} = x_t - \\eta \\cdot f'(x_t)$. \nДля функции $f(x) = x^2$ градиент $f'(x) = 2x$. Подставим это в формулу:\n$$x_{t+1} = x_t - \\eta \\cdot (2x_t) = x_t(1 - 2\\eta)$$\n\nЕсли $|1 - 2\\eta| > 1$, то значение $x$ будет увеличиваться по модулю с каждой итерацией, осциллируя вокруг нуля. \nВ твоём случае: $|1 - 2 \\cdot 1.1| = |1 - 2.2| = |-1.2| = 1.2$. \nТак как $1.2 > 1$, ошибка растёт в геометрической прогрессии.\n\n**Результаты расчёта:**\n*   При $\\eta = 1.1$: значения прыгают через ноль и разлетаются. Последнее значение (30-я итерация) $\\approx 474.75$.\n*   При $\\eta = 0.1$: шаг стал достаточно малым ($|1 - 2 \\cdot 0.1| = 0.8 < 1$), и алгоритм плавно сходится к минимуму. Последнее значение $\\approx 0.00$.\n\n**Графики:**\nНа левом графике видна характерная «пила» с растущей амплитудой — это и есть расходимость. На правом графике — классическая экспоненциальная сходимость к $x = 0$.",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "judge_pass": true,
-   "judge_reason": "Верный диагноз (|1−2·1.1|=1.2>1, x30≈474.75), рабочий η=0.1 со сходимостью к 0, описаны оба графика («пила» vs экспонента). LaTeX корректен.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 0.9,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "diagnose_divergence",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "working_step",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "correct_numbers",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "two_runs",
-     "level": "none",
-     "weight": 1,
-     "critical": false,
-     "auto": "min2_python"
-    },
-    {
-     "id": "image_present",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": "image_present"
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
-  },
-  {
-   "id": "hashlib_demo",
-   "category": "compute_pure",
-   "question": "Посчитай SHA-256 хеш строки 'sigma' в hex.",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "python"
-   ],
-   "images": 0,
-   "elapsed": 17.7,
-   "cost": 0.000428,
-   "prompt_tokens": 5361,
-   "completion_tokens": 156,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Хеш SHA-256 для строки `'sigma'` в шестнадцатеричном формате (hex):\n\n`38de90475bb334fb3dea5d54f250500aba60fe2c6158115d342b06bcb46e39bf`",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
-  },
-  {
-   "id": "linreg_simple",
-   "category": "compute_plot",
-   "question": "Подбери линейную регрессию y = a*x + b для точек (1, 2.1), (2, 3.9), (3, 6.2), (4, 7.8). Покажи коэффициенты и график.",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "python"
-   ],
-   "images": 1,
-   "elapsed": 37.1,
-   "cost": 0.000797,
-   "prompt_tokens": 5856,
-   "completion_tokens": 536,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Для твоих точек методом наименьших квадратов (МНК) подобрана следующая линейная регрессия:\n\n**$y = 1.94x + 0.15$**\n\n**Коэффициенты:**\n*   **$a$ (наклон)** = $1.94$\n*   **$b$ (сдвиг/свободный член)** = $0.15$\n\n**Интерпретация графика:**\nНа графике видно, что синяя линия проходит максимально близко ко всем красным точкам, минимизируя сумму квадратов вертикальных отклонений (остатков). Линия имеет четкий положительный наклон, что соответствует росту $y$ при увеличении $x$. Точки лежат почти на одной прямой, поэтому аппроксимация выглядит очень точной.",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
-  },
-  {
-   "id": "out_of_scope_recipe",
-   "category": "out_of_scope",
-   "question": "Дай мне рецепт борща.",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [],
-   "images": 0,
-   "elapsed": 3.8,
-   "cost": 0.000202,
-   "prompt_tokens": 2547,
-   "completion_tokens": 70,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Я — ассистент учебника по информатике, оптимизации и математике, поэтому рецептами борща не владею. Могу помочь с методами оптимизации, теорией чисел или алгоритмами. \n\nЕсли захочешь обсудить сходимость метода Ньютона или его применение — я к твоим услугам!",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "judge_pass": true,
-   "judge_reason": "Вежливый отказ, предложил темы учебника.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "refusal",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "no_recipe",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "offer_help",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
-  },
-  {
-   "id": "rsa_history",
-   "category": "rag_basic",
-   "question": "Кто придумал RSA и в каком году?",
-   "pass": true,
-   "tool_match": false,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "read_chapter"
-   ],
-   "images": 0,
-   "elapsed": 8.6,
-   "cost": 0.000601,
-   "prompt_tokens": 7598,
-   "completion_tokens": 204,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Криптосистема RSA была опубликована в **1978 году**.\n\nЕё придумали трое сотрудников Массачусетского технологического института (MIT):\n* **Р**ональд Райвест;\n* **Ш**амир (Ади Шамир);\n* **А**длеман (Леонард Адлеман).\n\nНазвание системы — это акроним из первых букв их фамилий. \n\n*Интересный факт из учебника:* та же схема была независимо открыта ещё в 1973 году британским математиком Клиффордом Коксом, но так как он работал в спецслужбе (GCHQ), его открытие было засекречено и стало известно миру только в 1997 году.",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "judge_pass": true,
-   "judge_reason": "Все трое, MIT, 1978 верно; факт про Кокса корректен и совпадает с учебником.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 0.9,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "year_1978",
-     "level": "met",
-     "weight": 2,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "three_authors",
-     "level": "met",
-     "weight": 3,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "mit",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "no_fake_authors",
-     "level": "met",
-     "weight": 2,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "tools_expected",
-     "level": "none",
-     "weight": 1,
-     "critical": false,
-     "auto": "tool_expected"
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
-  },
-  {
-   "id": "greeting_minimal",
-   "category": "out_of_scope",
-   "question": "Привет!",
-   "pass": false,
-   "tool_match": true,
-   "answer_match": false,
-   "visual_match": true,
-   "missing": [],
-   "tools": [],
-   "images": 0,
-   "elapsed": 5.7,
-   "cost": 0.000211,
-   "prompt_tokens": 2542,
-   "completion_tokens": 96,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Привет! Вижу, ты сейчас изучаешь **метод Ньютона** (глава `ch02_newton`). \n\nЭто мощный инструмент для поиска корней функций, но у него есть свои нюансы сходимости и выбора начальной точки. Если возникнут вопросы по формулам, доказательствам или захочешь визуализировать, как метод «прыгает» по касательным к графику — пиши, разберемся! 🚀",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "judge_pass": false,
-   "judge_reason": "337 знаков — более чем вдвое сверх лимита, простыня-описание метода вместо короткого отклика. Без выдуманных разделов, но это стена.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 0.0,
-   "rubric_capped": true,
-   "rubric_detail": [
-    {
-     "id": "short",
-     "level": "none",
-     "weight": 3,
-     "critical": true,
-     "auto": "short"
-    },
-    {
-     "id": "offer_help",
-     "level": "met",
-     "weight": 2,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "no_tools",
-     "level": "met",
-     "weight": 2,
-     "critical": true,
-     "auto": "no_tools"
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
-  },
-  {
-   "id": "euclid_gcd_python",
-   "category": "compute_pure",
-   "question": "Посчитай НОД(48, 180) и НОД(1071, 462) через алгоритм Евклида в python.",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "python"
-   ],
-   "images": 0,
-   "elapsed": 23.9,
-   "cost": 0.000489,
-   "prompt_tokens": 5391,
-   "completion_tokens": 328,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Лови результаты вычислений через алгоритм Евклида:\n\n* **НОД(48, 180) = 12**\n* **НОД(1071, 462) = 21**\n\nЕсли интересно, как это работает «в уме» по шагам:\n1. Для первого случая: $180 = 48 \\cdot 3 + 36 \\to 48 = 36 \\cdot 1 + 12 \\to 36 = 12 \\cdot 3 + 0$. Последний ненулевой остаток — **12**.\n2. Для второго: $1071 = 462 \\cdot 2 + 147 \\to 462 = 147 \\cdot 3 + 21 \\to 147 = 21 \\cdot 7 + 0$. Итог — **21**.",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
-  },
-  {
-   "id": "definition_superlinear",
-   "category": "definition",
-   "question": "Что значит сверхлинейная сходимость?",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "find_definition"
-   ],
-   "images": 0,
-   "elapsed": 18.8,
-   "cost": 0.000705,
-   "prompt_tokens": 7950,
-   "completion_tokens": 436,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Ты уже на главе про метод Ньютона, и это как раз то место, где обсуждается скорость его работы.\n\nСогласно учебнику:\n\n> **Определение 2.3. Сверхлинейная и квадратичная сходимости**\n> Говорят, что последовательность $\\{x_k\\}$ сходится к $x^{\\star}$ со **сверхлинейной скоростью**, если\n> $$\\lim_{k\\to\\infty}\\dfrac{|x_{k+1}-x^{\\star}|}{|x_k-x^{\\star}|}=0.$$\n\n**Что это значит простыми словами:**\n\n*   **Суть формулы:** Отношение ошибки на следующем шаге $|x_{k+1}-x^{\\star}|$ к ошибке на текущем шаге $|x_k-x^{\\star}|$ стремится к нулю. \n*   **Интуиция:** Это значит, что ошибка уменьшается **быстрее**, чем в геометрической прогрессии (линейной сходимости). В линейной сходимости это отношение — константа (например, $0.5$), а здесь оно само становится всё меньше и меньше с каждым шагом.\n*   **Связь с квадратичной сходимостью:** Сверхлинейная сходимость — это «зонтичный» термин. Если ошибка уменьшается пропорционально **квадрату** предыдущей ошибки ($|x_{k+1}-x^{\\star}| \\leq M |x_k-x^{\\star}|^{2}$), то такая сходимость является частным (и более мощным) случаем сверхлинейной.\n\nМетод Ньютона в идеальных условиях (когда корень простой и функция достаточно гладкая) как раз обладает **квадратичной** сходимостью, что является «супер-версией» сверхлинейной.",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "judge_pass": true,
-   "judge_reason": "Точная цитата определения с пределом →0, верная связь с квадратичной. LaTeX корректен.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "limit_ratio_zero",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "no_wrong_def",
-     "level": "met",
-     "weight": 1,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "tools_expected",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": "tool_expected"
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
-  },
-  {
-   "id": "theorem_clt",
-   "category": "structural",
-   "question": "Сформулируй центральную предельную теорему как в учебнике.",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "find_theorem",
-    "find_definition",
-    "search_textbook",
-    "read_chapter",
-    "read_chapter"
-   ],
-   "images": 0,
-   "elapsed": 28.5,
-   "cost": 0.001655,
-   "prompt_tokens": 20962,
-   "completion_tokens": 552,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "В текущей главе, которую ты читаешь, центральная предельная теорема (ЦПТ) упоминается лишь в контексте подходов к анализу данных, но её **полная формальная формулировка** в этом разделе не приведена (там разбирается метод максимума правдоподобия).\n\nОднако, основываясь на сниппетах из других разделов учебника, ЦПТ формулируется следующим образом:\n\n> **Центральная предельная теорема (ЦПТ)** утверждает, что распределение нормированной суммы независимых одинаково распределённых случайных величин с конечной дисперсией стремится к нормальному.\n\nЕсли перевести это на более простой язык:\n*   **Суть:** Если ты возьмёшь очень много независимых случайных факторов (например, ошибки измерения, где каждый фактор — это маленькая случайная величина) и сложишь их вместе, то их общая сумма будет распределена примерно по **нормальному (гауссову) закону**.\n*   **Условие:** Это работает, если у величин **конечная дисперсия** (то есть они не «взрываются» и не имеют слишком «тяжёлых хвостов», как распределение Коши).\n*   **Почему это важно для анализа данных:** Именно благодаря ЦПТ мы часто встречаем нормальное распределение в шумах и ошибках. Как сказано в учебнике, ошибка измерения — это почти всегда сумма множества мелких независимых факторов, поэтому она «стремится к гауссу».\n\n**Важное замечание из учебника:**\nЕсли дисперсия **бесконечна** (как в случае с распределением Коши), то ЦПТ **не работает**, и сумма величин не будет стремиться к нормальному распределению.",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "judge_pass": true,
-   "judge_reason": "Не нашёл точную формулу, но дал корректную суть ЦПТ (нормированная сумма iid с конечной дисперсией → нормальное) с условиями, без галлюцинаций. Рубрика 'передать суть' выполнена.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "iid_sum",
-     "level": "met",
-     "weight": 2,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "normal_limit",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "conditions",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "tools_expected",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": "tool_expected"
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
-  },
-  {
-   "id": "plot_sincos_overlay",
-   "category": "compute_plot",
-   "question": "Построй графики sin(x) и cos(x) на интервале [-2π, 2π] на одном поле. Сделай легенду.",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "python"
-   ],
-   "images": 1,
-   "elapsed": 32.4,
-   "cost": 0.000964,
-   "prompt_tokens": 8466,
-   "completion_tokens": 484,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Вот графики функций $\\sin(x)$ и $\\cos(x)$ на интервале $[-2\\pi, 2\\pi]$.\n\nНа графике видно характерное смещение: $\\cos(x)$ — это та же синусоида, но сдвинутая влево на $\\pi/2$.\n\n**Ключевые точки для проверки:**\n* $\\sin(0) = 0.00$, $\\cos(0) = 1.00$\n* $\\sin(\\pi/2) = 1.00$, $\\cos(\\pi/2) = 0.00$\n\n{figure}",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
-  },
-  {
-   "id": "fragment_explanation",
-   "category": "rag_basic",
-   "question": "Если кто-то предлагает использовать обновление x_{k+1} = x_k - f(x_k)·f'(x_k) вместо классического Ньютона — что это за идея и она работает?",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "read_chapter",
-    "python",
-    "python"
-   ],
-   "images": 1,
-   "elapsed": 54.3,
-   "cost": 0.002382,
-   "prompt_tokens": 20112,
-   "completion_tokens": 1557,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Идея заменить классическое обновление $x_{k+1} = x_k - \\frac{f(x_k)}{f'(x_k)}$ на $x_{k+1} = x_k - f(x_k) \\cdot f'(x_k)$ математически ошибочна для поиска корней, и вот почему.\n\n### В чём ошибка?\nКлассический метод Ньютона основан на поиске пересечения **касательной** с осью $x$. Как сказано в учебнике, уравнение касательной:\n$$y = f(x_k) + f'(x_k)(x - x_k)$$\nЧтобы найти точку пересечения с осью ($y=0$), мы решаем уравнение относительно $x$, что и даёт деление на производную: $\\Delta x = -f(x_k)/f'(x_k)$.\n\nПредложенная формула $x_{k+1} = x_k - f(x_k) \\cdot f'(x_k)$ — это не метод Ньютона. Это попытка применить что-то вроде **градиентного спуска** к функции $f(x)$, но с очень странным «шагом». В градиентном спуске мы идем в сторону, противоположную производной: $x_{k+1} = x_k - \\eta \\cdot f'(x_k)$. В твоём же варианте «шаг» зависит от самого значения функции $f(x_k)$.\n\n### Что происходит на практике?\nЯ запустил симуляцию для уравнения $f(x) = x^3 - 2x - 5$ (корень $\\approx 2.09$), чтобы проверить, как это работает.\n\n**Результаты расчёта:**\n*   **Классический Ньютон:** $x_0 = 2.0 \\to 2.1 \\to 2.0945...$ (сходится мгновенно).\n*   **Твой вариант:** $x_0 = 2.0 \\to 12.0 \\to -730558.0 \\to \\dots \\to \\text{Overflow}$ (улетает в бесконечность).\n\n**Вывод из эксперимента:**\nВместо того чтобы приближаться к корню, значения начинают осциллировать с гигантской амплитудой и мгновенно вызывают переполнение (Overflow). \n\n**Почему так?**\n1.  **Размерность шага:** В Ньютоне мы делим на $f'(x_k)$. Если производная большая, шаг становится маленьким и аккуратным. В твоей формуле мы **умножаем** на $f'(x_k)$. Если производная большая, шаг становится огромным, и мы «пролетаем» корень, улетая в другую часть графика.\n2.  **Геометрия:** Твой метод не ищет пересечение касательной. Он делает прыжок, размер которого пропорционален произведению значения функции и её наклона. Это не имеет устойчивого математического смысла для поиска корня.\n\n**Вердикт:** Использовать это нельзя. Метод не только не сходится, но и ведет себя крайне нестабильно.",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "judge_pass": true,
-   "judge_reason": "Correct: not Newton, GD-like with strange step, numerical divergence (Overflow) shown. GD on f-squared implied. Sound.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 0.8333,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "identifies_not_newton",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "mechanism",
-     "level": "partial",
-     "weight": 3,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "no_false_endorsement",
-     "level": "met",
-     "weight": 2,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
-  },
-  {
-   "id": "eigenvalues_numpy",
-   "category": "compute_pure",
-   "question": "Найди собственные значения матрицы [[2, 1], [1, 2]] через numpy.",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "python"
-   ],
-   "images": 0,
-   "elapsed": 17.9,
-   "cost": 0.000444,
-   "prompt_tokens": 5309,
-   "completion_tokens": 214,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Собственные значения матрицы $\\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$ через `numpy` равны:\n\n**3.0** и **1.0**.\n\nВот как это выглядит в коде и выводе:\n* `eigenvalues = [3. 1.]`\n\nЕсли тебе интересно, как это работает математически: для этой матрицы характеристическое уравнение $\\det(A - \\lambda I) = 0$ превращается в $(2-\\lambda)^2 - 1 = 0$, откуда $\\lambda_1 = 3$ и $\\lambda_2 = 1$.",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
-  },
-  {
-   "id": "plot_loss_landscape",
-   "category": "compute_plot",
-   "question": "Построй контурный график функции потерь L(a, b) = sum((a*x_i + b - y_i)^2) для точек (1,2), (2,3), (3,5), (4,4) на сетке a in [-2, 4], b in [-3, 3].",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "python"
-   ],
-   "images": 1,
-   "elapsed": 604.5,
-   "cost": 0.019888,
-   "prompt_tokens": 97603,
-   "completion_tokens": 10142,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Для построения контурного графика функции потерь $L(a, b) = \\sum_{i=1}^{4} (a \\cdot x_i + b - y_i)^2$ по точкам $(1,2), (2,3), (3,5), (4,4)$ я выполнил расчет на сетке $a \\in [-2, 4]$ и $b \\in [-3, 3]$.\n\n### Результаты расчёта:\n*   **Приблизительный минимум:** $a \\approx 0.79$, $b \\approx 1.55$\n*   **Минимальное значение потерь:** $L \\approx 1.80$\n\n### Контурный график:\nНа графике ниже контуры функции потерь наглядно показывают «чашу» (параболоид), центр которой находится в точке минимума. Чем ближе к центру, тем меньше значение функции потерь.\n\n![Контурный график функции потерь](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAy4AAAKRCAYAAACyWP2/AAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjguNCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8fJSN1AAAACXBIWXMAABJ0AAASdAHeZh94AAEAAElEQVR4nOy9eZhjZZn+f2dfK3tSe1Vq7wVcEBkUxRawwQVtRRzXYRFQwREXdBDwS6OAyk8YFIUBURtBHRlwGFEWHadBHWFUFKXp7lpTqS1V2VNV2Zfz++M9KbrorZKc5JyTej7XleuCquSc96ROv+d93ud+nlvBcRwHgiAIgiAIgiAICaMUewAEQRAEQRAEQRDHgwIXgiAIgiAIgiAkDwUuBEEQBEEQBEFIHgpcCIIgCIIgCIKQPBS4EARBEARBEAQheShwIQiCIAiCIAhC8lDgQhAEQRAEQRCE5KHAhSAIgiAIgiAIyUOBC0EQBEEQBEEQkocCF4IgCIIgCIIgJA8FLgRBEARBEARBSB4KXAiCIAiCIAiCkDwUuBAEQRAEQRAEIXkocCGITcijjz6KV7/61SiVSms/27VrF6666ioRR0UQBAH80z/9EzweD5LJZMPOeeedd0KhUOD73//+cd/73HPPQaFQ4Hvf+14DRkYQxKFQ4EIIjkKhgEKhOOrvb7nlFigUCrS3t+PAgQMNHBlR5h/+4R8wMTGBN7/5zfjiF7+Id77znfiv//ovnHnmmWIPTXCeeuopKBQK7N69W+yhVIXcx08QZ5xxBhQKBX73u98d971//vOf8cADD+Dqq6+GyWRqwOgYf/nLXwAArn3v/717/777/j3333H7755vj777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/H777/",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
-  },
-  {
-   "id": "diffie_hellman_compute",
-   "category": "compute_pure",
-   "question": "Проведи протокол Диффи–Хеллмана: p=23, g=5. Алиса берёт a=6, Боб берёт b=15. Какой общий секрет?",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "python"
-   ],
-   "images": 0,
-   "elapsed": 30.7,
-   "cost": 0.000616,
-   "prompt_tokens": 5590,
-   "completion_tokens": 662,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Давай разберем этот протокол по шагам. Суть Диффи–Хеллмана в том, что стороны обмениваются публичными значениями, которые позволяют им вычислить одно и то же число, не передавая сам секрет по открытому каналу.\n\n**Пошаговый расчет:**\n\n1.  **Публичные параметры:** $p = 23$ (простое число), $g = 5$ (основание).\n2.  **Шаг Алисы:**\n    *   Её секретный ключ: $a = 6$.\n    *   Она вычисляет публичное значение: $A = g^a \\pmod{p} = 5^6 \\pmod{23}$.\n    *   $5^6 = 15625$. При делении на $23$ остаток равен **8**.\n3.  **Шаг Боба:**\n    *   Его секретный ключ: $b = 15$.\n    *   Он вычисляет публичное значение: $B = g^b \\pmod{p} = 5^{15} \\pmod{23}$.\n    *   После вычислений получаем **19**.\n4.  **Обмен и вычисление секрета:**\n    *   Алиса получает $B = 19$ и считает: $s = B^a \\pmod{p} = 19^6 \\pmod{23} = \\mathbf{2}$.\n    *   Боб получает $A = 8$ и считает: $s = A^b \\pmod{p} = 8^{15} \\pmod{23} = \\mathbf{2}$.\n\n**Ответ:** Общий секрет равен **2**.",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0
-  },
-  {
-   "id": "outline_chapter",
-   "category": "structural",
-   "question": "Перечисли основные разделы главы про Ньютона.",
-   "pass": false,
-   "tool_match": true,
-   "answer_match": false,
-   "visual_match": true,
-   "missing": [],
-   "tools": [],
-   "images": 0,
-   "elapsed": 10.3,
-   "cost": 0.000228,
-   "prompt_tokens": 2549,
-   "completion_tokens": 145,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Ты уже на этой главе. Вот её основные разделы:\n\n*   **Геометрическая интерпретация** (как касательная помогает искать корень);\n*   **Алгоритм метода** (формула итерации $x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$);\n*   **Условия сходимости** (когда метод работает быстро, а когда — нет);\n*   **Скорость сходимости** (почему он считается квадратичным);\n*   **Проблемы и ограничения** (проблема деления на ноль и чувствительность к начальному приближению).",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "judge_pass": false,
-   "judge_reason": "'Геометрическая интерпретация', 'Условия сходимости', 'Проблемы и ограничения' не совпадают с реальными разделами. Галлюцинация без инструментов.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 0.0,
-   "rubric_capped": true,
-   "rubric_detail": [
-    {
-     "id": "lists_real_sections",
-     "level": "none",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "no_invented_sections",
-     "level": "none",
-     "weight": 2,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
-  },
-  {
-   "id": "math_latex_derivation",
-   "category": "rag_basic",
-   "question": "Выведи формулу метода Ньютона через касательную. Формулу запиши через LaTeX.",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [],
-   "images": 0,
-   "elapsed": 8.0,
-   "cost": 0.000248,
-   "prompt_tokens": 2559,
-   "completion_tokens": 203,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "Ты уже на этой главе.\n\nМетод Ньютона можно представить геометрически: мы ищем корень функции, проводя касательную к графику в текущей точке и находя точку, где эта касательная пересекает ось $x$.\n\nФормула метода Ньютона через касательную:\n\n$$x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$$\n\n**Как это работает:**\n1. Берем текущую точку $x_n$.\n2. Строим касательную к графику функции $f(x)$ в этой точке. Уравнение касательной: $y - f(x_n) = f'(x_n)(x - x_n)$.\n3. Находим точку пересечения этой прямой с осью $x$ (где $y = 0$).\n4. Полученное значение $x$ и становится нашим следующим приближением $x_{n+1}$.",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "judge_pass": true,
-   "judge_reason": "Верная формула + корректное пошаговое геометрическое описание вывода через касательную (уравнение касательной, y=0).",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 0.8125,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "final_formula",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "tangent_derivation",
-     "level": "partial",
-     "weight": 3,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "no_math_error",
-     "level": "met",
-     "weight": 1,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
-  },
-  {
-   "id": "definition_perceptron",
-   "category": "definition",
-   "question": "Что такое полносвязная нейронная сеть?",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [
-    "find_definition"
-   ],
-   "images": 0,
-   "elapsed": 44.6,
-   "cost": 0.000643,
-   "prompt_tokens": 6100,
-   "completion_tokens": 635,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "\n\n> **Определение 3.12. Полносвязная нейронная сеть (MLP)**\n> \n> Полносвязная нейронная сеть глубины $L$ — это функция $\\mathbf x \\mapsto \\mathbf p(\\mathbf x)$, заданная как композиция $L$ слоёв:\n> \n> $$\\begin{aligned}\n> \\mathbf z^{(\\ell)} &= W^{(\\ell)} \\mathbf a^{(\\\\ell-1)} + \\mathbf b^{(\\ell)}, \\quad \\mathbf a^{(\\ell)} = \\sigma\\bigl(\\mathbf z^{(\\ell)}\\bigr), \\quad \\ell=1,\\dots,L-1 \\\\\n> \\mathbf z^{(L)} &= W^{(L)} \\mathbf a^{(\\ell-1)} + \\mathbf b^{(\\ell)}, \\quad \\mathbf p(\\mathbf x) = \\mathrm{softmax}\\bigl(\\mathbf z^{(L)}\\bigr)\n> \\end{aligned}$$\n> \n> Здесь $\\mathbf a^{(0)}=\\mathbf x$ (вход), $W^{(\\ell)}$ — матрица весов $\\ell$-го слоя, $\\mathbf b^{(\\ell)}$ — вектор смещений (bias), $\\sigma$ — функция активации, а $\\mathrm{softmax}$ превращает вектор в распределение вероятностей.\n\n**Если перевести это на человеческий язык:**\n\n1.  **Слои и композиция:** Сеть — это цепочка из $L$ слоёв. Результат одного слоя (активации $\\mathbf a$) становится входом для следующего.\n2.  **Линейная часть:** На каждом слое мы берём входной вектор, умножаем его на матрицу весов $W$ и прибавляем вектор смещения $\\mathbf b$. Это классическая операция $y = Wx + b$.\n3.  **Нелинейность:** Чтобы сеть могла выучить сложные зависимости, а не просто работать как одна большая линейная функция, мы пропускаем результат через функцию активации $\\sigma$ (например, ReLU или сигмоиду).\n4.  **Выход (Softmax):** На последнем слое используется функция **softmax**, которая «сжимает» выходные числа так, чтобы их сумма была равна 1. Это позволяет интерпретировать числа как вероятности принадлежности к разным классам.\n5.  **Параметры:** Всё, что сеть «учит» — это значения в матрицах $W$ и векторах $\\mathbf b$.\n\n**Почему она «полносвязная»?**\nПотому что в таком слое каждый нейрон предыдущего слоя соединён с каждым нейроном текущего слоя через веса в матрице $W$.",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "judge_pass": false,
-   "judge_reason": "Подтверждён фатальный битый LaTeX в ГЛАВНОЙ формуле слоя: 'a^{(\\\\ell-1)}' — двойной бэкслэш = перенос строки в aligned внутри незакрытого надстрочного индекса '(', что валит парсинг всего блока aligned → красная ошибка KaTeX на центральной формуле определения. Плюс индексная ошибка a^{(ℓ-1)} в последнем слое. Суть верна, но требуемая рубрикой формула не отрендерится.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 1.0,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "composition_layers",
-     "level": "met",
-     "weight": 3,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "layers_word",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    },
-    {
-     "id": "no_wrong_arch",
-     "level": "met",
-     "weight": 1,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "tools_expected",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": "tool_expected"
-    },
-    {
-     "id": "style",
-     "level": "met",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
-  },
-  {
-   "id": "refuse_unknown_year",
-   "category": "out_of_scope",
-   "question": "В каком году Гаусс изобрёл метод сопряжённых градиентов?",
-   "pass": true,
-   "tool_match": true,
-   "answer_match": true,
-   "visual_match": true,
-   "missing": [],
-   "tools": [],
-   "images": 0,
-   "elapsed": 14.9,
-   "cost": 0.000235,
-   "prompt_tokens": 2559,
-   "completion_tokens": 164,
-   "models_used": [
-    "google/gemma-4-26b-a4b-it"
-   ],
-   "answer": "В учебнике я этого не нашёл.\n\n**Вне учебника:**\nМетод сопряжённых градиентов (Conjugate Gradient method) не является изобретением Гаусса. Он был разработан **Барриса (Barrett)** и **Хершбергом (Herschberg)** в 1952 году, а наиболее известная его форма была представлена **Конде (Hestenes)** и **Штайбелем (Stiefel)** в **1952** году.\n\nГаусс же известен своими работами по методу наименьших квадратов и решению систем линейных уравнений, которые лежат в основе многих современных итерационных методов, но сам метод сопряжённых градиентов появился значительно позже.",
-   "no_answer": false,
-   "broken_formulas": 0,
-   "judge_pass": false,
-   "judge_reason": "Выдумал изобретателей 'Barrett/Herschberg', искажённые имена. Грубая галлюцинация.",
-   "judge": "adversarial-workflow-final",
-   "raw_unrendered": 0,
-   "unexpected": [],
-   "garbage": false,
-   "rubric_score": 0.8571,
-   "rubric_capped": false,
-   "rubric_detail": [
-    {
-     "id": "no_fabricated_year",
-     "level": "met",
-     "weight": 4,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "flags_false_premise",
-     "level": "met",
-     "weight": 2,
-     "critical": true,
-     "auto": null
-    },
-    {
-     "id": "style",
-     "level": "none",
-     "weight": 1,
-     "critical": false,
-     "auto": null
-    }
-   ]
-  }
- ],
- "avg_rubric_score": 0.9048
+  ],
+  "avg_rubric_score": 0.9048
 }
