@@ -63,9 +63,14 @@ def attach(bench_dir: Path, convo_rows: list) -> int:
         in_win = [r for r in convo_rows if t0 - 1 <= r.get("ts", 0) <= t1 + 3]
         if not in_win:
             continue
-        # последняя запись кейса несёт ВСЮ историю (вызовы и ответы по порядку)
-        tools = _tool_msgs(in_win[-1])
-        calls = _tool_calls(in_win[-1])
+        # Нужна запись с САМОЙ ПОЛНОЙ историей (у финального /api/llm в messages
+        # все вызовы и ответы тулзов). Брать просто последнюю запись окна нельзя:
+        # в хвост окна (+3с) попадает первый запрос СЛЕДУЮЩЕГО кейса (system+user,
+        # без тулов) — и кейс оставался без деталей (баг найден 2026-07-14).
+        best = max(in_win, key=lambda r: (len(_tool_msgs(r)) + len(_tool_calls(r)),
+                                          r.get("ts", 0)))
+        tools = _tool_msgs(best)
+        calls = _tool_calls(best)
         trace = c.get("trace") or []
         attached = False
         for i, t in enumerate(trace):
@@ -96,7 +101,9 @@ def load_convo(path: Path):
 if __name__ == "__main__":
     args = sys.argv[1:]
     if args and args[0] == "--all":
-        latest = sorted(EVAL.glob("bench_v*"), key=lambda p: (len(p.name), p.name))[-1]
+        # --all [bench_v1] — явная версия; без неё — последняя bench_v*
+        latest = (EVAL / args[1] if len(args) > 1
+                  else sorted(EVAL.glob("bench_v*"), key=lambda p: (len(p.name), p.name))[-1])
         convo = load_convo(EVAL / "llm_log_dev.jsonl") + load_convo(EVAL / "llm_log.jsonl")
         for md in sorted(latest.iterdir()):
             if md.is_dir():
