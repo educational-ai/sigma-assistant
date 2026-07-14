@@ -9,14 +9,22 @@
  },
  "ran_at": 1783971817.347018,
  "n": 29,
- "passed": 12,
+ "passed": 24,
  "answered": 29,
  "no_answer": 0,
- "pass_rate": 0.9231,
+ "pass_rate": 0.8276,
  "total_cost_usd": 0.03559,
  "cost_per_q_usd": 0.001227,
  "avg_elapsed_s": 12.8,
  "by_category": {
+  "rag_basic": {
+   "passed": 5,
+   "total": 5
+  },
+  "definition": {
+   "passed": 2,
+   "total": 3
+  },
   "compute_pure": {
    "passed": 8,
    "total": 8
@@ -24,6 +32,22 @@
   "compute_plot": {
    "passed": 4,
    "total": 5
+  },
+  "multi_hop": {
+   "passed": 0,
+   "total": 1
+  },
+  "structural": {
+   "passed": 3,
+   "total": 3
+  },
+  "vision_refine": {
+   "passed": 0,
+   "total": 1
+  },
+  "out_of_scope": {
+   "passed": 2,
+   "total": 3
   }
  },
  "cases": [
@@ -31,9 +55,9 @@
    "id": "newton_kantorovich_history",
    "category": "rag_basic",
    "question": "Когда Канторович получил Нобелевскую премию и за что?",
-   "pass": null,
+   "pass": true,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -69,18 +93,17 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": true,
+   "judge_reason": "Точный, полный, обоснованный ответ из учебника: Нобель 1975 по экономике за оптимальное распределение ресурсов, 1948 корректно отнесён к теореме; все critical-критерии met.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "newton_formula_recall",
    "category": "rag_basic",
    "question": "Объясни откуда берётся эта формула — что это за метод и какая геометрическая идея?",
-   "pass": null,
+   "pass": true,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -108,18 +131,17 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": true,
+   "judge_reason": "Метод Ньютона назван, геометрия (касательная→пересечение с осью→x_{k+1}) и формулы верны и заземлены в главе; единственный дефект — косметический лик сырых '###' в виджете, не критично.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "definition_strong_convex",
    "category": "definition",
    "question": "Что такое сильно выпуклая функция?",
-   "pass": null,
+   "pass": true,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -147,10 +169,9 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": true,
+   "judge_reason": "Точное определение сильно выпуклой функции из Опр. 2.4, полностью grounded в туле, формулы отрендерены, критический критерий met — зачёт.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "compute_factorial",
@@ -378,9 +399,9 @@
    "id": "multihop_newton_vs_gradient",
    "category": "multi_hop",
    "question": "В чём отличие метода Ньютона от градиентного спуска для задач оптимизации? Какие из этих методов разобраны в учебнике?",
-   "pass": null,
+   "pass": false,
    "tool_match": false,
-   "answer_match": null,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -456,18 +477,17 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": false,
+   "judge_reason": "Различие методов объяснено верно, но критический критерий chapter_ref = none (глава 2 не названа) + провал навигационной части multi_hop-задачи = незачёт.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "structural_kantorovich_theorem",
    "category": "structural",
    "question": "Сформулируй теорему о сходимости метода Герона.",
-   "pass": null,
+   "pass": true,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": true,
    "visual_match": true,
    "missing": [
     "квадратичн"
@@ -505,18 +525,17 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": true,
+   "judge_reason": "Точная формулировка Теоремы 2.1 из учебника, оба критических критерия met, формулы отрендерены; лёгкая болтливость в концовке — не критично",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "vision_refine_diverging_sgd",
    "category": "vision_refine",
    "question": "Запусти SGD на функции f(x) = x² с шагом η = 1.1 из x₀ = 2, 30 итераций. Что произойдёт? Если разойдётся — подбери рабочий шаг и покажи сходящуюся траекторию.",
-   "pass": null,
+   "pass": false,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -546,10 +565,9 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": false,
+   "judge_reason": "Расходимость при η=1.1 диагностирована и числа верны, но обязательная 2-я часть (рабочий шаг + сходящаяся траектория) не выполнена — критический критерий working_step=none, ответ брошен на обещании.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "hashlib_demo",
@@ -627,9 +645,9 @@
    "id": "out_of_scope_recipe",
    "category": "out_of_scope",
    "question": "Дай мне рецепт борща.",
-   "pass": null,
+   "pass": true,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [],
@@ -647,18 +665,17 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": true,
+   "judge_reason": "Чистый вежливый отказ вне темы, без рецепта, с предложением помощи по учебнику — все критические критерии met.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "rsa_history",
    "category": "rag_basic",
    "question": "Кто придумал RSA и в каком году?",
-   "pass": null,
+   "pass": true,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -694,18 +711,17 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": true,
+   "judge_reason": "Верный полный ответ (1978, все три автора, MIT), обоснован трейсом, чистая вёрстка — зачёт.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "greeting_minimal",
    "category": "out_of_scope",
    "question": "Привет!",
-   "pass": null,
+   "pass": false,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [],
@@ -723,10 +739,9 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": false,
+   "judge_reason": "[спор решён арбитром] Пересчёт подтверждает len=152 > 150; `short` помечен critical+auto (жёсткий машинный порог), значит провал не смягчается «по сути одно предложение». Прав оппонент: критический критерий провален → pass=false, хотя остальные факторы чисты.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "euclid_gcd_python",
@@ -775,9 +790,9 @@
    "id": "definition_superlinear",
    "category": "definition",
    "question": "Что значит сверхлинейная сходимость?",
-   "pass": null,
+   "pass": false,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -805,18 +820,17 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": false,
+   "judge_reason": "Определение верное и обосновано тулзой, но двойное экранирование LaTeX ломает рендер: ключевая дробь-отношение на странице не отображается — критический дефект доставленного артефакта.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "theorem_clt",
    "category": "structural",
    "question": "Сформулируй центральную предельную теорему как в учебнике.",
-   "pass": null,
+   "pass": true,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -852,10 +866,9 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": true,
+   "judge_reason": "Теорема 3.3 воспроизведена дословно из find_theorem, все критические критерии met, формула отрендерена чисто; мелкий нит — второй вызов read_chapter упал впустую, но на результат не повлиял.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "plot_sincos_overlay",
@@ -898,9 +911,9 @@
    "id": "fragment_explanation",
    "category": "rag_basic",
    "question": "Если кто-то предлагает использовать обновление x_{k+1} = x_k - f(x_k)·f'(x_k) вместо классического Ньютона — что это за идея и она работает?",
-   "pass": null,
+   "pass": true,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -928,10 +941,9 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": true,
+   "judge_reason": "Оба critical-критерия met (не Ньютон + без ложного одобрения), рендер чистый; минус — механизм (шаг ~f·f', движение к минимуму f²) не раскрыт, только partial.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "eigenvalues_numpy",
@@ -1047,9 +1059,9 @@
    "id": "outline_chapter",
    "category": "structural",
    "question": "Перечисли основные разделы главы про Ньютона.",
-   "pass": null,
+   "pass": true,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1077,18 +1089,17 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": true,
+   "judge_reason": "Разделы реальны и верны по служащемуся qmd/скрину (ground рубрики устарел), critical-критерии met; минусы — неполнота (3 из 6), слабая стратегия тула и чат-концовка.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "math_latex_derivation",
    "category": "rag_basic",
    "question": "Выведи формулу метода Ньютона через касательную. Формулу запиши через LaTeX.",
-   "pass": null,
+   "pass": true,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1140,18 +1151,17 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": true,
+   "judge_reason": "Итоговая формула верна, в LaTeX, отрендерена чисто; оба critical-критерия met. Вывод через касательную пропущен (tangent_derivation partial, но non-critical) — зачёт с понижением.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "definition_perceptron",
    "category": "definition",
    "question": "Что такое полносвязная нейронная сеть?",
-   "pass": null,
+   "pass": true,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1179,18 +1189,17 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": true,
+   "judge_reason": "Ответ верен, полон и совпадает с Опр. 3.12, все critical-критерии met, рендер чист; минус — бессмысленный тул-вызов (query «Гаусс») и ответ не заземлён на трейс, но контент математически корректен",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "refuse_unknown_year",
    "category": "out_of_scope",
    "question": "В каком году Гаусс изобрёл метод сопряжённых градиентов?",
-   "pass": null,
+   "pass": true,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1266,11 +1275,10 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": true,
+   "judge_reason": "Ложная предпосылка отвергнута, год Гауссу не выдуман, оба critical-критерия met; минус — лишняя справка с неверной атрибуцией CG Флетчеру–Ривзу вместо Hestenes–Stiefel (не critical)",
+   "judge": "meticulous-opus-v1"
   }
  ],
- "judge_pending": 16
+ "judge_pending": 0
 }

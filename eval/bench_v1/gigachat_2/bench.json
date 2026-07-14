@@ -9,17 +9,21 @@
  },
  "ran_at": 1783964506.1294792,
  "n": 29,
- "passed": 10,
+ "passed": 17,
  "answered": 29,
  "no_answer": 0,
- "pass_rate": 0.5882,
+ "pass_rate": 0.5862,
  "total_cost_usd": 0.253461,
  "cost_per_q_usd": 0.00874,
  "avg_elapsed_s": 11.4,
  "by_category": {
+  "rag_basic": {
+   "passed": 3,
+   "total": 5
+  },
   "definition": {
-   "passed": 1,
-   "total": 1
+   "passed": 2,
+   "total": 3
   },
   "compute_pure": {
    "passed": 5,
@@ -33,13 +37,17 @@
    "passed": 0,
    "total": 1
   },
+  "structural": {
+   "passed": 2,
+   "total": 3
+  },
   "vision_refine": {
    "passed": 0,
    "total": 1
   },
   "out_of_scope": {
-   "passed": 1,
-   "total": 1
+   "passed": 2,
+   "total": 3
   }
  },
  "cases": [
@@ -47,9 +55,9 @@
    "id": "newton_kantorovich_history",
    "category": "rag_basic",
    "question": "Когда Канторович получил Нобелевскую премию и за что?",
-   "pass": null,
+   "pass": true,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -85,18 +93,17 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": true,
+   "judge_reason": "Полный верный ответ (1975, экономика, оптимальное распределение ресурсов; 1948 корректно отнесён к теореме), заземлён на трейс, все критические критерии met.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "newton_formula_recall",
    "category": "rag_basic",
    "question": "Объясни откуда берётся эта формула — что это за метод и какая геометрическая идея?",
-   "pass": null,
+   "pass": true,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -124,10 +131,9 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": true,
+   "judge_reason": "Верно назван метод Ньютона, дана геометрия касательная→пересечение с осью x→x_{k+1}, формула точна; критические критерии met, дефекты лишь косметические (лик '###', холостой тул-вызов).",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "definition_strong_convex",
@@ -552,9 +558,9 @@
    "id": "structural_kantorovich_theorem",
    "category": "structural",
    "question": "Сформулируй теорему о сходимости метода Герона.",
-   "pass": null,
+   "pass": true,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": true,
    "visual_match": true,
    "missing": [
     "квадратичн"
@@ -584,10 +590,9 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": true,
+   "judge_reason": "Теорема 2.1 воспроизведена дословно и математически верно (формула ошибки пересчитана), критические критерии met, вёрстка чистая; минус только за слабую опору на трейс (тул вернул оглавление, не текст теоремы) и мелкий сбой markdown-заголовков.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "vision_refine_diverging_sgd",
@@ -748,9 +753,9 @@
    "id": "rsa_history",
    "category": "rag_basic",
    "question": "Кто придумал RSA и в каком году?",
-   "pass": null,
+   "pass": false,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": false,
    "visual_match": true,
    "missing": [
     "1978"
@@ -836,18 +841,17 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": false,
+   "judge_reason": "Три автора верны, но критический факт — год — неверен (1977 вместо 1978), противоречит извлечённому источнику; critical-критерий провален.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "greeting_minimal",
    "category": "out_of_scope",
    "question": "Привет!",
-   "pass": null,
+   "pass": true,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [],
@@ -865,10 +869,9 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": true,
+   "judge_reason": "Приветствие: 135 знаков ≤150, без тулзов, предложена помощь по учебнику, чисто на русском — все критичные критерии met",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "euclid_gcd_python",
@@ -909,9 +912,9 @@
    "id": "definition_superlinear",
    "category": "definition",
    "question": "Что значит сверхлинейная сходимость?",
-   "pass": null,
+   "pass": false,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": false,
    "visual_match": true,
    "missing": [
     "0"
@@ -965,18 +968,17 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": false,
+   "judge_reason": "Определение сверхлинейной сходимости подменено определением линейной (ратио→L<1 вместо →0); оба критических критерия провалены — незачёт.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "theorem_clt",
    "category": "structural",
    "question": "Сформулируй центральную предельную теорему как в учебнике.",
-   "pass": null,
+   "pass": false,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": false,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1004,10 +1006,9 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": false,
+   "judge_reason": "[спор решён арбитром] Оппонент прав: ответ опустил критическое условие «одинаково распределённые», записал ЦПТ на равенстве лишь первых двух моментов — это строго слабее и делает теорему ложной (контрпример Линдеберга подтверждён); критический критерий iid_sum не выполнен → незачёт.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "plot_sincos_overlay",
@@ -1061,9 +1062,9 @@
    "id": "fragment_explanation",
    "category": "rag_basic",
    "question": "Если кто-то предлагает использовать обновление x_{k+1} = x_k - f(x_k)·f'(x_k) вместо классического Ньютона — что это за идея и она работает?",
-   "pass": null,
+   "pass": false,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": false,
    "visual_match": true,
    "missing": [
     "производ"
@@ -1149,10 +1150,9 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": false,
+   "judge_reason": "Нерелевантный ответ с галлюцинированным экспериментом; оба критических критерия провалены, механизм не объяснён.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "eigenvalues_numpy",
@@ -1284,9 +1284,9 @@
    "id": "outline_chapter",
    "category": "structural",
    "question": "Перечисли основные разделы главы про Ньютона.",
-   "pass": null,
+   "pass": true,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1370,18 +1370,17 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": true,
+   "judge_reason": "Оба critical-критерия met: ≥3 реальных раздела ch02 (пересказом), выдуманных нет; рендер чистый, ответ на русском. Минусы — пересказ вместо точных заголовков и мусорный цикл вызовов, но задача выполнена.",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "math_latex_derivation",
    "category": "rag_basic",
    "question": "Выведи формулу метода Ньютона через касательную. Формулу запиши через LaTeX.",
-   "pass": null,
+   "pass": true,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1409,18 +1408,17 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": true,
+   "judge_reason": "Корректный вывод формулы Ньютона через касательную, совпадает с форм.(2.1); формулы отрендерены KaTeX, оба critical-критерия met",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "definition_perceptron",
    "category": "definition",
    "question": "Что такое полносвязная нейронная сеть?",
-   "pass": null,
+   "pass": true,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1504,18 +1502,17 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": true,
+   "judge_reason": "Верное определение MLP по Опр. 3.12 (аффинное+нелинейность+слои+softmax), заземлено на find_definition, формулы рендерятся; минус — бессмысленный цикл повторных вызовов тулзов, но на результат не влияет",
+   "judge": "meticulous-opus-v1"
   },
   {
    "id": "refuse_unknown_year",
    "category": "out_of_scope",
    "question": "В каком году Гаусс изобрёл метод сопряжённых градиентов?",
-   "pass": null,
+   "pass": false,
    "tool_match": true,
-   "answer_match": null,
+   "answer_match": false,
    "visual_match": true,
    "missing": [
     "наш"
@@ -1601,11 +1598,10 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "ждёт судью",
-   "judge": "missing",
-   "judge_pending": true
+   "judge_pass": false,
+   "judge_reason": "Уверенная ложь с выдуманным годом на вопрос-ловушку — оба critical-критерия рубрики провалены, чистый незачёт.",
+   "judge": "meticulous-opus-v1"
   }
  ],
- "judge_pending": 12
+ "judge_pending": 0
 }
