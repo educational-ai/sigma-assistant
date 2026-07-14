@@ -822,8 +822,10 @@ class Handler(http.server.BaseHTTPRequestHandler):
                 "chunks": len(chunks),
                 "definitions": len(idx.get("definitions", [])),
                 "theorems": len(idx.get("theorems", [])),
-                "model": fetch_top_model(),
-                "vision_model": fetch_top_model(vision=True),
+                # реально сервящаяся модель (как /api/model), а не топ
+                # free-ранкера — healthz дезинформировал при SIGMA_MODEL
+                "model": PAID_MODEL or fetch_top_model(),
+                "vision_model": PAID_VISION_MODEL or fetch_top_model(vision=True),
             })
         return self._send_json({"error": "not found"}, status=404)
 
