@@ -1,96 +1,95 @@
-=== eval run 2026-06-10 19:35:56 · 29 cases · https://sigma.fmin.xyz ===
+=== eval run 2026-07-13 20:46:52 · 29 cases · https://sigmadev.fmin.xyz ===
 
-[newton_kantorovich_history  ] rag_basic      → https://sigma.fmin.xyz/ch02_newton.html
+[newton_kantorovich_history  ] rag_basic      → https://sigmadev.fmin.xyz/ch02_newton.html
   PASS  tools=['search_textbook'] imgs=0 miss=[]
 
-[newton_formula_recall       ] rag_basic      → https://sigma.fmin.xyz/ch02_newton.html
-  PASS  tools=['read_chapter'] imgs=0 miss=[]
-
-[definition_strong_convex    ] definition     → https://sigma.fmin.xyz/ch02_newton.html
-  FAIL  tools=['find_definition'] imgs=0 miss=['вторая производ']
-
-[compute_factorial           ] compute_pure   → https://sigma.fmin.xyz/ch02_newton.html
-  PASS  tools=['python'] imgs=0 miss=[]
-
-[compute_taylor_sin          ] compute_pure   → https://sigma.fmin.xyz/ch02_newton.html
-  PASS  tools=['python'] imgs=0 miss=[]
-
-[compute_plot_newton         ] compute_plot   → https://sigma.fmin.xyz/ch02_newton.html
-  PASS  tools=['python'] imgs=1 miss=[]
-  [recycle browser after 6 cases]
-
-[compute_plot_gd_vs_newton   ] compute_plot   → https://sigma.fmin.xyz/ch02_newton.html
-  [empty/garbage capture → retry 1/2]
-  [empty/garbage capture → retry 2/2]
-  PASS  tools=['python'] imgs=1 miss=[]
-
-[rsa_encrypt_small           ] compute_pure   → https://sigma.fmin.xyz/ch04_3_kriptosistemy-rsa-i-diffi-hellma.html
-  PASS  tools=['python'] imgs=0 miss=[]
-
-[rsa_full_roundtrip          ] compute_pure   → https://sigma.fmin.xyz/ch04_3_kriptosistemy-rsa-i-diffi-hellma.html
-  PASS  tools=['python'] imgs=0 miss=[]
-
-[multihop_newton_vs_gradient ] multi_hop      → https://sigma.fmin.xyz/ch02_newton.html
-  PASS  tools=['search_textbook'] imgs=0 miss=[]
-
-[structural_kantorovich_theorem] structural     → https://sigma.fmin.xyz/ch02_newton.html
-  PASS  tools=['find_theorem'] imgs=0 miss=[]
-
-[vision_refine_diverging_sgd ] vision_refine  → https://sigma.fmin.xyz/ch02_newton.html
-  FAIL  tools=['python'] imgs=1 miss=['0.5']
-  [recycle browser after 12 cases]
-
-[hashlib_demo                ] compute_pure   → https://sigma.fmin.xyz/ch04_5_heshirovanie-teoriya-chisel-vstr.html
-  PASS  tools=['python'] imgs=0 miss=[]
-
-[linreg_simple               ] compute_plot   → https://sigma.fmin.xyz/ch03_2_lineynaya-regressiya-i-metod-nai.html
-  PASS  tools=['python'] imgs=1 miss=[]
-
-[out_of_scope_recipe         ] out_of_scope   → https://sigma.fmin.xyz/ch02_newton.html
-  FAIL  tools=[] imgs=0 miss=['оптимизац']
-
-[rsa_history                 ] rag_basic      → https://sigma.fmin.xyz/ch04_3_kriptosistemy-rsa-i-diffi-hellma.html
-  FAIL  tools=['search_textbook', 'python'] imgs=0 miss=['1978']
-
-[greeting_minimal            ] out_of_scope   → https://sigma.fmin.xyz/ch02_newton.html
+[newton_formula_recall       ] rag_basic      → https://sigmadev.fmin.xyz/ch02_newton.html
   PASS  tools=[] imgs=0 miss=[]
 
-[euclid_gcd_python           ] compute_pure   → https://sigma.fmin.xyz/ch04_1_elementy-teorii-chisel.html
+[definition_strong_convex    ] definition     → https://sigmadev.fmin.xyz/ch02_newton.html
+  FAIL  tools=['find_definition'] imgs=0 miss=['вторая производ']
+
+[compute_factorial           ] compute_pure   → https://sigmadev.fmin.xyz/ch02_newton.html
+  FAIL  tools=[] imgs=0 miss=[]
+
+[compute_taylor_sin          ] compute_pure   → https://sigmadev.fmin.xyz/ch02_newton.html
+  PASS  tools=['python'] imgs=0 miss=[]
+
+[compute_plot_newton         ] compute_plot   → https://sigmadev.fmin.xyz/ch02_newton.html
+  FAIL  tools=['python'] imgs=1 miss=['корен']
+  [recycle browser after 6 cases]
+
+[compute_plot_gd_vs_newton   ] compute_plot   → https://sigmadev.fmin.xyz/ch02_newton.html
+  PASS  tools=['python'] imgs=1 miss=[]
+
+[rsa_encrypt_small           ] compute_pure   → https://sigmadev.fmin.xyz/ch04_3_kriptosistemy-rsa-i-diffi-hellma.html
+  [empty/garbage capture → retry 1/2]
+  PASS  tools=['python', 'python'] imgs=0 miss=[]
+
+[rsa_full_roundtrip          ] compute_pure   → https://sigmadev.fmin.xyz/ch04_3_kriptosistemy-rsa-i-diffi-hellma.html
+  PASS  tools=['python'] imgs=0 miss=[]
+
+[multihop_newton_vs_gradient ] multi_hop      → https://sigmadev.fmin.xyz/ch02_newton.html
+  PASS  tools=['search_textbook'] imgs=0 miss=[]
+
+[structural_kantorovich_theorem] structural     → https://sigmadev.fmin.xyz/ch02_newton.html
+  PASS  tools=['find_theorem'] imgs=0 miss=[]
+
+[vision_refine_diverging_sgd ] vision_refine  → https://sigmadev.fmin.xyz/ch02_newton.html
+  FAIL  tools=['python'] imgs=1 miss=['расход', '0.5']
+  [recycle browser after 12 cases]
+
+[hashlib_demo                ] compute_pure   → https://sigmadev.fmin.xyz/ch04_5_heshirovanie-teoriya-chisel-vstr.html
+  PASS  tools=['python'] imgs=0 miss=[]
+
+[linreg_simple               ] compute_plot   → https://sigmadev.fmin.xyz/ch03_2_lineynaya-regressiya-i-metod-nai.html
+  PASS  tools=['python'] imgs=1 miss=[]
+
+[out_of_scope_recipe         ] out_of_scope   → https://sigmadev.fmin.xyz/ch02_newton.html
+  FAIL  tools=[] imgs=0 miss=['оптимизац']
+
+[rsa_history                 ] rag_basic      → https://sigmadev.fmin.xyz/ch04_3_kriptosistemy-rsa-i-diffi-hellma.html
+  FAIL  tools=['search_textbook', 'read_chapter'] imgs=0 miss=['1978']
+
+[greeting_minimal            ] out_of_scope   → https://sigmadev.fmin.xyz/ch02_newton.html
+  PASS  tools=[] imgs=0 miss=[]
+
+[euclid_gcd_python           ] compute_pure   → https://sigmadev.fmin.xyz/ch04_1_elementy-teorii-chisel.html
   PASS  tools=['python'] imgs=0 miss=[]
   [recycle browser after 18 cases]
 
-[definition_superlinear      ] definition     → https://sigma.fmin.xyz/ch02_newton.html
+[definition_superlinear      ] definition     → https://sigmadev.fmin.xyz/ch02_newton.html
   PASS  tools=['find_definition'] imgs=0 miss=[]
 
-[theorem_clt                 ] structural     → https://sigma.fmin.xyz/ch03_1_prosteyshie-primery-zadach-anali.html
+[theorem_clt                 ] structural     → https://sigmadev.fmin.xyz/ch03_1_prosteyshie-primery-zadach-anali.html
   PASS  tools=['find_theorem'] imgs=0 miss=[]
 
-[plot_sincos_overlay         ] compute_plot   → https://sigma.fmin.xyz/ch02_newton.html
+[plot_sincos_overlay         ] compute_plot   → https://sigmadev.fmin.xyz/ch02_newton.html
   PASS  tools=['python'] imgs=1 miss=[]
 
-[fragment_explanation        ] rag_basic      → https://sigma.fmin.xyz/ch02_newton.html
-  PASS  tools=[] imgs=0 miss=[]
+[fragment_explanation        ] rag_basic      → https://sigmadev.fmin.xyz/ch02_newton.html
+  PASS  tools=['search_textbook'] imgs=0 miss=[]
 
-[eigenvalues_numpy           ] compute_pure   → https://sigma.fmin.xyz/ch_linalg.html
+[eigenvalues_numpy           ] compute_pure   → https://sigmadev.fmin.xyz/ch_linalg.html
   FAIL  tools=['python'] imgs=0 miss=['3', '1']
 
-[plot_loss_landscape         ] compute_plot   → https://sigma.fmin.xyz/ch03_2_lineynaya-regressiya-i-metod-nai.html
+[plot_loss_landscape         ] compute_plot   → https://sigmadev.fmin.xyz/ch03_2_lineynaya-regressiya-i-metod-nai.html
   PASS  tools=['python'] imgs=1 miss=[]
   [recycle browser after 24 cases]
 
-[diffie_hellman_compute      ] compute_pure   → https://sigma.fmin.xyz/ch04_3_kriptosistemy-rsa-i-diffi-hellma.html
+[diffie_hellman_compute      ] compute_pure   → https://sigmadev.fmin.xyz/ch04_3_kriptosistemy-rsa-i-diffi-hellma.html
   PASS  tools=['python'] imgs=0 miss=[]
 
-[outline_chapter             ] structural     → https://sigma.fmin.xyz/ch02_newton.html
+[outline_chapter             ] structural     → https://sigmadev.fmin.xyz/ch02_newton.html
   PASS  tools=['read_chapter'] imgs=0 miss=[]
 
-[math_latex_derivation       ] rag_basic      → https://sigma.fmin.xyz/ch02_newton.html
-  PASS  tools=['read_chapter'] imgs=0 miss=[]
+[math_latex_derivation       ] rag_basic      → https://sigmadev.fmin.xyz/ch02_newton.html
+  PASS  tools=[] imgs=0 miss=[]
 
-[definition_perceptron       ] definition     → https://sigma.fmin.xyz/ch03_3_zadacha-klassifikacii-i-neyronny.html
+[definition_perceptron       ] definition     → https://sigmadev.fmin.xyz/ch03_3_zadacha-klassifikacii-i-neyronny.html
   PASS  tools=['find_definition'] imgs=0 miss=[]
 
-[refuse_unknown_year         ] out_of_scope   → https://sigma.fmin.xyz/ch02_newton.html
+[refuse_unknown_year         ] out_of_scope   → https://sigmadev.fmin.xyz/ch02_newton.html
   PASS  tools=['search_textbook'] imgs=0 miss=[]
 
-report → /root/sigma_assistant/eval/bench/meta_llama_llama_4_scout/report.md
+report → /root/sigma_assistant/eval/bench_v1/meta_llama_llama_4_scout/report.md

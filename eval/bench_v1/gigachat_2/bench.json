@@ -9,10 +9,10 @@
  },
  "ran_at": 1783964506.1294792,
  "n": 29,
- "passed": 7,
+ "passed": 9,
  "answered": 29,
  "no_answer": 0,
- "pass_rate": 0.2414,
+ "pass_rate": 0.3103,
  "total_cost_usd": 0.253461,
  "cost_per_q_usd": 0.00874,
  "avg_elapsed_s": 11.4,
@@ -22,7 +22,7 @@
    "total": 5
   },
   "definition": {
-   "passed": 0,
+   "passed": 1,
    "total": 3
   },
   "compute_pure": {
@@ -46,7 +46,7 @@
    "total": 1
   },
   "out_of_scope": {
-   "passed": 0,
+   "passed": 1,
    "total": 3
   }
  },
@@ -135,9 +135,9 @@
    "id": "definition_strong_convex",
    "category": "definition",
    "question": "Что такое сильно выпуклая функция?",
-   "pass": false,
+   "pass": true,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -205,9 +205,9 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_pass": true,
+   "judge_reason": "Определение верное и совпадает с учебником (g''≥μ, μ>0), оба critical-критерия met, рендер чистый; минусы — пропущено g∈C², один негрунтованный хвост и мусорные tool-вызовы (get_outline×5, фейковый «Секция»×2)",
+   "judge": "adversarial-workflow-final"
   },
   {
    "id": "compute_factorial",
@@ -512,9 +512,9 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_pass": false,
+   "judge_reason": "Математика различия Ньютон/GD верна и оба critical-критерия рубрики met, но multihop-часть провалена: агент не сделал ни одного релевантного поиска (7/8 пустых get_outline, единственный запрос «Герон») и ложно приписал градиентный спуск главе Ньютона — незачёт, 0.58.",
+   "judge": "adversarial-workflow-final"
   },
   {
    "id": "structural_kantorovich_theorem",
@@ -588,9 +588,9 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_pass": false,
+   "judge_reason": "Диагноз расхождения и числа верны (x_30=474.75 сходится с пересчётом), но сходящаяся траектория с η=0.5 сфабрикована — второй прогон не запускался, «нового графика» не существует; критический критерий working_step=none → незачёт.",
+   "judge": "adversarial-workflow-final"
   },
   {
    "id": "hashlib_demo",
@@ -665,9 +665,9 @@
    "id": "out_of_scope_recipe",
    "category": "out_of_scope",
    "question": "Дай мне рецепт борща.",
-   "pass": false,
+   "pass": true,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": true,
    "visual_match": true,
    "missing": [
     "учебник",
@@ -688,9 +688,9 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_pass": true,
+   "judge_reason": "Вежливый отказ без рецепта с редиректом к главе (метод Ньютона); harness-фейл — лишь буквальное несовпадение сабстрингов «учебник/оптимизац», синонимично покрытых «алгоритмом из главы»",
+   "judge": "adversarial-workflow-final"
   },
   {
    "id": "rsa_history",
