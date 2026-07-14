@@ -18,6 +18,13 @@ from pathlib import Path
 EVAL = Path(__file__).resolve().parent
 SEMANTIC = {"rag_basic", "definition", "structural", "out_of_scope", "multi_hop", "vision_refine"}
 
+
+def bench_dir():
+    """--bench bench_v1 = явная версия; без флага — последняя bench_v*."""
+    if "--bench" in sys.argv:
+        return EVAL / sys.argv[sys.argv.index("--bench") + 1]
+    return sorted(EVAL.glob("bench_v*"), key=lambda p: (len(p.name), p.name))[-1]
+
 # Verdict keys: (case_id, sha1(answer)) — EXACT answer only, mirroring
 # grade_hybrid.verdict_for. A verdict cached for the same model but a different
 # answer is a verdict about a different text (audit 2026-07-13 critical #1).
@@ -37,7 +44,7 @@ for line in (EVAL / "cases.jsonl").read_text(encoding="utf-8").splitlines():
         c = json.loads(line); cats[c["id"]] = c.get("category", "?")
 
 pending = []
-for bj in sorted(sorted(EVAL.glob("bench_v*"), key=lambda p: (len(p.name), p.name))[-1].glob("*/bench.json")):
+for bj in sorted(bench_dir().glob("*/bench.json")):
     b = json.loads(bj.read_text(encoding="utf-8"))
     model_short = b["model"].split("/")[-1]
     for c in b["cases"]:

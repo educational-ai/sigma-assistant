@@ -5,9 +5,10 @@ Workflow args ненадёжен для массивов — список жив
 import json, re, subprocess, sys
 from pathlib import Path
 EVAL = Path(__file__).resolve().parent
-items = json.loads(subprocess.run(
-    ["python3", str(EVAL / "pending_judgements.py"), "--json"],
-    capture_output=True, text=True).stdout)
+cmd = ["python3", str(EVAL / "pending_judgements.py"), "--json"]
+if "--bench" in sys.argv:   # пробросить явную версию (иначе — последняя bench_v*)
+    cmd += ["--bench", sys.argv[sys.argv.index("--bench") + 1]]
+items = json.loads(subprocess.run(cmd, capture_output=True, text=True).stdout)
 def slug(m): return re.sub(r"[^a-z0-9]+", "_", m.lower()).strip("_")
 out = [{"model_dir": slug(i["model"]), "model_short": i["model_short"],
         "case_id": i["case_id"], "answer_sha1": i["answer_sha1"]} for i in items]

@@ -27,8 +27,15 @@ def load_input():
     return data.get("finalVerdicts", data) if isinstance(data, dict) else data
 
 # current answer per (case_id, model_short) from bench.json
+# --bench bench_v1 = явная версия; без флага — последняя bench_v*
+if "--bench" in sys.argv:
+    i = sys.argv.index("--bench")
+    BDIR = EVAL / sys.argv[i + 1]
+    del sys.argv[i:i + 2]   # не мешать позиционному аргументу-файлу
+else:
+    BDIR = sorted(EVAL.glob("bench_v*"), key=lambda p: (len(p.name), p.name))[-1]
 ANS = {}
-for bj in sorted(EVAL.glob("bench_v*"), key=lambda p: (len(p.name), p.name))[-1].glob("*/bench.json"):
+for bj in BDIR.glob("*/bench.json"):
     b = json.loads(bj.read_text(encoding="utf-8"))
     ms = b["model"].split("/")[-1]
     for c in b["cases"]:
