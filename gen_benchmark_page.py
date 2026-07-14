@@ -748,9 +748,15 @@ def build(bench_dir=None, out=None, version=None, versions=()):
             denom += 1
             if st == "broken":
                 tot += 0.0                      # no usable answer → 0 for that question
-            else:
+                continue
+            # КУМУЛЯТИВНЫЙ score: смысловые кейсы несут судейский скор 0..1
+            # (частичный кредит — 0.94 и 0.15 различимы), расчётные — 0/1 от
+            # код-грейдера. Раньше всё падало в бинарный pass, и лидер с
+            # частичными зачётами показывал ложные 100%.
+            rs = c.get("judge_score")
+            if rs is None:
                 rs = c.get("rubric_score")
-                tot += rs if rs is not None else (1.0 if c.get("pass") else 0.0)
+            tot += rs if rs is not None else (1.0 if c.get("pass") else 0.0)
         return tot / (denom or 1)
     order = sorted(live, key=lambda b: -score_of(b))  # best score first
     multi = len(live) > 1
@@ -830,14 +836,13 @@ def build(bench_dir=None, out=None, version=None, versions=()):
             A(f"<td class='muted cost'>{pin:,}/{pout:,}</td>")
         A("</tr>")
     A("</tbody></table></div>")
-    A("<div class=note style='margin-top:10px'><b>Score</b> — один непрерывный показатель 0–100&nbsp;%: "
-      "каждый ответ набирает взвешенные баллы по критериям рубрики (met / partial / none, "
-      "<b>critical</b>-гейт: галлюцинация факта → 0). Смысловые кейсы оценивают состязательные "
-      "Claude-судьи (судья → адверсариальный рефутер → аудит), расчётные и графики — детерминированный "
-      "код-грейдинг (0/1). Сумма баллов делится на <b>все вопросы</b>. Если модель при корректном "
-      "запуске так и не выдала ответ (после ретраев) — это <b>0</b> за этот вопрос, а не вычёркивание. "
-      "По этому score ранжируем и строим график «score ↔ стоимость». «Чисто» (бинарное из "
-      f"{len(qorder)}) оставлено для сравнения.</div>")
+    A("<div class=note style='margin-top:10px'><b>Score</b> — один непрерывный показатель 0–100&nbsp;%, "
+      "<b>кумулятивный</b>: смысловые кейсы несут судейский скор 0..1 (судья → адверсариальный "
+      "оппонент → арбитр; частичный кредит — 0.94 и 0.15 различимы, <b>critical</b>-дефект роняет скор), "
+      "расчётные и графики — детерминированный код-грейдинг (0/1). Сумма баллов делится на <b>все вопросы</b>. "
+      "Если модель при корректном запуске так и не выдала ответ (после ретраев) — это <b>0</b> за этот "
+      "вопрос, а не вычёркивание. По этому score ранжируем и строим график «score ↔ стоимость». "
+      f"«Чисто» (бинарное из {len(qorder)}) оставлено для сравнения.</div>")
 
     # ---- Cost vs quality scatter (under the leaderboard) ----
     if multi and has_cost:
