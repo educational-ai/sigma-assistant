@@ -9,22 +9,14 @@
  },
  "ran_at": 1783966862.0199306,
  "n": 29,
- "passed": 1,
+ "passed": 0,
  "answered": 29,
  "no_answer": 0,
- "pass_rate": 0.0345,
+ "pass_rate": 0.0,
  "total_cost_usd": 0.008346,
  "cost_per_q_usd": 0.000288,
  "avg_elapsed_s": 6.6,
  "by_category": {
-  "rag_basic": {
-   "passed": 0,
-   "total": 5
-  },
-  "definition": {
-   "passed": 0,
-   "total": 3
-  },
   "compute_pure": {
    "passed": 0,
    "total": 8
@@ -32,22 +24,6 @@
   "compute_plot": {
    "passed": 0,
    "total": 5
-  },
-  "multi_hop": {
-   "passed": 0,
-   "total": 1
-  },
-  "structural": {
-   "passed": 0,
-   "total": 3
-  },
-  "vision_refine": {
-   "passed": 0,
-   "total": 1
-  },
-  "out_of_scope": {
-   "passed": 1,
-   "total": 3
   }
  },
  "cases": [
@@ -55,9 +31,9 @@
    "id": "newton_kantorovich_history",
    "category": "rag_basic",
    "question": "Когда Канторович получил Нобелевскую премию и за что?",
-   "pass": false,
+   "pass": null,
    "tool_match": false,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "1975",
@@ -78,17 +54,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "Сырой JSON-вызов инструмента, ответа нет. Мусор.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "newton_formula_recall",
    "category": "rag_basic",
    "question": "Объясни откуда берётся эта формула — что это за метод и какая геометрическая идея?",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "касательн",
@@ -109,17 +86,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "Вместо ответа сырой JSON-вызов read_chapter, ноль объяснения. Мусор = незачёт.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "definition_strong_convex",
    "category": "definition",
    "question": "Что такое сильно выпуклая функция?",
-   "pass": false,
+   "pass": null,
    "tool_match": false,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "вторая производ",
@@ -140,9 +118,10 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "Сырой JSON tool-call вместо ответа, tools=[] подтверждает что тул не вызван. Ответа пользователю нет.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "compute_factorial",
@@ -307,9 +286,9 @@
    "id": "multihop_newton_vs_gradient",
    "category": "multi_hop",
    "question": "В чём отличие метода Ньютона от градиентного спуска для задач оптимизации? Какие из этих методов разобраны в учебнике?",
-   "pass": false,
+   "pass": null,
    "tool_match": false,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [],
@@ -327,17 +306,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "Мусор: вместо ответа выдан сырой JSON tool-call (search_textbook) в код-блоке. Содержательного ответа нет.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "structural_kantorovich_theorem",
    "category": "structural",
    "question": "Сформулируй теорему о сходимости метода Герона.",
-   "pass": false,
+   "pass": null,
    "tool_match": false,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "квадратичн",
@@ -358,17 +338,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "Вместо ответа сырой JSON вызова find_theorem — формулировки теоремы нет.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "vision_refine_diverging_sgd",
    "category": "vision_refine",
    "question": "Запусти SGD на функции f(x) = x² с шагом η = 1.1 из x₀ = 2, 30 итераций. Что произойдёт? Если разойдётся — подбери рабочий шаг и покажи сходящуюся траекторию.",
-   "pass": false,
+   "pass": null,
    "tool_match": false,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": false,
    "missing": [
     "0.5"
@@ -388,9 +369,10 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "tools=[], только дамп кода. Условие сходимости НЕВЕРНО: «0<η<1.5» (правильно 0<η<1). Ответ обрезан до показа сходящейся траектории.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "hashlib_demo",
@@ -451,9 +433,9 @@
    "id": "out_of_scope_recipe",
    "category": "out_of_scope",
    "question": "Дай мне рецепт борща.",
-   "pass": true,
+   "pass": null,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [],
@@ -471,17 +453,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "Отказал, рецепт не предоставил.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "rsa_history",
    "category": "rag_basic",
    "question": "Кто придумал RSA и в каком году?",
-   "pass": false,
+   "pass": null,
    "tool_match": false,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "1978"
@@ -501,17 +484,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "Ответа нет — сырой JSON tool-call вместо ответа. Мусор.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "greeting_minimal",
    "category": "out_of_scope",
    "question": "Привет!",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [],
@@ -529,9 +513,10 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "311 знаков, простыня с выдуманным списком разделов главы. Нарушает лимит + риск галлюцинации структуры.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "euclid_gcd_python",
@@ -562,9 +547,9 @@
    "id": "definition_superlinear",
    "category": "definition",
    "question": "Что значит сверхлинейная сходимость?",
-   "pass": false,
+   "pass": null,
    "tool_match": false,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "lim",
@@ -585,17 +570,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "Вместо ответа сырой JSON tool-call — ответа нет.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "theorem_clt",
    "category": "structural",
    "question": "Сформулируй центральную предельную теорему как в учебнике.",
-   "pass": false,
+   "pass": null,
    "tool_match": false,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "нормальн"
@@ -615,9 +601,10 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "Вместо ответа сырой JSON вызова инструмента — нет формулировки.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "plot_sincos_overlay",
@@ -648,9 +635,9 @@
    "id": "fragment_explanation",
    "category": "rag_basic",
    "question": "Если кто-то предлагает использовать обновление x_{k+1} = x_k - f(x_k)·f'(x_k) вместо классического Ньютона — что это за идея и она работает?",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "производ"
@@ -670,9 +657,10 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "Hallucination: claims f'(x) replaced by f(x), rewrites back to division f/f', says 'may converge'. Misread the question entirely. Fully wrong.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "eigenvalues_numpy",
@@ -755,9 +743,9 @@
    "id": "outline_chapter",
    "category": "structural",
    "question": "Перечисли основные разделы главы про Ньютона.",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "метод"
@@ -777,17 +765,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "'Модифицированный метод Ньютона', 'Метод секущих' в главе отсутствуют. Галлюцинация без инструментов.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "math_latex_derivation",
    "category": "rag_basic",
    "question": "Выведи формулу метода Ньютона через касательную. Формулу запиши через LaTeX.",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "x",
@@ -808,17 +797,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "Ответ — сырой JSON tool-call (find_theorem/read_chapter), ни формулы, ни вывода. Негодный ответ. Подтверждено по полному дампу.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "definition_perceptron",
    "category": "definition",
    "question": "Что такое полносвязная нейронная сеть?",
-   "pass": false,
+   "pass": null,
    "tool_match": false,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "слой"
@@ -838,17 +828,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "Не ответ, а сырой JSON tool-call дамп (find_definition с термином 'полносвязн'); пользователь увидит мусор.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "refuse_unknown_year",
    "category": "out_of_scope",
    "question": "В каком году Гаусс изобрёл метод сопряжённых градиентов?",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "наш"
@@ -868,9 +859,11 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "Сырой JSON-дамп вызова инструмента вместо ответа. Мусор.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   }
- ]
+ ],
+ "judge_pending": 16
 }

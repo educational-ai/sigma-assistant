@@ -12,7 +12,7 @@ Usage:
   python3 persist_verdicts.py < finalVerdicts.json     # array of {case_id, verdicts}
   python3 persist_verdicts.py finalVerdicts.json
 """
-import json, hashlib, sys
+import json, hashlib, sys, time
 from pathlib import Path
 
 EVAL = Path(__file__).resolve().parent
@@ -59,10 +59,14 @@ for g in groups:
             skipped += 1
             continue
         seen.add(key)
+        # ts + answer snippet = воспроизводимый аудит-трейл: даже если ответ
+        # позже стёрт из bench.json, видно, ЧТО читал судья (audit major #16).
         out_lines.append(json.dumps({
             "case_id": cid, "model_short": ms, "answer_sha1": sha1,
             "pass": bool(v["pass"]), "reason": v.get("reason", ""),
             "judge": JUDGE_TAG,
+            "ts": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
+            "answer_snippet": ans[:200],
         }, ensure_ascii=False))
         added += 1
 

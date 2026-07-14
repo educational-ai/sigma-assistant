@@ -9,45 +9,25 @@
  },
  "ran_at": 1783968904.2171524,
  "n": 29,
- "passed": 23,
+ "passed": 12,
  "answered": 29,
  "no_answer": 0,
- "pass_rate": 0.7931,
+ "pass_rate": 0.8571,
  "total_cost_usd": 0.015864,
  "cost_per_q_usd": 0.000547,
  "avg_elapsed_s": 14.6,
  "by_category": {
-  "rag_basic": {
-   "passed": 4,
-   "total": 5
-  },
-  "definition": {
-   "passed": 3,
-   "total": 3
-  },
   "compute_pure": {
    "passed": 8,
    "total": 8
   },
   "compute_plot": {
-   "passed": 2,
+   "passed": 3,
    "total": 5
   },
-  "multi_hop": {
-   "passed": 0,
-   "total": 1
-  },
-  "structural": {
-   "passed": 3,
-   "total": 3
-  },
-  "vision_refine": {
+  "out_of_scope": {
    "passed": 1,
    "total": 1
-  },
-  "out_of_scope": {
-   "passed": 2,
-   "total": 3
   }
  },
  "cases": [
@@ -55,9 +35,9 @@
    "id": "newton_kantorovich_history",
    "category": "rag_basic",
    "question": "Когда Канторович получил Нобелевскую премию и за что?",
-   "pass": true,
+   "pass": null,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -93,17 +73,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "Год 1975 и экономика верны. Минусы: имя 'Лев' (он Леонид) и 'за линейное программирование' вместо распределения ресурсов; но ЛП — субстантивно связанная методология, суть и год верны. Пограничный зачёт.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "newton_formula_recall",
    "category": "rag_basic",
    "question": "Объясни откуда берётся эта формула — что это за метод и какая геометрическая идея?",
-   "pass": true,
+   "pass": null,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -141,17 +122,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "Корректная геометрия; КЛЮЧЕВЫЕ формулы (корни и оптимизация) в $$ рендерятся (gate broken=0). Утечки \\(x_k\\)/\\(g(x)\\) — имена переменных в прозе (сайт не рендерит \\(...\\)), но центральная математика и суть чисты. Pass.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "definition_strong_convex",
    "category": "definition",
    "question": "Что такое сильно выпуклая функция?",
-   "pass": true,
+   "pass": null,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -177,9 +159,10 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "Верно g''(x)≥μ>0 + корректный пример g=x²+5, μ=2. LaTeX рендерится.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "compute_factorial",
@@ -261,9 +244,9 @@
    "id": "compute_plot_newton",
    "category": "compute_plot",
    "question": "Покажи как сходится метод Ньютона для f(x) = x² - 2, начиная с x₀ = 1.5. Построй график траектории.",
-   "pass": false,
+   "pass": true,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": true,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -403,9 +386,9 @@
    "id": "multihop_newton_vs_gradient",
    "category": "multi_hop",
    "question": "В чём отличие метода Ньютона от градиентного спуска для задач оптимизации? Какие из этих методов разобраны в учебнике?",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -479,17 +462,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "Ошибка предпосылки: Ньютон описан как метод для РЕШЕНИЯ УРАВНЕНИЙ (f(x)=0), в таблице 'Применение: Ньютон — решение уравнений, GD — оптимизация'. Вопрос про Ньютона ДЛЯ ОПТИМИЗАЦИИ (квадратичная модель g''). Хотя g''/гессиан упомянут, метод НЕ показан как минимизация квадратичной модели — противопоставление по задачам, а не по порядку модели. Рубрика 'показать что Ньютон использует g'' (квадратичную модель)' для оптимизации не выполнена.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "structural_kantorovich_theorem",
    "category": "structural",
    "question": "Сформулируй теорему о сходимости метода Герона.",
-   "pass": true,
+   "pass": null,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -517,17 +501,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "Корректная формулировка с x_0>0 и квадратичной сходимостью к √a, дана формула ошибки. LaTeX рендерится.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "vision_refine_diverging_sgd",
    "category": "vision_refine",
    "question": "Запусти SGD на функции f(x) = x² с шагом η = 1.1 из x₀ = 2, 30 итераций. Что произойдёт? Если разойдётся — подбери рабочий шаг и покажи сходящуюся траекторию.",
-   "pass": true,
+   "pass": null,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -568,9 +553,10 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "Верный диагноз расходимости и рабочий η=0.5 (за 1 шаг), условие |2η−1|<1 корректно. Кратко и верно.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "hashlib_demo",
@@ -659,9 +645,9 @@
    "id": "out_of_scope_recipe",
    "category": "out_of_scope",
    "question": "Дай мне рецепт борща.",
-   "pass": true,
+   "pass": null,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [],
@@ -679,17 +665,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "Вежливый отказ, рецепт не дан.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "rsa_history",
    "category": "rag_basic",
    "question": "Кто придумал RSA и в каком году?",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -721,9 +708,10 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "Год 1977 вместо 1978. Авторы верны, но год ошибочен; LaTeX формулы рендерятся нормально, дело не в стиле.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "greeting_minimal",
@@ -790,9 +778,9 @@
    "id": "definition_superlinear",
    "category": "definition",
    "question": "Что значит сверхлинейная сходимость?",
-   "pass": true,
+   "pass": null,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -820,17 +808,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "Предел и нулевое условие верны, интуиция корректна. Формула рендерится.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "theorem_clt",
    "category": "structural",
    "question": "Сформулируй центральную предельную теорему как в учебнике.",
-   "pass": true,
+   "pass": null,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "нормальн"
@@ -860,9 +849,10 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "Корректная словесная + формальная формулировка ЦПТ, LaTeX валиден.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "plot_sincos_overlay",
@@ -916,9 +906,9 @@
    "id": "fragment_explanation",
    "category": "rag_basic",
    "question": "Если кто-то предлагает использовать обновление x_{k+1} = x_k - f(x_k)·f'(x_k) вместо классического Ньютона — что это за идея и она работает?",
-   "pass": true,
+   "pass": null,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "производ"
@@ -938,9 +928,10 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "Conclusion correct (need division, else loop/divergence). Calls formula 'meaningless', missing it is GD on f2, but no hallucination and substance acceptable.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "eigenvalues_numpy",
@@ -1051,9 +1042,9 @@
    "id": "outline_chapter",
    "category": "structural",
    "question": "Перечисли основные разделы главы про Ньютона.",
-   "pass": true,
+   "pass": null,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1081,17 +1072,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "3 точных реальных раздела (Ньютон для оптимизации, Квадратный корень, Сходимость через сжимающее отображение) + первый описан как 'Геометрическая идея' — переименование реального 'Касательная вместо уравнения' с верным содержанием, не выдумка. Минимум выполнен, формулы валидны.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "math_latex_derivation",
    "category": "rag_basic",
    "question": "Выведи формулу метода Ньютона через касательную. Формулу запиши через LaTeX.",
-   "pass": true,
+   "pass": null,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1129,17 +1121,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "Верная формула, корректное описание роли касательной (пересечение с осью x). Полного алгебраического вывода нет, но суть и формула верны.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "definition_perceptron",
    "category": "definition",
    "question": "Что такое полносвязная нейронная сеть?",
-   "pass": true,
+   "pass": null,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1165,17 +1158,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "Формальное определение MLP: линейное+нелинейное преобразование на каждом слое, softmax, обучаемые параметры. Формулы через bold-юникод (z^(ℓ)=W^(ℓ)·a^(ℓ−1)+b^(ℓ)), читаемо, KaTeX не ломается.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "refuse_unknown_year",
    "category": "out_of_scope",
    "question": "В каком году Гаусс изобрёл метод сопряжённых градиентов?",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "наш"
@@ -1205,9 +1199,11 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "Выдумал 'М. В. Келлера (1904)', 'Ф. Джона (1980-е)' как изобретателей — уверенная ложь.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   }
- ]
+ ],
+ "judge_pending": 15
 }

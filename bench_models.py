@@ -49,6 +49,8 @@ TARGETS = {
         "port": 8766,
         "base": "https://sigma.fmin.xyz",
         "usage_log": ROOT / "eval" / "usage_log.jsonl",
+        "site": Path("/var/www/sigma"),
+        "harness": ROOT,
     },
     "dev": {
         "env": Path("/root/sigma_assistant_dev/.env"),
@@ -56,8 +58,11 @@ TARGETS = {
         "port": 8767,
         "base": "https://sigmadev.fmin.xyz",
         "usage_log": Path("/root/sigma_assistant_dev/eval/usage_log.jsonl"),
+        "site": Path("/var/www/sigma-dev"),
+        "harness": Path("/root/sigma_assistant_dev"),
     },
 }
+T_NAME = "prod"
 T = TARGETS["prod"]
 ENV = T["env"]
 USAGE_LOG = T["usage_log"]
@@ -66,12 +71,65 @@ BASE = T["base"]
 
 
 def use_target(name):
-    global T, ENV, USAGE_LOG, HEALTH, BASE
+    global T, T_NAME, ENV, USAGE_LOG, HEALTH, BASE
+    T_NAME = name
     T = TARGETS[name]
     ENV = T["env"]
     USAGE_LOG = T["usage_log"]
     HEALTH = f"http://127.0.0.1:{T['port']}/healthz"
     BASE = T["base"]
+
+
+def _git_head(path):
+    """Короткий git-hash чекаута или None (провенанс, не критично для прогона)."""
+    try:
+        return subprocess.run(["git", "-C", str(path), "rev-parse", "--short", "HEAD"],
+                              capture_output=True, text=True, timeout=10).stdout.strip() or None
+    except Exception:
+        return None
+
+
+def provenance():
+    """Что именно меряем: стенд, URL и коммиты агента (сайт) + бэкенда.
+    Пишется в каждый bench.json — строку лидерборда всегда можно привязать
+    к конкретной версии агента (audit critical #5 / major #6)."""
+    return {
+        "target": T_NAME,
+        "base": BASE,
+        "agent_commit": _git_head(T["site"]),
+        "harness_commit": _git_head(T["harness"]),
+    }
+
+
+def check_provenance_mix(prov, force_note=False):
+    """Одна папка bench_v<N> = один агент на одном стенде. Другой agent_commit
+    или target в существующих bench.json → это уже ДРУГОЙ бенч: гони с
+    --version v<N+1>. (Инцидент 2026-07-13: dev-свип молча перезаписал
+    prod-результаты в ту же папку — провенанс строк был невосстановим.)"""
+    clashes = []
+    for bj in BENCH_DIR.glob("*/bench.json"):
+        try:
+            old = json.loads(bj.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        for k in ("target", "agent_commit"):
+            if old.get(k) and prov.get(k) and old[k] != prov[k]:
+                clashes.append(f"{bj.parent.name}: {k}={old[k]} (сейчас {prov[k]})")
+    if clashes:
+        print(f"!! В {BENCH_DIR.name} уже лежат прогоны другого агента/стенда:", flush=True)
+        for c in clashes[:8]:
+            print(f"   {c}", flush=True)
+        print("   Агент изменился = новая версия бенча: запусти с --version v<следующий>.", flush=True)
+        return False
+    return True
+
+
+def _write_json_atomic(path, obj):
+    """SIGTERM/OOM посреди записи не должен оставлять битый bench.json
+    (audit major #18): пишем во временный файл и атомарно подменяем."""
+    tmp = path.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps(obj, ensure_ascii=False, indent=1), encoding="utf-8")
+    os.replace(tmp, path)
 
 # Cheaper-than-current, tool-capable models. (V) = vision-capable (needed for
 # compute_plot / vision_refine cases; non-vision models will visibly fail those).
@@ -204,8 +262,9 @@ def bench_one(model, force=False):
         try:
             existing = json.loads(bj.read_text(encoding="utf-8"))
         except Exception:
-            existing = {}
-        if not existing.get("provisional"):  # provisional (no real cost) → re-run
+            existing = None  # битый bench.json = НЕ готовый результат → перегоняем
+            print(f"  !! {bj} не парсится — модель будет перегнана", flush=True)
+        if existing is not None and not existing.get("provisional"):  # provisional (no real cost) → re-run
             print(f"\n========== SKIP {model} (bench.json exists) ==========", flush=True)
             return existing
     print(f"\n========== BENCH {model} ==========", flush=True)
@@ -248,6 +307,7 @@ def bench_one(model, force=False):
     bench = {
         "model": model,
         "bench_version": BENCH_DIR.name.replace("bench_", ""),
+        **provenance(),
         "served_model_label": served,
         "ran_at": t0,
         "n": total,
@@ -282,9 +342,10 @@ def bench_one(model, force=False):
             "models_used": r.get("models_used", []),
             "answer": r["obs"]["answer"],
             "no_answer": r["obs"].get("no_answer", False),
+            "protocol_dnf": r["obs"].get("protocol_dnf"),
         } for r in results],
     }
-    (out_dir / "bench.json").write_text(json.dumps(bench, ensure_ascii=False, indent=1), encoding="utf-8")
+    _write_json_atomic(out_dir / "bench.json", bench)
     try:
         sys.path.insert(0, str(ROOT / "eval"))
         from attach_tool_results import attach, load_convo
@@ -338,6 +399,8 @@ def main():
     BENCH_DIR.mkdir(parents=True, exist_ok=True)
     if not prepare_bench_dir(allow_drift=args.allow_dataset_drift):
         sys.exit(2)
+    if not check_provenance_mix(provenance()):
+        sys.exit(3)
     env_backup = ENV.read_text(encoding="utf-8")  # verbatim snapshot for exact restore
     (ROOT / ".env.benchbak").write_text(env_backup, encoding="utf-8")
     print(f"backed up .env ({len(env_backup)} bytes) → .env.benchbak", flush=True)
@@ -346,9 +409,13 @@ def main():
     try:
         for model in models:
             bench_one(model, force=args.force)
-            # regenerate the public page after each model so it fills in live
+            # regenerate the page after each model so it fills in live.
+            # dev-свип обновляет ТОЛЬКО dev-страницу — прод не видит смесь.
             try:
-                subprocess.run([sys.executable, str(ROOT / "gen_benchmark_page.py")], check=False)
+                cmd = [sys.executable, str(ROOT / "gen_benchmark_page.py")]
+                if T_NAME == "dev":
+                    cmd.append("--dev")
+                subprocess.run(cmd, check=False)
             except Exception as e:
                 print(f"  page-regen failed: {e}", flush=True)
     finally:

@@ -9,45 +9,25 @@
  },
  "ran_at": 1783965867.3738272,
  "n": 29,
- "passed": 13,
+ "passed": 7,
  "answered": 29,
  "no_answer": 0,
- "pass_rate": 0.4483,
+ "pass_rate": 0.5,
  "total_cost_usd": 0.020763,
  "cost_per_q_usd": 0.000716,
  "avg_elapsed_s": 10.0,
  "by_category": {
-  "rag_basic": {
-   "passed": 2,
-   "total": 5
-  },
-  "definition": {
-   "passed": 0,
-   "total": 3
-  },
   "compute_pure": {
    "passed": 4,
    "total": 8
   },
   "compute_plot": {
-   "passed": 1,
+   "passed": 2,
    "total": 5
   },
-  "multi_hop": {
+  "out_of_scope": {
    "passed": 1,
    "total": 1
-  },
-  "structural": {
-   "passed": 2,
-   "total": 3
-  },
-  "vision_refine": {
-   "passed": 0,
-   "total": 1
-  },
-  "out_of_scope": {
-   "passed": 3,
-   "total": 3
   }
  },
  "cases": [
@@ -55,9 +35,9 @@
    "id": "newton_kantorovich_history",
    "category": "rag_basic",
    "question": "Когда Канторович получил Нобелевскую премию и за что?",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "1975",
@@ -88,17 +68,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "Не дал известного факта (1975/экономика), вместо этого вывалил нерелевантные Нобелевки 2024 по химии/физике и переспросил 'может другого учёного'. Фактический отказ = незачёт.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "newton_formula_recall",
    "category": "rag_basic",
    "question": "Объясни откуда берётся эта формула — что это за метод и какая геометрическая идея?",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -132,17 +113,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "Не ответил: 'не нашёл определения' + встречный вопрос. Рубрика прямо разрешает ответ за один шаг (фрагмент содержит контекст). Отказ = незачёт.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "definition_strong_convex",
    "category": "definition",
    "question": "Что такое сильно выпуклая функция?",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "вторая производ",
@@ -174,8 +156,9 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "compute_factorial",
@@ -241,13 +224,11 @@
    "id": "compute_plot_newton",
    "category": "compute_plot",
    "question": "Покажи как сходится метод Ньютона для f(x) = x² - 2, начиная с x₀ = 1.5. Построй график траектории.",
-   "pass": false,
+   "pass": true,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": true,
    "visual_match": true,
-   "missing": [
-    "корен"
-   ],
+   "missing": [],
    "tools": [
     "python"
    ],
@@ -386,9 +367,9 @@
    "id": "multihop_newton_vs_gradient",
    "category": "multi_hop",
    "question": "В чём отличие метода Ньютона от градиентного спуска для задач оптимизации? Какие из этих методов разобраны в учебнике?",
-   "pass": true,
+   "pass": null,
    "tool_match": false,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -420,17 +401,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "Верно: Ньютон — гессиан/вторая производная/квадратичная сходимость, в главе 2 изучается подробно; GD — только градиент/линейная, упоминается в др. главах. Суть и глава 2 есть.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "structural_kantorovich_theorem",
    "category": "structural",
    "question": "Сформулируй теорему о сходимости метода Герона.",
-   "pass": false,
+   "pass": null,
    "tool_match": false,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "квадратичн",
@@ -452,16 +434,17 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "vision_refine_diverging_sgd",
    "category": "vision_refine",
    "question": "Запусти SGD на функции f(x) = x² с шагом η = 1.1 из x₀ = 2, 30 итераций. Что произойдёт? Если разойдётся — подбери рабочий шаг и покажи сходящуюся траекторию.",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": false,
    "missing": [
     "расход",
@@ -490,9 +473,10 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "Вывод 0<η<1 и диагноз верны, НО ответ обрывается на «Вот как это выглядит на практике:» — рабочий шаг не подобран, сходящаяся траектория не показана (рубрика требует). tools=[].",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "hashlib_demo",
@@ -560,9 +544,9 @@
    "id": "out_of_scope_recipe",
    "category": "out_of_scope",
    "question": "Дай мне рецепт борща.",
-   "pass": true,
+   "pass": null,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "оптимизац"
@@ -582,17 +566,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "Краткий вежливый отказ, рецепт не дан.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "rsa_history",
    "category": "rag_basic",
    "question": "Кто придумал RSA и в каком году?",
-   "pass": false,
+   "pass": null,
    "tool_match": false,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "1978"
@@ -612,9 +597,10 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": false,
-   "judge_reason": "Год 1977 вместо требуемого рубрикой 1978. Авторы верны, но год ошибочен — учебник прямо говорит 1978.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "greeting_minimal",
@@ -673,9 +659,9 @@
    "id": "definition_superlinear",
    "category": "definition",
    "question": "Что значит сверхлинейная сходимость?",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -702,16 +688,17 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "theorem_clt",
    "category": "structural",
    "question": "Сформулируй центральную предельную теорему как в учебнике.",
-   "pass": true,
+   "pass": null,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -739,9 +726,10 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "Верная формулировка + словесная суть (сумма iid → нормальное).",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "plot_sincos_overlay",
@@ -795,9 +783,9 @@
    "id": "fragment_explanation",
    "category": "rag_basic",
    "question": "Если кто-то предлагает использовать обновление x_{k+1} = x_k - f(x_k)·f'(x_k) вместо классического Ньютона — что это за идея и она работает?",
-   "pass": true,
+   "pass": null,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "производ"
@@ -817,9 +805,10 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "Direction correct (probably diverges, not Newton), no hallucination. Weak, hedges, drags in irrelevant Newton-Schulz, ends asking to run Python; key insight absent. But meets same lenient bar as nova-lite/ministral. Borderline PASS, kept for consistency.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "eigenvalues_numpy",
@@ -920,9 +909,9 @@
    "id": "outline_chapter",
    "category": "structural",
    "question": "Перечисли основные разделы главы про Ньютона.",
-   "pass": true,
+   "pass": null,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [],
@@ -940,17 +929,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "4 реальных раздела (3 h2 + h4 'Сходимость через сжимающее отображение', существует в главе). Минимум выполнен, галлюцинаций нет.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "math_latex_derivation",
    "category": "rag_basic",
    "question": "Выведи формулу метода Ньютона через касательную. Формулу запиши через LaTeX.",
-   "pass": true,
+   "pass": null,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [],
@@ -968,17 +958,18 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "Полный корректный пошаговый вывод через касательную, формула верна.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "definition_perceptron",
    "category": "definition",
    "question": "Что такое полносвязная нейронная сеть?",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1005,16 +996,17 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "refuse_unknown_year",
    "category": "out_of_scope",
    "question": "В каком году Гаусс изобрёл метод сопряжённых градиентов?",
-   "pass": true,
+   "pass": null,
    "tool_match": true,
-   "answer_match": true,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1042,9 +1034,11 @@
    "no_answer": false,
    "broken_formulas": 0,
    "raw_unrendered": 0,
-   "judge_pass": true,
-   "judge_reason": "Не нашёл в учебнике, не связал CG с Гауссом, год не выдумал. Честный отказ.",
-   "judge": "adversarial-workflow-final"
+   "judge_pass": null,
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   }
- ]
+ ],
+ "judge_pending": 15
 }

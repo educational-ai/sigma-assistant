@@ -18,11 +18,10 @@ from pathlib import Path
 EVAL = Path(__file__).resolve().parent
 SEMANTIC = {"rag_basic", "definition", "structural", "out_of_scope", "multi_hop", "vision_refine"}
 
-EMPTY_SHA1 = hashlib.sha1(b"").hexdigest()  # da39a3ee… — verdict for a timed-out empty
-
-# load verdict keys. A model-level verdict whose cached answer was EMPTY must not
-# count as "already judged" — the gap-filled answer is new and needs a real verdict.
-V_HASH, V_MODEL = set(), set()
+# Verdict keys: (case_id, sha1(answer)) — EXACT answer only, mirroring
+# grade_hybrid.verdict_for. A verdict cached for the same model but a different
+# answer is a verdict about a different text (audit 2026-07-13 critical #1).
+V_HASH = set()
 vp = EVAL / "judge_verdicts.jsonl"
 if vp.exists():
     for line in vp.read_text(encoding="utf-8").splitlines():
@@ -30,8 +29,6 @@ if vp.exists():
             continue
         v = json.loads(line)
         V_HASH.add((v["case_id"], v.get("answer_sha1")))
-        if v.get("answer_sha1") != EMPTY_SHA1:
-            V_MODEL.add((v["case_id"], v.get("model_short")))
 
 # case categories
 cats = {}
@@ -51,8 +48,8 @@ for bj in sorted(sorted(EVAL.glob("bench_v*"), key=lambda p: (len(p.name), p.nam
         if not ans:
             continue  # empty → auto-fail, no judge needed
         h = hashlib.sha1(ans.encode("utf-8")).hexdigest()
-        if (cid, h) in V_HASH or (cid, model_short) in V_MODEL:
-            continue  # already judged
+        if (cid, h) in V_HASH:
+            continue  # this exact answer already judged
         pending.append({
             "model": b["model"], "model_short": model_short,
             "case_id": cid, "category": cats.get(cid),

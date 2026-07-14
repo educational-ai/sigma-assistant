@@ -12,19 +12,11 @@
  "passed": 4,
  "answered": 29,
  "no_answer": 0,
- "pass_rate": 0.1379,
+ "pass_rate": 0.3077,
  "total_cost_usd": 0.980825,
  "cost_per_q_usd": 0.033822,
  "avg_elapsed_s": 20.5,
  "by_category": {
-  "rag_basic": {
-   "passed": 0,
-   "total": 5
-  },
-  "definition": {
-   "passed": 0,
-   "total": 3
-  },
   "compute_pure": {
    "passed": 3,
    "total": 8
@@ -32,22 +24,6 @@
   "compute_plot": {
    "passed": 1,
    "total": 5
-  },
-  "multi_hop": {
-   "passed": 0,
-   "total": 1
-  },
-  "structural": {
-   "passed": 0,
-   "total": 3
-  },
-  "vision_refine": {
-   "passed": 0,
-   "total": 1
-  },
-  "out_of_scope": {
-   "passed": 0,
-   "total": 3
   }
  },
  "cases": [
@@ -55,9 +31,9 @@
    "id": "newton_kantorovich_history",
    "category": "rag_basic",
    "question": "Когда Канторович получил Нобелевскую премию и за что?",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -84,16 +60,17 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "newton_formula_recall",
    "category": "rag_basic",
    "question": "Объясни откуда берётся эта формула — что это за метод и какая геометрическая идея?",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -120,16 +97,17 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "definition_strong_convex",
    "category": "definition",
    "question": "Что такое сильно выпуклая функция?",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -156,8 +134,9 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "compute_factorial",
@@ -284,8 +263,7 @@
    "answer_match": false,
    "visual_match": false,
    "missing": [
-    "1.41",
-    "корен"
+    "1.41"
    ],
    "tools": [
     "python",
@@ -456,9 +434,9 @@
    "id": "multihop_newton_vs_gradient",
    "category": "multi_hop",
    "question": "В чём отличие метода Ньютона от градиентного спуска для задач оптимизации? Какие из этих методов разобраны в учебнике?",
-   "pass": false,
+   "pass": null,
    "tool_match": false,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -485,16 +463,17 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "structural_kantorovich_theorem",
    "category": "structural",
    "question": "Сформулируй теорему о сходимости метода Герона.",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -523,16 +502,17 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "vision_refine_diverging_sgd",
    "category": "vision_refine",
    "question": "Запусти SGD на функции f(x) = x² с шагом η = 1.1 из x₀ = 2, 30 итераций. Что произойдёт? Если разойдётся — подбери рабочий шаг и покажи сходящуюся траекторию.",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": false,
    "missing": [
     "расход"
@@ -571,8 +551,9 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "hashlib_demo",
@@ -695,9 +676,9 @@
    "id": "out_of_scope_recipe",
    "category": "out_of_scope",
    "question": "Дай мне рецепт борща.",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [],
@@ -716,16 +697,17 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "rsa_history",
    "category": "rag_basic",
    "question": "Кто придумал RSA и в каком году?",
-   "pass": false,
+   "pass": null,
    "tool_match": false,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -752,16 +734,17 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "greeting_minimal",
    "category": "out_of_scope",
    "question": "Привет!",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [],
@@ -780,8 +763,9 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "euclid_gcd_python",
@@ -823,9 +807,9 @@
    "id": "definition_superlinear",
    "category": "definition",
    "question": "Что значит сверхлинейная сходимость?",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -852,16 +836,17 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "theorem_clt",
    "category": "structural",
    "question": "Сформулируй центральную предельную теорему как в учебнике.",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -890,8 +875,9 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "plot_sincos_overlay",
@@ -936,9 +922,9 @@
    "id": "fragment_explanation",
    "category": "rag_basic",
    "question": "Если кто-то предлагает использовать обновление x_{k+1} = x_k - f(x_k)·f'(x_k) вместо классического Ньютона — что это за идея и она работает?",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [
     "производ"
@@ -967,8 +953,9 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "eigenvalues_numpy",
@@ -1137,9 +1124,9 @@
    "id": "outline_chapter",
    "category": "structural",
    "question": "Перечисли основные разделы главы про Ньютона.",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1166,16 +1153,17 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "math_latex_derivation",
    "category": "rag_basic",
    "question": "Выведи формулу метода Ньютона через касательную. Формулу запиши через LaTeX.",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1202,16 +1190,17 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "definition_perceptron",
    "category": "definition",
    "question": "Что такое полносвязная нейронная сеть?",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1244,16 +1233,17 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   },
   {
    "id": "refuse_unknown_year",
    "category": "out_of_scope",
    "question": "В каком году Гаусс изобрёл метод сопряжённых градиентов?",
-   "pass": false,
+   "pass": null,
    "tool_match": true,
-   "answer_match": false,
+   "answer_match": null,
    "visual_match": true,
    "missing": [],
    "tools": [
@@ -1282,8 +1272,10 @@
    "broken_formulas": 0,
    "raw_unrendered": 0,
    "judge_pass": null,
-   "judge_reason": "НЕТ ВЕРДИКТА СУДЬИ",
-   "judge": "missing"
+   "judge_reason": "ждёт судью",
+   "judge": "missing",
+   "judge_pending": true
   }
- ]
+ ],
+ "judge_pending": 16
 }

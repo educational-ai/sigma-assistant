@@ -7,7 +7,7 @@ via case_state() — a stored pass:true on a timed-out/oborvanный answer does
 count as a clean pass. Cost/token columns auto-hide until the data exists (no
 fake $0 / 0-0). Cost shown is REAL OpenRouter spend (never estimated).
 Regenerate any time — handles partial data (only some models done)."""
-import json, html, time, statistics
+import json, html, sys, time, statistics
 from pathlib import Path
 
 ROOT = Path("/root/sigma_assistant")
@@ -81,7 +81,8 @@ TIMEOUT_S = 171   # informational only: elapsed≥this = ran long (no longer = b
 MIN_ANS = 40      # shorter than this = оборванный ответ, not a reply
 DEAD_FRAC = 0.5   # >half the cases broken ⇒ infra-failed run, not a quality score
 
-GLYPH = {"pass": ("✓", "ok"), "fail": ("✕", "no"), "broken": ("⚠", "warn")}
+GLYPH = {"pass": ("✓", "ok"), "fail": ("✕", "no"), "broken": ("⚠", "warn"),
+         "pending": ("⏳", "pend")}
 
 
 def is_raw_toolcall(a):
@@ -140,6 +141,12 @@ def case_state(c):
     answer length — NOT by raw elapsed: the adaptive timeout lets a genuinely
     working agentic case run long and still PASS, so high elapsed alone no longer
     means broken (incident 2026-06-10)."""
+    if c.get("protocol_dnf"):
+        return "broken", "протокольный сбой (тулы недоступны)"
+    if c.get("judge_pending"):
+        # Judged категория без вердикта для ЭТОГО ответа: не «провал», а очередь
+        # судьи. Никогда не публикуется как ✕ (аудит 2026-07-13, critical #2).
+        return "pending", "ждёт судью"
     alen = len((c.get("answer") or "").strip())
     if c.get("no_answer") or alen == 0:
         return "broken", "нет ответа"
@@ -158,6 +165,7 @@ def summarize(b):
     states = [case_state(c)[0] for c in cases]
     n = len(cases) or 1
     broken = states.count("broken")
+    pending = states.count("pending")
     # latency only over cases that actually completed — timeouts pin at the cap
     # and would otherwise make every model look equally slow.
     good_els = sorted((c.get("elapsed", 0) or 0)
@@ -167,10 +175,11 @@ def summarize(b):
         "clean": states.count("pass"),
         "fail": states.count("fail"),
         "broken": broken,
+        "pending": pending,   # unjudged: вне числителя И вне знаменателя
         "answered": len(cases) - broken,
         "dead": broken / n > DEAD_FRAC,   # infra-failed run, not a quality score
         "timeouts": sum(1 for c in cases if (c.get("elapsed", 0) or 0) >= TIMEOUT_S),
-        "rate": states.count("pass") / n,
+        "rate": states.count("pass") / max(1, n - pending),
         "median": statistics.median(good_els) if good_els else 0,
         "max": max(good_els) if good_els else 0,
     }
@@ -180,7 +189,10 @@ def cat_stats(b):
     out = {}
     for c in b["cases"]:
         st = case_state(c)[0]
-        d = out.setdefault(c["category"], {"clean": 0, "total": 0})
+        d = out.setdefault(c["category"], {"clean": 0, "total": 0, "pending": 0})
+        if st == "pending":
+            d["pending"] += 1   # не судимое не входит в знаменатель ячейки
+            continue
         d["total"] += 1
         if st == "pass":
             d["clean"] += 1
@@ -364,7 +376,7 @@ tbody tr:hover{background:#fafafa}
 .qcat{font-size:10.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
 .cellmark{font-weight:800;cursor:pointer;border-radius:6px;padding:2px 9px;display:inline-block;min-width:26px;font-size:15px}
 .cellmark:hover{background:#f1f5f9}
-.ok{color:var(--ok)}.no{color:var(--no)}.warn{color:var(--warn)}
+.ok{color:var(--ok)}.no{color:var(--no)}.warn{color:var(--warn)}.pend{color:#94a3b8}
 .heatcell{border-radius:6px;font-weight:700;color:#0a0a0a;font-variant-numeric:tabular-nums}
 .heatcell.lown{opacity:.5}
 .heatcell .nn{font-size:10px;color:#475569;display:block;font-weight:600}
@@ -537,7 +549,7 @@ let lastEl=null;
 function openDetail(el){
   const d=D[el.dataset.k]; if(!d) return;
   lastEl=el;
-  const g=d.state==='pass'?'✓':d.state==='fail'?'✕':'⚠';
+  const g=d.state==='pass'?'✓':d.state==='fail'?'✕':d.state==='pending'?'⏳':'⚠';
   document.getElementById('dt').textContent=g+' '+d.model+' · '+d.cat;
   let bits=['картинок: '+d.img,d.elapsed.toFixed(0)+' с'];
   const tc=document.getElementById('dtools'); tc.innerHTML=''; tc.classList.remove('clickable');
@@ -706,14 +718,18 @@ def build(bench_dir=None, out=None, version=None, versions=()):
         # scores 0 on that question (not excluded) — the eval retries to get an answer;
         # if it still can't, 0 stands. Denominator is always the full set.
         cases = b["cases"]
-        tot = 0.0
+        tot, denom = 0.0, 0
         for c in cases:
-            if case_state(c)[0] == "broken":
+            st = case_state(c)[0]
+            if st == "pending":
+                continue                        # не судимое — вне score целиком
+            denom += 1
+            if st == "broken":
                 tot += 0.0                      # no usable answer → 0 for that question
             else:
                 rs = c.get("rubric_score")
                 tot += rs if rs is not None else (1.0 if c.get("pass") else 0.0)
-        return tot / (len(cases) or 1)
+        return tot / (denom or 1)
     order = sorted(live, key=lambda b: -score_of(b))  # best score first
     multi = len(live) > 1
 
@@ -778,8 +794,10 @@ def build(bench_dir=None, out=None, version=None, versions=()):
         # THE score first (ranking metric): weighted rubric points over ALL questions.
         sc = score_of(b)
         A(f"<td><span class=rate style='background:{heat_bg(sc)}'><b>{sc*100:.0f}%</b></span></td>")
-        A(f"<td><span class=rate style='background:{heat_bg(s['rate'])}'>{s['clean']}/{s['n']}</span>"
-          f"<div class=muted style='font-size:12px'>{s['rate']*100:.0f}%</div></td>")
+        pend_note = (f"<div class=muted style='font-size:11px'>⏳{s['pending']} ждёт судью</div>"
+                     if s.get("pending") else "")
+        A(f"<td><span class=rate style='background:{heat_bg(s['rate'])}'>{s['clean']}/{s['n'] - s.get('pending', 0)}</span>"
+          f"<div class=muted style='font-size:12px'>{s['rate']*100:.0f}%</div>{pend_note}</td>")
         A(f"<td class=muted>{s['median']:.0f} с / {s['max']:.0f} с</td>")
         if has_cost:
             A(f"<td class=cost><b>{money(b.get('total_cost_usd'), 4)}</b></td>")
@@ -823,10 +841,13 @@ def build(bench_dir=None, out=None, version=None, versions=()):
             cc = cs.get(c)
             if not cc:
                 A("<td class=muted>—</td>"); continue
-            rate = cc["clean"] / cc["total"] if cc["total"] else 0
+            if not cc["total"]:
+                A("<td class='heatcell muted'>⏳</td>"); continue   # вся категория ждёт судью
+            rate = cc["clean"] / cc["total"]
             lown = " lown" if cc["total"] < 3 else ""
             nn = f"<span class=nn>n={cc['total']}</span>" if cc["total"] < 3 else ""
-            A(f"<td class='heatcell{lown}' style='background:{heat_bg(rate)}'>{cc['clean']}/{cc['total']}{nn}</td>")
+            pend = f"<span class=nn>⏳{cc['pending']}</span>" if cc.get("pending") else ""
+            A(f"<td class='heatcell{lown}' style='background:{heat_bg(rate)}'>{cc['clean']}/{cc['total']}{nn}{pend}</td>")
         A("</tr>")
     A("</tbody></table></div>")
     A("<div class=legend>"
@@ -839,7 +860,7 @@ def build(bench_dir=None, out=None, version=None, versions=()):
     troubles = []
     for c in top["cases"]:
         st, cause = case_state(c)
-        if st != "pass":
+        if st not in ("pass", "pending"):   # pending — очередь судьи, не проблема
             troubles.append((c, st, cause))
     troubles.sort(key=lambda t: (0 if t[1] == "broken" else 1, -(t[0].get("elapsed", 0) or 0)))
     if troubles:
@@ -915,7 +936,9 @@ def build(bench_dir=None, out=None, version=None, versions=()):
       "(судья → адверсариальный рефутер → критик легитимности): незачёт за галлюцинацию факта, "
       "<b>сломанную формулу</b> (которую KaTeX не отрендерит) и треш-стиль, негодный для учебника. "
       f"Набор: <b>{len(qorder)}</b> {plural(len(qorder),('вопрос','вопроса','вопросов'))} в "
-      f"<b>{len(cats)}</b> {plural(len(cats),('категории','категориях','категориях'))}.")
+      f"<b>{len(cats)}</b> {plural(len(cats),('категории','категориях','категориях'))}. "
+      "Смысловой ответ, который судья ещё не оценил, показывается как <b>⏳ «ждёт судью»</b> и "
+      "не участвует ни в числителе, ни в знаменателе — недосуженное никогда не публикуется как провал.")
     if has_cost:
         A(" Стоимость — <b>фактические списания OpenRouter</b> (<code>usage.cost</code>), не оценка по прайсу.")
     A("</div>")
@@ -931,11 +954,19 @@ def build(bench_dir=None, out=None, version=None, versions=()):
     built = time.strftime("%Y-%m-%d %H:%M")
     ran_ats = [b.get("ran_at") for b in benches if b.get("ran_at")]
     if ran_ats:
-        run_line = "прогон от " + time.strftime("%Y-%m-%d", time.localtime(max(ran_ats)))
+        d0 = time.strftime("%Y-%m-%d", time.localtime(min(ran_ats)))
+        d1 = time.strftime("%Y-%m-%d", time.localtime(max(ran_ats)))
+        # честно показываем ДИАПАЗОН: смесь дат — не «один прогон от <max>»
+        run_line = f"прогоны {d0} — {d1}" if d0 != d1 else f"прогон от {d1}"
     else:
         run_line = "дата прогона не записана"
-    A(f"<div class=foot>Страница собрана {built} MSK · {run_line} · "
-      "данные: eval/bench/*/bench.json · агент: /assistant/assistant.js (live) · "
+    agents = {b.get("agent_commit") for b in benches if b.get("agent_commit")}
+    agent_line = ""
+    if agents:
+        agent_line = (" · агент " + esc(sorted(agents)[0]) if len(agents) == 1
+                      else " · <b>⚠ смешаны версии агента: " + esc(", ".join(sorted(agents))) + "</b>")
+    A(f"<div class=foot>Страница собрана {built} MSK · {run_line}{agent_line} · "
+      "данные: eval/bench_v*/*/bench.json · агент: /assistant/assistant.js (live) · "
       "<a href=\"/\">← к учебнику</a></div>")
 
     ticons, tlabels, tdot = load_tool_icons()
@@ -970,13 +1001,13 @@ def build(bench_dir=None, out=None, version=None, versions=()):
           f"clean={s0['clean']}/{s0['n']}, has_cost={has_cost}, has_tok={has_tok}, shots={nshots})")
 
 
-def build_all():
+def build_all(root="/var/www/sigma/docs/benchmark"):
     """Последняя версия (eval/bench_v<max>) → /benchmark/, остальные → /benchmark/<v>/."""
     vs = [(p.name.replace("bench_", ""), p)
           for p in sorted(EVAL.glob("bench_v*"), key=lambda p: (len(p.name), p.name))]
     if not vs:
         return
-    root_out = Path("/var/www/sigma/docs/benchmark/index.html")
+    root_out = Path(root) / "index.html"
     latest, _ = vs[-1]
     versions = [(v, "/benchmark/" if v == latest else f"/benchmark/{v}/") for v, _p in vs]
     for v, p in vs:
@@ -985,4 +1016,7 @@ def build_all():
 
 
 if __name__ == "__main__":
-    build_all()
+    # --dev: собрать страницу ТОЛЬКО на dev-стенде. Идущий dev-свип не должен
+    # публиковать промежуточную смесь на прод (аудит 2026-07-13, critical #5).
+    build_all("/var/www/sigma-dev/docs/benchmark" if "--dev" in sys.argv
+              else "/var/www/sigma/docs/benchmark")

@@ -55,20 +55,15 @@ async def run_one(page, case):
     except Exception:
         pass
 
-    # Simulate selecting a fragment, if provided. We don't actually highlight
-    # text on the page (selecting via the page DOM is fragile across chapters);
-    # instead we inject it directly into the assistant state so the model sees
-    # the same payload it would when a student actually selects.
+    # Fragment cases: the widget's selectedFragment plumbing is not reachable
+    # from outside, and __sigmaForceFragment is read by NOBODY (audit major #11:
+    # 4 fragment-кейса грейдили угадывание невидимой формулы) — so the fragment
+    # is pasted into the question itself. The model must SEE what it explains.
+    question = case["question"]
     if case.get("fragment"):
-        await page.evaluate(
-            """(frag) => { window.__sigmaForceFragment = frag; }""",
-            case["fragment"],
-        )
-        # The widget reads selectedFragment from its own state at send time;
-        # for the eval we just paste the fragment into the question itself to
-        # avoid plumbing. The bigger signal is the question + agent loop.
+        question = f"{question}\n\nВыделенный фрагмент: «{case['fragment']}»"
 
-    await page.fill(".sigma-input", case["question"])
+    await page.fill(".sigma-input", question)
     await page.click(".sigma-send")
 
     # --- Robust capture: wait for the answer to STOP changing, then read it.
@@ -85,6 +80,11 @@ async def run_one(page, case):
             streaming: !!last.querySelector('.sigma-status'),
             text: a ? a.innerText : '',
             raw: a ? (a.dataset.raw ?? '') : '',
+            // dataset.raw is set by assistant.js ONLY on a terminal path (final
+            // answer / finishFromContext) — it is the "turn is over" contract.
+            hasRaw: a ? (a.dataset.raw != null) : false,
+            degraded: a ? (a.dataset.degraded || '') : '',
+            toolOk: a ? Number(a.dataset.toolok || '0') : 0,
             traceN: last.querySelectorAll('.sigma-trace-node').length,
         };
     }"""
@@ -112,9 +112,17 @@ async def run_one(page, case):
             last_len = max(last_len, len(text))
             last_trace = max(last_trace, trace_n)
             deadline = min(hard_deadline, time.monotonic() + ASK_TIMEOUT_S)
+        # Final-answer CONTRACT: the spinner disappears on the FIRST streamed
+        # token (onProgress), so "spinner gone + text stable 1.2s" fires while
+        # tools/Pyodide are still working and captures scaffolding as the final
+        # answer (audit critical #3: у «болтливых» моделей отнята python-категория).
+        # The real terminal signal is dataset.raw — set only when the turn ends.
+        # innerText-stability alone is accepted only as a ≥20s fallback (a page
+        # predating the contract / a wedged stream).
+        need_ticks = 4 if (last or {}).get("hasRaw") else 67
         if (not streaming) and len(text.strip()) > 5 and text == prev_text:
             stable_ticks += 1
-            if stable_ticks >= 4:  # ~1.2s unchanged & spinner gone → final answer
+            if stable_ticks >= need_ticks:
                 break
         else:
             stable_ticks = 0
@@ -168,6 +176,13 @@ async def run_one(page, case):
     if len(stable_raw.strip()) > len((data.get("answer") or "").strip()):
         data["answer"] = stable_raw
     data["timed_out"] = timed_out
+    # Protocol DNF (audit major #8): the agent loop degraded into a forced
+    # no-tools answer with ZERO successful tool steps (e.g. upstream 429/502 on
+    # every tool call). The text is a hallucination w.r.t. the agent contract —
+    # record it, but flag the case as "harness didn't obtain a real answer".
+    deg = (last or {}).get("degraded") or ""
+    if deg and not (last or {}).get("toolOk"):
+        data["protocol_dnf"] = deg
     return data
 
 
@@ -442,7 +457,9 @@ async def run_eval(cases_path: Path, base_url: str, out_dir: Path, only=None):
                 # no_answer: even after retries we never got a real answer. This is
                 # a DNF (eval/API failure), distinct from a wrong/refusing answer —
                 # downstream can exclude it instead of scoring it as a content fail.
-                obs["no_answer"] = _is_garbage(obs.get("answer"))
+                # protocol_dnf: the loop degraded to a forced no-tools answer with
+                # zero successful tool steps — same class: harness/provider failure.
+                obs["no_answer"] = _is_garbage(obs.get("answer")) or bool(obs.get("protocol_dnf"))
                 elapsed = time.time() - t0
 
                 score = score_one(case, obs)
