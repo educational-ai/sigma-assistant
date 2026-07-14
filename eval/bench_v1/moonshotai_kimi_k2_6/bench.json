@@ -87,7 +87,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Год 1975, экономика, оптимальное распределение ресурсов — всё верно и обосновано поиском; 1948 корректно отнесён к теореме, ложной атрибуции нет",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   },
   {
    "id": "newton_formula_recall",
@@ -125,7 +127,12 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Метод и геом. идея названы верно и заземлены, но ответ физически обрублен на полуслове, и именно деривация формулы («откуда берётся») не закончена — незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.42,
+   "judge_critical": [
+    "Ответ обрублен на полуслове: заканчивается «полагаем y=0 и реша» (и в bench.json answer, и на скрине страницы) — хард-правило «обрублен = незачёт»",
+    "Под-требование «откуда берётся формула» осталось незавершённым: вывод x_{k+1}=x_k−f(x_k)/f'(x_k) из y=0 не доведён"
+   ]
   },
   {
    "id": "definition_strong_convex",
@@ -163,7 +170,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точное определение Опр.2.4 (g∈C², g''≥μ>0), верно, по-русски, оба critical-критерия met; лишь литеральный «>» от blockquote — косметика.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.95,
+   "judge_critical": []
   },
   {
    "id": "compute_factorial",
@@ -498,7 +507,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Тулзы и стратегия агента верные, но финальный ответ обрублен на полуслове — оба critical-критерия none, незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.15,
+   "judge_critical": [
+    "Ответ обрублен на полуслове: «Ты уже на этой главе — она про метод Ньютона. Вот в чём разница с градиент» — и в bench.json, и на живой странице",
+    "Critical-критерий second_vs_first_order = none: разница g''(x)/квадратичная модель vs g'(x)/линейная не сформулирована",
+    "Critical-критерий chapter_ref = none: глава 2/ch02 явно не названа"
+   ]
   },
   {
    "id": "structural_kantorovich_theorem",
@@ -538,7 +553,11 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Теорема сформулирована верно и подтверждена математикой/тулом, но ответ обрублен на полуслове («поэтому ошиб») — по жёсткому правилу это незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.55,
+   "judge_critical": [
+    "Ответ обрублен на полуслове — заканчивается на «поэтому ошиб» (completion_tokens=92, подтверждено скрином живой страницы): по правилам судьи обрыв на полуслове = незачёт, читатель видит недописанный ответ в виджете"
+   ]
   },
   {
    "id": "vision_refine_diverging_sgd",
@@ -591,7 +610,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Сделана только диагностика расходимости (верный график и числа), но ответ оборван на полуслове, рабочий шаг не подобран и сходящаяся траектория не показана — два critical-критерия провалены.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.12,
+   "judge_critical": [
+    "Ответ обрублен на полуслове: «Расходится. При η=1,1 множитель обновления ра» (45 символов) — незачёт по правилу об обрыве",
+    "Рабочий шаг η∈(0,1) не подобран, сходящаяся траектория не построена — critical-критерий working_step = none",
+    "Только 1 python-прогон (расходящийся); вторая половина задачи не выполнена, цикл vision_refine не завершён"
+   ]
   },
   {
    "id": "hashlib_demo",
@@ -705,7 +730,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Чёткий вежливый отказ, рецепта нет (нет ингредиентов/шагов), предложена помощь по учебнику, содержит ключи 'учебник'/'оптимизац', исключены свёкл/морков; рендер чистый — оба critical-критерия met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.95,
+   "judge_critical": []
   },
   {
    "id": "rsa_history",
@@ -751,7 +778,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Год (1978), все три автора и MIT верны и подтверждены текстом главы; оба critical-критерия met, дефектов нет.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.95,
+   "judge_critical": []
   },
   {
    "id": "greeting_minimal",
@@ -779,7 +808,11 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Отклик по сути идеален (краткий, дружелюбный, без тулов, чистый рендер), но нарушен критичный жёсткий порог длины: 157 > 150 знаков → незачёт по рубрике.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.72,
+   "judge_critical": [
+    "Критичный критерий «short» (≤150 знаков) провален: фактическая длина ответа 157 символов (пересчёт python len), превышение на 7 знаков жёсткого порога, помеченного critical=true и auto"
+   ]
   },
   {
    "id": "euclid_gcd_python",
@@ -852,7 +885,11 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Определение верно и заземлено в Опр. 2.3, но ответ визуально обрублен на 'В той' — хард-правило truncated=fail.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.5,
+   "judge_critical": [
+    "Ответ обрублен на полуслове: заканчивается на 'В той' без продолжения (подтверждено и в answer, и на скрине страницы) — по правилам обрубленный ответ = незачёт, несмотря на верное ядро определения"
+   ]
   },
   {
    "id": "theorem_clt",
@@ -890,7 +927,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Дословная верная формулировка ЦПТ из учебника + корректный разбор; оба critical-критерия met; мелкий косметический баг вёрстки (стрелки '>' blockquote).",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.92,
+   "judge_critical": []
   },
   {
    "id": "plot_sincos_overlay",
@@ -967,7 +1006,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Верно определил, что схема не эквивалентна Ньютону и не сходится к корню, но ответ обрублен на обещании численного сравнения — механизм и суть идеи так и не раскрыты; обрыв на полуслове = незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.32,
+   "judge_critical": [
+    "Ответ обрублен на полуслове: анонсирует «Сначала сравним численно классический Ньютон и предложенную схему… уравнение x²−2=0» и останавливается, сравнение и объяснение не даны (completion_tokens=141)",
+    "Механизм не объяснён вовсе: нет разбора, что множитель f'(x) масштабирует шаг как f·f' и ведёт к минимуму f², а не к нулю f (rubric mechanism=NONE)",
+    "Голден-ключ «производ» отсутствует в ответе — ключевое содержательное объяснение не дано"
+   ]
   },
   {
    "id": "eigenvalues_numpy",
@@ -1115,7 +1160,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "[спор решён арбитром] Список разделов полон и обоснован get_outline (все 6 H2, ничего не выдумано); обрыв срезал только пояснение-глоссу после полного имени последнего раздела. Оба критических критерия рубрики met, style=partial → 0.92 → зачёт. Судейский обвал до 0.55 применил внешнее правило «обрублен=незачёт», которого в критериях этого кейса нет.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.9,
+   "judge_critical": []
   },
   {
    "id": "math_latex_derivation",
@@ -1155,7 +1202,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Ответ обрублен на полуслове, итоговой формулы и вывода нет — критический критерий провален, незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.08,
+   "judge_critical": [
+    "Ответ обрублен на полуслове («…заменим график $y=f(x») — подтверждено и скрапом (completion_tokens=133), и скрином живой страницы",
+    "Критический критерий final_formula = none: итоговая формула метода Ньютона x_{k+1}=x_k−f(x_k)/f'(x_k) полностью отсутствует",
+    "Вывод через касательную (уравнение касательной, подстановка y=0) не приведён — суть задачи не выполнена"
+   ]
   },
   {
    "id": "definition_perceptron",
@@ -1193,7 +1246,12 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Определение MLP верное и обосновано тулом, но ответ оборван на полуслове с утечкой сырого LaTeX на странице — обрубленный ответ = незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.35,
+   "judge_critical": [
+    "Ответ обрублен на полуслове: заканчивается '**Вход** $\\mathbf{a}^{(0)} = \\' (подтверждено и в bench.json answer, и на живом скрине) — по правилу обрубленный ответ = незачёт",
+    "На странице торчит сырой нерендеренный LaTeX '$\\mathbf{a}^{(0)} = \\' — читатель видит служебный код, а не текст"
+   ]
   },
   {
    "id": "refuse_unknown_year",
@@ -1279,7 +1337,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Ложная предпосылка вскрыта, год не выдуман, все факты верны, отказ обоснован трейсом — эталонный out_of_scope",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.95,
+   "judge_critical": []
   }
  ],
  "judge_pending": 0

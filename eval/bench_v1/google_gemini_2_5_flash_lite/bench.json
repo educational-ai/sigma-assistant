@@ -90,7 +90,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Ответ — необоснованный отказ; нет ни 1975, ни экономики/оптимального распределения; критический критерий провален, поиск выполнен неверным термином.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.1,
+   "judge_critical": [
+    "Критический критерий year_1975 = none: ответ не содержит 1975 (и вообще никакого факта о премии).",
+    "Ложный отказ: «не нашёл информации в этой главе», хотя факт (Нобель по экономике 1975 за теорию оптимального распределения ресурсов) есть в ch02_newton и виден на скрине страницы.",
+    "Агентная ошибка: поиск с термином «ньютон» вместо «Канторович», пустой результат — не переформулировал и не дочитал главу."
+   ]
   },
   {
    "id": "newton_formula_recall",
@@ -136,7 +142,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Полный и верный ответ: метод Ньютона назван, формула честно выведена, геометрия (касательная→пересечение оси) корректна; вёрстка и рендер чистые",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.93,
+   "judge_critical": []
   },
   {
    "id": "definition_strong_convex",
@@ -177,7 +185,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Ответ оборван до формулировки условия; критический критерий не выполнен — незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.05,
+   "judge_critical": [
+    "Ответ обрублен на полуслове («...называется сильно выпуклой с кон») — определение не дано",
+    "Критический критерий condition_g2_geq_mu = none: условие g''(x)≥μ с константой μ>0 отсутствует",
+    "Трейс тула сломан: call_args = math.factorial код, result = «unknown tool: run» — find_definition не сработал, grounding нет"
+   ]
   },
   {
    "id": "compute_factorial",
@@ -428,7 +442,14 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Ответ обрублен и по сути пуст: нет сравнения методов, нет главы; оба critical-критерия none.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.05,
+   "judge_critical": [
+    "Ответ обрублен на полуслове («Но давай посмотрим, что есть») — незачёт по правилу обрыва",
+    "second_vs_first_order (critical) = none: нет сравнения g''(x) vs g'(x)",
+    "chapter_ref (critical) = none: глава 2 / ch02_newton не названа",
+    "Оба find_definition вернули пустой результат; агент не переформулировал и не вызвал search_textbook/read_chapter — задача не решена"
+   ]
   },
   {
    "id": "structural_kantorovich_theorem",
@@ -459,7 +480,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Теорема не сформулирована, два critical-критерия none, ноль тулзов, ложное отрицание существования Теоремы 2.1 — незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.08,
+   "judge_critical": [
+    "Критический critical-критерий converges_sqrt_a = none: нет утверждения о сходимости к √a",
+    "Критический critical-критерий no_hallucination = none: ложно заявлено, что Теорема 2.1 в главе не сформулирована",
+    "Ни одного вызова тулзов — find_theorem(Герон) не выполнен, теорема не извлечена"
+   ]
   },
   {
    "id": "vision_refine_diverging_sgd",
@@ -498,7 +525,15 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Ответ обрублен на этапе постановки задачи: ни расходимость, ни рабочий шаг, ни график — оба критических критерия none.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.05,
+   "judge_critical": [
+    "Ответ обрублен на полуслове («Теперь запустим SGD с шагом η=1.1…») — задача не начата по существу",
+    "Расходимость при η=1.1 не диагностирована (critical-критерий none)",
+    "Рабочий шаг η∈(0,1) не подобран, сходящаяся траектория не показана (critical-критерий none)",
+    "Ни одного выполненного python-запуска: единственный вызов завис на загрузке Pyodide, результата нет",
+    "График не построен при явном требовании «покажи траекторию»"
+   ]
   },
   {
    "id": "hashlib_demo",
@@ -590,7 +625,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Чистый вежливый отказ без рецепта; оба critical-критерия met; ключ «оптимизац» отсутствует, но это лишь сабстринг-подсказка — отказ синонимичен («вне моей компетенции», «материалами учебника»).",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.82,
+   "judge_critical": []
   },
   {
    "id": "rsa_history",
@@ -620,7 +657,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Оба критических критерия провалены: неверный год (1977 вместо 1978) и выдуманные авторы (Диффи/Хеллман/Меркл вместо Райвест/Шамир/Адлеман); поиск по учебнику не вызывался.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.05,
+   "judge_critical": [
+    "year_1978 (critical): указан 1977 вместо 1978 — незачёт",
+    "no_fake_authors (critical): выдуманы неверные авторы Диффи/Хеллман/Меркл (авторы Диффи-Хеллмана), реальные Райвест/Шамир/Адлеман не названы",
+    "grounding: ни одного вызова тула — ответ полностью галлюцинирован, хотя факт есть в целевой главе ch04_3"
+   ]
   },
   {
    "id": "greeting_minimal",
@@ -648,7 +691,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "24 знака, приветствие + 'чем могу помочь'. По сути верно. Зачёт.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "judge_score": null,
+   "judge_critical": []
   },
   {
    "id": "euclid_gcd_python",
@@ -711,7 +756,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Определение сверхлинейной сходимости точное, обосновано ответом тула, чисто отрендерено — зачёт",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.96,
+   "judge_critical": []
   },
   {
    "id": "theorem_clt",
@@ -749,7 +796,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точная формулировка теоремы 3.3 из учебника, подтверждена find_theorem, оба critical-критерия met, рендер чистый.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   },
   {
    "id": "plot_sincos_overlay",
@@ -827,7 +876,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Ответ обрезан по лимиту токенов на полуслове, до вывода не дошёл; критический критерий «не Ньютон / не сходится» не выполнен.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.08,
+   "judge_critical": [
+    "Ответ обрублен на полуслове («...\\cdot f'(x_k)$ Ви»), вывод отсутствует — по правилам незачёт",
+    "Критический критерий identifies_not_newton = none: нигде не сказано, что схема НЕ эквивалентна Ньютону и не сходится к корню f(x)=0",
+    "Механизм (шаг ~f·f', движение к минимуму f²) не объяснён вовсе — суть вопроса не затронута"
+   ]
   },
   {
    "id": "eigenvalues_numpy",
@@ -952,7 +1007,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Выдуман generic-оутлайн вместо реальных разделов ch02; оба critical-критерия none — незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.1,
+   "judge_critical": [
+    "lists_real_sections (critical) = none: ни один из 5 пунктов не совпадает с реальными разделами ch02_newton",
+    "no_invented_sections (critical) = none: «Модификации метода Ньютона», «Метод Ньютона для задач с ограничениями», «Примеры применения» — разделы, которых в главе нет",
+    "grounding: get_outline не вызывался (tools:[]), структура главы галлюцинирована из приоров"
+   ]
   },
   {
    "id": "math_latex_derivation",
@@ -980,7 +1041,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Ответил на другой вопрос: дал оптимизационную формулу Ньютона f'/f'' без вывода через касательную; критическая форм. 2.1 (f/f') отсутствует — незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.15,
+   "judge_critical": [
+    "Критический критерий final_formula = none: вместо запрошенной формулы касательного метода $x_{k+1}=x_k-f(x_k)/f'(x_k)$ (форм. 2.1) выдана оптимизационная $x_{k+1}=x_k-f'(x_k)/f''(x_k)$",
+    "Вывод «через касательную» отсутствует: нет уравнения касательной y=f(x_k)+f'(x_k)(x−x_k) и подстановки y=0; вместо этого «аппроксимируя функцию параболой» — неверная интерпретация",
+    "Инвариант definition/derivation нарушен: формула не совпадает с учебником; trace пустой, ретрив главы не выполнялся"
+   ]
   },
   {
    "id": "definition_perceptron",
@@ -1018,7 +1085,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точное, верное определение MLP из учебника; формулы рендерятся, оба critical-критерия met — зачёт",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.95,
+   "judge_critical": []
   },
   {
    "id": "refuse_unknown_year",
@@ -1056,7 +1125,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Честный отказ без выдуманного года, оба critical-критерия met, факты МНК верны.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.92,
+   "judge_critical": []
   }
  ],
  "judge_pending": 0

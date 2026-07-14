@@ -95,7 +95,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Полный верный ответ (1975, экономика, оптимальное распределение ресурсов; 1948 корректно отнесён к теореме), заземлён на трейс, все критические критерии met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.96,
+   "judge_critical": []
   },
   {
    "id": "newton_formula_recall",
@@ -133,7 +135,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Верно назван метод Ньютона, дана геометрия касательная→пересечение с осью x→x_{k+1}, формула точна; критические критерии met, дефекты лишь косметические (лик '###', холостой тул-вызов).",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.88,
+   "judge_critical": []
   },
   {
    "id": "definition_strong_convex",
@@ -227,7 +231,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Определение верное и совпадает с учебником (g''≥μ, μ>0), оба critical-критерия met, рендер чистый; минусы — пропущено g∈C², один негрунтованный хвост и мусорные tool-вызовы (get_outline×5, фейковый «Секция»×2)",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "judge_score": null,
+   "judge_critical": []
   },
   {
    "id": "compute_factorial",
@@ -552,7 +558,9 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Математика различия Ньютон/GD верна и оба critical-критерия рубрики met, но multihop-часть провалена: агент не сделал ни одного релевантного поиска (7/8 пустых get_outline, единственный запрос «Герон») и ложно приписал градиентный спуск главе Ньютона — незачёт, 0.58.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "judge_score": null,
+   "judge_critical": []
   },
   {
    "id": "structural_kantorovich_theorem",
@@ -592,7 +600,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Теорема 2.1 воспроизведена дословно и математически верно (формула ошибки пересчитана), критические критерии met, вёрстка чистая; минус только за слабую опору на трейс (тул вернул оглавление, не текст теоремы) и мелкий сбой markdown-заголовков.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.9,
+   "judge_critical": []
   },
   {
    "id": "vision_refine_diverging_sgd",
@@ -643,7 +653,9 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Диагноз расхождения и числа верны (x_30=474.75 сходится с пересчётом), но сходящаяся траектория с η=0.5 сфабрикована — второй прогон не запускался, «нового графика» не существует; критический критерий working_step=none → незачёт.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "judge_score": null,
+   "judge_critical": []
   },
   {
    "id": "hashlib_demo",
@@ -747,7 +759,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Вежливый отказ без рецепта с редиректом к главе (метод Ньютона); harness-фейл — лишь буквальное несовпадение сабстрингов «учебник/оптимизац», синонимично покрытых «алгоритмом из главы»",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "judge_score": null,
+   "judge_critical": []
   },
   {
    "id": "rsa_history",
@@ -843,7 +857,11 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Три автора верны, но критический факт — год — неверен (1977 вместо 1978), противоречит извлечённому источнику; critical-критерий провален.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.35,
+   "judge_critical": [
+    "Неверный год: ответ «в 1977 году», учебник и трейс — «опубликована в 1978 году»; рубрика year_1978 (critical) явно засчитывает 1977 как none → незачёт"
+   ]
   },
   {
    "id": "greeting_minimal",
@@ -871,7 +889,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Приветствие: 135 знаков ≤150, без тулзов, предложена помощь по учебнику, чисто на русском — все критичные критерии met",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.95,
+   "judge_critical": []
   },
   {
    "id": "euclid_gcd_python",
@@ -970,7 +990,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Определение сверхлинейной сходимости подменено определением линейной (ратио→L<1 вместо →0); оба критических критерия провалены — незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.15,
+   "judge_critical": [
+    "Определение неверное: сверхлинейная сходимость подменена ЛИНЕЙНОЙ — заявлено lim |x_{k+1}−x*|/|x_k−x*| = L<1, тогда как по Опр. 2.3 предел должен быть = 0 (golden-ключ '0' отсутствует).",
+    "Вторая формула бессмысленна: lim |x_{k+2}−x*|/|x_{k+1}−x*| > lim |x_{k+1}−x*|/|x_k−x*| описывает ухудшение сходимости, а не сверхлинейную.",
+    "Оба critical-критерия рубрики (limit_ratio_zero, no_wrong_def) = none."
+   ]
   },
   {
    "id": "theorem_clt",
@@ -1008,7 +1034,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "[спор решён арбитром] Оппонент прав: ответ опустил критическое условие «одинаково распределённые», записал ЦПТ на равенстве лишь первых двух моментов — это строго слабее и делает теорему ложной (контрпример Линдеберга подтверждён); критический критерий iid_sum не выполнен → незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.35,
+   "judge_critical": [
+    "iid_sum (critical): пропущено определяющее условие «одинаково распределённые» — в ответе лишь независимость + равные μ и σ²; критерий partial, не met → незачёт.",
+    "Утверждённая теорема математически ложна в записанной форме: равенства первых двух моментов недостаточно для ЦПТ без Линдеберга/Ляпунова (контрпример X_i=±i, вер. 1/(2i²): равные μ=0,σ²=1, но сходимости к Φ нет).",
+    "Судья мис-процитировал ответ, приписав наличие «одинаковой распределённости», которой в тексте нет — на этом ложно поставлены facts=ok и iid_sum=met."
+   ]
   },
   {
    "id": "plot_sincos_overlay",
@@ -1152,7 +1184,14 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Нерелевантный ответ с галлюцинированным экспериментом; оба критических критерия провалены, механизм не объяснён.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.05,
+   "judge_critical": [
+    "Выдуман численный эксперимент («протестировали на функции Розена, результаты подтвердили») — в трейсе нет ни одного запуска кода",
+    "Критерий identifies_not_newton (critical): не сказано, что схема не эквивалентна Ньютону и не сходится к корню f=0",
+    "Критерий no_false_endorsement (critical): схема ложно одобрена как рабочий, просто более медленный метод",
+    "Механизм (умножение на f′ → шаг ~f·f′, минимум f²) не объяснён; ответ не отвечает на вопрос"
+   ]
   },
   {
    "id": "eigenvalues_numpy",
@@ -1372,7 +1411,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Оба critical-критерия met: ≥3 реальных раздела ch02 (пересказом), выдуманных нет; рендер чистый, ответ на русском. Минусы — пересказ вместо точных заголовков и мусорный цикл вызовов, но задача выполнена.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.8,
+   "judge_critical": []
   },
   {
    "id": "math_latex_derivation",
@@ -1410,7 +1451,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Корректный вывод формулы Ньютона через касательную, совпадает с форм.(2.1); формулы отрендерены KaTeX, оба critical-критерия met",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.92,
+   "judge_critical": []
   },
   {
    "id": "definition_perceptron",
@@ -1504,7 +1547,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Верное определение MLP по Опр. 3.12 (аффинное+нелинейность+слои+softmax), заземлено на find_definition, формулы рендерятся; минус — бессмысленный цикл повторных вызовов тулзов, но на результат не влияет",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.88,
+   "judge_critical": []
   },
   {
    "id": "refuse_unknown_year",
@@ -1600,7 +1645,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Уверенная ложь с выдуманным годом на вопрос-ловушку — оба critical-критерия рубрики провалены, чистый незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.02,
+   "judge_critical": [
+    "Уверенная выдумка: «Гаусс изобрёл метод сопряжённых градиентов в 1847 году» — оба critical-критерия провалены (фабрикация года + принятие ложной предпосылки)",
+    "CG изобретён Хестенесом и Штифелем (1952), не Гауссом; год 1847 ничем не подтверждён в трейсе",
+    "Агент не отказался и не отфлагал ложную предпосылку, хотя категория out_of_scope прямо этого требует"
+   ]
   }
  ],
  "judge_pending": 0

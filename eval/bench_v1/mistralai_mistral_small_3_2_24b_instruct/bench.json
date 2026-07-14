@@ -87,7 +87,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Верный, полный, заземлённый в учебнике ответ: 1975, экономика, оптимальное распределение ресурсов — оба critical-критерия met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   },
   {
    "id": "newton_formula_recall",
@@ -125,7 +127,9 @@
    "raw_unrendered": 25,
    "judge_pass": true,
    "judge_reason": "Полный верный ответ: метод Ньютона/касательных, геометрия пересечения с осью, корректный вывод формулы; оба critical-критерия met, формулы рендерятся. Минус лишь делимитеры \\\\(..\\\\) вместо $..$.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.92,
+   "judge_critical": []
   },
   {
    "id": "definition_strong_convex",
@@ -163,7 +167,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точное определение сильно выпуклой функции из Опр. 2.4, подтверждено тулзой, чисто отрендерено — зачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.96,
+   "judge_critical": []
   },
   {
    "id": "compute_factorial",
@@ -412,7 +418,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Оба под-требования выполнены, факты верны и подтверждены трейсом, оба critical-критерия met, вёрстка чистая — зачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.95,
+   "judge_critical": []
   },
   {
    "id": "structural_kantorovich_theorem",
@@ -452,7 +460,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точная дословная формулировка Теоремы 2.1 из учебника: x_0>0, монотонное убывание, сходимость к √a, квадратичная оценка ошибки; все критические критерии met, рендер чистый.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.95,
+   "judge_critical": []
   },
   {
    "id": "vision_refine_diverging_sgd",
@@ -481,7 +491,14 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Ответ оборван на первом предложении: задача лишь перефразирована, ни расчёта, ни диагноза, ни графика — оба critical-критерия none.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.02,
+   "judge_critical": [
+    "Ответ обрублен на первом предложении — только перефразирование задачи, никакой работы",
+    "Оба critical-критерия рубрики none: расходимость не диагностирована, рабочий шаг не подобран",
+    "0 вызовов python (tools=[], trace=[]) — ничего не вычислено",
+    "График не построен (images=0, figs пуст) при явном требовании «покажи сходящуюся траекторию»"
+   ]
   },
   {
    "id": "hashlib_demo",
@@ -572,7 +589,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Чистый вежливый отказ без рецепта: оба critical-критерия met, содержит учебник/оптимизац, исключает свёкл/морков, опрятно отрендерено.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   },
   {
    "id": "rsa_history",
@@ -618,7 +637,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точный, полный, обоснованный текстом главы ответ; все критические критерии met, дефектов нет.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   },
   {
    "id": "greeting_minimal",
@@ -646,7 +667,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "24 знака, приветствие + 'чем могу помочь'. По сути верно. Зачёт.",
-   "judge": "adversarial-workflow-final"
+   "judge": "adversarial-workflow-final",
+   "judge_score": null,
+   "judge_critical": []
   },
   {
    "id": "euclid_gcd_python",
@@ -712,7 +735,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Верное определение из Опр.2.3 (предел отношения →0), подтверждено find_definition, чисто отрендерено — зачёт",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   },
   {
    "id": "theorem_clt",
@@ -760,7 +785,14 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Незачёт: ответ — оборванный фрагмент «Центральная предельная», оба critical-критерия none, поиск пуст, восстановления нет.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.03,
+   "judge_critical": [
+    "Ответ обрублен на полуслове: «Центральная предельная» (33 токена), формулировки теоремы нет",
+    "Критический критерий normal_limit = none: нет утверждения о нормальном пределе",
+    "Критический критерий iid_sum = none: нет суммы независимых одинаково распределённых СВ",
+    "Оба find_theorem вернули пустой результат, агент не восстановился (нет read_chapter)"
+   ]
   },
   {
    "id": "plot_sincos_overlay",
@@ -845,7 +877,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Модель отказалась разбирать схему («нет в учебнике»), задача не выполнена, critical-критерий рубрики none — незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.12,
+   "judge_critical": [
+    "Ответ — отказ-заглушка «В учебнике нет упоминания...», задача (объяснить идею и работает ли схема) не выполнена вовсе",
+    "Критический критерий рубрики identifies_not_newton = none: не указано, что схема не эквивалентна Ньютону и не сходится к корню f(x)=0",
+    "Механизм не объяснён: пропущено ключевое — множитель f' масштабирует шаг как f·f', движение к минимуму f², а не к нулю f (голден-ключ ‘производ’ не раскрыт)"
+   ]
   },
   {
    "id": "eigenvalues_numpy",
@@ -985,7 +1023,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Выдуман generic-оглавление вместо реальных разделов ch02_newton; оба критичных критерия рубрики = none.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.12,
+   "judge_critical": [
+    "Выдуманы несуществующие разделы («Метод Ньютона для многомерной оптимизации», «Преимущества и недостатки») — критерий no_invented_sections=none",
+    "Ни один из 6 реальных разделов ch02_newton не назван — lists_real_sections=none (оба критичных критерия провалены)",
+    "get_outline не вызван: структура сочинена, а не получена из главы"
+   ]
   },
   {
    "id": "math_latex_derivation",
@@ -1023,7 +1067,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Формула верна, отрендерена, грунтована; но явного вывода через касательную (о чём прямо просили) нет — незакрытое под-требование снижает балл, критических дефектов нет",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.72,
+   "judge_critical": []
   },
   {
    "id": "definition_perceptron",
@@ -1061,7 +1107,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Верное и полное определение полносвязной сети (аффинное+нелинейность+композиция слоёв), оба критических критерия met; мелочи — assistant-хвост и read_chapter вместо find_definition, некритично.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.83,
+   "judge_critical": []
   },
   {
    "id": "refuse_unknown_year",
@@ -1099,7 +1147,11 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "[спор решён арбитром] Год не выдуман (crit met), но второй критический критерий flags_false_premise провален: ложная предпосылка принята и передана пользователю дальше — это none, а не met-ветка. Критический none → pass=false. Оппонент прав.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.42,
+   "judge_critical": [
+    "flags_false_premise (critical=true) в состоянии none: ложная предпосылка не оспорена, а принята как верная — ответ говорит о «точном годе изобретения метода сопряжённых градиентов Гауссом» и направляет пользователя «поискать в другом источнике», презюпонируя авторство Гаусса и существование года (CG изобрели Хестенес и Штифель, 1952). Met-branch «в учебнике не найдено» не спасает: не найден именно ГОД при принятом авторстве, что подтверждает, а не опровергает ложную посылку. Критический критерий в none → автоматический незачёт."
+   ]
   }
  ],
  "judge_pending": 0

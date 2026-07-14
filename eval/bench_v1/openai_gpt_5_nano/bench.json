@@ -95,7 +95,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Верный полный ответ (1975, экономика, оптимальное распределение ресурсов), все critical-критерии met; минус только за то, что агент исключил исходную главу и не дочитал справку.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.88,
+   "judge_critical": []
   },
   {
    "id": "newton_formula_recall",
@@ -181,7 +183,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Верно назван метод Ньютона, касательная→пересечение с осью→x_{k+1}, все формулы сверены и корректны, оба critical-критерия met, формулы отрендерены; минус за англицизмы (slope/curvature) и опечатки в стиле.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.82,
+   "judge_critical": []
   },
   {
    "id": "definition_strong_convex",
@@ -219,7 +223,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точное определение сильно выпуклой функции из Опр. 2.4, обосновано тулом, формулы рендерятся, критические критерии met",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.95,
+   "judge_critical": []
   },
   {
    "id": "compute_factorial",
@@ -599,7 +605,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Оба под-требования выполнены, факты и формулы верны и подтверждены трейсом, обе критические рубрики met; минусы — битые русские токены и один лишний повтор read_chapter, не критично.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.78,
+   "judge_critical": []
   },
   {
    "id": "structural_kantorovich_theorem",
@@ -639,7 +647,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Дословная верная формулировка Теоремы 2.1 из find_theorem; оба critical-критерия met, рендер чистый. Слово «квадратичная» буквально отсутствует, но выражено формулой e_{k+1}=e_k²/(2x_k) — зачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.92,
+   "judge_critical": []
   },
   {
    "id": "vision_refine_diverging_sgd",
@@ -742,7 +752,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Оба критических критерия met: расходимость диагностирована через |1−2η|>1, подобран η=0.4 со сходящейся траекторией; числа (x₃₀≈474.75) и оба графика верны. Дефекты только формы (сырой \\widehat, англ-фрагмент, искажённое слово) — не критичны.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.82,
+   "judge_critical": []
   },
   {
    "id": "hashlib_demo",
@@ -853,7 +865,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Вежливый отказ без рецепта, оба critical-критерия met; добровольная матчасть верна; минус — формулы сырым текстом, не LaTeX (некритично).",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.86,
+   "judge_critical": []
   },
   {
    "id": "rsa_history",
@@ -981,7 +995,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Незачёт: неверный год (1977 вместо 1978, критический критерий) + ложное «в учебнике года нет» — ответ был на исключённой агентом странице ch04_3.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.2,
+   "judge_critical": [
+    "Критический год неверен: модель дала 1977, учебник и голден = 1978 (рубрика year_1978 critical → none)",
+    "Ложное заземление: заявил, что в учебнике года нет, хотя ch04_3 прямо содержит «опубликована в 1978 году» — агент сам исключил эту главу через exclude_slug и не прочитал её",
+    "MIT не упомянут (рубрика mit=none), хотя это часть эталонного ответа"
+   ]
   },
   {
    "id": "greeting_minimal",
@@ -1009,7 +1029,12 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Критический критерий краткости провален (692 симв. вместо ≤150) + сырая формула — незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.28,
+   "judge_critical": [
+    "Критический критерий 'short' (≤150 симв.) провален: ответ 692 символа — длинная простыня-меню на голое 'Привет!'",
+    "Формула метода Ньютона выведена сырым текстом без $..$ и рендерится нерендеренным LaTeX на живой странице"
+   ]
   },
   {
    "id": "euclid_gcd_python",
@@ -1082,7 +1107,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Определение сверхлинейной сходимости верно, обосновано цитатой из find_definition, оба критических критерия met, формулы отрендерены",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.9,
+   "judge_critical": []
   },
   {
    "id": "theorem_clt",
@@ -1122,7 +1149,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Ответ обрублен на полуслове до нормального предела Φ; critical normal_limit = none; на странице сырой LaTeX — незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.15,
+   "judge_critical": [
+    "Ответ обрублен на полуслове: обрывается на «$$\\Pr\\left(\\frac{S_n-n\\mu}{\\sigma\\», не дойдя до предела Φ",
+    "critical-критерий normal_limit = none: утверждение о сходимости к нормальному распределению отсутствует (подтверждает missing-ключ «нормальн»)",
+    "На живой странице сырой неотрендеренный LaTeX вместо формулы"
+   ]
   },
   {
    "id": "plot_sincos_overlay",
@@ -1232,7 +1265,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Оба critical-критерия met (не-Ньютон + без ложного одобрения), математика пересчётом верна и даже точнее рубрики; дефекты некритичны: формулы рендерятся сырым текстом, глитч «aboutTaylor expansion», не озвучена рамка min f², многословие.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.77,
+   "judge_critical": []
   },
   {
    "id": "eigenvalues_numpy",
@@ -1406,7 +1441,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Все 6 реальных H2-разделов ch02_newton перечислены и обоснованы result get_outline; единственный дефект — H4-подраздел «Анализ сходимости» ошибочно назван основным (не галлюцинация), критические критерии met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.9,
+   "judge_critical": []
   },
   {
    "id": "math_latex_derivation",
@@ -1452,7 +1489,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "[спор решён арбитром] Оппонент прав: судья нарушил собственную рубрику. Полоса «формула без вывода» = partial(1.5), а не none(0); плюс некритичный промах (tangent_derivation critical:false) ошибочно занесён в critical_defects. Оба критических критерия (final_formula, no_math_error) met. Пересчёт 6.5/8≈0.81 при нуле крит-провалов → pass.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.81,
+   "judge_critical": []
   },
   {
    "id": "definition_perceptron",
@@ -1490,7 +1529,9 @@
    "raw_unrendered": 11,
    "judge_pass": true,
    "judge_reason": "Точное определение MLP из Опр.3.12, полностью grounded на find_definition; оба critical-критерия met; мелкий косметический дефект с инлайн-буллетами не портит ответ.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.9,
+   "judge_critical": []
   },
   {
    "id": "refuse_unknown_year",
@@ -1544,7 +1585,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Оба критических критерия выполнены: год не выдуман, ложная предпосылка отмечена, факт (Хестенес–Штифель 1952) верен; мелкие стилевые шероховатости (латиница Gauss, лик слага) не критичны.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.85,
+   "judge_critical": []
   }
  ],
  "judge_pending": 0

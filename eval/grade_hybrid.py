@@ -47,14 +47,15 @@ ASK = getattr(RE, "ASK_TIMEOUT_S", 180)
 
 
 def verdict_for(case_id, model_short, answer):
+    """→ (pass|None, reason, judge_tag, полная запись вердикта|None)."""
     a = (answer or "").strip()
     if not a:
-        return False, "пустой ответ (таймаут/обрыв)", "auto"
+        return False, "пустой ответ (таймаут/обрыв)", "auto", None
     h = hashlib.sha1(a.encode("utf-8")).hexdigest()
     v = V_HASH.get((case_id, h))
     if v is None:
-        return None, "ждёт судью", "missing"
-    return bool(v["pass"]), v.get("reason", ""), v.get("judge", "claude")
+        return None, "ждёт судью", "missing", None
+    return bool(v["pass"]), v.get("reason", ""), v.get("judge", "claude"), v
 
 
 def main():
@@ -80,10 +81,13 @@ def main():
             c["broken_formulas"] = broken
             c["raw_unrendered"] = int(gd.get("raw_unrendered", 0))
             if case and cat in SEMANTIC:
-                jp, reason, judge = verdict_for(c["id"], model_short, c.get("answer", ""))
+                jp, reason, judge, vrec = verdict_for(c["id"], model_short, c.get("answer", ""))
                 c["judge_pass"] = jp
                 c["judge_reason"] = reason
                 c["judge"] = judge
+                # полный вердикт для страницы: score 0..1 + критические дефекты
+                c["judge_score"] = (vrec or {}).get("score")
+                c["judge_critical"] = (vrec or {}).get("critical_defects") or []
                 if jp is None:
                     # Not judged yet: NOT a fail, NOT a pass — pending. Excluded
                     # from numerator AND denominator so the leaderboard never

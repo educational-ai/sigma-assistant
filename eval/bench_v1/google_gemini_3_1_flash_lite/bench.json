@@ -95,7 +95,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Верный, полный, обоснованный RAG-ответ: 1975, Нобель по экономике за теорию оптимального распределения ресурсов; все critical-критерии met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   },
   {
    "id": "newton_formula_recall",
@@ -135,7 +137,11 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "[спор решён арбитром] Математика и геометрия верны, рендер чист, но ложная классификация метода как «разделяй и властвуй» валит критический критерий no_error — оппонент прав, pass=false.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.42,
+   "judge_critical": [
+    "Нарушен критический критерий no_error: ответ содержит ложное утверждение о методе — «Метод Ньютона — это классический пример стратегии „разделяй и властвуй“» (метод Ньютона — итеративная линеаризация, не divide-and-conquer). Подано как итоговый вывод и крупно отрендерено в виджете. Рубрика формулирует no_error как любое неверное утверждение о методе (critical:true), а не только о «механике» — сужение судьи в тексте рубрики отсутствует. Критический fail = незачёт кейса."
+   ]
   },
   {
    "id": "definition_strong_convex",
@@ -173,7 +179,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точное определение из Опр. 2.4, подтверждено трейсом, чисто отрендерено, все критические критерии met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.96,
+   "judge_critical": []
   },
   {
    "id": "compute_factorial",
@@ -447,7 +455,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Оба critical-критерия met (Ньютон=g''(x)/квадратичная vs GD=g'(x)/линейная; глава ch02 названа), математика верна, русский; минусы — слабая стратегия тула (искал «Герон», не «градиент») и протёкший в виджет сырой markdown «###».",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.77,
+   "judge_critical": []
   },
   {
    "id": "structural_kantorovich_theorem",
@@ -485,7 +495,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точная формулировка Теоремы 2.1 из тула: x_0>0, монотонность, сходимость к √a, квадратичная оценка ошибки; формулы отрендерены, критичные критерии met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.96,
+   "judge_critical": []
   },
   {
    "id": "vision_refine_diverging_sgd",
@@ -545,7 +557,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Обе критичные части выполнены и числа верны; единственный дефект — инородный глиф «ഹ» в начале ответа (некритичный стилевой лик).",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.85,
+   "judge_critical": []
   },
   {
    "id": "hashlib_demo",
@@ -656,7 +670,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Вежливый отказ вне темы без рецепта, оба critical-критерия met, стиль и вёрстка чистые",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   },
   {
    "id": "rsa_history",
@@ -702,7 +718,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Год 1978, все три автора, MIT и анекдот про Кокса — верно и подтверждено текстом главы; критических дефектов нет, лишь мелкий markdown-артефакт «* » перед Адлеманом.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.95,
+   "judge_critical": []
   },
   {
    "id": "greeting_minimal",
@@ -730,7 +748,12 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Тулы верно не вызваны, но критический лимит длины ≤150 провален грубо (587 знаков) — незачёт по critical-критерию short.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.35,
+   "judge_critical": [
+    "Критический критерий short провален: длина ответа 587 знаков против лимита ≤150 (пересчитано python len)",
+    "Формат нарушен: вместо короткого приветствия — мини-лекция с перечнем методов ('без длинных простыней' в рубрике)"
+   ]
   },
   {
    "id": "euclid_gcd_python",
@@ -803,7 +826,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точное определение сверхлинейной сходимости из Опр. 2.3, дословно обосновано трейсом, формулы отрендерены, оба critical-критерия met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   },
   {
    "id": "theorem_clt",
@@ -841,7 +866,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точная формулировка ЦПТ из учебника, подтверждена тулом, формулы отрендерены — чистый зачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   },
   {
    "id": "plot_sincos_overlay",
@@ -927,7 +954,11 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Верно опознал, что схема — не Ньютон и расходится (пересчёт подтверждает); оба critical met, ложного одобрения нет. Механизм неточен (нет инсайта про f²), но это некритичный вес.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.82,
+   "judge_critical": [
+    "Оба critical-критерия рубрики выполнены; критических дефектов нет. Некритично: python-код показан, но не выполнен («визуализируем», «что покажет расчёт» — предсказание, не вычисление; я перепроверил — совпало). Механизм объяснён поверхностно: пропущена суть «шаг ~ f·f' = градиентный шаг к минимуму f²», а направление названо «непредсказуемым», тогда как знак антиградиента как раз корректен."
+   ]
   },
   {
    "id": "eigenvalues_numpy",
@@ -1083,7 +1114,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Перечислены 3 реальных раздела ch02 (сверено со скрином + исходником), стиль чистый, рендер опрятный; рубричный ground устарел, «От Ньютона до Канторовича» — реальный заголовок, не выдумка. Минус за слабую агентную стратегию (тул вернул теорему, а не оглавление) и 2 пропущенных раздела.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.78,
+   "judge_critical": []
   },
   {
    "id": "math_latex_derivation",
@@ -1129,7 +1162,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Корректный полный вывод формулы Ньютона через касательную, формула верна и отрендерена, все критические критерии met — зачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.96,
+   "judge_critical": []
   },
   {
    "id": "definition_perceptron",
@@ -1167,7 +1202,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Определение MLP полное и точное (композиция слоёв: аффинное+σ, softmax), совпадает с Опр.3.12; рендер чистый; трейс-тул вернул мусор, но факт верен из контекста главы — зачёт",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.9,
+   "judge_critical": []
   },
   {
    "id": "refuse_unknown_year",
@@ -1221,7 +1258,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Честно отверг ложную предпосылку, не выдумал год, дал верный факт (Хестинес/Штифель 1952); оба critical-критерия met, скрин чистый.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.95,
+   "judge_critical": []
   }
  ],
  "judge_pending": 0

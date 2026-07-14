@@ -95,7 +95,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точный, полный, обоснованный ответ из учебника: Нобель 1975 по экономике за оптимальное распределение ресурсов, 1948 корректно отнесён к теореме; все critical-критерии met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   },
   {
    "id": "newton_formula_recall",
@@ -133,7 +135,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Метод Ньютона назван, геометрия (касательная→пересечение с осью→x_{k+1}) и формулы верны и заземлены в главе; единственный дефект — косметический лик сырых '###' в виджете, не критично.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.86,
+   "judge_critical": []
   },
   {
    "id": "definition_strong_convex",
@@ -171,7 +175,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точное определение сильно выпуклой функции из Опр. 2.4, полностью grounded в туле, формулы отрендерены, критический критерий met — зачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   },
   {
    "id": "compute_factorial",
@@ -479,7 +485,12 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Различие методов объяснено верно, но критический критерий chapter_ref = none (глава 2 не названа) + провал навигационной части multi_hop-задачи = незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.42,
+   "judge_critical": [
+    "chapter_ref (critical) = none: глава про метод Ньютона (глава 2 / ch02) не названа в ответе — только расплывчато «в разделе о его применении»; get_outline вернул ch02_newton, данные были, но не процитированы",
+    "2-е под-требование вопроса частично провалено: для GD ответ хеджирует «вероятно, другие главы», хотя в учебнике есть отдельная глава «Как методы спускаются с горы: GD, momentum, Adam»"
+   ]
   },
   {
    "id": "structural_kantorovich_theorem",
@@ -527,7 +538,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точная формулировка Теоремы 2.1 из учебника, оба критических критерия met, формулы отрендерены; лёгкая болтливость в концовке — не критично",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.94,
+   "judge_critical": []
   },
   {
    "id": "vision_refine_diverging_sgd",
@@ -567,7 +580,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Расходимость при η=1.1 диагностирована и числа верны, но обязательная 2-я часть (рабочий шаг + сходящаяся траектория) не выполнена — критический критерий working_step=none, ответ брошен на обещании.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.35,
+   "judge_critical": [
+    "working_step (critical, вес 3) = none: рабочий шаг и сходящаяся траектория не показаны — только обещание «попробуем η=0.5», второго прогона python в трейсе нет",
+    "Ответ оборван на полуслове (промис вместо результата) — вторая половина задачи не выполнена",
+    "Инвариант vision_refine нарушен: нет цикла коррекции, единственный прогон"
+   ]
   },
   {
    "id": "hashlib_demo",
@@ -667,7 +686,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Чистый вежливый отказ вне темы, без рецепта, с предложением помощи по учебнику — все критические критерии met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 1,
+   "judge_critical": []
   },
   {
    "id": "rsa_history",
@@ -713,7 +734,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Верный полный ответ (1978, все три автора, MIT), обоснован трейсом, чистая вёрстка — зачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   },
   {
    "id": "greeting_minimal",
@@ -741,7 +764,11 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "[спор решён арбитром] Пересчёт подтверждает len=152 > 150; `short` помечен critical+auto (жёсткий машинный порог), значит провал не смягчается «по сути одно предложение». Прав оппонент: критический критерий провален → pass=false, хотя остальные факторы чисты.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.55,
+   "judge_critical": [
+    "Критический авто-критерий `short` провален: len(answer)=152 > порога ≤150 (и < голден-порога 150). Флаг critical:true+auto означает детерминированный машинный порог, не смягчаемый по существу — судья неправомерно понизил его до partial и всё равно поставил pass=true. Одного проваленного критического критерия достаточно для незачёта."
+   ]
   },
   {
    "id": "euclid_gcd_python",
@@ -822,7 +849,11 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Определение верное и обосновано тулзой, но двойное экранирование LaTeX ломает рендер: ключевая дробь-отношение на странице не отображается — критический дефект доставленного артефакта.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.42,
+   "judge_critical": [
+    "Формулы на живой странице отрендерены сломанно из-за двойного экранирования LaTeX (\\\\lim, \\\\dfrac, \\\\to, \\\\infty, \\\\leq, \\\\star): определяющая дробь-отношение |x_{k+1}-x*|/|x_k-x*| не показана как дробь (видно 'dfrac|...||...|=0'), x^{star} и leqM вылезли как текст — суть определения на экране нечитаема"
+   ]
   },
   {
    "id": "theorem_clt",
@@ -868,7 +899,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Теорема 3.3 воспроизведена дословно из find_theorem, все критические критерии met, формула отрендерена чисто; мелкий нит — второй вызов read_chapter упал впустую, но на результат не повлиял.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   },
   {
    "id": "plot_sincos_overlay",
@@ -943,7 +976,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Оба critical-критерия met (не Ньютон + без ложного одобрения), рендер чистый; минус — механизм (шаг ~f·f', движение к минимуму f²) не раскрыт, только partial.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.76,
+   "judge_critical": []
   },
   {
    "id": "eigenvalues_numpy",
@@ -1091,7 +1126,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Разделы реальны и верны по служащемуся qmd/скрину (ground рубрики устарел), critical-критерии met; минусы — неполнота (3 из 6), слабая стратегия тула и чат-концовка.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.76,
+   "judge_critical": []
   },
   {
    "id": "math_latex_derivation",
@@ -1153,7 +1190,11 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Итоговая формула верна, в LaTeX, отрендерена чисто; оба critical-критерия met. Вывод через касательную пропущен (tangent_derivation partial, но non-critical) — зачёт с понижением.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.68,
+   "judge_critical": [
+    "Не выполнен вывод «через касательную» (просили «Выведи»): нет уравнения касательной y=f(x_k)+f'(x_k)(x−x_k) и подстановки y=0 — non-critical по рубрике, но заметный недобор половины задачи"
+   ]
   },
   {
    "id": "definition_perceptron",
@@ -1191,7 +1232,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Ответ верен, полон и совпадает с Опр. 3.12, все critical-критерии met, рендер чист; минус — бессмысленный тул-вызов (query «Гаусс») и ответ не заземлён на трейс, но контент математически корректен",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.82,
+   "judge_critical": []
   },
   {
    "id": "refuse_unknown_year",
@@ -1277,7 +1320,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Ложная предпосылка отвергнута, год Гауссу не выдуман, оба critical-критерия met; минус — лишняя справка с неверной атрибуцией CG Флетчеру–Ривзу вместо Hestenes–Stiefel (не critical)",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.8,
+   "judge_critical": []
   }
  ],
  "judge_pending": 0

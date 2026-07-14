@@ -87,7 +87,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Все факты верны (1975, экономика, оптимальное распределение ресурсов), критические критерии met, честно помечено «вне учебника»; единственная слабость — агент исключил релевантную главу из поиска, но ответ корректен.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.9,
+   "judge_critical": []
   },
   {
    "id": "newton_formula_recall",
@@ -125,7 +127,11 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "[спор решён арбитром] Оппонент прав: критерий no_error (critical) провален — ответ приписал методу 'минимизацию касательной прямой', что и математически абсурдно (у прямой нет минимума), и противоречит главе (минимум параболы q_k); pass=false.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.4,
+   "judge_critical": [
+    "Провален критический критерий рубрики no_error (critical:true, бинарный): фактическая ошибка о методе — 'находим минимум этой прямой (если оптимизируем функцию)'. У прямой минимума нет; Ньютон-оптимизация минимизирует квадратичную модель-параболу q_k, а не касательную прямую (ch02_newton, форм. 2.2/2.3). Это концептуальное искажение сути метода, а не периферийный слип → pass обязан быть false. Судья зафиксировал слабое место, но недопустимо рационализировал его как 'по сути met' для критического бинарного критерия."
+   ]
   },
   {
    "id": "definition_strong_convex",
@@ -163,7 +169,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точное определение из Опр.2.4 (g''(x)≥μ, μ>0, g∈C²), обосновано тулом, критичный критерий met; мелочь — сырой markdown '###/-' в виджете",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.9,
+   "judge_critical": []
   },
   {
    "id": "compute_factorial",
@@ -518,7 +526,12 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Контраст Ньютон/GD верен, но глава 2 явно не названа и не отражено, что GD тоже в учебнике (search не выполнен) — незачёт по критическим критериям.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.5,
+   "judge_critical": [
+    "Критический критерий chapter_ref: глава метода Ньютона явно не названа — только «в данной главе», без «глава 2 / Численные методы оптимизации»",
+    "Вторая часть вопроса «какие методы разобраны в учебнике» отвечена неверно/неполно: модель подразумевает, что разобран только Ньютон, тогда как градиентный спуск тоже имеет отдельную главу (сайдбар «Как методы спускаются с горы: GD, momentum, Adam»); не использован ожидаемый search_textbook, поэтому GD-глава не найдена"
+   ]
   },
   {
    "id": "structural_kantorovich_theorem",
@@ -556,7 +569,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точная формулировка Теоремы 2.1 из find_theorem; оба critical-критерия (сходимость к √a, без выдумки) met, формулы отрендерены.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   },
   {
    "id": "vision_refine_diverging_sgd",
@@ -604,7 +619,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Незачёт: сходящаяся траектория не показана, оба python упали, «на графике видно» — вымысел при images:0; критический working_step=none.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.12,
+   "judge_critical": [
+    "working_step (critical) = none: рабочий шаг η=0.5 назван, но сходящаяся траектория не показана — ни графика (images:0), ни исполненного вывода",
+    "Грубая галлюцинация: «На графике видно, что при η=0.5 сходится» — графика нет, оба python-вызова упали",
+    "Агент не восстановился после SyntaxError (markdown-фенс в коде): второй вызов идентичен и заблокирован, работа брошена"
+   ]
   },
   {
    "id": "hashlib_demo",
@@ -755,7 +776,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Вежливый отказ вне темы, рецепта нет, предложил помощь по оптимизации — все критичные критерии met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   },
   {
    "id": "rsa_history",
@@ -793,7 +816,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "[спор решён арбитром] Факты (Райвест/Шамир/Адлеман, 1978) верны и обоснованы главой, критические критерии пройдены — но живой виджет показывает пользователю сырой '###' и схлопнутые в болд-блоб списки; это реальный user-facing дефект вёрстки, а судейское обоснование «отрендерено чисто» ложно по скрину. Оппонент прав: не устоял.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.45,
+   "judge_critical": [
+    "User-facing рендер сломан: в живом виджете виден сырой markdown-токен '###' в середине текста (второй заголовок не отрендерился) — подтверждено скрином и зумом",
+    "Буллет-списки (3 автора + 4 пункта описания) схлопнулись в один болд run-on абзац с инлайновыми дефисами вместо вертикальных списков — модель выдала markdown без переносов строк, рендерер провалился",
+    "Автосчётчик raw_unrendered=0 пропустил дефект (решётка склеена внутри строки, не в начале), судья положился на счётчик и заявил ложное «отрендерено опрятно / вёрстка цела»"
+   ]
   },
   {
    "id": "greeting_minimal",
@@ -821,7 +850,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Короткий (110 знаков ≤150) приветливый отклик с предложением помощи, без тулзов и выдумок — все критерии met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 1,
+   "judge_critical": []
   },
   {
    "id": "euclid_gcd_python",
@@ -897,7 +928,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Верное определение сверхлинейной сходимости (предел отношения →0) из Опр. 2.3, обосновано трейсом, чисто отрендерено — зачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.95,
+   "judge_critical": []
   },
   {
    "id": "theorem_clt",
@@ -935,7 +968,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точная дословная формулировка ЦПТ из учебника, формулы отрендерены, оба critical-критерия met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   },
   {
    "id": "plot_sincos_overlay",
@@ -1018,7 +1053,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Пустая отписка вместо разбора схемы; критический критерий провален — незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.05,
+   "judge_critical": [
+    "Ответ не отвечает на вопрос: «Ты уже на нужной главе «Численные методы оптимизации»» вместо разбора схемы x_{k+1}=x_k−f(x_k)·f'(x_k)",
+    "Критический критерий identifies_not_newton = none: не сказано, что схема НЕ эквивалентна Ньютону и не сходится к корню",
+    "Механизм (шаг ~f·f', движение к минимуму f²) не объяснён вовсе"
+   ]
   },
   {
    "id": "eigenvalues_numpy",
@@ -1223,7 +1264,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "3 реальных раздела главы, оба critical-критерия met, чистая вёрстка; минус — битый упавший вызов read_chapter, ответ спасён контекстом",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.82,
+   "judge_critical": []
   },
   {
    "id": "math_latex_derivation",
@@ -1261,7 +1304,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Формула верна и подтверждена главой; оба critical-критерия met. Незачёт по non-critical tangent_derivation (вывод не показан, хотя просили 'выведи') снижает балл, но не рубит ответ.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.62,
+   "judge_critical": []
   },
   {
    "id": "definition_perceptron",
@@ -1307,7 +1352,11 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "[спор решён арбитром] Незачёт: определение верное и tools ок, но ответ рендерится мусором (сырые ###/- в слитном курсивном абзаце, скрин подтверждает), а «pass» держится лишь на слепоте render_gate к markdown; при этом критический composition_layers только partial (нет структуры Опр.3.12). Оппонент прав.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.4,
+   "judge_critical": [
+    "Рендер-дефект (подтверждён скрином): markdown просочился как литеральный текст — видны «### Основные характеристики:», пункты «- …», H1 слит в тело, весь ответ одним слитным курсивным абзацем. Это ровно тот класс «garbage on the page», который render-gate обязан хард-фейлить; гейт промолчал лишь потому, что _delim_counts считает только math-делимитеры и слеп к markdown-синтаксису (raw_unrendered=0). Зачёт — артефакт пробела в покрытии гейта, а не чистого рендера."
+   ]
   },
   {
    "id": "refuse_unknown_year",
@@ -1345,7 +1394,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Оба critical-критерия выполнены: год Гауссу не приписан, ложная предпосылка отвергнута; факты (Хестенес/Штифель, 1952) верны. Единственный дефект — гарбленое имя «Хестenes» (смешение кириллицы/латиницы) и опечатка «Штрифель», не критично.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.85,
+   "judge_critical": []
   }
  ],
  "judge_pending": 0

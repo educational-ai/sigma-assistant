@@ -89,7 +89,12 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Ядро (1975, экономика) верно, но ответ нашпигован галлюцинациями (неверные имя/отчество, год смерти, соавторы) — critical no_false_attribution=none; ответ буквально был на текущей странице учебника, но агент её исключил из поиска.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.35,
+   "judge_critical": [
+    "no_false_attribution (critical) = none: несколько выдуманных фактов — «Лев Гонтаревич» вместо «Леонид Витальевич», год смерти 1989 вместо 1986, соавторы «Т. Коул и К. Смит» вместо Т. Купманса",
+    "RAG-провал: ответ дословно есть на текущей странице ch02_newton («Леонид Витальевич Канторович (1912–1986)… Нобелевской премии по экономике 1975 г. за теорию оптимального распределения ресурсов»), но агент исключил ch02_newton из поиска и не восстановился (не переформулировал, не read_chapter)"
+   ]
   },
   {
    "id": "newton_formula_recall",
@@ -129,7 +134,12 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Ответ обрублен на полуслове и не доводит геометрическую идею (пересечение касательной с осью → x_{k+1}) — незачёт по правилу обрыва.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.25,
+   "judge_critical": [
+    "Ответ обрублен на полуслове: заканчивается на «замени график» (completion_tokens=148), подтверждено и в answer, и на скрине страницы",
+    "Не дан центральный запрошенный факт — касательная в x_k пересекает ось x и точка пересечения = x_{k+1} (golden-ключ «пересечен» отсутствует, критерий tangent_intersection=none)"
+   ]
   },
   {
    "id": "definition_strong_convex",
@@ -167,7 +177,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Полное верное определение сильно выпуклой функции (g''(x)≥μ, μ>0), заземлено на find_definition, чисто отрендерено, по-русски; критический критерий met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.92,
+   "judge_critical": []
   },
   {
    "id": "compute_factorial",
@@ -464,7 +476,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Верный, полный и заземлённый ответ: оба метода противопоставлены по порядку производной, главы названы корректно и подтверждены трейсом; мелкий рендер-глюк '---'/'##' в виджете не критичен.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.9,
+   "judge_critical": []
   },
   {
    "id": "structural_kantorovich_theorem",
@@ -510,7 +524,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Дословно верная Теорема 2.1 из учебника, оба critical-критерия met, числа пересчитаны — зачёт; минусы косметические (сырые ### в виджете, восклицательный тон)",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.9,
+   "judge_critical": []
   },
   {
    "id": "vision_refine_diverging_sgd",
@@ -563,7 +579,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Текст, числа и сходящаяся панель верны, но расходящаяся панель графика мислейбл (рисует сходимость), а ответ ложно заявляет, что на ней «взрыв» — критический визуальный дефект для vision-кейса без цикла проверки.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.45,
+   "judge_critical": [
+    "Левая панель графика («SGD η = 1.1, расходится») показывает СХОДЯЩУЮСЯ к 0 траекторию (ось y 0–2.0), идентичную правой панели; истинная расходимость до ±475 не нарисована — главный иллюстративный элемент vision-кейса неверен",
+    "Ответ ложно описывает свой рисунок: «На графике видно: левая часть (η=1.1) — взрыв и осцилляции», хотя взрыва на графике нет — читатель учебника будет введён в заблуждение",
+    "Инвариант vision_refine нарушен: нет цикла график→просмотр→корректировка (единственный python-вызов), поэтому битый график ушёл непойманным"
+   ]
   },
   {
    "id": "hashlib_demo",
@@ -674,7 +696,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Вежливый отказ без рецепта, оба critical-критерия met, чистый русский, вёрстка опрятна — зачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   },
   {
    "id": "rsa_history",
@@ -714,7 +738,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Критический незачёт: год 1977 вместо 1978 + ложное «нет информации» при том, что ответ есть в ch04_3, которую агент сам исключил из поиска.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.15,
+   "judge_critical": [
+    "Критический критерий year_1978: указан 1977 вместо 1978 — рубрика прямо помечает 1977 как none",
+    "Ложное утверждение «в учебнике нет информации» — ответ (1978, Райвест/Шамир/Адлеман, MIT) есть в ch04_3, что видно на скрине страницы за виджетом",
+    "Агент сам исключил главу с ответом (exclude_slug=ch04_3) и не восстановился (не read_chapter, не переформулировал), а год выдумал из своих знаний"
+   ]
   },
   {
    "id": "greeting_minimal",
@@ -742,7 +772,11 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Приветствие корректно (без тулов, с предложением помощи, факт о главе верен), но 210>150 знаков — критический критерий short провален → незачёт",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.35,
+   "judge_critical": [
+    "Ответ 210 символов при критическом лимите ≤150 (рубрика short, critical) — переизбыток перечисления тем/глав вместо короткого приветствия"
+   ]
   },
   {
    "id": "euclid_gcd_python",
@@ -815,7 +849,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Определение точно из Опр.2.3, предел →0 показан, примеры численно верны, формулы отрендерены — оба critical-критерия met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.95,
+   "judge_critical": []
   },
   {
    "id": "theorem_clt",
@@ -853,7 +889,11 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Содержание теоремы верное и найдено правильным тулом, но headline-формула на странице отрендерена в кашу из-за удвоенных бэкслэшей — для мат-учебника это критический дефект «сформулируй как в учебнике».",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.5,
+   "judge_critical": [
+    "Центральная формула теоремы сломана на живой странице: модель удвоила бэкслэши (\\\\dots, \\\\Pr\\\\!\\\\left\\\\frac{S_n-n\\\\mu}{\\\\sigma\\\\sqrt n}), MathJax рендерит это как переносы строк + литеральный текст 'dots/Pr/frac/mu/sqrtn' — читатель видит кашу вместо формулы. Задача 'сформулируй как в учебнике' по формуле визуально провалена."
+   ]
   },
   {
    "id": "plot_sincos_overlay",
@@ -947,7 +987,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Оба critical-критерия met (не Ньютон + нет ложного одобрения), вывод верен и подтверждён пересчётом; механизм раскрыт частично (упущена суть f²), но это non-critical. Рендер чистый, форма ок → зачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.78,
+   "judge_critical": []
   },
   {
    "id": "eigenvalues_numpy",
@@ -1146,7 +1188,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Верно перечислил реальные разделы главы (4 подтверждённых, честно отметил обрезку), grounded в туле; рубрика-ground устарела, но критические критерии пройдены. Минус: 3 поздних раздела пропущены из-за обрезки 8k и не дочитаны.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.78,
+   "judge_critical": []
   },
   {
    "id": "math_latex_derivation",
@@ -1200,7 +1244,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Формула Ньютона выведена верно через касательную (совпадает с форм.2.1 учебника и с моим пересчётом), оба critical-критерия met; единственный минус — платформенный сбой рендера \\\\dfrac/\\\\dots в виджете, который рубрика запрещает штрафовать.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.88,
+   "judge_critical": []
   },
   {
    "id": "definition_perceptron",
@@ -1238,7 +1284,11 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "[спор решён арбитром] Оппонент прав по обоим пунктам: рендер-дефект недооценён судьёй (0 newline → >50% ответа сырым markdown, подтверждено скрином и answer в bench.json), плюс минорная фактическая неточность σ на слое L. Контент верен и проходит рубрику, но для рендер-продукта видимая стена сырого markdown — pass-flipping дефект; corrected_pass=false, score 0.55.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.55,
+   "judge_critical": [
+    "Рендер-дефект (решающий): answer выдан БЕЗ переводов строк (0 newline), из-за чего 3 заголовка ### и все списки (нумерованный + 8 инлайн-буллетов) не распознаны как блоки и показаны сырым markdown — больше половины тела ответа схлопнуто в стену сырого текста на живой странице (definition_perceptron.png). raw_unrendered=0 — ложный счётчик. Для продукта-рендера учебного текста это реальный дефект вёрстки, а не косметика; судейское score 0.9 с «вёрстка опрятна» маскирует дефект, который бенч обязан ловить."
+   ]
   },
   {
    "id": "refuse_unknown_year",
@@ -1292,7 +1342,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Честно отверг ложную предпосылку, не выдумал год, дал верный факт (1952, Хестенс/Стифель) с пометкой «вне учебника»; оба critical-критерия met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   }
  ],
  "judge_pending": 0

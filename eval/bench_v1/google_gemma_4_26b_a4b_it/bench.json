@@ -87,7 +87,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Полный верный ответ (1975, экономика, оптимальное распределение ресурсов), заземлён на search_textbook, все critical-критерии met, вёрстка чистая.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 1,
+   "judge_critical": []
   },
   {
    "id": "newton_formula_recall",
@@ -118,7 +120,14 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Отвечено про не тот метод Ньютона (оптимизация вместо касательных) с неверной геометрией; формула и суть перепутаны, критические критерии рубрики провалены.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.12,
+   "judge_critical": [
+    "Неверный метод: описан оптимизационный Ньютон (гессиан, поиск экстремума) вместо метода касательных для решения f(x)=0",
+    "Неверная геометрия: «аппроксимация параболой и поиск её минимума» вместо «касательная в x_k пересекает ось x → x_{k+1}» (обе искомые подстроки касательн/пересечен отсутствуют)",
+    "Галлюцинация контекста: заявлено «ты не приложил формулу» и выдумана гессианная формула, хотя фрагмент был дан",
+    "critical-критерий no_error нарушен, tangent_intersection (вес 3) = none"
+   ]
   },
   {
    "id": "definition_strong_convex",
@@ -156,7 +165,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точное определение сильной выпуклости из Опр. 2.4, все critical-критерии met, формулы отрендерены; стиль слегка разговорный, но не дефект.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.9,
+   "judge_critical": []
   },
   {
    "id": "compute_factorial",
@@ -420,7 +431,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Оба critical-критерия met, факты верны, ответ полон и не обрублен; минусы некритичны — не вызван search_textbook (пустой трейс) и сырые ### / * маркеры в виджете",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.8,
+   "judge_critical": []
   },
   {
    "id": "structural_kantorovich_theorem",
@@ -458,7 +471,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Дословно верная формулировка Теоремы 2.1 из тула, оба critical-критерия met, чистый рендер и стиль.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.96,
+   "judge_critical": []
   },
   {
    "id": "vision_refine_diverging_sgd",
@@ -509,7 +524,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Диагноз расходимости и рабочий шаг корректны, числа пересчитаны и верны, график целый и подписан, страница рендерится чисто — оба critical-критерия met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.92,
+   "judge_critical": []
   },
   {
    "id": "hashlib_demo",
@@ -620,7 +637,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Чистый вежливый отказ вне темы, рецепт не дан, предложена помощь по учебнику — оба critical-критерия met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.96,
+   "judge_critical": []
   },
   {
    "id": "rsa_history",
@@ -658,7 +677,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Полный верный ответ (1978, Райвест/Шамир/Адлеман, MIT) grounded в read_chapter; все critical-критерии met, дефект лишь косметический паразитный '*'.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.92,
+   "judge_critical": []
   },
   {
    "id": "greeting_minimal",
@@ -686,7 +707,12 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Тон и суть верны, тулы корректно не вызваны, но критический критерий краткости провален (349 знаков против ≤150) — незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.4,
+   "judge_critical": [
+    "Критический критерий рубрики short не выполнен: длина ответа 349 символов при лимите ≤150 (перебор в 2.3 раза) — рубрика прямо помечает short как critical=true, none → незачёт всего ответа",
+    "Голден требует отклик <150 знаков без длинных простыней — ответ развёрнут в абзац с непрошеным изложением про метод Ньютона"
+   ]
   },
   {
    "id": "euclid_gcd_python",
@@ -759,7 +785,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Определение сверхлинейной сходимости верно и полно (предел=0, квадратичная как частный случай), critical-критерии рубрики met; дефект только в агентной стратегии (неверный запрос тула, пустой результат без ретрая), но факт корректен — зачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.83,
+   "judge_critical": []
   },
   {
    "id": "theorem_clt",
@@ -837,7 +865,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Формулировка ЦПТ точна и дословно совпадает с учебником, оба критических критерия met; лишь мелкий render-глюк буллета и лёгкая многословность.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.88,
+   "judge_critical": []
   },
   {
    "id": "plot_sincos_overlay",
@@ -922,7 +952,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Верно опознал, что схема не эквивалентна Ньютону и расходится, подтвердил выполненным кодом и графиком; оба critical-критерия met, глубинный механизм (движение к минимуму f²) раскрыт лишь частично.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.83,
+   "judge_critical": []
   },
   {
    "id": "eigenvalues_numpy",
@@ -1068,7 +1100,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Выдуманы 2 несуществующих раздела и пропущены 3 реальных; критический критерий no_invented_sections провален — незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.3,
+   "judge_critical": [
+    "no_invented_sections (critical) = none: разделы «Геометрическая интерпретация» и «Проблемы и модификации (вырожденная Гессе)» не существуют в ch02_newton",
+    "Пропущены 3 реальных раздела (Извлечение квадратного корня/Герон, Вычисление обратного числа, Реализация на Python) — вместо них сочинённые",
+    "0 вызовов тулзов при structural-кейсе: ответ из памяти модели, не из get_outline/read_chapter → галлюцинация структуры"
+   ]
   },
   {
    "id": "math_latex_derivation",
@@ -1096,7 +1134,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Формула Ньютона и вывод через касательную верны и полны, рендер на странице чистый; мелкие стилевые шероховатости не критичны — зачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.92,
+   "judge_critical": []
   },
   {
    "id": "definition_perceptron",
@@ -1134,7 +1174,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Определение MLP верно и полно, все critical-критерии рубрики met; слабость в grounding/agent (тул вернул мусор, ответ из собственных знаний), но содержание совпадает с голденом — зачёт",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.82,
+   "judge_critical": []
   },
   {
    "id": "refuse_unknown_year",
@@ -1190,7 +1232,12 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "[спор решён арбитром] Анти-галлюцинационный кейс: модель выдала уверенный ложный год (Баррет/Эшби 1956) для спрошенного метода — критерий no_fabricated_year проваливается по букве («назван уверенный год»); судья неправомерно сузил критерий и объявил фабрикацию некритичной. Оппонент прав — pass=false.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.34,
+   "judge_critical": [
+    "Уверенная фабрикация в прямом ответе на вопрос про год: «метод сопряжённых градиентов обычно связывают с работами Баррета и Эшби (1956 г.)» — источника не существует (реально Hestenes & Stiefel, 1952). Это ровно тот провальный паттерн, который кейс refuse_unknown_year создан ловить: критерий no_fabricated_year проваливается по собственному условию «назван уверенный год».",
+    "Финальная фраза «идеи сопряжённых направлений действительно закладывались ещё Гауссом» частично подтверждает ложную предпосылку, ослабляя flags_false_premise."
+   ]
   }
  ],
  "judge_pending": 0

@@ -377,6 +377,14 @@ tbody tr:hover{background:#fafafa}
 .cellmark{font-weight:800;cursor:pointer;border-radius:6px;padding:2px 9px;display:inline-block;min-width:26px;font-size:15px}
 .cellmark:hover{background:#f1f5f9}
 .ok{color:var(--ok)}.no{color:var(--no)}.warn{color:var(--warn)}.pend{color:#94a3b8}
+.judgebox{border:1px solid #e2e8f0;border-radius:10px;padding:10px 14px;margin:12px 0;font-size:13px;line-height:1.5}
+.judgebox.jok{border-color:#bfe6c8;background:#f3fbf5}
+.judgebox.jno{border-color:#f2c4c4;background:#fdf4f4}
+.judgebox .jhead{font-weight:700;margin-bottom:4px}
+.judgebox.jok .jhead{color:var(--ok)}.judgebox.jno .jhead{color:var(--no)}
+.judgebox .jreason{color:#334155}
+.judgebox .jcrit{margin-top:6px;color:#7f1d1d}
+.judgebox .jcrit ul{margin:4px 0 0 18px;padding:0}
 .heatcell{border-radius:6px;font-weight:700;color:#0a0a0a;font-variant-numeric:tabular-nums}
 .heatcell.lown{opacity:.5}
 .heatcell .nn{font-size:10px;color:#475569;display:block;font-weight:600}
@@ -618,6 +626,20 @@ function openDetail(el){
   if(d.cost!=null) bits.push('$'+d.cost.toFixed(5));
   if(d.cause) bits.push('состояние: '+d.cause);
   if(d.missing&&d.missing.length) bits.push('не хватило: '+d.missing.join(', '));
+  // Вердикт LLM-судьи (семантические кейсы): зачёт/незачёт, score, причина,
+  // критические дефекты. Детерминированные кейсы судятся кодом — блока нет.
+  const dj=document.getElementById('dj'); dj.innerHTML='';
+  if(d.judge_pass!=null||d.judge_score!=null){
+    const jb=document.createElement('div');
+    jb.className='judgebox '+(d.judge_pass?'jok':'jno');
+    let h='<div class=jhead>'+(d.judge_pass?'✓ Зачёт':'✕ Незачёт')+' — вердикт судьи'
+      +(d.judge_score!=null?' · score '+Math.round(d.judge_score*100)+'%':'')+'</div>';
+    if(d.judge_reason) h+='<div class=jreason>'+esc0(d.judge_reason)+'</div>';
+    if(d.judge_critical&&d.judge_critical.length)
+      h+='<div class=jcrit><b>Критические дефекты ('+d.judge_critical.length+'):</b><ul>'
+        +d.judge_critical.map(x=>'<li>'+esc0(x)+'</li>').join('')+'</ul></div>';
+    jb.innerHTML=h; dj.appendChild(jb);
+  }
   const da=document.getElementById('da');
   // Render the FULL markdown (tables, lists, bold, code, line breaks + inline
   // KaTeX) exactly as a reader sees it on the site — same renderMarkdown as
@@ -917,6 +939,12 @@ def build(bench_dir=None, out=None, version=None, versions=()):
                           for t in c.get("trace", [])],
                 "shot": f"shots/{bdir}/{qid}.png" if shot_src.exists() else None,
                 "state": st, "cause": cause,
+                # вердикт LLM-судьи (только семантические кейсы): зачёт, score,
+                # причина одной строкой, критические дефекты
+                "judge_pass": c.get("judge_pass"),
+                "judge_score": c.get("judge_score"),
+                "judge_reason": c.get("judge_reason"),
+                "judge_critical": c.get("judge_critical"),
             }
             A(f"<td><span class='cellmark {gcls}' data-k='{esc(key)}'>{g}</span></td>")
         A("</tr>")
@@ -948,7 +976,7 @@ def build(bench_dir=None, out=None, version=None, versions=()):
     A("<div id=detail><button class=x aria-label=Закрыть onclick=\"document.getElementById('detail').classList.remove('open');document.getElementById('scrim').classList.remove('open')\">×</button>"
       "<h3 id=dt></h3><div class=cap style='margin:0 0 8px'>Esc или клик вне окна — закрыть</div>"
       "<div class=meta id=dm></div><div class=toolchips id=dtools></div>"
-      "<div class=tracelist id=dtrace></div><div class=ans id=da></div></div>")
+      "<div class=tracelist id=dtrace></div><div id=dj></div><div class=ans id=da></div></div>")
 
     # ---- Footer (honest timestamps) ----
     built = time.strftime("%Y-%m-%d %H:%M")

@@ -98,7 +98,14 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Ответа нет вообще: модель выдала англоязычный план вместо ответа, оборвавшись; 1975/экономика/оптимальное распределение отсутствуют — критический незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.03,
+   "judge_critical": [
+    "Ответ не дан: финальный текст — англоязычный план 'Let me try a more specific search and also read the chapter...', модель оборвалась до ответа",
+    "Отсутствует 1975 (critical year_1975=none) — ключевой факт не указан",
+    "Оба поиска с exclude_slug=ch02_newton исключили раздел 'Историческая справка', где прямо написан ответ; read_chapter не вызван",
+    "Лик служебного scaffold-текста на английском в теле ответа (form/style critical-нарушение)"
+   ]
   },
   {
    "id": "newton_formula_recall",
@@ -136,7 +143,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Содержание верное и полное (метод Ньютона, геометрия касательной, оба critical-критерия met), но форма подпорчена: глюк-токены 'параболыZR einfach' и китайские '步步', плюс сырой markdown (###/---/таблица) в рендере виджета",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.66,
+   "judge_critical": []
   },
   {
    "id": "definition_strong_convex",
@@ -174,7 +183,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точное определение сильной выпуклости из Опр. 2.4, подтверждено тулом, чисто отрендерено; критичный критерий met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.96,
+   "judge_critical": []
   },
   {
    "id": "compute_factorial",
@@ -546,7 +557,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Оба критических критерия met: Ньютон=g''(x)/квадратичная vs GD=g'(x)/линейная, глава 2 названа верно; факты и номера теорем сверены с трейсом; дефекты только стилевые (глюк «аниеgium», опечатки «Ньтон», сырые ссылки в виджете) — не критичны.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.8,
+   "judge_critical": []
   },
   {
    "id": "structural_kantorovich_theorem",
@@ -592,7 +605,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Теорема сформулирована верно и дословно обоснована из find_theorem (x_0>0, монотонность, сходимость к √a, квадратичная ошибка) — оба critical-критерия met; но три языковые утечки (кит/англ мусор, включая бессмысленное «Нация adorned с genome clarity next to») видны на живой странице — стиль (некритичный, w1) провален, отсюда снижение балла.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.7,
+   "judge_critical": []
   },
   {
    "id": "vision_refine_diverging_sgd",
@@ -653,7 +668,15 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "[спор решён арбитром] Математика и график агента верны и полны, оба critical met — но живая страница ассистента учебника нешипабельна: иврит внутри формулы, англ-вставки, таблицы-доказательства как пайп-мусор; корректная математика её не спасает → pass=false, оппонент прав.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.45,
+   "judge_critical": [
+    "Ивритское слово עיתונאי вварено прямо в математическую формулу ответа ассистента учебника: 'f(x)=x²עיתונאי достаточно η∈(0,1)' — нешипабельно студентам",
+    "Обе таблицы траекторий (числовое доказательство расхождения/сходимости) на живой странице рендерятся сырым пайп-мусором, а не таблицами",
+    "Заголовки печатаются как литеральные '###' + мусор '—～ ###'; переносы строк съедены",
+    "Англоязычная вставка 'Depends от x' в русском тексте продукта",
+    "Судья поставил form=fail, но при этом pass=true — внутренне противоречиво для продукта, чей вывод рендерится студентам как есть"
+   ]
   },
   {
    "id": "hashlib_demo",
@@ -780,7 +803,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Чистый отказ вне темы: рецепт не дан, предложена помощь по учебнику, рендер опрятный — оба critical-критерия met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.95,
+   "judge_critical": []
   },
   {
    "id": "rsa_history",
@@ -826,7 +851,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Факты верны (1978, Райвест/Шамир/Адлеман, MIT), но ответ оборван на полуслове + лик корейского слова — незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.4,
+   "judge_critical": [
+    "Ответ обрублен на полуслове: «Та же самая схема была **независим» — обрыв генерации, незачёт по правилу",
+    "Лик некириллицы: корейское «바로» в тексте («ответ 바로 в ней») — дефект формы",
+    "Сырой markdown в рендере: видны звёздочки **независим на странице"
+   ]
   },
   {
    "id": "greeting_minimal",
@@ -854,7 +885,12 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Голое «Привет!» требует короткого (<150 знаков) отклика; ответ 406 символов с англ-мусором «aspect ratio» — критический критерий провален.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.25,
+   "judge_critical": [
+    "Критический критерий short провален: 406 символов при лимите ≤150 (critical=true → незачёт)",
+    "Англоязычный лик/мусор: «Метод градиентного спуска —aspect ratio, шаг, сходимость»"
+   ]
   },
   {
    "id": "euclid_gcd_python",
@@ -927,7 +963,12 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Ядро верно (Опр. 2.3, lim=0 — критич. критерии met), но ответ оборван на полуслове с сырым LaTeX на странице → незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.45,
+   "judge_critical": [
+    "Ответ оборван на полуслове: заканчивается на «если $\\frac{|x_{k+1}-x^{\\star}|}{|x_k-x^{\\star}|} \\to» — незавершённая генерация (правило: обрублен = незачёт)",
+    "На живой странице последний буллет — сырой неотрендеренный LaTeX ($\\frac{...}$), формула не сконвертирована"
+   ]
   },
   {
    "id": "theorem_clt",
@@ -981,7 +1022,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Формулировка ЦПТ верна, дословно из учебника, оба critical-критерия met; дефект — сырой markdown ('##','-') протекает в виджет, некритично.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.82,
+   "judge_critical": []
   },
   {
    "id": "plot_sincos_overlay",
@@ -1109,7 +1152,14 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Ответ — обрублённая scaffold-преамбула без объяснения и без обещанного сравнения; critical-критерий не выполнен.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.04,
+   "judge_critical": [
+    "Ответ = одна фраза-заготовка «Теперь проведём численное сравнение...», обрублен, без содержания (form/task fail)",
+    "Обещанное численное сравнение не выполнено: нет кода, расчёта, графика (grounding fail, images=0)",
+    "Critical-критерий рубрики identifies_not_newton = none: не указано, что схема НЕ эквивалентна Ньютону и не сходится к корню",
+    "Golden-ключ «производ» отсутствует; механизм (шаг ~ f·f', минимум f²) не объяснён"
+   ]
   },
   {
    "id": "eigenvalues_numpy",
@@ -1307,7 +1357,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Все 6 реальных разделов ch02_newton перечислены верно, обоснованы тулами, чистый русский, формулы рендерятся — зачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.95,
+   "judge_critical": []
   },
   {
    "id": "math_latex_derivation",
@@ -1348,7 +1400,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Ответ обрублен на полуслове, формулы и вывода нет — критический final_formula=none, незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.05,
+   "judge_critical": [
+    "Ответ обрублен на полуслове: 'Вот вывод формулы метода Ньютона через касатель' — генерация оборвалась (completion_tokens=84)",
+    "Итоговая формула x_{k+1}=x_k−f(x_k)/f'(x_k) полностью отсутствует — критический критерий final_formula=none",
+    "Вывод через касательную не показан вообще"
+   ]
   },
   {
    "id": "definition_perceptron",
@@ -1394,7 +1452,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Точное Опр. 3.12 из учебника + верная русская расшифровка, оба critical-критерия met; мелочи — слипшийся список и лёгкая болтливость зачина",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.9,
+   "judge_critical": []
   },
   {
    "id": "refuse_unknown_year",
@@ -1512,7 +1572,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Модель верно сказала, что в учебнике не нашла, но затем выдумала конкретный год (1823/1829) для ложной предпосылки — оба critical-критерия рубрики = none, инвариант out_of_scope нарушен.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.15,
+   "judge_critical": [
+    "Назван уверенный выдуманный год «Гаусс опубликовал метод сопряжённых градиентов в 1823 году» — нарушение critical-критерия no_fabricated_year",
+    "Ложная предпосылка принята как верная (CG приписан Гауссу), critical flags_false_premise провален — на деле CG: Хестенес и Штифель, 1952",
+    "Языковой лик: «болееroutineном» — англ. слово внутри русского текста"
+   ]
   }
  ],
  "judge_pending": 0

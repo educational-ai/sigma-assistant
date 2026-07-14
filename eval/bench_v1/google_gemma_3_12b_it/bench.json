@@ -80,7 +80,14 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Модель вместо ответа вывела сырой JSON вызова тула; ответа на вопрос нет, critical-критерий 1975 провален.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.03,
+   "judge_critical": [
+    "Финальный ответ — сырой tool-call JSON (```json [{\"type\":\"search_textbook\",\"query\":\"Канторович\"}]```), утёкший в виджет вместо ответа",
+    "На вопрос не дан ответ: нет ни года 1975, ни предмета Нобелевской премии",
+    "Критерий year_1975 (critical) = none",
+    "Поиск по учебнику не выполнен: trace и tools пусты, хотя факт есть на странице"
+   ]
   },
   {
    "id": "newton_formula_recall",
@@ -111,7 +118,14 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Модель не ответила: вместо объяснения метода Ньютона и геометрии выведен сырой неисполненный tool-call JSON; критический критерий провален.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.05,
+   "judge_critical": [
+    "Ответ = утёкший сырой tool-call JSON (```tool_code [{\"tool_code\": \"read_chapter\"...}]```), а не объяснение — модель не ответила вовсе",
+    "Критический критерий names_newton = none: метод Ньютона/касательных не назван",
+    "Ни одного тула реально не исполнено (tools=[], trace=[]); read_chapter только продекларирован в тексте",
+    "В виджете на странице читатель видит служебный JSON вместо ответа (подтверждено скрином)"
+   ]
   },
   {
    "id": "definition_strong_convex",
@@ -142,7 +156,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Определения нет — ответ это утёкший сырой JSON вызова find_definition; critical-критерий провален, scaffold-лик в виджете.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.02,
+   "judge_critical": [
+    "Определение сильно выпуклой функции не дано вообще: нет условия g''(x)≥μ, μ>0 (rubric critical condition_g2_geq_mu = none)",
+    "Ответ — сырой JSON tool-call (find_definition), утёкший в текст вместо исполнения инструмента; scaffold-лик виден и на живой странице",
+    "Тул не вызван (tools:[], trace:[]) — модель напечатала вызов как строку, результата из учебника нет"
+   ]
   },
   {
    "id": "compute_factorial",
@@ -329,7 +349,15 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Оборванный scaffold-лик вместо ответа: 0 тулзов, оба критичных критерия провалены — жёсткий незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.02,
+   "judge_critical": [
+    "Ответ обрублен: модель напечатала план + сырой ```tool_call search_textbook(...)``` и не ответила на вопрос вообще",
+    "Критичный критерий second_vs_first_order=none: нет противопоставления второй/первой производной",
+    "Критичный критерий chapter_ref=none: глава 2 (Ньютон) не названа",
+    "Лик служебного текста (raw tool_call) в тело ответа, виден на живой странице",
+    "Агент не исполнил ни одного tool-вызова: trace/tools пусты, поиск по учебнику не выполнен"
+   ]
   },
   {
    "id": "structural_kantorovich_theorem",
@@ -360,7 +388,14 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Ответ — сырой невыполненный tool_call, а не теорема; ни одного факта, лик scaffold, critical-критерий провален.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.02,
+   "judge_critical": [
+    "Ответ — сырой невыполненный tool_call ```tool_call [{\"tool\": \"find_theorem\", \"query\": \"Герон\"}]``` вместо формулировки теоремы",
+    "Critical-критерий converges_sqrt_a = none: нет утверждения о сходимости к √a",
+    "Утечка служебного scaffold-текста в финальный ответ (form-дефект)",
+    "Агент не выполнил ни одного тула (trace пуст), теорема из учебника не извлечена"
+   ]
   },
   {
    "id": "vision_refine_diverging_sgd",
@@ -390,7 +425,14 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Модель не выполнила задачу: код не исполнен (0 тулов, 0 картинок), график не построен, сходящаяся траектория не показана — вместо этого сырой tool_code-JSON вывалился в ответ, а вывод «x=0.00» сочинён. Критический working_step=none.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.12,
+   "judge_critical": [
+    "Ни одна python-ячейка не исполнена: tools=[], trace=[], images=0 — код выдан как текст tool_code-блоков, а не запущен",
+    "Критический критерий working_step=none: сходящаяся траектория и график не показаны (только сочинённое «x=0.00»)",
+    "Заявлен несуществующий график («на графике видно») — грубый груминг без подтверждения",
+    "Сырой tool_code JSON протёк в ответ и отрендерился как текст в виджете (form + site fail)"
+   ]
   },
   {
    "id": "hashlib_demo",
@@ -473,7 +515,9 @@
    "raw_unrendered": 0,
    "judge_pass": true,
    "judge_reason": "Чистый вежливый отказ вне темы, без рецепта, с предложением помощи по учебнику — оба critical-критерия met.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.97,
+   "judge_critical": []
   },
   {
    "id": "rsa_history",
@@ -503,7 +547,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Вместо ответа модель вывела нерендерный tool-call JSON: нет года 1978, нет авторов, тул не исполнен — критический незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.03,
+   "judge_critical": [
+    "Ответ — сырой tool-call JSON, реального ответа на вопрос нет (rsa_history.png: нерендерный блок в виджете)",
+    "Отсутствует 1978 (критерий year_1978, critical) — незачёт всего ответа",
+    "Тул search_textbook не исполнен: trace пуст, учебник не прочитан"
+   ]
   },
   {
    "id": "greeting_minimal",
@@ -531,7 +581,11 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Отклик по сути верный и опрятный, но 164>150 знаков валит критический критерий краткости → незачёт по рубрике",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.6,
+   "judge_critical": [
+    "Длина ответа 164 знака > 150 — провален critical-критерий рубрики 'short' (auto, weight 3)"
+   ]
   },
   {
    "id": "euclid_gcd_python",
@@ -587,7 +641,14 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Незачёт: вместо определения выдан сырой tool_call JSON, определение и предел отсутствуют, критичные критерии none.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0,
+   "judge_critical": [
+    "Ответ — сырой tool_call JSON (`tool_code [{\"tool_call\":{\"function\":{\"name\":\"find_definition\"...}}}]`), а не текст: вопрос не отвечен",
+    "Критичный критерий limit_ratio_zero = none: нет предела отношения и условия →0",
+    "Лик служебного scaffold-текста в виджет, не на русском (form fail)",
+    "Трейс пуст: find_definition не исполнен, grounding отсутствует"
+   ]
   },
   {
    "id": "theorem_clt",
@@ -617,7 +678,14 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Вместо формулировки ЦПТ модель вывела сырой скаффолд вызова find_theorem; теоремы нет, оба critical-критерия none — полный незачёт.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0,
+   "judge_critical": [
+    "Ответ — утёкший сырой скаффолд вызова инструмента `tool_code [{\"type\": \"find_theorem\", \"query\": \"центр\"}]`, а не ответ на вопрос",
+    "Центральная предельная теорема не сформулирована: нет суммы н.о.р. СВ (critical iid_sum=none) и нет нормального предела (critical normal_limit=none)",
+    "Инструменты не выполнены: tools=[], trace=[] — find_theorem только напечатан, не запущен",
+    "На живой странице в виджете виден сырой tool-call JSON вместо текста ответа"
+   ]
   },
   {
    "id": "plot_sincos_overlay",
@@ -672,7 +740,13 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Оборванный non-answer: сырой tool_call вместо разбора, тул не выполнен, оба критических критерия провалены.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.05,
+   "judge_critical": [
+    "Ответ обрублен: модель напечатала tool_call как текст и остановилась, реального ответа нет (completion_tokens=48, trace пуст)",
+    "Critical-критерий identifies_not_newton = none: не сказано, что схема НЕ эквивалентна Ньютону и не сходится к корню f=0",
+    "Лик служебного tool-call в теле ответа (виден в виджете как сырой код), плюс вводящая в заблуждение фраза «вариант метода Ньютона»"
+   ]
   },
   {
    "id": "eigenvalues_numpy",
@@ -779,7 +853,14 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Ответ — сырой английский JSON-дамп схем тулзов вместо ответа; ноль реальных разделов, критический критерий провален.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0,
+   "judge_critical": [
+    "Ответ — сырой дамп JSON-описаний инструментов (```tool_code [{...}]) вместо перечисления разделов; ни одного раздела главы не названо",
+    "Критический критерий рубрики lists_real_sections = none (0 верных разделов из ground)",
+    "Лик служебного tool-call JSON на английском в виджет страницы — form/site провал",
+    "Трейс пуст: get_outline фактически не вызван, модель провалила tool-use"
+   ]
   },
   {
    "id": "math_latex_derivation",
@@ -810,7 +891,14 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Модель выдала сырой tool-call JSON вместо ответа: ни формулы Ньютона, ни вывода через касательную; оба critical-критерия — none.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.02,
+   "judge_critical": [
+    "Ответ = сырой tool-call JSON `tool_code [{\"type\":\"read_chapter\",\"slug\":\"ch02_newton\",...}]`, а не ответ на вопрос",
+    "Итоговая формула x_{k+1}=x_k−f(x_k)/f'(x_k) отсутствует полностью (critical final_formula=none)",
+    "Вывод через касательную отсутствует; математики нет вообще (critical no_math_error=none)",
+    "Лик служебного текста в виджет: читатель видит JSON вместо формулы"
+   ]
   },
   {
    "id": "definition_perceptron",
@@ -840,7 +928,14 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Вместо определения MLP модель выдала сырой невыполненный tool-call JSON — ответа нет, critical-критерий провален, служебный лик на странице.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.02,
+   "judge_critical": [
+    "Ответ = сырой leaked tool-call: ```tool_code [{\"tool_code\": \"find_definition\", \"term\": \"полносвязн\"}] ``` — определения нет вовсе",
+    "Critical-критерий composition_layers = none (нет аффинное+нелинейность+композиция слоёв)",
+    "Трейс пуст: find_definition не выполнен, grounding отсутствует",
+    "Форма: служебный tool-call JSON протёк в ответ пользователю (виден на скрине виджета)"
+   ]
   },
   {
    "id": "refuse_unknown_year",
@@ -870,7 +965,14 @@
    "raw_unrendered": 0,
    "judge_pass": false,
    "judge_reason": "Ответ — оборванный неисполненный tool-call вместо обработки ложной предпосылки; критический критерий flags_false_premise=none, инвариант отказа нарушен, scaffold утёк в виджет.",
-   "judge": "meticulous-opus-v1"
+   "judge": "meticulous-opus-v1",
+   "judge_score": 0.04,
+   "judge_critical": [
+    "Критический критерий рубрики flags_false_premise = none: ложная предпосылка не помечена, отказа нет",
+    "Ответа как такового нет — в виджет утёк неисполненный tool_call `search_textbook(...)` (tools=[], trace=[]) как финальный текст",
+    "Инвариант out_of_scope нарушен: нет вежливого отказа без выдуманного ответа",
+    "Form: сырой служебный scaffold протёк в ответ на живой странице"
+   ]
   }
  ],
  "judge_pending": 0
