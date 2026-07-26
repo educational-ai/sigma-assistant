@@ -223,6 +223,13 @@ def _contains(expected, answer_norm, answer_stems):
     happened to sit inside some larger number. Long values (≥6 digits, e.g. a
     33-digit factorial) keep the digit-grouping-stripped match so a space-
     grouped "265 252 859…" still satisfies the contiguous "265252859…"."""
+    # "re:<pattern>" — raw regex against the normalized answer, applied BEFORE
+    # _norm (which eats backslashes, so \b would be destroyed). Needed when the
+    # rubric allows many equivalent wordings but a bare substring would false-pass
+    # on the opposite word: "сходится" is literally inside "расходится", so only
+    # "re:\bсход" tells convergence from divergence.
+    if isinstance(expected, str) and expected.startswith("re:"):
+        return re.search(expected[3:], answer_norm) is not None
     e = _norm(expected)
     if re.fullmatch(r"\d+", e):
         if len(e) >= 6:                                   # long value: tolerate grouping
