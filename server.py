@@ -667,6 +667,9 @@ def _log_convo(model_id, client_body, response):
     (анализ ошибок, дообучение промпта, будущие версии бенча)."""
     try:
         rec = {"ts": time.time(), "model": model_id,
+               # conv_id присылает клиент: по нему шаги одного вопроса
+               # (вызовы инструментов + финал) сшиваются в один диалог.
+               "conv_id": client_body.get("conv_id"),
                "request_messages": client_body.get("messages"),
                "response": response}
         line = json.dumps(rec, ensure_ascii=False) + "\n"
@@ -740,8 +743,14 @@ def _log_timing(model_id, client_body, response, started, status="ok"):
 
 
 def _assemble_sse_response(raw: bytes):
-    """Собрать из SSE-потока итоговый ответ: текст + tool_calls + usage."""
+    """Собрать из SSE-потока итоговый ответ: текст + tool_calls + usage.
+
+    Рассуждения (reasoning) тоже собираем: читатель их видит на экране, а в
+    логе их не было — то есть разобрать «что модель на самом деле думала»
+    постфактум было невозможно.
+    """
     content, tool_calls, usage = [], {}, None
+    reasoning = []
     for frame in raw.decode("utf-8", "replace").split("\n\n"):
         for ln in frame.splitlines():
             if not ln.startswith("data:"):
@@ -757,6 +766,8 @@ def _assemble_sse_response(raw: bytes):
                 usage = g["usage"]
             ch = (g.get("choices") or [{}])[0]
             d = ch.get("delta") or {}
+            if d.get("reasoning"):
+                reasoning.append(d["reasoning"])
             if d.get("content"):
                 content.append(d["content"])
             for tc in d.get("tool_calls") or []:
@@ -768,6 +779,7 @@ def _assemble_sse_response(raw: bytes):
                 if fn.get("arguments"):
                     slot["arguments"] += fn["arguments"]
     return {"content": "".join(content),
+            "reasoning": "".join(reasoning) or None,
             "tool_calls": [tool_calls[k] for k in sorted(tool_calls)] or None,
             "usage": usage}
 
