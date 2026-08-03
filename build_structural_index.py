@@ -24,7 +24,10 @@ import re
 from pathlib import Path
 
 SIGMA_ROOT = Path("/var/www/sigma")
-CHAPTERS_DIRS = [SIGMA_ROOT / "book", SIGMA_ROOT / "10", SIGMA_ROOT / "11"]
+# Только book/ — то, что реально опубликовано на sigma.fmin.xyz. Каталоги
+# 10/ и 11/ (скелеты школьных курсов) никуда не рендерятся: ассистент индексировал
+# 9 таких «глав» и цитировал их со ссылками на несуществующие страницы.
+CHAPTERS_DIRS = [SIGMA_ROOT / "book"]
 SIGMA_DOCS = SIGMA_ROOT / "docs"
 SKIP_SLUGS = {"index", "preface"}
 
