@@ -679,6 +679,66 @@ def _log_convo(model_id, client_body, response):
         print(f"[convo-log] failed: {e}", file=sys.stderr)
 
 
+
+# --- компактный лог шагов: что происходило и сколько это заняло --------------
+# Полный llm_log.jsonl хранит диалоги целиком (мегабайты) и не отвечает на
+# вопрос «почему висело»: там нет ни длительностей, ни того, какие инструменты
+# позвала модель. Этот лог — одна короткая строка на вызов, с ротацией по
+# размеру, чтобы всегда можно было посмотреть последние N шагов.
+TIMING_LOG_PATH = Path(__file__).resolve().parent / "eval" / "timings.jsonl"
+TIMING_ROTATE_BYTES = 8 * 1024 * 1024      # 8 МБ
+TIMING_KEEP = 3                            # столько файлов держим
+
+
+def _log_timing(model_id, client_body, response, started, status="ok"):
+    """Одна строка на вызов модели: длительность, токены, инструменты, мусор."""
+    try:
+        resp = response if isinstance(response, dict) else {}
+        content = resp.get("content") or ""
+        if not isinstance(content, str):
+            content = ""
+        calls = resp.get("tool_calls") or []
+        usage = resp.get("usage") or {}
+        msgs = client_body.get("messages") or []
+        last_user = ""
+        for m in reversed(msgs):
+            if m.get("role") == "user":
+                c = m.get("content")
+                last_user = (c if isinstance(c, str) else "")[:160]
+                break
+        rec = {
+            "ts": round(time.time(), 3),
+            "took_s": round(time.time() - started, 2),
+            "model": model_id,
+            "status": status,
+            "msgs": len(msgs),
+            "prompt_tok": usage.get("prompt_tokens"),
+            "completion_tok": usage.get("completion_tokens"),
+            "reasoning_tok": (usage.get("completion_tokens_details") or {}).get("reasoning_tokens"),
+            "cost": usage.get("cost"),
+            "tools": [((c.get("function") or {}).get("name")) for c in calls] or None,
+            "content_len": len(content),
+            # признаки мусора, которые уже кусали: тег рассуждений и обрывки разметки
+            "has_think": ("<think>" in content or "</think>" in content) or None,
+            "odd_spoiler": (content.count("||") % 2 == 1) or None,
+            "odd_fence": (content.count("```") % 2 == 1) or None,
+            "q": last_user,
+        }
+        line = json.dumps({k: v for k, v in rec.items() if v is not None}, ensure_ascii=False) + "\n"
+        p = TIMING_LOG_PATH
+        p.parent.mkdir(parents=True, exist_ok=True)
+        if p.exists() and p.stat().st_size + len(line) > TIMING_ROTATE_BYTES:
+            for i in range(TIMING_KEEP - 1, 0, -1):
+                old = p.with_suffix(f".{i}.jsonl")
+                if old.exists():
+                    old.rename(p.with_suffix(f".{i+1}.jsonl"))
+            p.rename(p.with_suffix(".1.jsonl"))
+        with open(p, "a", encoding="utf-8") as fh:
+            fh.write(line)
+    except Exception as e:
+        print(f"[timing-log] failed: {e}", file=sys.stderr)
+
+
 def _assemble_sse_response(raw: bytes):
     """Собрать из SSE-потока итоговый ответ: текст + tool_calls + usage."""
     content, tool_calls, usage = [], {}, None
@@ -749,6 +809,12 @@ def _log_usage(model_id: str, raw: bytes) -> None:
 
 def _build_openrouter_payload(client_body: dict, skip_models: tuple = ()) -> dict:
     out = {k: v for k, v in client_body.items() if k in ALLOWED_FORWARD_FIELDS}
+    # Рассуждения НЕ трогаем: бенчмарк мерил модели именно с ризонингом, и
+    # выключение сделало бы прод несравнимым с его же оценками. Молчание в
+    # поток лечится индикатором на клиенте, а не отключением мышления.
+    # (Выключить принудительно: SIGMA_REASONING=off.)
+    if os.environ.get("SIGMA_REASONING", "on").lower() in ("off", "0", "false"):
+        out.setdefault("reasoning", {"enabled": False})
     if not out.get("model"):
         # Paid override wins: единая стабильная модель, без free-ranker карусели.
         if PAID_MODEL:
@@ -1053,6 +1119,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
         return buf, None, False  # timeout: pass-through whatever we got
 
     def _proxy_openrouter(self, client_body):
+        _t_started = time.time()
         wants_stream = bool(client_body.get("stream", True))
         tried: list[str] = []
         upstream = None
@@ -1081,7 +1148,9 @@ class Handler(http.server.BaseHTTPRequestHandler):
             if not wants_stream:
                 data = upstream.read()
                 try:
-                    _log_convo(model_id, client_body, json.loads(data.decode("utf-8", "replace")))
+                    _parsed = json.loads(data.decode("utf-8", "replace"))
+                    _log_convo(model_id, client_body, _parsed)
+                    _log_timing(model_id, client_body, _parsed, _t_started)
                 except Exception:
                     pass
                 self.send_response(200)
@@ -1135,7 +1204,9 @@ class Handler(http.server.BaseHTTPRequestHandler):
         finally:
             upstream.close()
             _log_usage(model_id, bytes(cap))
-            _log_convo(model_id, client_body, _assemble_sse_response(bytes(cap)))
+            _assembled = _assemble_sse_response(bytes(cap))
+            _log_convo(model_id, client_body, _assembled)
+            _log_timing(model_id, client_body, _assembled, _t_started)
 
 
 class ThreadingServer(socketserver.ThreadingMixIn, http.server.HTTPServer):
